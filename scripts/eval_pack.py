@@ -65,8 +65,20 @@ def wer(ref, hyp):
     return d[len(h)] / max(1, len(r))
 
 
+LOOSE_DROP = {"and", "the", "a", "an", "of"}
+
+
+def loose(s):
+    """Fallback form for key matching: VizWiz-style answers drop punctuation and small words."""
+    s = norm(s).replace("gray", "grey").replace("colour", "color")
+    s = re.sub(r"(?<=\d),(?=\d{3})", "", s)
+    words = re.findall(r"[a-z0-9]+(?:\.[0-9]+)?", s)
+    return " " + " ".join(w for w in words if w not in LOOSE_DROP) + " "
+
+
 def match_groups(groups, answer, question):
     a = norm(answer)
+    la = loose(answer)
     pos = []
     for g in groups:
         if g == "REFUSE":
@@ -81,6 +93,9 @@ def match_groups(groups, answer, question):
                     hit = 0
             else:
                 i = a.find(alt)
+                if i < 0 and loose(alt).strip():
+                    j = la.find(loose(alt))
+                    i = -1 if j < 0 else round(j * len(a) / max(1, len(la)))
                 if i >= 0 and (hit is None or i < hit):
                     hit = i
         if hit is None:
@@ -127,10 +142,15 @@ def main():
     ap.add_argument("--run", required=True, help="name for results/pack/<run>.*")
     ap.add_argument("--modality", action="append", help="image, audio, text, video, code")
     ap.add_argument("--ids", help="comma-separated item ids")
+    ap.add_argument("--pack", default="Kaggle Data", help="folder with items.json, answers.json (and keys.json)")
     ap.add_argument("--opt", action="append", default=[],
                     help="handler option key=value, passed to the engine (repeatable)")
     args = ap.parse_args()
 
+    global PACK, KEYS
+    PACK = Path(args.pack)
+    if (PACK / "keys.json").exists():
+        KEYS = json.loads((PACK / "keys.json").read_text())
     from maya.engine import Engine
     opts = dict(o.split("=", 1) for o in args.opt)
     items = json.loads((PACK / "items.json").read_text())
@@ -168,7 +188,7 @@ def main():
         w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
         w.writeheader()
         w.writerows(rows)
-    lines = [f"# Practice pack run: {args.run}", "",
+    lines = [f"# Pack run: {args.run} ({args.pack})", "",
              f"Options: {opts or 'defaults'}. Engine load {load_s:.1f} s. "
              "Scoring rules in the scripts/eval_pack.py docstring.", "",
              "| Modality | Pass | Median s | Max s |", "|---|---|---|---|"]

@@ -1,0 +1,26 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_img_001,image,1,7.38,image,,How many people are in this image?,1,1 (1 person). A man driving a small boat with a dog sitting on it's front end.
+p_img_002,image,1,0.79,image,,How many people are in this image?,2,2 (2 people). A beautiful little girl sitting next to a little boy sharing a meal.
+p_img_003,image,1,0.83,image,,How many people are in this image?,1,1 (1 person). The woman holding an umbrella smiles on the narrow street beside the sidewalk.
+p_img_004,image,1,0.75,image,,How many people are in this image?,1,1 (1 person). A man gets air catching the Frisbee near the water.
+p_img_005,image,1,0.73,image,,How many people are in this image?,3,3 (3 people). a red park bench that is by some water.
+p_img_006,image,1,0.81,image,,How many people are in this image?,3,3 (3 people). A group of kids playing a game of baseball.
+p_img_007,image,1,0.74,image,,How many people are in this image?,3,3 (3 people). a person with a shopping cart on a city street.
+p_img_008,image,1,1.15,image,,How many people are in this image?,3,3 (3 people). A trio of men drinking wine at a restaurant table.
+p_img_009,image,1,0.7,image,,How many people are in this image?,5,5 (5 people). A group of men riding on the back of motorcycles.
+p_img_010,image,0,0.9,image,,How many people are in this image?,5,6 (6 people). A group of friends hanging out in a kitchen together.
+p_img_011,image,1,0.72,image,,How many elephants are in this image?,2,There are 2 elephants.
+p_img_012,image,1,0.9,image,,How many cats are in this image?,2,There are 2 cats.
+p_img_013,image,0,0.79,image,,How many zebras are in this image?,3,There are 4 zebras.
+p_img_014,image,1,0.82,image,,How many dogs are in this image?,4,There are 4 dogs.
+p_img_015,image,1,0.81,image,,How many cows are in this image?,4,There are 4 cows.
+p_img_016,image,1,0.88,image,,What does this say,STORAGE,storage
+p_img_017,image,1,0.98,image,,What is in this box?,Fisherman's Pie,fisherman pie
+p_img_018,image,1,0.98,image,,What is this?,Toaster oven.,toaster oven
+p_img_019,image,1,1.07,image,,What is the title of this book?,Fishing in the Air,fishing in air
+p_img_020,image,1,1.94,image,,What's this?,A wooden folding chair on a red tiled patio next to a metal ladder and a clothesline.,chair
+p_img_021,image,1,0.98,image,,What kind of drink is this?,Sunkist Orange Soda,sunkist
+p_img_022,image,1,1.39,image,,What is this item?,Grilled Chicken with Spanish Rice by John Soules Foods.,grilled chicken spanish rice
+p_img_023,image,1,1.24,image,,What is this ?,A folded $100 bill.,100 dollar bill
+p_img_024,image,1,1.12,image,,What's this? What's this?,A cigarette.,cigarette
+p_img_025,image,1,0.99,image,,What is this?,A Nokia phone.,phone

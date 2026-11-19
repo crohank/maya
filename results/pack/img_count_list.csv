@@ -1,0 +1,16 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_img_001,image,1,26.28,image,,How many people are in this image?,1 people are.,1 (1 person). A man driving a small boat with a dog sitting on it's front end.
+p_img_002,image,1,5.42,image,,How many people are in this image?,2 people are.,2 (2 people). A beautiful little girl sitting next to a little boy sharing a meal.
+p_img_003,image,1,1.67,image,,How many people are in this image?,1 people are.,1 (1 person). The woman holding an umbrella smiles on the narrow street beside the sidewalk.
+p_img_004,image,1,5.05,image,,How many people are in this image?,1 people are.,1 (1 person). A man gets air catching the Frisbee near the water.
+p_img_005,image,1,11.6,image,,How many people are in this image?,3 people are.,3 (3 people). a red park bench that is by some water.
+p_img_006,image,1,8.07,image,,How many people are in this image?,3 people are.,3 (3 people). A group of kids playing a game of baseball.
+p_img_007,image,1,7.14,image,,How many people are in this image?,3 people are.,3 (3 people). a person with a shopping cart on a city street.
+p_img_008,image,1,8.0,image,,How many people are in this image?,3 people are.,3 (3 people). A trio of men drinking wine at a restaurant table.
+p_img_009,image,1,14.47,image,,How many people are in this image?,5 people are.,5 (5 people). A group of men riding on the back of motorcycles.
+p_img_010,image,0,12.47,image,,How many people are in this image?,5 people are.,6 (6 people). A group of friends hanging out in a kitchen together.
+p_img_011,image,1,8.75,image,,How many elephants are in this image?,2 elephants are.,There are 2 elephants.
+p_img_012,image,1,8.97,image,,How many cats are in this image?,2 cats are.,There are 2 cats.
+p_img_013,image,0,10.68,image,,How many zebras are in this image?,3 zebras are.,There are 4 zebras.
+p_img_014,image,1,8.94,image,,How many dogs are in this image?,4 dogs are.,There are 4 dogs.
+p_img_015,image,1,15.1,image,,How many cows are in this image?,4 cows are.,There are 4 cows.

@@ -1,0 +1,30 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_vid_001,video,1,5.42,video,,How many shapes appear in this video?,There are 4 shapes in this video.,4 circles appear one at a time.
+p_vid_002,video,0,3.56,video,,Which direction does the square move?,"Got it, let's analyze the problem. The question is asking about the direction of the red square's movement. From the video description, the red square starts at x=0.12, y=0.50 and moves to x=0.88, y=0.50. So",The red square moves to the right.
+p_vid_003,video,0,5.11,video,,"What color appears first, and what color appears last?","Okay, let me try to figure this out. Q: What color appears first, and what color appears last? 
+
+I need to look at the video description again. The user provided the video, so I should base my answer solely on that. 
+
+The video starts with a white background. Then a red","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,0,5.11,video,,What does the sign say at the start and at the end?,"Okay, let's see. The user is asking about the text on the sign at the start and end of the video. The video shows that at the beginning, there's a red-outlined sign with ""OPEN"" in red letters on a white background. Then, after some time, the sign changes to ""","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,1.52,video,,Does the bar get taller or shorter?,Answer: The bar gets taller.,The bar gets taller.
+p_vid_006,video,0,3.47,video,,What happens to the two shapes?,"Got it, let's analyze the video step by step. First, the video starts with a red circle and a blue square on a white background. Then, the blue square moves downward (to the right in the frame, since x increases downward in pixel analysis) and the red circle moves downward (to the right in",The two shapes move toward each other until they touch.
+p_vid_007,video,0,3.11,video,,What number is shown last?,"Got it, let's look at the sequence. The numbers start at 5, then 4, 3, 2, 1. The last one is 1. So the answer should be 1.</think>
+
+1",A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,0,4.32,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,"Okay, let me try to figure this out. Q: Several shapes appear and then some disappear. How many shapes are left at the end? 
+
+A: 3
+
+Okay, let's break this down. The user provided a detailed description of the video. The key points are the colors and the order of","5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,3.71,video,,How many times does the ball bounce?,"Okay, let's see. The user is asking how many times the ball bounces in the video. I need to figure this out based on the video.
+
+First, the video starts with a red ball on a white background. The ball bounces up and down three times. The video shows that the ball",The ball bounces 3 times.
+p_vid_010,video,0,4.82,video,,What color is the background at the end?,"Okay, let me try to figure this out. So the user is asking about the background color at the end of the video shown. The video starts with a solid yellow background, then transitions to red, and finally settles into a solid blue. The key points here are that there are no objects or elements in the",The background ends blue.
+p_vid_011,video,0,3.98,video,,How many shapes appear in this video?,"Got it, let's analyze the video. First, check the number of shapes. The video starts with a white background, then shapes appear. Let's count each frame's appearance. The shapes are squares, and we need to count how many appear in total. Looking at the sequence: the first appearance is blue,",8 squares appear one at a time.
+p_vid_012,video,0,3.63,video,,Which direction does the circle move?,"Got it, let's analyze the movement of the green circle. First, look at the initial position: the circle is at the bottom (y = 0.85, which is lower on the screen). Then, as the video progresses, the circle moves upward. Wait, the question says ""from x=",The green circle moves up.
+p_vid_013,video,0,3.51,video,,"What color appears first, and what color appears last?","Got it, let's analyze the question. The user is asking about the first and last colors that appear in the video. Let's check the video description. The video starts with a yellow square, then a red square, then a blue square. So the first color is yellow, and the last one is blue.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,0,3.9,video,,What does the sign say at the start and at the end?,"Okay, let's see. The user is asking about the text on the sign in the video. The question is specifically about what the sign says at the start and at the end of the clip.
+
+First, I need to recall the video. The video starts with a red rectangular sign on a black pole that says ""","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.42,video,,Does the bar get taller or shorter?,Answer: The bar gets taller.,The bar gets taller.

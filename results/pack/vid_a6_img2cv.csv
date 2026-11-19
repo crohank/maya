@@ -1,0 +1,22 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_vid_001,video,1,5.7,video,,How many shapes appear in this video?,"4 shapes appear in the video.
+
+The shapes are circles, each with a distinct color: red, blue, green, and yellow.",4 circles appear one at a time.
+p_vid_002,video,1,1.87,video,,Which direction does the square move?,Right.,The red square moves to the right.
+p_vid_003,video,1,2.61,video,,"What color appears first, and what color appears last?","Red appears first, green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,1,4.1,video,,What does the sign say at the start and at the end?,"At the start, the sign says ""OPEN"". At the end, it says ""CLOSED"".","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,2.17,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.
+p_vid_006,video,1,3.13,video,,What happens to the two shapes?,The red circle and blue square move toward each other and eventually touch.,The two shapes move toward each other until they touch.
+p_vid_007,video,1,2.04,video,,What number is shown last?,1,A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,1,5.76,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,"Three shapes are left at the end.
+
+The green square that appeared at 3.4 s is still there, and the two yellow squares that appeared at 1.3 s and 2.8 s are also still there.","5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,1.64,video,,How many times does the ball bounce?,3,The ball bounces 3 times.
+p_vid_010,video,1,2.7,video,,What color is the background at the end?,Blue.,The background ends blue.
+p_vid_011,video,0,3.68,video,,How many shapes appear in this video?,"4
+
+The shapes are blue, red, yellow, and green.",8 squares appear one at a time.
+p_vid_012,video,1,2.26,video,,Which direction does the circle move?,Upward.,The green circle moves up.
+p_vid_013,video,1,2.64,video,,"What color appears first, and what color appears last?","Yellow appears first, blue appears last.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,1,4.41,video,,What does the sign say at the start and at the end?,"At the start, the sign says ""PUSH"". At the end, it says ""PULL"".","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,2.45,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.

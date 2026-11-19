@@ -1,0 +1,16 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_img_001,image,1,27.83,image,,How many people are in this image?,1,1 (1 person). A man driving a small boat with a dog sitting on it's front end.
+p_img_002,image,1,0.77,image,,How many people are in this image?,2,2 (2 people). A beautiful little girl sitting next to a little boy sharing a meal.
+p_img_003,image,1,0.65,image,,How many people are in this image?,1,1 (1 person). The woman holding an umbrella smiles on the narrow street beside the sidewalk.
+p_img_004,image,1,0.64,image,,How many people are in this image?,1,1 (1 person). A man gets air catching the Frisbee near the water.
+p_img_005,image,1,0.56,image,,How many people are in this image?,3,3 (3 people). a red park bench that is by some water.
+p_img_006,image,1,0.63,image,,How many people are in this image?,3,3 (3 people). A group of kids playing a game of baseball.
+p_img_007,image,1,0.48,image,,How many people are in this image?,3,3 (3 people). a person with a shopping cart on a city street.
+p_img_008,image,1,0.56,image,,How many people are in this image?,3,3 (3 people). A trio of men drinking wine at a restaurant table.
+p_img_009,image,1,0.52,image,,How many people are in this image?,5,5 (5 people). A group of men riding on the back of motorcycles.
+p_img_010,image,0,0.46,image,,How many people are in this image?,5,6 (6 people). A group of friends hanging out in a kitchen together.
+p_img_011,image,1,0.48,image,,How many elephants are in this image?,2,There are 2 elephants.
+p_img_012,image,1,0.48,image,,How many cats are in this image?,2,There are 2 cats.
+p_img_013,image,0,0.51,image,,How many zebras are in this image?,3,There are 4 zebras.
+p_img_014,image,1,0.68,image,,How many dogs are in this image?,4,There are 4 dogs.
+p_img_015,image,1,0.76,image,,How many cows are in this image?,4,There are 4 cows.

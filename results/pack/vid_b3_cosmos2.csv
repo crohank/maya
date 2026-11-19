@@ -1,0 +1,40 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_vid_001,video,0,5.55,video,,How many shapes appear in this video?,"Got it, let's analyze the video. First, look at the sequence of frames. The first frame is a white screen. Then, the next frames show a red circle, then a blue circle, then a green circle, then a yellow circle. Wait, let's check each frame:
+
+- Frame 0:",4 circles appear one at a time.
+p_vid_002,video,0,2.42,video,,Which direction does the square move?,"Got it, let's look at the video. The red square starts on the left side and then moves to the right. So the direction of movement is from left to right. I need to state that direction.</think>
+
+Right",The red square moves to the right.
+p_vid_003,video,0,2.72,video,,"What color appears first, and what color appears last?","Got it, let's analyze the video. First, the first color that appears is red. Then, the last color that appears is green. So we need to state the first and last colors.</think>
+
+Red appears first, and green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,0,3.39,video,,What does the sign say at the start and at the end?,"Got it, let's look at the video. The first sign is ""OPEN"" in a red box, then later it changes to ""CLOSED"" in the same style. So the start sign is OPEN, the end sign is CLOSED.</think>
+
+OPEN; CLOSED","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,2.41,video,,Does the bar get taller or shorter?,"Got it, let's look at the video. The blue bar starts at the bottom line and then moves upward. So the bar is getting taller as it rises. Therefore, the bar gets taller.</think>
+
+Taller",The bar gets taller.
+p_vid_006,video,0,3.1,video,,What happens to the two shapes?,"Got it, let's look at the video. The red circle and blue square start separate, then they move closer and eventually overlap, forming a single shape. So the two shapes come together to merge.</think>
+
+The two shapes (red circle and blue square) move closer and merge into a single shape.",The two shapes move toward each other until they touch.
+p_vid_007,video,0,2.35,video,,What number is shown last?,"Got it, let's look at the sequence of numbers. The video starts with 5, then 4, 3, 2, 1. So the last number shown is 1.</think>
+
+1",A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,0,3.41,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,"Got it, let's look at the video. The shapes start with some, then some appear and disappear. Let's track the count. Initially, there are no shapes, then green and yellow shapes appear. Wait, the video shows that at the end, how many shapes are left? Let's check the frames.","5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,0,2.61,video,,How many times does the ball bounce?,"Got it, let's look at the video. The ball starts, first it goes down, then bounces up, then down again, then bounces up again. Wait, let's count the bounces. First, the ball goes down (initial drop), then bounces up (first bounce",The ball bounces 3 times.
+p_vid_010,video,0,2.89,video,,What color is the background at the end?,"So, let's look at the video frames. The first frame is yellow, then it changes to red, then blue. The last frame (frame 9) is blue. So the background at the end is blue.
+</think>
+Blue",The background ends blue.
+p_vid_011,video,0,3.35,video,,How many shapes appear in this video?,"Got it, let's count the shapes in the video. First, let's look at each frame. The shapes are squares, right? Let's count them one by one. 
+
+Starting from the first frame: the first frame has a blue square, then a red square, then a yellow square, then a",8 squares appear one at a time.
+p_vid_012,video,0,1.83,video,,Which direction does the circle move?,"Got it, let's look at the video. The green circle starts at the bottom and then moves upward. So the direction of movement is up.</think>
+
+Up",The green circle moves up.
+p_vid_013,video,0,2.8,video,,"What color appears first, and what color appears last?","Got it, let's look at the sequence of images. The first image has a yellow square, then a red square, then a blue square, and the last one is the blue square. Wait, let's check each frame. The first frame (0.0) has a yellow square. Then 0.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,0,3.4,video,,What does the sign say at the start and at the end?,"Got it, let's look at the video. The first sign says ""PUSH"" and then the second one says ""PULL"". So the question is asking what the sign says at the start and at the end. The start sign is PUSH, the end sign is PULL.</think>
+
+PUSH,","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.96,video,,Does the bar get taller or shorter?,"Got it, let's look at the video. The green bar starts flat, then moves upward, getting taller. So the bar gets taller.</think>
+
+Taller",The bar gets taller.

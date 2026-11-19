@@ -1,0 +1,330 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_img_001,image,1,7.11,image,,What does this sign say?,EMERGENCY EXIT,EMERGENCY EXIT
+h_img_002,image,1,1.12,image,,What does the label say?,KEEP REFRIGERATED,KEEP REFRIGERATED
+h_img_003,image,1,0.55,image,,What is the name of the street on this sign?,Maple Avenue,Maple Avenue
+h_img_004,image,1,0.85,image,,What is written on the box?,"FRAGILE
+THIS SIDE UP","FRAGILE, THIS SIDE UP"
+h_img_005,image,1,0.84,image,,How much do the apples cost?,$3.49 / lb,$3.49 per pound
+h_img_006,image,1,0.81,image,,What is the sale price?,$17.50,$17.50 (it was $24.99)
+h_img_007,image,1,0.47,image,,What is the most tablets you can take in 24 hours?,6,6 tablets in 24 hours.
+h_img_008,image,1,1.11,image,,"How often should this medicine be taken, and for how long?",3 times daily for 7 days.,1 capsule 3 times daily for 7 days.
+h_img_009,image,0,0.47,image,,How many apples are in this image?,6,There are 7 apples.
+h_img_010,image,1,0.49,image,,How many balloons are there?,4,There are 4 balloons.
+h_img_011,image,1,0.45,image,,How many blue squares are in this image?,5,There are 5 blue squares (plus 3 red squares and 3 blue circles).
+h_img_012,image,1,0.84,image,,Where was the meeting moved to?,Room 12B,Room 12B (at 3:30 PM).
+h_aud_001,audio,1,3.38,audio_transcribe,wer=0.026,Transcribe this audio.,"The wind being adverse, the Dobrena did not make very rapid progress. But as the weather, in spite of a few clouds, remained calm, and the sea was quite smooth, she was enabled to hold a steady course.",The wind being adverse the dobryna did not make very rapid progress but as the weather in spite of a few clouds remained calm and the sea was quite smooth she was enabled to hold a steady course.
+h_aud_002,audio,1,2.88,audio_qa,,"Which instrument does she play, and whose letter does she read?",She plays the piano and reads Philip's letter.,She plays the piano and reads Philip's letter.
+h_aud_003,audio,1,0.57,audio_sound,,What sound is this?,"I am not sure. It might be static noise, or a dog barking.",Dog barking.
+h_aud_004,audio,1,2.31,audio_qa,,"According to the speaker, where was his country home?",His country home was in Essex.,An old family place in Essex.
+h_aud_005,audio,1,1.79,audio_speech_describe,,What can you hear?,"Someone is speaking. They say: ""But such was his dream is that even while the wide flukes of his engorged victim were still sticking out at the corners of his beak, his fierce red eyes were once more appearing downward into the torrent in search of fresh prey."" In the background I also hear a rooster or chicken.",A rooster crowing while a man is speaking.
+h_aud_006,audio,1,1.83,audio_speech_describe,,What can you hear?,"Someone is speaking. They say: ""The fact that it was churning day was another reason why it was inconvenient to have the widows, and why, consequently, Mrs. Poiser should scold Molly, the housemaid, with unusual severity."" In the background I also hear a clock ticking.",A clock ticking while a woman is speaking.
+h_txt_001,text,1,2.81,document,,How long should you flush your eyes at the eyewash station?,15 minutes.,15 minutes.
+h_txt_002,text,1,2.28,document,,Which container gets halogenated solvent waste?,green carboy.,The green carboy in fume hood 2.
+h_txt_003,text,1,2.82,document,,What extension do you call for a spill larger than 100 mL?,4477.,Extension 4477 (campus safety).
+h_txt_004,text,1,2.07,document,,Who is the lab manager?,Dr. Helen Okafor.,Dr. Helen Okafor.
+h_txt_005,text,1,0.76,document,,Which container gets radioactive waste?,The document does not say.,The document does not say.
+h_txt_006,text,1,2.63,document,,Who is the lab manager for Room 305?,The document does not say.,The document does not say.
+h_txt_007,text,1,2.32,document,,How often does a Route 12 bus leave during the morning peak?,every 15 minutes.,Every 15 minutes.
+h_txt_008,text,1,1.48,document,,How much is an adult single fare?,$2.25.,$2.25.
+h_txt_009,text,1,1.68,document,,How long does a full trip from Eastgate Terminal to Lighthouse Point take?,48 minutes.,48 minutes.
+h_txt_010,text,1,1.76,document,,Which temporary stop replaces College Street during the detour?,Elm Road.,The temporary stop on Elm Road.
+h_txt_011,text,1,0.71,document,,How much is an adult single fare on Route 14?,The document does not say.,The document does not say.
+h_txt_012,text,1,1.45,document,,What time does the first bus leave Lighthouse Point on weekdays?,The document does not say.,The document does not say.
+h_txt_013,text,1,2.29,document,,What ratio of white vinegar to water does the manual recommend for descaling?,1 part white vinegar to 2 parts water.,1 part white vinegar to 2 parts water.
+h_txt_014,text,1,3.52,document,,What does error code E2 mean?,The heater is overheating. Unplug the machine and wait 20 minutes before using it again.,The heater is overheating; unplug and wait 20 minutes.
+h_txt_015,text,1,1.32,document,,How long does the descaling cycle take?,35 minutes.,About 35 minutes.
+h_txt_016,text,1,1.85,document,,After how many hours does the warming plate switch off automatically?,2 hours.,After 2 hours.
+h_txt_017,text,1,1.82,document,,What does error code E3 mean?,The document does not say.,The document does not say.
+h_txt_018,text,1,1.55,document,,What ratio of citric acid to water does the manual recommend for descaling?,The document does not say.,The document does not say.
+h_vid_001,video,1,1.48,video,,How many shapes appear in this video?,6,6 triangles appear one at a time.
+h_vid_002,video,1,0.97,video,,"How many shapes show up, one after another?",3,3 stars appear one at a time.
+h_vid_003,video,1,1.1,video,,Which direction does the hexagon move?,Left.,The purple hexagon moves to the left.
+h_vid_004,video,1,0.88,video,,Which way is the triangle moving?,Down.,The orange triangle moves down.
+h_vid_005,video,1,1.18,video,,In which direction does the diamond move?,Right and up.,The cyan diamond moves diagonally up and to the right (from the bottom left to the top right).
+h_vid_006,video,1,1.5,video,,"What color appears first, and what color appears last?","Purple appears first, and cyan appears last.","A purple triangle appears first, then orange, then white, and cyan appears last."
+h_vid_007,video,1,1.16,video,,Which color shows up first and which shows up last?,"Brown, then black.","A brown star appears first, then pink, and black appears last."
+h_vid_008,video,1,1.66,video,,What does the sign say at the start and at the end?,"ENTER, EXIT.","The sign says ""ENTER"" at the start and ""EXIT"" at the end."
+h_vid_009,video,1,2.79,video,,"What word is on the sign at the beginning, and what does it change to?","The word on the sign at the beginning is ""SALE,"" and it changes to ""SOLD OUT.""","The sign says ""SALE"" at the beginning and changes to ""SOLD OUT""."
+h_vid_010,video,1,1.01,video,,Does the bar get taller or shorter?,shorter,The bar gets shorter.
+h_vid_011,video,1,1.31,video,,Is the bar growing or shrinking?,growing,The bar is growing (it gets taller).
+h_vid_012,video,1,2.3,video,,What happens to the two shapes?,"The orange triangle moves left, and the purple triangle moves right, moving apart from each other.","The two shapes start next to each other and move apart, away from each other."
+h_vid_013,video,1,1.43,video,,Do the two shapes move toward each other or away from each other?,They move toward each other.,"They move toward each other (one from the top, one from the bottom) until they touch."
+h_vid_014,video,1,1.27,video,,What number is shown last?,6,It counts up from 1 to 6; the last number shown is 6.
+h_vid_015,video,1,1.07,video,,What is the final number displayed?,3,A countdown from 9 to 3; the final number displayed is 3.
+h_vid_016,video,1,1.63,video,,Some shapes appear and then a few vanish. How many remain at the end?,2,"6 hexagons appear, 4 disappear, so 2 are left at the end."
+h_vid_017,video,1,1.5,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,4,"7 stars appear, 3 disappear, so 4 are left at the end."
+h_vid_018,video,1,0.75,video,,How many times does the ball bounce?,1,The ball bounces once (1 time).
+h_vid_019,video,1,1.01,video,,How many bounces does the ball make?,5,The ball bounces 5 times.
+h_vid_020,video,1,1.27,video,,What color is the background at the end?,orange,The background ends orange.
+h_vid_021,video,1,1.34,video,,What color is the background at the beginning of the video?,Pink.,The background starts pink.
+h_vid_022,video,0,1.35,video,,How many shapes appear in this video?,2,5 small circles appear one at a time.
+h_vid_023,video,0,0.85,video,,How many times does the ball bounce?,1,The ball bounces 2 times.
+h_vid_024,video,1,1.4,video,,Which direction does the dot move?,Down and left.,The small black dot moves diagonally down and to the left (from the top right to the bottom left).
+h_code_001,code,1,15.64,code,,"Complete this Python function:
+
+
+def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitesp","def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitespace. Ignore the punctuation
+    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.
+
+    >>> count_vowel_words(""Anna ate a banana"")
+    3
+    >>> count_vowel_words(""rhythm"")
+    0
+    """"""
+    vowels = set('aeiou')
+    words = sentence.split()
+    count = 0
+    
+    for word in words:
+        # Remove punctuation from start and end of word
+        clean_word = word.strip('.!?:; ,')
+        if len(clean_word) == 0:
+            continue
+            
+        # Check if first and last characters are vowels (case-insensitive)
+        if clean_word[0].lower() in vowels and clean_word[-1].lower() in vowels:
+            count += 1
+            
+    return count","
+def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitespace. Ignore the punctuation
+    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.
+
+    >>> count"
+h_code_002,code,1,8.21,code,,"Complete this Python function:
+
+
+def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading ze","def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading zeros disappear).
+    k may be larger than the number of digits.
+
+    >>> rotate_digits(12345, 2)
+    45123
+    >>> rotate_digits(1200, 1)
+    120
+    """"""
+    s = str(n)
+    length = len(s)
+    k = k % length  # Handle k larger than number of digits
+    rotated = s[-k:] + s[:-k]
+    return int(rotated)","
+def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading zeros disappear).
+    k may be larger than the number of digits.
+
+    >>> rotate_digits(12345, 2)
+    45123
+    >>> rotate_digits(1200"
+h_code_003,code,1,8.74,code,,"Complete this Python function:
+
+
+def merge_ranges(ranges):
+    """"""ranges is a list of [start, end] pairs of integers, inclusive at both ends, in
+    any order. Merge ranges that overlap or touch (end ","def merge_ranges(ranges):
+    if not ranges:
+        return []
+    
+    # Sort ranges by start
+    ranges.sort(key=lambda x: x[0])
+    
+    merged = []
+    current_start, current_end = ranges[0]
+    
+    for i in range(1, len(ranges)):
+        start, end = ranges[i]
+        if start <= current_end + 1:  # overlap or touch
+            current_end = max(current_end, end)
+        else:
+            merged.append([current_start, current_end])
+            current_start, current_end = start, end
+    
+    merged.append([current_start, current_end])
+    
+    return merged","
+def merge_ranges(ranges):
+    """"""ranges is a list of [start, end] pairs of integers, inclusive at both ends, in
+    any order. Merge ranges that overlap or touch (end + 1 == next start) and
+    return the merged ranges sorted by start.
+
+    >>> merge_ranges([[1, 3], [4, 6], [8, 9]])
+    [[1, 6], [8"
+h_code_004,code,1,8.57,code,,"Complete this Python function:
+
+
+def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> sec","def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> second_largest_unique([4, 1, 4, 3])
+    3
+    >>> second_largest_unique([2, 2]) is None
+    True
+    """"""
+    distinct_nums = list(set(nums))
+    if len(distinct_nums) < 2:
+        return None
+    distinct_nums.sort(reverse=True)
+    return distinct_nums[1]","
+def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> second_largest_unique([4, 1, 4, 3])
+    3
+    >>> second_largest_unique([2, 2]) is None
+    True
+    """"""
+    vals = sorted(set(nums), r"
+h_code_005,code,1,6.0,code,,"Complete this Python function:
+
+
+def balance_index(nums):
+    """"""Return the smallest index i such that the sum of the elements before i equals
+    the sum of the elements after i (the element at i is ","def balance_index(nums):
+    total_sum = sum(nums)
+    left_sum = 0
+    for i in range(len(nums)):
+        # Check if left_sum equals right_sum (total_sum - left_sum - nums[i])
+        if left_sum == total_sum - left_sum - nums[i]:
+            return i
+        left_sum += nums[i]
+    return -1","
+def balance_index(nums):
+    """"""Return the smallest index i such that the sum of the elements before i equals
+    the sum of the elements after i (the element at i is in neither sum).
+    Return -1 if there is no such index.
+
+    >>> balance_index([1, 7, 3, 6, 5, 6])
+    3
+    >>> balance_index([1,"
+h_code_006,code,1,10.81,code,,"Complete this Python function:
+
+
+def sort_by_digital_root(nums):
+    """"""Return a new list with the integers in nums sorted by their digital root, in
+    ascending order. The digital root is found by s","def sort_by_digital_root(nums):
+    def digital_root(n):
+        if n == 0:
+            return 0
+        n = abs(n)
+        while n > 9:
+            s = sum(int(d) for d in str(n))
+            n = s
+        return n
+
+    # Create a list of (digital_root, original_index, value) to preserve order
+    indexed_nums = [(digital_root(x), i, x) for i, x in enumerate(nums)]
+    
+    # Sort by digital root, then by original index (to preserve order for equal roots)
+    indexed_nums.sort(key=lambda x: (x[0], x[1]))
+    
+    # Extract the values in sorted order
+    return [x[2] for x in indexed_nums]","
+def sort_by_digital_root(nums):
+    """"""Return a new list with the integers in nums sorted by their digital root, in
+    ascending order. The digital root is found by summing the digits of the
+    absolute value repeatedly until one digit is left (the digital root of 0 is 0).
+    Numbers with equal "
+h_code_007,code,0,101.79,code,"Traceback (most recent call last):
+  File ""/tmp/tmpci2_rjxi/t.py"", line 50, in <module>
+    check(parse_duration)
+  File ""/tmp/tmpci2_rjxi/t.py"", line 40, in check
+    assert candidate(""1h30m15s"") == 5415, ""Error""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Error
+","Complete this Python function:
+
+
+def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a","def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a whole number of any
+    length. Return the total number of seconds. An empty string is 0 seconds.
+
+    >>> parse_duration(""1h30m15s"")
+    5415
+    >>> parse_duration(""45s"")
+    45
+    """"""
+    total_seconds = 0
+    parts = text.split()
+    if not parts:
+        return 0
+    
+    # Handle case where there's no space, e.g., ""1h30m15s""
+    if len(parts) == 1:
+        parts = [p for p in text.split(' ') if p]
+        if len(parts) == 1:
+            # Split by units
+            parts = []
+            for unit in ['h', 'm', 's']:
+                if unit in text:
+                    parts.append(text.split(unit)[0])
+                    text = text.split(unit)[1]
+                    break
+            # This approach is too complex, let's use a simpler method:
+            # Split by units and parse each part
+            parts = []
+            for unit in ['h', 'm', 's']:
+                if unit in text:
+                    parts.append(text.split(unit)[0])
+                    text = text.split(unit)[1]
+                    break","
+def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a whole number of any
+    length. Return the total number of seconds. An empty string is 0 seconds.
+
+    >>> parse_duration(""1h30m15s"
+h_code_008,code,1,10.91,code,,"Complete this Python function:
+
+
+def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a long","def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a longest run of 0.
+
+    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])
+    3
+    >>> longest_increasing_run([5, 4, 3])
+    1
+    """"""
+    if len(nums) == 0:
+        return 0
+    
+    max_length = 1
+    current_length = 1
+    
+    for i in range(1, len(nums)):
+        if nums[i] > nums[i-1]:
+            current_length += 1
+            max_length = max(max_length, current_length)
+        else:
+            current_length = 1
+    
+    return max_length","
+def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a longest run of 0.
+
+    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])
+    3
+    >>> longest_increasing_run([5, 4, 3])
+    1
+    """"""
+    "
