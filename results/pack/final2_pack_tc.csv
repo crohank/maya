@@ -1,0 +1,629 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_txt_001,text,1,8.35,document,,In Sept 1760 who negotiated a capitulation from Montreal?,Governor Vaudreuil.,Governor Vaudreuil
+p_txt_002,text,1,2.61,document,,Who defeated Montcalm at Quebec?,James Wolfe.,James Wolfe
+p_txt_003,text,1,2.59,document,,"Although some Acadians went to France and other destiantions, what North American city did many move to?",New Orleans.,New Orleans
+p_txt_004,text,1,0.92,document,,What battle outside Quebec City did British lose in 1706?,The document does not say.,The document does not say.
+p_txt_005,text,0,3.81,document,,"Whose role is to design the works, prepare the specifications and produce construction drawings, administer the contract, tender the works, and manage the works from inception to completion",The architect or engineer.,the project coordinator
+p_txt_006,text,1,2.4,document,,Having existing utility lines marked lessens the likelihood of what?,damage to existing utility lines.,damage
+p_txt_007,text,1,3.93,document,,What is the annual construction industry revenue in 2014?,$960 billion.,$960 billion
+p_txt_008,text,1,1.86,document,,How many firms were there in 2011?,The document does not say.,The document does not say.
+p_txt_009,text,1,3.27,document,,What range of years was the current warming compared to?,1000 to 1900.,between 1000 and 1900
+p_txt_010,text,1,5.45,document,,When did Barton and Whitfield demand climate research records?,23 June 2005.,23 June 2005
+p_txt_011,text,1,3.04,document,,Who was Chairman of the Subcommittee on Oversight and Investigations?,Ed Whitfield.,Ed Whitfield
+p_txt_012,text,1,4.95,document,,What year was the third assessment report published?,The document does not say.,The document does not say.
+p_txt_013,text,1,1.43,document,,What fish living in the Amazon river is known to bit humans?,piranha.,piranha
+p_txt_014,text,1,1.32,document,,Where does the Amazon region rate among the entire earth for its amount of biodiversity?,Highest.,highest on Earth
+p_txt_015,text,1,1.99,document,,What is the process of removing trees from a forest known as?,Deforestation.,Deforestation
+p_txt_016,text,1,2.8,document,,4380 species of what have been registered?,The document does not say.,The document does not say.
+p_txt_017,text,1,1.73,document,,What religion's schools does the term 'parochial schools' generally refer to?,Roman Catholic.,Roman Catholic
+p_txt_018,text,1,2.76,document,,What article of the Grundgesetz grants the right to make private schools?,"Article 7, Paragraph 4.",7
+p_txt_019,text,1,1.19,document,,Who attends Loreto Normanhurst?,Girls.,girls
+p_txt_020,text,1,0.94,document,,What part of a uniform must you wear if you go to public school in Australia?,The document does not say.,The document does not say.
+p_code_001,code,1,2.84,code,,"Complete this Python function:
+
+
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+      ","def digitSum(s):
+    total = 0
+    for char in s:
+        if char.isupper():
+            total += ord(char)
+    return total","
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSu"
+p_code_002,code,1,5.46,code,,"Complete this Python function:
+
+
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on com","def split_words(txt):
+    if ' ' in txt:
+        return txt.split()
+    elif ',' in txt:
+        return txt.split(',')
+    else:
+        count = 0
+        for char in txt:
+            if char.islower():
+                pos = ord(char) - ord('a')
+                if pos % 2 == 1:
+                    count += 1
+        return count","
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
+    alphabet, ord('a') = 0, ord"
+p_code_003,code,1,6.64,code,,"Complete this Python function:
+
+
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md","import hashlib
+
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+    if not text:
+        return None
+    return hashlib.md5(text.encode('utf-8')).hexdigest()","
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+    import hashlib
+    return hashlib.md5(text.encode('ascii')).hexdi"
+p_code_004,code,1,8.03,code,,"Complete this Python function:
+
+from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested par","from typing import List
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    result = []
+    current_group = """"
+    balance = 0
+    
+    for char in paren_string.replace(' ', ''):
+        if char == '(':
+            if balance == 0:
+                current_group = """"
+            balance += 1
+            current_group += char
+        elif char == ')':
+            balance -= 1
+            current_group += char
+            if balance == 0:
+                result.append(current_group)
+                current_group = """"
+    
+    return result","from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balan"
+p_code_005,code,1,12.09,code,,"Complete this Python function:
+
+
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even","def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_even([5, 6, 3, 4])
+    [3, 6, 5, 4]
+    """"""
+    even_indices = [l[i] for i in range(0, len(l), 2)]
+    even_indices.sort()
+    result = l.copy()
+    for i in range(0, len(l), 2):
+        result[i] = even_indices.pop(0)
+    return result","
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort"
+p_code_006,code,1,36.28,code,,"Complete this Python function:
+
+
+def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones i","def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
+
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """"""
+    pile = []
+    current_stones = n
+    for _ in range(n):
+        pile.append(current_stones)
+        if n % 2 == 0:
+            current_stones += 2
+        else:
+            current_stones += 2
+    return pile","
+def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number o"
+p_code_007,code,1,7.53,code,,"Complete this Python function:
+
+
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket ","def fruit_distribution(s, n):
+    # Split the string to extract the numbers
+    parts = s.split()
+    # Find the numbers for apples and oranges
+    apples = int(parts[0].rstrip('s'))
+    oranges = int(parts[3].rstrip('s'))
+    # Calculate mangoes
+    mangoes = n - apples - oranges
+    return mangoes","
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket of fruit this basket contains 
+    apples, oranges, and mango fruits. Given the string that represents the total number of 
+    the "
+p_code_008,code,1,8.28,code,,"Complete this Python function:
+
+
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and re","def file_name_check(file_name):
+    if file_name.count('.') != 1:
+        return 'No'
+    
+    dot_index = file_name.find('.')
+    prefix = file_name[:dot_index]
+    suffix = file_name[dot_index+1:]
+    
+    if not prefix or not prefix[0].isalpha():
+        return 'No'
+    
+    if suffix not in ['txt', 'exe', 'dll']:
+        return 'No'
+    
+    digit_count = sum(1 for c in file_name if c.isdigit())
+    if digit_count > 3:
+        return 'No'
+    
+    return 'Yes'","
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - Th"
+p_code_009,code,1,11.4,code,,"Complete this Python function:
+
+
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)","def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True","
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False"
+p_code_010,code,1,5.08,code,,"Complete this Python function:
+
+from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element fou","from typing import List, Tuple
+from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    if not numbers:
+        return []
+    result = [numbers[0]]
+    current_max = numbers[0]
+    for num in numbers[1:]:
+        if num > current_max:
+            current_max = num
+        result.append(current_max)
+    return result","from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+    running_"
+p_code_011,code,1,5.3,code,,"Complete this Python function:
+
+
+def any_int(x, y, z):
+    '''
+    Create a function that takes 3 numbers.
+    Returns true if one of the numbers is equal to the sum of the other two, and all numbers ","def any_int(x, y, z):
+    # Check if all numbers are integers
+    if not all(isinstance(n, int) for n in [x, y, z]):
+        return False
+    
+    # Check if one number is the sum of the other two
+    return x == y + z or y == x + z or z == x + y","
+def any_int(x, y, z):
+    '''
+    Create a function that takes 3 numbers.
+    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.
+    Returns false in any other cases.
+    
+    Examples
+    any_int(5, 2, 7) ➞ True
+    
+    any_int(3, 2, 2) ➞ False
+"
+p_code_012,code,1,3.11,code,,"Complete this Python function:
+
+
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+","def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string)","
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string)
+"
+p_code_013,code,1,4.48,code,,"Complete this Python function:
+
+
+def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Retur","def next_smallest(lst):
+    if len(lst) < 2:
+        return None
+    unique_vals = list(set(lst))
+    if len(unique_vals) < 2:
+        return None
+    unique_vals.sort()
+    return unique_vals[1]","
+def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Return None if there is no such element.
+    
+    next_smallest([1, 2, 3, 4, 5]) == 2
+    next_smallest([5, 1, 4, 3, 2]) == 2
+    next_sm"
+p_code_014,code,1,39.06,code,,"Complete this Python function:
+
+
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3","def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    if n == 1:
+        return 2
+    if n == 2:
+        return 3
+    
+    # Generate Fibonacci numbers and check for primality
+    a, b = 2, 3
+    for i in range(2, n):
+        c = a + b
+        a, b = b, c
+        if is_prime(c):
+            # We don't store in a list, we just count the primes
+            pass
+    
+    # We need to generate the sequence until we have n primes
+    # Start with the first two primes: 2, 3
+    # Then generate Fibonacci numbers and check for primality
+    count = 2
+    a, b = 2, 3
+    while count < n:
+        c = a + b
+        a, b = b, c
+        if is_prime(c):
+            count += 1
+    
+    return b
+
+def is_prime(num):
+    if num < 2:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num**0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True","
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    import math
+
+    def is_prime(p):
+  "
+p_code_015,code,1,6.46,code,,"Complete this Python function:
+
+
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller t","def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+    return number - int(number)","
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> trunca"
+p_code_016,code,1,7.32,code,,"Complete this Python function:
+
+
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three,","def sort_third(l: list):
+    # Extract elements at indices divisible by 3
+    third_elements = [l[i] for i in range(0, len(l), 3)]
+    # Sort these elements
+    third_elements.sort()
+    # Create result list
+    result = l[:]
+    # Replace elements at indices divisible by 3 with sorted values
+    for i in range(0, len(l), 3):
+        result[i] = third_elements.pop(0)
+    return result","
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but so"
+p_code_017,code,1,3.47,code,,"Complete this Python function:
+
+
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the o","def solve(N):
+    if N == 0:
+        return ""0""
+    digit_sum = sum(int(d) for d in str(N))
+    return bin(digit_sum)[2:]","
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the output should be ""1"".
+        For N = 150, the sum of digits will be 6 the output should be ""110"".
+        For N = 147, the sum of di"
+p_code_018,code,1,7.94,code,,"Complete this Python function:
+
+
+def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n an","def rounded_avg(n, m):
+    if n > m:
+        return -1
+    # Calculate the average of integers from n to m (inclusive)
+    total = sum(range(n, m + 1))
+    count = m - n + 1
+    avg = total / count
+    # Round to nearest integer
+    rounded_avg_int = round(avg)
+    # Convert to binary, removing the '0b' prefix
+    binary_str = bin(rounded_avg_int)[2:]
+    return ""0b"" + binary_str","
+def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n and m). 
+    Round the answer to the nearest integer and convert that to binary.
+    If n is greater than m, return -1.
+    Example:
+ "
+p_code_019,code,1,3.2,code,,"Complete this Python function:
+
+
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list ","import math
+
+def sum_squares(lst):
+    total = 0
+    for num in lst:
+        rounded_num = math.ceil(num)
+        total += rounded_num ** 2
+    return total","
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should"
+p_code_020,code,1,6.92,code,,"Complete this Python function:
+
+
+def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factoria","def f(n):
+    result = []
+    for i in range(1, n + 1):
+        if i % 2 == 0:
+            factorial = 1
+            for j in range(1, i + 1):
+                factorial *= j
+            result.append(factorial)
+        else:
+            # Sum of numbers from 1 to i
+            summation = i * (i + 1) // 2
+            result.append(summation)
+    return result","
+def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
+    or the sum of numbers from 1 to i otherwise.
+    i starts from 1.
+    the factorial of i is the multiplicati"

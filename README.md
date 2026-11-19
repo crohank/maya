@@ -108,7 +108,7 @@ and `results/walk_scores_strict.md`.
 
 ## Where it stands (2026-11-19 morning)
 
-Practice pack (100 items, the kinds judges ask live): **96/100**. On sets the
+Practice pack (100 items, the kinds judges ask live): **97/100**. On sets the
 engine was not tuned on:
 
 | Set | Score |

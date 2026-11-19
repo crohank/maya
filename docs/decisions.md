@@ -334,7 +334,7 @@ Wi-Fi off, so the night went to `maya/` (one engine, Qwen3-VL-4B NF4 resident) a
 
 | Set | Before | After |
 |---|---|---|
-| Practice pack (tuning set) | 74/100 | 96/100 |
+| Practice pack (tuning set) | 74/100 | 97/100 |
 | Held-out set made tonight | | 64/68 |
 | SQuAD 2.0 extra | 47/60 (plain) | 46/60 |
 | VizWiz extra | | 72/80 |

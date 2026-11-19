@@ -11,7 +11,7 @@ those items well, plus a better walk test set.
 
 | Set | Items | Start of night | Now |
 |---|---|---|---|
-| Practice pack | 100 | 74 | **96** (97 with the image counting change at the end) |
+| Practice pack | 100 | 74 | **97** |
 | Held-out set made tonight (new synthetic videos, docs, images, code; WebM inputs) | 68 | | 64 |
 | SQuAD 2.0 extra (15 docs, 15 of 60 unanswerable) | 60 | 47 (plain prompt) | 46 |
 | VizWiz extra (real photos from blind users) | 80 | | 72 |
@@ -123,11 +123,11 @@ sets were not tuned on (two documented exceptions in the doc QA and video notes 
 - **My breakage:** my own typo broke `scripts/eval_pack.py` for about 15 minutes. Affected runs were redone.
 - **Commits:** local only, on `main`.
 
-## Last change (04:50)
+## Last change (04:35)
 
 Image counting: answer plainly first, and when the plain count is 4 or more,
 recount from Qwen3-VL bounding boxes (`count=auto`, now the default). Practice
 images 23/25 to 24/25, held-out images 11/12 to 12/12, VizWiz unchanged at
 72/80, median 0.5 s. The threshold of 4 was chosen from the misses on these same
-sets (all were counts of 4 or more), so treat the gain as optimistic. With it the
-practice pack total would be 97/100; the full 100-item run was not repeated.
+sets (all were counts of 4 or more), so treat the gain as optimistic. A full rerun
+of the practice pack with every final default scored 97/100 (results/pack/final2_pack_*).
