@@ -32,6 +32,8 @@ Rules:
 - Side right (first cue): the credited warning's side equals the label side.
   Side right (last cue): the last on-time warning about the event before it
   passes (what the walker heard most recently) has the label side.
+  Side right (first side-bearing cue): the first on-time warning about the event
+  whose side is not "none" (walk_v5 centred tones carry "none") has the label side.
   Side right (any cue): a second pass that also requires the side to match.
 - Precision: a warning is relevant when its track is a track of some instance
   that comes within NEAR_M in the corridor (|X| <= 1.0 m, from
@@ -222,6 +224,9 @@ def score_clip(clip, events, warnings):
                  and any(w["track"] in trs and w["t_end"] <= tc for _, tc, trs in mem)]
         p["last"] = max(about, key=lambda w: w["t_end"]) if about else None
         p["side_last"] = bool(p["first"] and p["last"]["side"] == e["side"])
+        bearing = [w for w in about if w["side"] != "none"]
+        p["bearing"] = min(bearing, key=lambda w: w["t"]) if bearing else None
+        p["side_bearing"] = bool(p["bearing"] and p["bearing"]["side"] == e["side"])
     rel = relevant_instances(clip.stem)
     rel_tracks = [(inst, tr, clip.tracks_of(inst, tr - PREC_BEFORE - 1.0, tr + PREC_AFTER))
                   for inst, tr, _ in rel]
