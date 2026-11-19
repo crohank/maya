@@ -11,3 +11,8 @@ __pycache__/
 /*.mp4
 # runtime logs from the app (contain spoken questions)
 results/app_*.jsonl
+
+# practice pack: third-party data, keep local
+Kaggle Data/
+.gpu_lock/
+results/gpu_temps.csv
