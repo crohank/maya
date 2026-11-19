@@ -1,0 +1,11 @@
+sanpo_7X41_wkj_0000 58.31878 height m 1.17 pitch down deg 9.6 13
+sanpo_8WF0e5NO_0195 58.42529 height m 1.23 pitch down deg 11.9 13
+sanpo_RqOwmltc_0000 58.31878 height m 1.17 pitch down deg 9.1 13
+sanpo_UGNwBEZM_0353 58.31878 height m 1.31 pitch down deg 13.6 13
+sanpo_cBVSUvSN_0000 58.31878 height m 1.15 pitch down deg 8.7 13
+sanpo_eHxtA669_0000 58.43602 height m 1.29 pitch down deg 6.2 13
+sanpo_qFDP9gJD_0000 58.443813 height m 1.24 pitch down deg 4.8 13
+sanpo_qn1eNtR0_0029 58.443813 height m 1.28 pitch down deg 12.8 13
+sanpo_qttyxdua_0000 58.415283 height m 1.25 pitch down deg 7.9 13
+sanpo_wXwTZnJH_0007 58.443813 height m 1.26 pitch down deg 11.9 13
+sanpo_x5OCPnbr_0078 58.443813 height m 1.18 pitch down deg 7.0 13
