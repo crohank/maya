@@ -227,6 +227,42 @@ Still open: warnings land near the closest moment, not 2 s before it; side
 accuracy dropped (Fifth Ave fused 0/9); it talks more (34.6 utterances per
 minute) with more false alarms.
 
+## D8. Latency review of the fused run, by eye
+
+Frame strips (seen / speech starts / speech ends) in `results/latency_review/`.
+From the logs (fast warnings): trigger frame to speech start median 0.3 to 0.4 s,
+max 1.2 s; speech itself 1.3 to 1.7 s; so a warning finishes about 2 s after the
+trigger frame. The voice is the bottleneck: on Fifth Ave 64 fast warnings were
+dropped because the voice was busy, in London Cosmos facts held the voice and 13
+fast warnings were dropped.
+
+Hand check of 13 spoken warnings:
+- Timely and right: truck on the left at 1.8 s (4K clip), crowd approaching at 16.9 s.
+- Too late: car on the left at 3.5 s spoken at 4.7 s, gone by then; a woman head-on
+  at 15.3 s was already past when speech started, and was called "on your right"
+  while she was on the left.
+- Not a hazard: "Person close ahead" for people walking away in the same direction
+  (0.4 s, 9.4 s, 11.5 s). These flood the voice.
+- Wrong: "Pole close ahead" at 6.4 s (4K clip, railing on the right, no pole),
+  "Truck ahead, approaching" for a truck crossing left to right.
+- Cosmos facts are mostly noise: "A step on my left foot", "A purple box",
+  "Curb on left side of road" repeated 5 times.
+
+Root causes: (1) the "close" trigger fires when the box reaches the bottom of the
+frame, which at walking speed is about 1 s from contact, too late by design;
+(2) 1.5 s spoken sentences; (3) one voice shared by too many low-value messages.
+
+The scorer is too lenient for this use case: a hit counts if speech starts by
+t_close + 1 s and names the class, so a generic "Person close ahead" in a crowd
+scores, and a warning that ends after the person passed still counts.
+
+Proposed fixes: earlier trigger from TTC only (3 to 4 s), drop people moving the
+same way (receding or static), pick the most urgent track, a sub-second cue
+(stereo panned tone, pitch by urgency) with words only after, Cosmos facts only on
+tap or when nothing urgent, and a stricter scorer (speech must END before the
+object reaches the walker, side must match, precision reported). Better test
+clips: chest-height phone recordings with head-on encounters and curbs.
+
 **Bug found in the first run.** Querying as fast as the model returned (about
 every 1.5 s) queued speech behind speech; lag grew to 72 s by the end of the
 clip. Fix: look again only after the current sentence finishes.
