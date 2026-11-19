@@ -183,6 +183,27 @@ looped on the busy parking sign; Qwen read it. Qwen got the small-print date.
 **Choice.** Qwen3-VL-4B for "read that" requests, Cosmos for video. Small street
 text needs a zoom crop before either model.
 
+## D6. Baseline walk scores against hand labels
+
+`scripts/score_walk.py` against `test_videos/labels/*.json` (44 events, 29
+must_warn, single annotator, labels written after seeing the transcripts, so not
+blind). Match rule: spoken utterance starting in [t_start, t_close + 1 s] that
+names the event class. Lenient (one utterance can hit overlapping events), so
+rates may be slightly high. Full table: `results/walk_scores.md`.
+
+| Mode | must_warn hits | All hits | Lead median (s) | Side correct | False alarms |
+|---|---|---|---|---|---|
+| describe | 10/29 (34%) | 14/44 (32%) | -0.3 | 7/14 (50%) | 33 |
+| instruct | 11/29 (38%) | 17/44 (39%) | +0.1 | 10/17 (59%) | 27 |
+| describe_mem2 | 4/29 (14%) | 7/44 (16%) | -0.2 | 2/7 (29%) | 12 |
+
+Median lead about 0 s: warnings arrive at the closest moment, not before it.
+The target for the fused version is must_warn hits up and lead time above +2 s.
+
+Correction to the D3 note on the 4K clip: the labeller found the vehicle at 0 to
+3.5 s is the black pickup, and the "black car" near 15 s is the white utility
+truck looking dark at low resolution (`3874684_720p.json`, e1 note).
+
 **Bug found in the first run.** Querying as fast as the model returned (about
 every 1.5 s) queued speech behind speech; lag grew to 72 s by the end of the
 clip. Fix: look again only after the current sentence finishes.

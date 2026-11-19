@@ -1,0 +1,16 @@
+run,mode,clip,events,hits,must_warn,must_warn_hits,lead_mw_median,lead_mw_min,lead_all_median,side_ok,side_n,spoken,false_alarms,fa_no_class,minutes,utt_per_min,spoken_by_source
+197531-905015052_medium_describe,describe,197531-905015052_medium,6,2,0,0,,,6.245,1,2,7,4,0,0.268,26.162,{}
+3874684_720p_describe,describe,3874684_720p,11,1,7,1,2.783,2.783,2.783,0,1,10,8,7,0.438,22.856,{}
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_describe,describe,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,6,14,6,-0.554,-0.867,-0.554,5,6,22,17,0,0.9,24.435,{}
+london_walking_describe,describe,london_walking,12,5,8,3,0.098,-0.902,0.098,1,5,8,4,0,0.329,24.33,{}
+197531-905015052_medium_instruct,instruct,197531-905015052_medium,6,2,0,0,,,6.189,2,2,6,3,0,0.262,22.864,{}
+3874684_720p_instruct,instruct,3874684_720p,11,2,7,1,2.223,2.223,4.737,0,2,10,6,3,0.432,23.171,{}
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_instruct,instruct,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,7,14,7,-0.494,-0.813,-0.494,4,7,21,15,2,0.906,23.172,{}
+london_walking_instruct,instruct,london_walking,12,6,8,3,0.05,-0.194,0.312,4,6,8,3,0,0.33,24.276,{}
+197531-905015052_medium_describe_mem2,describe_mem2,197531-905015052_medium,6,2,0,0,,,7.208,0,2,4,1,0,0.273,14.633,{}
+3874684_720p_describe_mem2,describe_mem2,3874684_720p,11,2,7,2,-0.552,-0.97,-0.552,1,2,7,5,3,0.43,16.295,{}
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_describe_mem2,describe_mem2,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,1,14,1,-0.295,-0.295,-0.295,1,1,7,6,0,0.899,7.787,{}
+london_walking_describe_mem2,describe_mem2,london_walking,12,2,8,1,0.409,0.409,0.012,0,2,2,0,0,0.329,6.085,{}
+TOTAL describe (4 clips),describe,all,44,14,29,10,-0.279,-0.902,-0.279,7,14,47,33,7,1.934,24.299,{}
+TOTAL describe_mem2 (4 clips),describe_mem2,all,44,7,29,4,-0.215,-0.97,-0.134,2,7,20,12,3,1.931,10.36,{}
+TOTAL instruct (4 clips),instruct,all,44,17,29,11,0.05,-0.813,0.306,10,17,45,27,5,1.93,23.318,{}
