@@ -1,0 +1,590 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xh_code_061,code,1,12.18,code,,"Complete this Python function:
+
+
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then m","def strange_sort_list(lst):
+    if not lst:
+        return []
+    
+    result = []
+    lst_copy = lst.copy()
+    while lst_copy:
+        # Take the minimum
+        min_val = min(lst_copy)
+        result.append(min_val)
+        lst_copy.remove(min_val)
+        
+        # If there are still elements, take the maximum
+        if lst_copy:
+            max_val = max(lst_copy)
+            result.append(max_val)
+            lst_copy.remove(max_val)
+    
+    return result","
+def strange_sort_list(lst):
+    '''
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+
+    Examples:
+    strange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]
+    str"
+xh_code_064,code,1,3.7,code,,"Complete this Python function:
+
+
+def smallest_change(arr):
+    """"""
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A ","def smallest_change(arr):
+    n = len(arr)
+    changes = 0
+    # Compare elements from both ends moving inward
+    for i in range(n // 2):
+        if arr[i] != arr[n - 1 - i]:
+            changes += 1
+    return changes","
+def smallest_change(arr):
+    """"""
+    Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic. A palindromic array is an array that
+    is read the same backwards and forwards. In one change, you can change one element to any oth"
+xh_code_067,code,1,6.83,code,,"Complete this Python function:
+
+
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simp","def is_simple_power(x, n):
+    if n == 1:
+        return x == 1
+    if n <= 0:
+        return False
+    if x == 1:
+        return True
+    if x < 1:
+        return False
+    
+    # Check if x is a power of n
+    power = 1
+    while power < x:
+        power *= n
+        if power == x:
+            return True
+        if power > x:
+            break
+    
+    return power == x","
+def is_simple_power(x, n):
+    """"""Your task is to write a function that returns true if a number x is a simple
+    power of n and false in other cases.
+    x is a simple power of n if n**int=x
+    For example:
+    is_simple_power(1, 4) => true
+    is_simple_power(2, 2) => true
+    is_simple_power(8"
+xh_code_070,code,1,3.31,code,,"Complete this Python function:
+
+
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a str","def decimal_to_binary(decimal):
+    binary_str = bin(decimal)[2:]  # Convert to binary and remove '0b' prefix
+    return ""db"" + binary_str + ""db""","
+def decimal_to_binary(decimal):
+    """"""You will be given a number in decimal form and your task is to convert it to
+    binary format. The function should return a string, with each character representing a binary
+    number. Each character in the string will be '0' or '1'.
+
+    There will be an ex"
+xh_code_073,code,1,4.29,code,,"Complete this Python function:
+
+
+def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    p","def prime_length(string):
+    length = len(string)
+    if length < 2:
+        return False
+    for i in range(2, int(length**0.5) + 1):
+        if length % i == 0:
+            return False
+    return True","
+def prime_length(string):
+    """"""Write a function that takes a string and returns True if the string
+    length is a prime number or False otherwise
+    Examples
+    prime_length('Hello') == True
+    prime_length('abcdcba') == True
+    prime_length('kittens') == True
+    prime_length('orange') == F"
+xh_code_076,code,1,3.0,code,,"Complete this Python function:
+
+
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words ","def anti_shuffle(s):
+    words = s.split()
+    result = []
+    for word in words:
+        sorted_word = ''.join(sorted(word))
+        result.append(sorted_word)
+    return ' '.join(result)","
+def anti_shuffle(s):
+    """"""
+    Write a function that takes a string and returns an ordered version of it.
+    Ordered version of string, is a string where all words (separated by space)
+    are replaced by a new word where all the characters arranged in
+    ascending order based on ascii value.
+ "
+xh_code_079,code,0,10.39,code,"t.py"", line 33, in <module>
+    check(encrypt)
+  File ""/tmp/tmpqnm1lbu5/t.py"", line 20, in check
+    assert candidate('hi') == 'lm', ""This prints if this assert fails 1 (good for debugging!)""
+           ^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: This prints if this assert fails 1 (good for debugging!)
+","Complete this Python function:
+
+
+def encrypt(s):
+    """"""Create a function encrypt that takes a string as an argument and
+    returns a string encrypted with the alphabet being rotated. 
+    The alphab","def encrypt(s):
+    encrypted = """"
+    for char in s:
+        if 'a' <= char <= 'z':
+            # Shift down by 2 places in the alphabet (0-25)
+            shifted = (ord(char) - ord('a') + 2) % 26
+            encrypted += chr(ord('a') + shifted)
+        elif 'A' <= char <= 'Z':
+            # Shift down by 2 places in the alphabet (0-25)
+            shifted = (ord(char) - ord('A') + 2) % 26
+            encrypted += chr(ord('A') + shifted)
+        else:
+            # Non-alphabetic characters remain unchanged
+            encrypted += char
+    return encrypted","
+def encrypt(s):
+    """"""Create a function encrypt that takes a string as an argument and
+    returns a string encrypted with the alphabet being rotated. 
+    The alphabet should be rotated in a manner such that the letters 
+    shift down by two multiplied to two places.
+    For example:
+    encrypt"
+xh_code_082,code,1,12.15,code,,"Complete this Python function:
+
+
+
+def skjkasdkd(lst):
+    """"""You are given a list of integers.
+    You need to find the largest prime value and return the sum of its digits.
+
+    Examples:
+    For lst","def skjkasdkd(lst):
+    def is_prime(n):
+        if n < 2:
+            return False
+        if n == 2:
+            return True
+        if n % 2 == 0:
+            return False
+        for i in range(3, int(n**0.5) + 1, 2):
+            if n % i == 0:
+                return False
+        return True
+
+    def sum_of_digits(n):
+        s = 0
+        while n:
+            s += n % 10
+            n //= 10
+        return s
+
+    max_prime = 0
+    for num in lst:
+        if is_prime(num):
+            max_prime = max(max_prime, num)
+
+    if max_prime == 0:
+        return 0
+    return sum_of_digits(max_prime)","
+
+def skjkasdkd(lst):
+    """"""You are given a list of integers.
+    You need to find the largest prime value and return the sum of its digits.
+
+    Examples:
+    For lst = [0,3,2,1,3,5,7,4,5,5,5,2,181,32,4,32,3,2,32,324,4,3] the output should be 10
+    For lst = [1,0,1,8,2,4597,2,1,3,40,1,2,1,2,4,2,5"
+xh_code_085,code,1,9.34,code,,"Complete this Python function:
+
+
+def multiply(a, b):
+    """"""Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    E","def multiply(a, b):
+    """"""Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+    multiply(14,-15) should return 20.
+    """"""
+    return (a % 10) * (b % 10)","
+def multiply(a, b):
+    """"""Complete the function that takes two integers and returns 
+    the product of their unit digits.
+    Assume the input is always valid.
+    Examples:
+    multiply(148, 412) should return 16.
+    multiply(19, 28) should return 72.
+    multiply(2020, 1851) should return 0.
+ "
+xh_code_088,code,1,3.42,code,,"Complete this Python function:
+
+
+def words_string(s):
+    """"""
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array","def words_string(s):
+    import re
+    # Split by comma and space, then filter out empty strings
+    words = re.split(r'[, ]+', s)
+    return [word for word in words if word]","
+def words_string(s):
+    """"""
+    You will be given a string of words separated by commas or spaces. Your task is
+    to split the string into words and return an array of the words.
+    
+    For example:
+    words_string(""Hi, my name is John"") == [""Hi"", ""my"", ""name"", ""is"", ""John""]
+    words_string("
+xh_code_091,code,1,15.91,code,,"Complete this Python function:
+
+
+def by_length(arr):
+    """"""
+    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
+    reverse the resulting array, and then replace eac","def by_length(arr):
+    # Filter out numbers that are between 1 and 9 inclusive
+    valid_numbers = [num for num in arr if 1 <= num <= 9]
+    
+    # If no valid numbers, return empty list
+    if not valid_numbers:
+        return []
+    
+    # Sort the valid numbers
+    valid_numbers.sort()
+    
+    # Reverse the sorted list
+    valid_numbers.reverse()
+    
+    # Map each number to its corresponding name
+    name_map = {
+        1: ""One"",
+        2: ""Two"",
+        3: ""Three"",
+        4: ""Four"",
+        5: ""Five"",
+        6: ""Six"",
+        7: ""Seven"",
+        8: ""Eight"",
+        9: ""Nine""
+    }
+    
+    # Replace each number with its corresponding name
+    result = [name_map[num] for num in valid_numbers]
+    
+    return result","
+def by_length(arr):
+    """"""
+    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
+    reverse the resulting array, and then replace each digit by its corresponding name from
+    ""One"", ""Two"", ""Three"", ""Four"", ""Five"", ""Six"", ""Seven"", ""Eight"", ""Nine"".
+
+    For example:"
+xh_code_094,code,1,11.81,code,,"Complete this Python function:
+
+
+def move_one_ball(arr):
+    """"""We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
+    numbers in the array will be randomly ordered. Your task is to ","def move_one_ball(arr):
+    if len(arr) == 0:
+        return True
+    
+    n = len(arr)
+    # Check if the array is already sorted
+    if all(arr[i] <= arr[i+1] for i in range(n-1)):
+        return True
+    
+    # Try all possible right shifts
+    for shift in range(1, n + 1):
+        # Perform right shift 'shift' times
+        shifted = arr[-shift:] + arr[:-shift]
+        # Check if the shifted array is sorted
+        if all(shifted[i] <= shifted[i+1] for i in range(n-1)):
+            return True
+    
+    return False","
+def move_one_ball(arr):
+    """"""We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
+    numbers in the array will be randomly ordered. Your task is to determine if
+    it is possible to get an array sorted in non-decreasing order by performing 
+    the following operation on the giv"
+xh_code_097,code,1,6.87,code,,"Complete this Python function:
+
+
+def reverse_delete(s,c):
+    """"""Task
+    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c
+    then ch","def reverse_delete(s, c):
+    # Create a new string by keeping only characters in s that are not in c
+    result = ''.join(char for char in s if char not in c)
+    
+    # Check if the result is a palindrome
+    is_palindrome = result == result[::-1]
+    
+    return (result, is_palindrome)","
+def reverse_delete(s,c):
+    """"""Task
+    We are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c
+    then check if the result string is palindrome.
+    A string is called palindrome if it reads the same backward as forward.
+    You should r"
+xh_code_100,code,0,5.43,code,"Traceback (most recent call last):
+  File ""/tmp/tmpsnlauofd/t.py"", line 27, in <module>
+    check(max_fill)
+  File ""/tmp/tmpsnlauofd/t.py"", line 24, in check
+    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, ""Error""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Error
+","Complete this Python function:
+
+
+def max_fill(grid, capacity):
+    import math
+    """"""
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represe","def max_fill(grid, capacity):
+    import math
+    
+    total_water = 0
+    for row in grid:
+        total_water += sum(row)
+    
+    # Each bucket can hold 'capacity' units of water
+    # So number of bucket trips needed is ceiling of total_water / capacity
+    return math.ceil(total_water / capacity)","
+def max_fill(grid, capacity):
+    import math
+    """"""
+    You are given a rectangular grid of wells. Each row represents a single well,
+    and each 1 in a row represents a single unit of water.
+    Each well has a corresponding bucket that can be used to extract water from it, 
+    and all buckets"
+xh_code_103,code,1,12.46,code,,"Complete this Python function:
+
+
+def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the wor","def get_closest_vowel(word):
+    vowels = ""aeiouAEIOU""
+    # Start from the second-to-last character and move leftwards
+    for i in range(len(word) - 2, -1, -1):
+        if word[i] in vowels:
+            # Check if the character to the left and right are consonants
+            # (not vowels and not spaces, but since we only have letters, check for non-vowels)
+            left_char = word[i-1] if i > 0 else None
+            right_char = word[i+1] if i < len(word) - 1 else None
+            
+            # If both left and right are consonants (not vowels), return this vowel
+            if left_char is not None and right_char is not None:
+                if left_char not in vowels and right_char not in vowels:
+                    return word[i]
+    return """"","
+def get_closest_vowel(word):
+    """"""You are given a word. Your task is to find the closest vowel that stands between 
+    two consonants from the right side of the word (case sensitive).
+    
+    Vowels in the beginning and ending doesn't count. Return empty string if you didn't
+    find any vowel "
+xh_code_106,code,1,3.7,code,,"Complete this Python function:
+
+
+def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+
+    Examples
+    solution([5,","def solution(lst):
+    total = 0
+    for i in range(0, len(lst), 2):  # even positions (0-indexed)
+        if lst[i] % 2 == 1:  # odd number
+            total += lst[i]
+    return total","
+def solution(lst):
+    """"""Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.
+    
+
+    Examples
+    solution([5, 8, 7, 1]) ==> 12
+    solution([3, 3, 3, 3, 3]) ==> 9
+    solution([30, 13, 24, 321]) ==>0
+    """"""
+    return sum([x for idx, x in e"
+xh_code_109,code,1,19.48,code,,"Complete this Python function:
+
+
+def valid_date(date):
+    """"""You have to write a function which validates a given date string and
+    returns True if the date is valid otherwise False.
+    The date i","def valid_date(date):
+    if not date:
+        return False
+    
+    parts = date.split('-')
+    if len(parts) != 3:
+        return False
+    
+    try:
+        month = int(parts[0])
+        day = int(parts[1])
+        year = int(parts[2])
+    except ValueError:
+        return False
+    
+    if month < 1 or month > 12:
+        return False
+    
+    if month in [1, 3, 5, 7, 8, 10, 12]:
+        max_days = 31
+    elif month in [4, 6, 9, 11]:
+        max_days = 30
+    else:  # month == 2
+        max_days = 29  # We'll handle leap year later if needed
+    
+    if day < 1 or day > max_days:
+        return False
+    
+    # Check for leap year for February
+    if month == 2:
+        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+            max_days = 29
+        else:
+            max_days = 28
+        if day < 1 or day > max_days:
+            return False
+    
+    return True","
+def valid_date(date):
+    """"""You have to write a function which validates a given date string and
+    returns True if the date is valid otherwise False.
+    The date is valid if all of the following rules are satisfied:
+    1. The date string is not empty.
+    2. The number of days is not less than"
+xh_code_112,code,1,10.64,code,,"Complete this Python function:
+
+
+def prod_signs(arr):
+    """"""
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+   ","def prod_signs(arr):
+    if len(arr) == 0:
+        return None
+    
+    product_of_signs = 1
+    sum_of_magnitudes = 0
+    
+    for num in arr:
+        if num == 0:
+            product_of_signs = 0
+            break
+        elif num > 0:
+            product_of_signs *= 1
+            sum_of_magnitudes += num
+        else:  # num < 0
+            product_of_signs *= -1
+            sum_of_magnitudes += -num
+    
+    if product_of_signs == 0:
+        return 0
+    else:
+        return product_of_signs * sum_of_magnitudes","
+def prod_signs(arr):
+    """"""
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
+    >>> prod_signs([1, 2"
+xh_code_115,code,1,4.58,code,,"Complete this Python function:
+
+
+def digits(n):
+    """"""Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    d","def digits(n):
+    product = 1
+    has_odd = False
+    for digit in str(n):
+        d = int(digit)
+        if d % 2 == 1:
+            product *= d
+            has_odd = True
+    return product if has_odd else 0","
+def digits(n):
+    """"""Given a positive integer n, return the product of the odd digits.
+    Return 0 if all digits are even.
+    For example:
+    digits(1)  == 1
+    digits(4)  == 0
+    digits(235) == 15
+    """"""
+    product = 1
+    odd_count = 0
+    for digit in str(n):
+        int_digit = int(digi"
+xh_code_118,code,0,3.52,code,"Traceback (most recent call last):
+  File ""/tmp/tmpgcxvt7bd/t.py"", line 23, in <module>
+    check(can_arrange)
+  File ""/tmp/tmpgcxvt7bd/t.py"", line 17, in check
+    assert candidate([4,8,5,7,3])==4
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+","Complete this Python function:
+
+
+def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately precedin","def can_arrange(arr):
+    if len(arr) <= 1:
+        return -1
+    
+    for i in range(1, len(arr)):
+        if arr[i] <= arr[i-1]:
+            return i
+    
+    return -1","
+def can_arrange(arr):
+    """"""Create a function which returns the largest index of an element which
+    is not greater than or equal to the element immediately preceding it. If
+    no such element exists then return -1. The given array will not contain
+    duplicate values.
+
+    Examples:
+    can_ar"
