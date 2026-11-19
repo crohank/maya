@@ -1,0 +1,52 @@
+server:
+  host: 0.0.0.0
+  port: 8443
+  ssl_keyfile: certs/key.pem
+  ssl_certfile: certs/cert.pem
+  # Served at GET /ca.crt so a phone can install the local CA (docs/phone_setup.md).
+  ca_certfile: certs/ca.crt
+
+models:
+  cosmos:
+    id: ubr-physical-ai/Cosmos3-Edge-NF4-bnb
+    # Same processor as scripts/live_harness.py, which produced the D3 numbers.
+    processor_id: ubr-physical-ai/Cosmos3-Edge-NF4-bnb
+    max_new_tokens: 48
+    # Peak while answering a 2 s / 4 fps / 448 px clip (docs/decisions.md D3).
+    need_gib: 2.6
+    resident: true
+  qwen:
+    id: Qwen/Qwen3-VL-4B-Instruct
+    max_new_tokens: 96
+    # Peak 3.61 GiB in scripts/compare_image_models.py (docs/decisions.md D5).
+    need_gib: 3.8
+    idle_unload_s: 90
+    preload: false
+
+whisper:
+  size: small
+  device: cpu
+  compute_type: int8
+  cpu_threads: 4
+  language: en
+
+tts:
+  repo: rhasspy/piper-voices
+  voice: en/en_US/lessac/medium/en_US-lessac-medium.onnx
+
+video:
+  window_s: 2.0
+  fps: 4
+  long_side: 448
+
+image:
+  # Phone photos are 4000 px; Qwen3-VL token count grows with pixel count.
+  long_side: 1280
+
+timeouts:
+  ffmpeg_s: 30
+  request_s: 120
+
+logs:
+  routing: results/app_routing.jsonl
+  models: results/app_models.jsonl

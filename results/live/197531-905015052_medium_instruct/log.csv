@@ -1,0 +1,18 @@
+idx,win_start,win_end,input_tokens,model_s,ready,flagged,raw,answer,status,tts_s,audio_start,audio_dur,lag,age
+0,0.0,2.0,1598,1.036,3.036,False,"Move right, pedestrian ahead on right.","Move right, pedestrian ahead on right.",spoken,0.157,3.192,2.647,1.192,3.192
+1,1.036,3.036,1598,0.833,3.868,False,"Move right, person in red ahead","Move right, person in red ahead",stale,0.0,,0.0,,
+2,1.868,3.868,1598,0.833,4.701,False,"Move right, bus on right lane","Move right, bus on right lane",stale,0.0,,0.0,,
+3,2.701,4.701,1598,0.827,5.529,False,"Move right, bus on right side","Move right, bus on right side",spoken,0.091,5.93,2.229,1.229,3.229
+4,3.529,5.529,1598,0.799,6.328,False,"Move right, bus on right side","Move right, bus on right side",stale,0.0,,0.0,,
+5,4.328,6.328,1598,0.812,7.14,False,"Move right, bus on right side","Move right, bus on right side",stale,0.0,,0.0,,
+6,5.14,7.14,1598,0.8,7.94,False,"Move right, bus on right lane","Move right, bus on right lane",spoken,0.139,8.299,2.159,1.159,3.159
+7,5.94,7.94,1598,0.955,8.895,False,"Move right, bus on right side","Move right, bus on right side",stale,0.0,,0.0,,
+8,6.895,8.895,1598,0.825,9.72,False,"Move right, bus on right lane","Move right, bus on right lane",repeat,0.0,,0.0,,
+9,7.72,9.72,1598,0.786,10.506,False,"Move right, bus on right lane","Move right, bus on right lane",repeat,0.0,,0.0,,
+10,8.506,10.506,1598,0.973,11.479,False,"Move right, bus on right lane","Move right, bus on right lane",repeat,0.0,,0.0,,
+11,9.479,11.479,1598,0.821,12.3,False,"Move right, bus on right lane","Move right, bus on right lane",repeat,0.0,,0.0,,
+12,10.3,12.3,1598,0.968,13.268,False,"Move right, bus on right lane","Move right, bus on right lane",repeat,0.0,,0.0,,
+13,11.268,13.268,1598,0.835,14.102,False,"Move right, bus stopping.","Move right, bus stopping.",spoken,0.111,14.213,1.869,0.945,2.945
+14,12.102,14.102,1598,0.834,14.936,False,"Move right, bus stopping.","Move right, bus stopping.",stale,0.0,,0.0,,
+15,12.936,14.936,1598,0.809,15.745,False,"Move right, pedestrian on sidewalk.","Move right, pedestrian on sidewalk.",spoken,0.138,16.22,2.229,1.284,3.284
+16,13.745,15.745,1598,0.862,16.606,False,"Move right, pedestrian on left approaching","Move right, pedestrian on left approaching",spoken,0.151,18.6,2.426,2.855,4.855

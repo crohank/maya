@@ -1,0 +1,26 @@
+idx,win_start,win_end,input_tokens,model_s,ready,flagged,raw,answer,status,tts_s,audio_start,audio_dur,lag,age
+0,0.0,2.0,610,0.609,2.609,False,Person walking toward you.,Person walking toward you.,spoken,0.137,2.746,1.498,0.746,2.746
+1,0.609,2.609,649,0.596,3.205,False,Person walking toward you.,Person walking toward you.,stale,0.0,,0.0,,
+2,1.205,3.205,663,0.506,3.711,False,Person walking toward you.,Person walking toward you.,repeat,0.0,,0.0,,
+3,1.711,3.711,663,0.535,4.245,False,Bus approaching from behind.,Bus approaching from behind.,spoken,0.092,4.337,1.765,0.626,2.626
+4,2.245,4.245,663,0.55,4.796,False,Bus passing on your right.,Bus passing on your right.,stale,0.0,,0.0,,
+5,2.796,4.796,664,0.608,5.404,False,Bus passing on your right.,Bus passing on your right.,stale,0.0,,0.0,,
+6,3.404,5.404,665,0.573,5.976,False,Bus passing on your right.,Bus passing on your right.,spoken,0.141,6.243,1.393,0.839,2.839
+7,3.976,5.976,665,0.844,6.82,False,Bus passing on your right.,Bus passing on your right.,stale,0.0,,0.0,,
+8,4.82,6.82,665,0.535,7.355,False,Bus passing on your right.,Bus passing on your right.,repeat,0.0,,0.0,,
+9,5.355,7.355,665,0.566,7.922,False,Bus passing on your right.,Bus passing on your right.,repeat,0.0,,0.0,,
+10,5.922,7.922,665,0.579,8.5,False,Bus passing on your right.,Bus passing on your right.,repeat,0.0,,0.0,,
+11,6.5,8.5,665,0.628,9.128,False,Bus passing on your right.,Bus passing on your right.,repeat,0.0,,0.0,,
+12,7.128,9.128,665,0.571,9.699,False,Bus. Right. Farther.,Bus.,spoken,0.075,9.774,0.557,0.646,2.646
+13,7.699,9.699,661,0.619,10.318,False,Bus. Right.,Bus.,repeat,0.0,,0.0,,
+14,8.318,10.318,657,0.679,10.997,False,Bus. Moving left.,Bus.,repeat,0.0,,0.0,,
+15,8.997,10.997,657,0.785,11.782,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+16,9.782,11.782,657,0.552,12.334,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+17,10.334,12.334,657,0.833,13.168,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+18,11.168,13.168,657,0.662,13.829,False,Bus. Moving across.,Bus.,repeat,0.0,,0.0,,
+19,11.829,13.829,657,0.589,14.418,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+20,12.418,14.418,657,0.508,14.926,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+21,12.926,14.926,657,0.473,15.399,False,Bus. Far ahead.,Bus.,repeat,0.0,,0.0,,
+22,13.399,15.399,657,0.554,15.953,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,
+23,13.953,15.953,657,0.447,16.401,False,Bus. Far ahead.,Bus.,repeat,0.0,,0.0,,
+24,14.401,16.401,657,0.399,16.799,False,Bus. Farther.,Bus.,repeat,0.0,,0.0,,

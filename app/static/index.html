@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>Maya</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <main>
+    <h1>Maya</h1>
+
+    <section aria-labelledby="answer-heading" class="answer-box">
+      <h2 id="answer-heading">Answer</h2>
+      <p id="answer" aria-live="assertive" aria-atomic="true" tabindex="-1">Tap a button to ask.</p>
+    </section>
+
+    <p id="status" role="status" aria-live="polite">Starting.</p>
+
+    <div class="actions">
+      <button id="ask-btn" type="button" class="big primary">Ask about what is in front of me</button>
+      <button id="read-btn" type="button" class="big">Read this</button>
+    </div>
+
+    <video id="preview" playsinline muted autoplay aria-label="Rear camera preview"></video>
+
+    <section aria-labelledby="upload-heading">
+      <h2 id="upload-heading">Send a file</h2>
+      <label for="question" class="field-label">Question for the file (optional)</label>
+      <input id="question" type="text" autocomplete="off" placeholder="For example: what does the sign say?">
+      <div class="actions">
+        <button id="photo-btn" type="button" class="big">Upload a photo</button>
+        <button id="video-btn" type="button" class="big">Upload a video</button>
+        <button id="audio-btn" type="button" class="big">Upload a sound</button>
+      </div>
+      <input id="photo-input" type="file" accept="image/*" hidden>
+      <input id="video-input" type="file" accept="video/*" hidden>
+      <input id="audio-input" type="file" accept="audio/*" hidden>
+    </section>
+
+    <section aria-labelledby="settings-heading">
+      <h2 id="settings-heading">Settings</h2>
+      <label class="check"><input id="speak-toggle" type="checkbox" checked> Speak answers aloud</label>
+      <button id="camera-btn" type="button" class="big">Turn camera on</button>
+      <p class="hint">Camera or microphone blocked? <a href="/ca.crt">Download the Maya certificate</a> and trust it, then reload this page.</p>
+    </section>
+
+    <audio id="player" preload="auto"></audio>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>

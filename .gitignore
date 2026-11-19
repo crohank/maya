@@ -1,0 +1,8 @@
+test_videos/*.mp4
+test_videos/*.mov
+results/**/*.mp4
+results/**/*.wav
+results/labels_frames/
+certs/
+__pycache__/
+*.pyc

@@ -1,0 +1,33 @@
+idx,win_start,win_end,input_tokens,model_s,ready,flagged,raw,answer,status,tts_s,audio_start,audio_dur,lag,age
+0,0.0,2.0,646,0.546,2.546,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",spoken,0.135,2.681,2.415,0.681,2.681
+1,0.546,2.546,646,0.438,2.984,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+2,0.984,2.984,646,0.59,3.574,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+3,1.574,3.574,646,0.495,4.07,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+4,2.07,4.07,646,0.532,4.601,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+5,2.601,4.601,646,0.476,5.077,False,"Move right, pedestrian with coffee cup.","Move right, pedestrian with coffee cup.",spoken,0.098,5.194,2.334,0.593,2.593
+6,3.077,5.077,646,0.477,5.554,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+7,3.554,5.554,646,0.759,6.313,False,"Move right, pedestrian with suit and coat ahead.","Move right, pedestrian with suit and coat ahead.",stale,0.0,,0.0,,
+8,4.313,6.313,646,0.621,6.934,False,"Move right, pedestrian with suit jacket ahead.","Move right, pedestrian with suit jacket ahead.",spoken,0.109,7.637,2.856,1.324,3.324
+9,4.934,6.934,646,0.793,7.727,False,"Move right, pedestrian with suit jacket ahead.","Move right, pedestrian with suit jacket ahead.",stale,0.0,,0.0,,
+10,5.727,7.727,646,0.427,8.154,False,"Move right, pedestrian on right","Move right, pedestrian on right",stale,0.0,,0.0,,
+11,6.154,8.154,646,0.566,8.72,False,"Move right, pedestrian on right","Move right, pedestrian on right",stale,0.0,,0.0,,
+12,6.72,8.72,646,0.759,9.479,False,"Move right, pedestrian on right stepping into my path.","Move right, pedestrian on right stepping into my path.",stale,0.0,,0.0,,
+13,7.479,9.479,646,0.659,10.138,False,"Move right, pedestrian on right","Move right, pedestrian on right",spoken,0.096,10.589,2.078,1.11,3.11
+14,8.138,10.138,646,0.485,10.623,False,"Move right, pedestrian on right","Move right, pedestrian on right",stale,0.0,,0.0,,
+15,8.623,10.623,646,0.467,11.09,False,"Move right, pedestrian on right","Move right, pedestrian on right",stale,0.0,,0.0,,
+16,9.09,11.09,646,0.519,11.609,False,"Move right, man in blue shirt.","Move right, man in blue shirt.",stale,0.0,,0.0,,
+17,9.609,11.609,646,0.652,12.261,False,"Move right, pedestrian on right","Move right, pedestrian on right",repeat,0.0,,0.0,,
+18,10.261,12.261,646,0.563,12.824,False,"Move right, man in black jacket stepping off sidewalk.","Move right, man in black jacket stepping off sidewalk.",spoken,0.127,12.95,3.367,0.689,2.689
+19,10.824,12.824,646,0.636,13.46,False,"Move right, pedestrian on right.","Move right, pedestrian on right.",stale,0.0,,0.0,,
+20,11.46,13.46,646,0.646,14.105,False,"Move right, pedestrian with bag on back.","Move right, pedestrian with bag on back.",stale,0.0,,0.0,,
+21,12.105,14.105,646,0.559,14.665,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+22,12.665,14.665,646,0.484,15.148,False,"Move right, pedestrian crossing ahead.","Move right, pedestrian crossing ahead.",stale,0.0,,0.0,,
+23,13.148,15.148,646,0.495,15.643,False,"Move right, pedestrian with phone ahead.","Move right, pedestrian with phone ahead.",stale,0.0,,0.0,,
+24,13.643,15.643,646,0.541,16.184,False,"Move right, pedestrian on right","Move right, pedestrian on right",spoken,0.087,16.404,2.055,0.761,2.761
+25,14.184,16.184,646,0.571,16.755,False,"Move right, pedestrian on right stepping into my path.","Move right, pedestrian on right stepping into my path.",stale,0.0,,0.0,,
+26,14.755,16.755,646,0.597,17.352,False,"Move right, pedestrian on right stepping into my path.","Move right, pedestrian on right stepping into my path.",stale,0.0,,0.0,,
+27,15.352,17.352,646,0.734,18.086,False,"Move right, pedestrian with briefcase crossing ahead.","Move right, pedestrian with briefcase crossing ahead.",spoken,0.129,18.588,3.216,1.235,3.235
+28,16.086,18.086,646,0.588,18.674,False,"Move right, person with blue backpack ahead.","Move right, person with blue backpack ahead.",stale,0.0,,0.0,,
+29,16.674,18.674,646,0.592,19.266,False,"Move right, pedestrian with stroller ahead.","Move right, pedestrian with stroller ahead.",stale,0.0,,0.0,,
+30,17.266,19.266,646,0.506,19.773,False,"Move right, pedestrian with blue jacket ahead.","Move right, pedestrian with blue jacket ahead.",stale,0.0,,0.0,,
+31,17.773,19.773,646,0.612,20.385,False,"Move right, person with blue backpack ahead.","Move right, person with blue backpack ahead.",spoken,0.122,21.926,2.775,2.153,4.153

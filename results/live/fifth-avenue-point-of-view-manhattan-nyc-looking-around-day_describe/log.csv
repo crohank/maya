@@ -1,0 +1,84 @@
+idx,win_start,win_end,input_tokens,model_s,ready,flagged,raw,answer,status,tts_s,audio_start,audio_dur,lag,age
+0,0.0,2.0,590,0.394,2.394,False,Person in front left,Person in front left,spoken,0.172,2.566,1.265,0.566,2.566
+1,0.394,2.394,590,0.433,2.827,False,Person in front left,Person in front left,stale,0.0,,0.0,,
+2,0.827,2.827,590,0.562,3.389,False,People walking ahead.,People walking ahead.,spoken,0.181,4.012,1.173,1.185,3.185
+3,1.389,3.389,590,0.674,4.062,False,"Person in black coat and blue beanie, right ahead.","Person in black coat and blue beanie, right ahead.",stale,0.0,,0.0,,
+4,2.062,4.062,590,0.528,4.59,False,Person in front to the right.,Person in front to the right.,stale,0.0,,0.0,,
+5,2.59,4.59,590,0.578,5.168,False,"Person walking away from you, center.","Person walking away from you, center.",spoken,0.208,5.393,2.136,0.802,2.802
+6,3.168,5.168,590,0.871,6.039,False,"Person in front to the right, on the shoulder of a person on the right.","Person in front to the right, on the shoulder of a person on the right.",stale,0.0,,0.0,,
+7,4.039,6.039,590,0.797,6.836,False,"Person in black coat, ahead and slightly right.","Person in black coat, ahead and slightly right.",stale,0.0,,0.0,,
+8,4.836,6.836,590,0.64,7.476,False,"Person in front to the right, about to move forward.","Person in front to the right, about to move forward.",spoken,0.177,7.706,2.682,0.87,2.87
+9,5.476,7.476,590,0.612,8.088,False,"Person in front to your right, slightly right.","Person in front to your right, slightly right.",stale,0.0,,0.0,,
+10,6.088,8.088,590,0.639,8.727,False,"Person in black coat, ahead and slightly to the right.","Person in black coat, ahead and slightly to the right.",stale,0.0,,0.0,,
+11,6.727,8.727,590,0.616,9.343,False,"Person in front right, right side.","Person in front right, right side.",stale,0.0,,0.0,,
+12,7.343,9.343,590,0.729,10.072,False,"Person in black coat, right, close.","Person in black coat, right, close.",spoken,0.201,10.589,2.473,1.247,3.247
+13,8.072,10.072,590,0.563,10.635,False,"Person in dark coat, right side, walking.","Person in dark coat, right side, walking.",stale,0.0,,0.0,,
+14,8.635,10.635,590,0.821,11.455,False,"Person in dark coat, right side, walking.","Person in dark coat, right side, walking.",stale,0.0,,0.0,,
+15,9.455,11.455,590,0.49,11.945,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",stale,0.0,,0.0,,
+16,9.945,11.945,590,0.573,12.518,False,"Person in front left, on a bicycle.","Person in front left, on a bicycle.",stale,0.0,,0.0,,
+17,10.518,12.518,590,0.505,13.023,False,"Person in black coat, slightly left.","Person in black coat, slightly left.",spoken,0.238,13.3,2.171,0.782,2.782
+18,11.023,13.023,590,0.66,13.683,False,"Person in front to the right, about to move forward.","Person in front to the right, about to move forward.",stale,0.0,,0.0,,
+19,11.683,13.683,590,0.572,14.255,False,"Person in front to your right, slightly ahead.","Person in front to your right, slightly ahead.",stale,0.0,,0.0,,
+20,12.255,14.255,590,0.646,14.901,False,"Person in front to the right, about to move forward.","Person in front to the right, about to move forward.",stale,0.0,,0.0,,
+21,12.901,14.901,590,0.525,15.426,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",spoken,0.268,15.739,2.218,0.838,2.838
+22,13.426,15.426,590,0.767,16.193,False,"Person in front left, slightly away.","Person in front left, slightly away.",stale,0.0,,0.0,,
+23,14.193,16.193,590,0.651,16.844,False,Person in black coat walking ahead and slightly to the right.,Person in black coat walking ahead and slightly to the right.,stale,0.0,,0.0,,
+24,14.844,16.844,590,0.601,17.446,False,Person in black coat walking ahead and slightly left.,Person in black coat walking ahead and slightly left.,spoken,0.235,18.192,2.81,1.347,3.347
+25,15.446,17.446,590,0.691,18.137,False,Person in black coat and blue jeans walking ahead on the right.,Person in black coat and blue jeans walking ahead on the right.,stale,0.0,,0.0,,
+26,16.137,18.137,590,0.626,18.763,False,"Person in white coat, ahead and slightly left.","Person in white coat, ahead and slightly left.",stale,0.0,,0.0,,
+27,16.763,18.763,590,0.639,19.403,False,Person in white coat ahead left.,Person in white coat ahead left.,stale,0.0,,0.0,,
+28,17.403,19.403,590,0.585,19.988,False,"Person in white coat, ahead and slightly left.","Person in white coat, ahead and slightly left.",stale,0.0,,0.0,,
+29,17.988,19.988,590,0.553,20.54,False,"Person walking away from you, center.","Person walking away from you, center.",spoken,0.177,21.179,2.229,1.191,3.191
+30,18.54,20.54,590,0.544,21.084,False,"Person walking away from you, center.","Person walking away from you, center.",stale,0.0,,0.0,,
+31,19.084,21.084,590,0.591,21.676,False,"Person walking away from you, center.","Person walking away from you, center.",stale,0.0,,0.0,,
+32,19.676,21.676,590,0.825,22.501,False,"Person walking towards you, left side of body.","Person walking towards you, left side of body.",stale,0.0,,0.0,,
+33,20.501,22.501,590,0.496,22.997,False,"Person walking ahead, left side.","Person walking ahead, left side.",spoken,0.162,23.57,2.136,1.069,3.069
+34,20.997,22.997,590,0.539,23.535,False,"Person in front left, slightly away.","Person in front left, slightly away.",stale,0.0,,0.0,,
+35,21.535,23.535,590,0.474,24.009,False,"Person in front, slightly right.","Person in front, slightly right.",stale,0.0,,0.0,,
+36,22.009,24.009,590,0.55,24.559,False,"Person in front, slightly right.","Person in front, slightly right.",stale,0.0,,0.0,,
+37,22.559,24.559,590,0.484,25.043,False,"Person in front, slightly right.","Person in front, slightly right.",spoken,0.161,25.867,2.009,1.308,3.308
+38,23.043,25.043,590,0.693,25.736,False,"Person in front, slightly right.","Person in front, slightly right.",stale,0.0,,0.0,,
+39,23.736,25.736,590,0.508,26.244,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",stale,0.0,,0.0,,
+40,24.244,26.244,590,0.67,26.914,False,"Person in green jacket, ahead and left.","Person in green jacket, ahead and left.",stale,0.0,,0.0,,
+41,24.914,26.914,590,0.498,27.412,False,"Person walking away from you, center.","Person walking away from you, center.",spoken,0.205,28.08,2.125,1.166,3.166
+42,25.412,27.412,590,0.733,28.145,False,Person in black coat and mask ahead.,Person in black coat and mask ahead.,stale,0.0,,0.0,,
+43,26.145,28.145,590,0.537,28.683,False,"Person in front left, on a bicycle.","Person in front left, on a bicycle.",stale,0.0,,0.0,,
+44,26.683,28.683,590,0.705,29.387,False,Person in black coat walking ahead and slightly left.,Person in black coat walking ahead and slightly left.,stale,0.0,,0.0,,
+45,27.387,29.387,590,0.654,30.041,False,Person in black coat walking ahead and slightly to the right.,Person in black coat walking ahead and slightly to the right.,spoken,0.281,30.486,3.204,1.099,3.099
+46,28.041,30.041,590,0.635,30.677,False,Person in black coat walking ahead on the right.,Person in black coat walking ahead on the right.,stale,0.0,,0.0,,
+47,28.677,30.677,590,0.664,31.34,False,Person in black coat walking ahead on the right.,Person in black coat walking ahead on the right.,stale,0.0,,0.0,,
+48,29.34,31.34,590,0.833,32.174,False,Person in black coat and mask ahead.,Person in black coat and mask ahead.,stale,0.0,,0.0,,
+49,30.174,32.174,590,0.55,32.724,False,"Person in black coat, ahead and slightly right.","Person in black coat, ahead and slightly right.",stale,0.0,,0.0,,
+50,30.724,32.724,590,0.527,33.251,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",spoken,0.268,33.958,2.31,1.234,3.234
+51,31.251,33.251,590,0.547,33.798,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",stale,0.0,,0.0,,
+52,31.798,33.798,590,0.653,34.452,False,"Person in front left, slightly away.","Person in front left, slightly away.",stale,0.0,,0.0,,
+53,32.452,34.452,590,0.606,35.057,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",stale,0.0,,0.0,,
+54,33.057,35.057,590,0.717,35.775,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",repeat,0.0,,0.0,,
+55,33.775,35.775,590,0.555,36.33,False,"Person in front left, slightly ahead.","Person in front left, slightly ahead.",repeat,0.0,,0.0,,
+56,34.33,36.33,590,0.686,37.017,False,"Person in yellow jacket, left.","Person in yellow jacket, left.",spoken,0.172,37.188,1.997,0.858,2.858
+57,35.017,37.017,590,0.647,37.664,False,"Person in yellow coat, ahead and slightly left.","Person in yellow coat, ahead and slightly left.",stale,0.0,,0.0,,
+58,35.664,37.664,590,0.843,38.507,False,Person in black coat and jeans walking away from the camera.,Person in black coat and jeans walking away from the camera.,spoken,0.266,39.451,3.077,1.788,3.788
+59,36.507,38.507,590,0.811,39.318,False,"Person in yellow jacket, left, ahead, moving away from camera.","Person in yellow jacket, left, ahead, moving away from camera.",stale,0.0,,0.0,,
+60,37.318,39.318,590,0.689,40.008,False,Person in black coat walking away from camera.,Person in black coat walking away from camera.,stale,0.0,,0.0,,
+61,38.008,40.008,590,0.501,40.508,False,Person in black coat walking forward.,Person in black coat walking forward.,stale,0.0,,0.0,,
+62,38.508,40.508,590,0.767,41.275,False,Person in black coat walking ahead on the right.,Person in black coat walking ahead on the right.,stale,0.0,,0.0,,
+63,39.275,41.275,590,0.55,41.825,False,"Person walking towards you, left side.","Person walking towards you, left side.",stale,0.0,,0.0,,
+64,39.825,41.825,590,0.664,42.488,False,Person in black coat walking ahead and slightly to the right.,Person in black coat walking ahead and slightly to the right.,spoken,0.28,42.808,2.961,0.983,2.983
+65,40.488,42.488,590,0.889,43.377,False,Person in black coat walking away from camera.,Person in black coat walking away from camera.,stale,0.0,,0.0,,
+66,41.377,43.377,590,0.554,43.932,False,"Person in front left, on sidewalk.","Person in front left, on sidewalk.",stale,0.0,,0.0,,
+67,41.932,43.932,590,0.876,44.808,False,Person in black coat walking ahead and slightly left.,Person in black coat walking ahead and slightly left.,stale,0.0,,0.0,,
+68,42.808,44.808,590,0.567,45.375,False,Person in black coat walking away from camera.,Person in black coat walking away from camera.,spoken,0.397,46.166,2.531,1.358,3.358
+69,43.375,45.375,590,0.626,46.001,False,Person standing in crosswalk ahead.,Person standing in crosswalk ahead.,stale,0.0,,0.0,,
+70,44.001,46.001,590,0.474,46.475,False,Trash can on the left.,Trash can on the left.,stale,0.0,,0.0,,
+71,44.475,46.475,590,0.663,47.138,False,"Trash can in front of me, slightly left.","Trash can in front of me, slightly left.",stale,0.0,,0.0,,
+72,45.138,47.138,590,0.915,48.054,False,"Trash can, right, slightly ahead.","Trash can, right, slightly ahead.",spoken,0.172,48.869,2.45,1.73,3.73
+73,46.054,48.054,590,0.736,48.789,False,"Trash can, right, slightly ahead.","Trash can, right, slightly ahead.",stale,0.0,,0.0,,
+74,46.789,48.789,590,0.691,49.481,False,"Trash can in front of me, slightly left.","Trash can in front of me, slightly left.",stale,0.0,,0.0,,
+75,47.481,49.481,590,0.649,50.129,False,Trash can on the left side of the street.,Trash can on the left side of the street.,stale,0.0,,0.0,,
+76,48.129,50.129,590,0.86,50.989,False,"Trash can on the left, slightly ahead.","Trash can on the left, slightly ahead.",spoken,0.229,51.547,2.206,1.418,3.418
+77,48.989,50.989,590,0.758,51.747,False,A car driving past on the right.,A car driving past on the right.,stale,0.0,,0.0,,
+78,49.747,51.747,590,0.541,52.288,False,"Person standing on sidewalk, right.","Person standing on sidewalk, right.",stale,0.0,,0.0,,
+79,50.288,52.288,590,0.52,52.808,False,"Car approaching from right, ahead.","Car approaching from right, ahead.",stale,0.0,,0.0,,
+80,50.808,52.808,590,0.504,53.313,False,Person standing in crosswalk ahead.,Person standing in crosswalk ahead.,spoken,0.146,53.899,2.113,1.09,3.09
+81,51.313,53.313,590,0.707,54.02,False,"Car driving by, left.","Car driving by, left.",stale,0.0,,0.0,,
+82,52.02,54.02,590,0.709,54.728,False,"Person in black coat, ahead.","Person in black coat, ahead.",spoken,0.113,56.124,1.823,2.105,4.105

@@ -1,0 +1,46 @@
+idx,win_start,win_end,input_tokens,model_s,ready,flagged,raw,answer,status,tts_s,audio_start,audio_dur,lag,age
+0,0.0,2.0,610,0.457,2.457,False,No obstacles in my path.,No obstacles in my path.,spoken,0.341,2.798,1.707,0.798,2.798
+1,0.457,2.457,610,0.505,2.961,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+2,0.961,2.961,610,0.531,3.493,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+3,1.493,3.493,610,0.465,3.958,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+4,1.958,3.958,610,0.503,4.46,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+5,2.46,4.46,610,0.606,5.067,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+6,3.067,5.067,610,0.522,5.589,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+7,3.589,5.589,610,0.668,6.257,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+8,4.257,6.257,610,0.582,6.84,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+9,4.84,6.84,610,0.413,7.253,False,No obstacles in path.,No obstacles in path.,spoken,0.276,7.529,1.44,0.689,2.689
+10,5.253,7.253,610,0.403,7.656,False,No obstacles in path.,No obstacles in path.,stale,0.0,,0.0,,
+11,5.656,7.656,610,0.467,8.123,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+12,6.123,8.123,610,0.618,8.741,False,No obstacles in my path.,No obstacles in my path.,spoken,0.164,9.132,1.753,1.009,3.009
+13,6.741,8.741,610,0.726,9.467,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+14,7.467,9.467,610,0.74,10.207,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+15,8.207,10.207,610,0.699,10.906,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+16,8.906,10.906,610,0.449,11.355,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+17,9.355,11.355,610,0.624,11.98,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+18,9.98,11.98,610,0.489,12.469,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+19,10.469,12.469,610,0.467,12.936,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+20,10.936,12.936,610,0.554,13.49,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+21,11.49,13.49,610,0.478,13.968,False,No obstacles in my path.,No obstacles in my path.,repeat,0.0,,0.0,,
+22,11.968,13.968,610,0.45,14.418,False,No obstacles in path.,No obstacles in path.,spoken,0.168,14.586,1.509,0.618,2.618
+23,12.418,14.418,610,0.429,14.847,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+24,12.847,14.847,610,0.469,15.316,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+25,13.316,15.316,610,0.622,15.938,False,A black car approaching on the left.,A black car approaching on the left.,spoken,0.122,16.217,1.939,0.901,2.901
+26,13.938,15.938,610,0.624,16.562,False,A black car approaching from the opposite direction.,A black car approaching from the opposite direction.,stale,0.0,,0.0,,
+27,14.562,16.562,610,0.899,17.461,False,A black car approaching from the opposite direction.,A black car approaching from the opposite direction.,spoken,0.176,18.332,2.728,1.77,3.77
+28,15.461,17.461,610,0.811,18.272,False,A pedestrian on a scooter approaching from a distance.,A pedestrian on a scooter approaching from a distance.,stale,0.0,,0.0,,
+29,16.272,18.272,610,0.457,18.729,False,A truck on the left.,A truck on the left.,stale,0.0,,0.0,,
+30,16.729,18.729,610,0.537,19.267,False,A truck approaching from the opposite direction.,A truck approaching from the opposite direction.,stale,0.0,,0.0,,
+31,17.267,19.267,610,0.805,20.071,False,A truck driving on the left lane going in the opposite direction.,A truck driving on the left lane going in the opposite direction.,stale,0.0,,0.0,,
+32,18.071,20.071,610,0.793,20.864,False,A pickup truck is two steps ahead to my right.,A pickup truck is two steps ahead to my right.,spoken,0.144,21.204,2.659,1.133,3.133
+33,18.864,20.864,610,0.609,21.473,False,A white truck is on my right.,A white truck is on my right.,stale,0.0,,0.0,,
+34,19.473,21.473,610,0.449,21.922,False,A white truck on the right.,A white truck on the right.,stale,0.0,,0.0,,
+35,19.922,21.922,610,0.476,22.398,False,Truck on my right.,Truck on my right.,stale,0.0,,0.0,,
+36,20.398,22.398,610,0.518,22.917,False,Truck on right.,Truck on right.,stale,0.0,,0.0,,
+37,20.917,22.917,610,0.592,23.509,False,Construction worker on the left.,Construction worker on the left.,spoken,0.09,23.953,1.602,1.037,3.037
+38,21.509,23.509,610,0.438,23.947,False,Pole on the right.,Pole on the right.,stale,0.0,,0.0,,
+39,21.947,23.947,610,0.522,24.469,False,Construction vehicle on the left.,Construction vehicle on the left.,stale,0.0,,0.0,,
+40,22.469,24.469,610,0.441,24.91,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+41,22.91,24.91,610,0.442,25.352,False,No obstacles in path.,No obstacles in path.,spoken,0.084,25.639,1.567,0.729,2.729
+42,23.352,25.352,610,0.428,25.78,False,No obstacles in path.,No obstacles in path.,stale,0.0,,0.0,,
+43,23.78,25.78,610,0.471,26.251,False,No obstacles in my path.,No obstacles in my path.,stale,0.0,,0.0,,
+44,24.251,26.251,610,0.62,26.871,False,No obstacles in my path.,No obstacles in my path.,spoken,0.099,27.306,1.672,1.056,3.056
