@@ -204,6 +204,29 @@ Correction to the D3 note on the 4K clip: the labeller found the vehicle at 0 to
 3.5 s is the black pickup, and the "black car" near 15 s is the white utility
 truck looking dark at low resolution (`3874684_720p.json`, e1 note).
 
+## D7. Fused harness: perception fast path + Cosmos facts
+
+`scripts/fused_harness.py`. Fast path: tracks from `scripts/perception.py`
+(D-FINE obj365 + Depth Anything V2 metric small + IoU tracker, about 50 ms per
+frame, 0.2 GiB). Warn when a track in the path is close (box bottom in the lower
+12% of the frame or box height over 45%) or approaching with TTC under 3.5 s,
+confirmed in 3 of 5 frames, 5 s per-track cooldown. Depth distance is not used
+for triggering: it read 2 to 3x long, so nearly every track was "far". Slow
+path: Cosmos gets the top 3 tracks and is asked for one thing they miss, or NONE.
+The two paths are assumed to share the GPU without slowing each other (not
+measured together).
+
+| Mode | must_warn hits | All hits | Lead median (s) | Side correct | Utt/min | False alarms |
+|---|---|---|---|---|---|---|
+| describe (baseline) | 10/29 (34%) | 14/44 (32%) | -0.3 | 7/14 (50%) | 24.3 | 33 |
+| fast path only | 13/29 (45%) | 17/44 (39%) | +0.4 | 4/17 (24%) | 26.4 | 27 |
+| fused | 18/29 (62%) | 24/44 (55%) | +0.2 | 8/24 (33%) | 34.6 | 44 |
+
+Full table: `results/walk_scores_fused.md`. Fused nearly doubles must_warn hits.
+Still open: warnings land near the closest moment, not 2 s before it; side
+accuracy dropped (Fifth Ave fused 0/9); it talks more (34.6 utterances per
+minute) with more false alarms.
+
 **Bug found in the first run.** Querying as fast as the model returned (about
 every 1.5 s) queued speech behind speech; lag grew to 72 s by the end of the
 clip. Fix: look again only after the current sentence finishes.

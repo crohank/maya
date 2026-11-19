@@ -1,0 +1,2 @@
+idx,source,win_start,win_end,ready,status,audio_start,audio_dur,lag,age,model_s,input_tokens,answer,raw
+0,fast,5.648,6.273,6.33,spoken,6.401,1.649,0.128,0.753,0.057,0,"Pole ahead, approaching.","{""id"": 10, ""cls"": ""pole"", ""conf"": 0.407, ""box"": [0.4795, 0.5186, 0.5508, 0.6621], ""side"": ""ahead"", ""dist_m"": 11.51, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 2.73, ""age_s"": 6.27}"

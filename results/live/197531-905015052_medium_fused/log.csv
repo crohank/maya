@@ -1,0 +1,12 @@
+idx,source,win_start,win_end,ready,status,audio_start,audio_dur,lag,age,model_s,input_tokens,answer,raw
+0,vlm,0.0,2.0,2.724,spoken,2.846,1.614,0.846,2.846,0.724,632,Curb on left side ahead.,Curb on left side ahead.
+1,vlm,1.5,3.5,3.994,spoken,4.54,2.218,1.04,3.04,0.494,632,Curb on left side next to walking path.,Curb on left side next to walking path.
+2,vlm,3.0,5.0,5.454,stale,,0.0,,,0.454,632,Curb ahead left by the sidewalk.,Curb ahead left by the sidewalk.
+3,fast,5.648,6.273,6.33,spoken,6.82,1.44,0.547,1.172,0.057,0,"Pole ahead, approaching.","{""id"": 10, ""cls"": ""pole"", ""conf"": 0.407, ""box"": [0.4795, 0.5186, 0.5508, 0.6621], ""side"": ""ahead"", ""dist_m"": 11.51, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 2.73, ""age_s"": 6.27}"
+4,vlm,4.5,6.5,6.859,spoken,8.321,1.602,1.821,3.821,0.359,632,Curb ahead left center.,Curb ahead left center.
+5,vlm,6.0,8.0,8.529,spoken,9.982,1.602,1.982,3.982,0.529,632,Curb ahead center of frame.,Curb ahead center of frame.
+6,vlm,7.5,9.5,9.926,stale,,0.0,,,0.426,632,Curb ahead center of screen.,Curb ahead center of screen.
+7,vlm,9.0,11.0,11.404,spoken,11.642,1.324,0.642,2.642,0.404,632,Curb right of path.,Curb right of path.
+8,vlm,10.5,12.5,13.171,spoken,13.246,2.09,0.746,2.746,0.671,633,Curb on left side beside sidewalk,Curb on left side beside sidewalk
+9,vlm,12.0,14.0,14.567,spoken,15.402,1.567,1.402,3.402,0.567,632,Curb on the right side of the road.,Curb on the right side of the road.
+10,vlm,13.5,15.5,15.992,spoken,17.033,1.591,1.533,3.533,0.492,632,Curb at right side of path.,Curb at right side of path.
