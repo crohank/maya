@@ -3,9 +3,11 @@
 Default path (doc_mode=quote): the model copies the supporting sentence and a
 short answer, or replies NONE. Code then checks that the quote is really in the
 document, that the answer is in the quoted passage, that every number in the
-question appears there too, and that capitalized names in the question appear
-somewhere in the document. Any failed check gives the refusal. Optional second
-model call (doc_verify=1) asks whether the passage answers the exact question.
+question appears there too, that capitalized names in the question appear
+somewhere in the document, and that the question does not flip a relation the
+passage states (rise asked, only drop stated; a negated word the passage uses
+plainly). Any failed check gives the refusal. Optional second model call
+(doc_verify) asks whether the passage answers the exact question.
 A PDF page with no text layer is transcribed by the VLM (about 27 s per page),
 up to OCR_PAGES of them. Summary questions take the plain path, and a document
 over MAX_DOC_TOKENS is cut to its opening plus the best BM25 passages.
@@ -13,8 +15,14 @@ over MAX_DOC_TOKENS is cut to its opening plus the best BM25 passages.
 Options (eng.opts, strings):
   doc_mode    quote | plain      plain is the single-call baseline
   doc_rules   1 | 0              number and name checks
-  doc_verify  0 | 1              second yes/no model call; off because on the practice pack
-                                 it refused one answerable item and caught nothing the rules missed
+  doc_relation 1 | 0             direction and negation check (needs doc_rules=1); on
+                                 SQuAD half A it caught 2 of 6 remaining traps, 0 false refusals
+  doc_verify  0 | 1 | claim      1: second yes/no model call; off because on the practice pack
+                                 it refused one answerable item and caught nothing the rules missed.
+                                 claim: one forward pass scoring SUPPORTED vs NOT SUPPORTED;
+                                 refuses when log P(NOT) - log P(SUPPORTED) > doc_claim_margin
+                                 (default 0). Off: at margin 0 its only refusal on half A was an
+                                 answerable item, and no margin separated the traps from it.
   doc_style   short | sentence   sentence: speak a one-sentence answer when it adds no new facts
   doc_ext     ''  | pdf | txt    swap the file extension (eval of the PDF copies)
 """
@@ -69,6 +77,21 @@ Proposed answer: {answer}
 
 Does the passage state this answer to this exact question? Every detail in the question (dates, numbers, names, places, groups, and what happened) must match the passage. If the question asks about something the passage does not state, or one of its details differs from the passage, reply NO. Reply YES or NO."""
 
+CLAIM_SYSTEM = "You check whether a passage states a claim. Reply with one label only."
+
+CLAIM_PROMPT = """Passage: {passage}
+
+Question: {question}
+Proposed answer: {answer}
+
+Turn the question and the proposed answer into one statement. Does the passage state that statement?
+Check carefully:
+- direction words: rise or drop, increase or decrease, first or last, before or after, most or least
+- negation: not, never, without, no longer
+- roles: who did the action and who received it, whose relative, which thing belongs to which
+If the passage states it, reply SUPPORTED. If the passage says something different or does not say it, reply NOT SUPPORTED. If it states only part of it, reply PARTLY."""
+CLAIM_LABELS = ("SUPPORTED", "NOT", "PART")
+
 STOP = set("""a an the of in on at to for from by with and or as is are was were be been being
 that this these those which who whom whose what when where why how it its their his her
 they them he she we you i not no do does did has have had about into than then there
@@ -79,6 +102,27 @@ NUM_WORDS = {w: i for i, w in enumerate(
 NUM_WORDS.update({w: 10 * i for i, w in enumerate("thirty forty fifty sixty seventy eighty ninety".split(), 3)})
 MONTHS = {m[:3]: m for m in "january february march april may june july august september "
           "october november december".split()}
+# Opposite word groups for the relation check. A word matches an entry it equals or, for
+# entries of 4+ letters, starts with. Left out on purpose: before/after (A followed B
+# means B came before A), win/defeat (A defeated B means A won), compass words (names).
+OPPOSITES = [
+    ("rise rose risen rising increas grew grow climb", "drop fell fall declin decreas sank sink shrank shrink plummet plung"),
+    ("first earliest", "last latest final"),
+    ("most largest biggest highest greatest maximum longest", "least smallest lowest fewest minimum shortest"),
+    ("import", "export"),
+    ("buy bought purchas", "sell sold"),
+    ("open opened opening", "close closed closing closure shut"),
+    ("allow permit legal", "prohibit forbid ban banned illegal"),
+]
+CONTRACTED = set("dont doesnt didnt isnt wasnt werent arent cant couldnt wouldnt shouldnt "
+                 "hasnt havent hadnt wont".split())
+NEG_Q = {"not", "never", "without", "cannot"} | CONTRACTED
+# Whole words, or stems where the group ends in \w*; un\w{4,} also passes "under" and
+# "until", which only makes the negation check refuse less.
+NEG_DOC = re.compile(r"(not|no|never|none|neither|nor|non|without|cannot|ban|bans|banned|instead|rather|"
+                     r"rarely|seldom|hardly|little|few|fewer|less|"
+                     r"(unable|fail|lack|absen|refus|reject|deni|deny|avoid|prohibit|forbid|forbad|"
+                     r"except)\w*|un\w{4,}|\w+less)")
 
 
 def read_doc(path, eng=None, stats=None):
@@ -273,6 +317,60 @@ def question_conflict(question, passage, doc):
     return ""
 
 
+def _is(tok, entries):
+    return any(tok == e or (len(e) >= 4 and tok.startswith(e)) for e in entries)
+
+
+def relation_conflict(question, passage):
+    """Reason string when the question flips a relation the quoted passage states, else ''.
+
+    Direction: the question uses one side of an OPPOSITES pair, the passage only the other
+    ("rise" asked, only "dropped" stated). Negation: the question negates a word that the
+    passage uses with no negative word in the 6 words before it.
+    """
+    qt, pt = norm(question).split(), norm(passage).split()
+    for a, b in OPPOSITES:
+        for x, y in ((a.split(), b.split()), (b.split(), a.split())):
+            if (any(_is(t, x) for t in qt) and not any(_is(t, x) for t in pt)
+                    and any(_is(t, y) for t in pt)):
+                return f"question says {next(t for t in qt if _is(t, x))!r}, passage the opposite"
+    neg = next((i for i, t in enumerate(qt) if t in NEG_Q), None)
+    if neg is None:
+        return ""
+    pstem = [stem(t) for t in pt]
+    for w in [stem(t) for t in qt[neg + 1:] if t not in STOP][:3]:
+        hits = [j for j, p in enumerate(pstem) if near(w, {p})]
+        if not hits:
+            continue
+        if any(NEG_DOC.fullmatch(t) or t in CONTRACTED for j in hits for t in pt[max(0, j - 6):j + 1]):
+            return ""
+        return f"question negates {w!r}, passage does not"
+    return ""
+
+
+def label_logprobs(vlm, prompt, system, labels):
+    """Log-probability of each label's first token as the reply, from one forward pass
+    (0.11 to 0.38 s on the practice pack and SQuAD half A). A VLM without a model
+    attribute (test fakes) gets 0 for the label its reply starts with, -99 otherwise."""
+    if not hasattr(vlm, "model"):
+        reply, _ = vlm.text(prompt, system, max_new_tokens=4)
+        return {l: 0.0 if reply.strip().upper().startswith(l) else -99.0 for l in labels}, 0.0
+    import time
+    import torch
+    msgs = [{"role": "system", "content": [{"type": "text", "text": system}]},
+            {"role": "user", "content": [{"type": "text", "text": prompt}]}]
+    inputs = vlm.proc.apply_chat_template(
+        msgs, add_generation_prompt=True, tokenize=True, return_dict=True,
+        return_tensors="pt", enable_thinking=False).to(vlm.model.device)
+    t = time.perf_counter()
+    with torch.inference_mode():
+        logits = vlm.model(**inputs, logits_to_keep=1).logits[0, -1].float()
+    lp = torch.log_softmax(logits, -1)
+    tok = vlm.proc.tokenizer
+    return ({l: float(lp[tok.encode(l, add_special_tokens=False)[0]]) for l in labels},
+            time.perf_counter() - t)
+
+
 def opt(eng, key, default):
     return str(getattr(eng, "opts", {}).get(key, default))
 
@@ -378,7 +476,20 @@ def _answer(eng, doc, question):
         why = question_conflict(question, passage, doc)
         if why:
             return REFUSAL, {**info, "why": why}
-    if opt(eng, "doc_verify", "0") == "1":
+        if opt(eng, "doc_relation", "1") == "1":
+            why = relation_conflict(question, passage)
+            if why:
+                return REFUSAL, {**info, "why": why}
+    verify = opt(eng, "doc_verify", "0")
+    if verify == "claim":
+        lp, secs = label_logprobs(eng.vlm, CLAIM_PROMPT.format(passage=passage, question=question, answer=ans),
+                                  CLAIM_SYSTEM, CLAIM_LABELS)
+        margin = lp["NOT"] - lp["SUPPORTED"]
+        info["claim_margin"] = round(margin, 2)
+        info["model_s"] = round(info.get("model_s", 0) + secs, 3)
+        if margin > float(opt(eng, "doc_claim_margin", "0")):
+            return REFUSAL, {**info, "why": "claim not supported"}
+    if verify == "1":
         verdict, vinfo = eng.vlm.text(
             VERIFY_PROMPT.format(passage=passage, question=question, answer=ans),
             VERIFY_SYSTEM, max_new_tokens=3)

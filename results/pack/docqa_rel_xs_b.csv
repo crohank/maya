@@ -1,0 +1,29 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xs_txt_033,text,1,9.15,document,,"What culture's arrival in Scotland is know as the ""Davidian Revolution""?",Norman.,Norman
+xs_txt_034,text,1,2.63,document,,What major conquest did Tancred play a roll in?,The conquest of Jerusalem.,Jerusalem
+xs_txt_035,text,1,3.13,document,,Who was in charge of the papal army in the War of Barbastro?,William of Montreuil.,William of Montreuil
+xs_txt_036,text,1,10.5,document,,What did the Normans take part in in the 10th century?,The document does not say.,The document does not say.
+xs_txt_037,text,1,4.07,document,,Who did the Mongols bring to China as administrators?,"Central Asian Muslims, Han Chinese, and Khitans.",Central Asian Muslims
+xs_txt_038,text,1,7.88,document,,What modern city did Khanbaliq become?,Beijing.,Beijing
+xs_txt_039,text,1,2.44,document,,Which part of China had people ranked higher in the class system?,Northern China.,Northern
+xs_txt_040,text,0,2.12,document,,Who thought that the Yuan's social class system should be called social classes?,Frederick W. Mote.,The document does not say.
+xs_txt_041,text,1,2.11,document,,Who is Kearney Boulevard named after?,M. Theo Kearney.,M. Theo Kearney
+xs_txt_042,text,1,2.49,document,,Who founded Woodward Park?,Ralph Woodward.,Ralph Woodward
+xs_txt_043,text,1,3.84,document,,What is the name of the first aviation community built?,Sierra Sky Park Airport.,Sierra Sky Park
+xs_txt_044,text,1,0.94,document,,"Whos is Kerman, California named after?",The document does not say.,The document does not say.
+xs_txt_045,text,1,3.15,document,,Turing machines are commonly employed to define what?,complexity classes.,complexity classes
+xs_txt_046,text,1,3.99,document,,What is the most critical resource in the analysis of computational problems associated with non-deterministic Turing machines?,non-deterministic time.,time
+xs_txt_047,text,1,1.96,document,,"Assuming that T represents a polynomial in T(n), what is the term given to the corresponding algorithm?",polynomial time algorithm.,polynomial time algorithm
+xs_txt_048,text,0,4.22,document,,What does not often help algorithms solve problems more efficiently?,Non-deterministic time.,The document does not say.
+xs_txt_049,text,1,2.77,document,,What is set up to scrutinize private bills submitted by party outsiders?,Private Bill Committees.,type of committee
+xs_txt_050,text,1,2.6,document,,What do the membership of the committees reflect?,The balance of parties across Parliament.,balance of parties
+xs_txt_051,text,1,4.22,document,,"Economy, Energy and Tourism is one of the what?",Subject Committees.,current Subject Committees
+xs_txt_052,text,0,2.17,document,,Mandatory Committees exists in the fifth session of what?,Scottish Parliament.,The document does not say.
+xs_txt_053,text,1,2.06,document,,What minor amount of liquid oxygen was produced by early French experimenters?,Only a few drops.,few drops
+xs_txt_054,text,1,2.38,document,,Where does oxygen rank by mass in the planet's biosphere?,Most abundant.,most abundant
+xs_txt_055,text,1,2.37,document,,What is the name for a form of oxygen in which electrons are paired?,Singlet oxygen.,Singlet
+xs_txt_056,text,1,4.54,document,,"Who liquified oxygen in a stable state on March 22, 1883?",The document does not say.,The document does not say.
+xs_txt_057,text,1,2.2,document,,What are internet pharmacies also called?,online pharmacies.,online pharmacies
+xs_txt_058,text,1,3.02,document,,How fast is pharmacy informatics growing?,Quickly.,quickly
+xs_txt_059,text,0,3.46,document,,What is there a push for in the U.S. to reduce consumer drug costs?,Legalization of importation of medications from Canada and other countries.,to legalize importation of medications from Canada and other countries
+xs_txt_060,text,1,0.89,document,,What is not an example of a controlled substance?,The document does not say.,The document does not say.

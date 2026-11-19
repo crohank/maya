@@ -1,0 +1,19 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_txt_001,text,1,8.15,document,,How long should you flush your eyes at the eyewash station?,15 minutes.,15 minutes.
+h_txt_002,text,1,1.46,document,,Which container gets halogenated solvent waste?,green carboy.,The green carboy in fume hood 2.
+h_txt_003,text,1,3.13,document,,What extension do you call for a spill larger than 100 mL?,4477.,Extension 4477 (campus safety).
+h_txt_004,text,1,2.16,document,,Who is the lab manager?,Dr. Helen Okafor.,Dr. Helen Okafor.
+h_txt_005,text,1,0.7,document,,Which container gets radioactive waste?,The document does not say.,The document does not say.
+h_txt_006,text,1,2.1,document,,Who is the lab manager for Room 305?,The document does not say.,The document does not say.
+h_txt_007,text,1,1.97,document,,How often does a Route 12 bus leave during the morning peak?,every 15 minutes.,Every 15 minutes.
+h_txt_008,text,1,1.44,document,,How much is an adult single fare?,$2.25.,$2.25.
+h_txt_009,text,1,1.76,document,,How long does a full trip from Eastgate Terminal to Lighthouse Point take?,48 minutes.,48 minutes.
+h_txt_010,text,1,1.99,document,,Which temporary stop replaces College Street during the detour?,Elm Road.,The temporary stop on Elm Road.
+h_txt_011,text,1,0.73,document,,How much is an adult single fare on Route 14?,The document does not say.,The document does not say.
+h_txt_012,text,1,1.53,document,,What time does the first bus leave Lighthouse Point on weekdays?,The document does not say.,The document does not say.
+h_txt_013,text,1,2.1,document,,What ratio of white vinegar to water does the manual recommend for descaling?,1 part white vinegar to 2 parts water.,1 part white vinegar to 2 parts water.
+h_txt_014,text,1,3.15,document,,What does error code E2 mean?,The heater is overheating. Unplug the machine and wait 20 minutes before using it again.,The heater is overheating; unplug and wait 20 minutes.
+h_txt_015,text,1,1.54,document,,How long does the descaling cycle take?,35 minutes.,About 35 minutes.
+h_txt_016,text,1,1.92,document,,After how many hours does the warming plate switch off automatically?,2 hours.,After 2 hours.
+h_txt_017,text,1,1.83,document,,What does error code E3 mean?,The document does not say.,The document does not say.
+h_txt_018,text,1,1.56,document,,What ratio of citric acid to water does the manual recommend for descaling?,The document does not say.,The document does not say.

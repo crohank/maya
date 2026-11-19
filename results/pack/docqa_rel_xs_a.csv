@@ -1,0 +1,33 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xs_txt_001,text,1,9.47,document,,How are Air force messages delivered,By store and forward switching using packet switching with message blocks.,delivery of these messages by store and forward switching
+xs_txt_002,text,0,3.38,document,,What did Donald Davies Develop,packet switching.,independently developed the same message routing methodology as developed by Baran
+xs_txt_003,text,1,3.16,document,,How are the packets routed,"Individually, via complete addressing information in each packet.","individually, sometimes resulting in different paths and out-of-order delivery"
+xs_txt_004,text,1,0.72,document,,Was the RAND corporation prohibited from disclosing the research to anyone else except for the Air Force?,The document does not say.,The document does not say.
+xs_txt_005,text,0,4.7,document,,Where did the first Huguenot colonists settle?,Cape Town.,at the Cape of Good Hope
+xs_txt_006,text,1,4.9,document,,The Huguenots were the first Europeans to live in what modern New York borough?,Brooklyn.,Brooklyn
+xs_txt_007,text,1,3.45,document,,What event was the worst example of Huguenot persecution?,St. Bartholomew's Day massacre.,St. Bartholomew's Day massacre
+xs_txt_008,text,0,8.7,document,,What did Jan van Riebeeck's father do for a living?,Walloon church minister.,The document does not say.
+xs_txt_009,text,0,3.75,document,,Ctenophores and cnidarians are classified as what?,animal phylum.,diploblastic
+xs_txt_010,text,1,3.49,document,,What makes ctenophores different from all other animals?,They have colloblasts.,by having colloblasts
+xs_txt_011,text,1,4.17,document,,What does  mnemiopsis eat?,fish larvae and organisms that would otherwise have fed the fish.,fish larvae and organisms
+xs_txt_012,text,0,2.76,document,,What kind of animals are cilia considered?,ctenophores.,The document does not say.
+xs_txt_013,text,1,4.7,document,,What period did plates reverse directions to compress the Tethys floor?,Jurassic Period.,Jurassic Period
+xs_txt_014,text,1,4.13,document,,What period did the Rhine capture streams?,Pliocene period.,Pliocene period
+xs_txt_015,text,1,3.13,document,,The Rhine and what other river drained the northern flanks of the alps?,Rhone and Danube.,Danube
+xs_txt_016,text,1,4.84,document,,How high did the sea level rise during the ice ages?,The document does not say.,The document does not say.
+xs_txt_017,text,1,3.79,document,,Some elements of the Brotherhood directed what action against the government?,violence.,violence
+xs_txt_018,text,1,2.21,document,,What did Maududi believe Muslim society could not be Islamic in the absence of?,Sharia.,Sharia
+xs_txt_019,text,1,3.43,document,,Where was the Muslim Brotherhood founded?,"Ismailiyah, Egypt.","Ismailiyah, Egypt"
+xs_txt_020,text,1,6.18,document,,Who was it essential for Islam to not imitate?,The document does not say.,The document does not say.
+xs_txt_021,text,1,3.93,document,,What is the metric they use to determine how busy airports are?,Passenger volume.,passenger volume
+xs_txt_022,text,1,3.33,document,,The Port of Long Beach belongs to which region of California?,Southern California.,Southern
+xs_txt_023,text,0,5.6,document,,What other business district does Orange County envelop outside of Downtown Santa Ana and Newport Center?,"The Irvine business centers (including The Irvine Spectrum, West Irvine, and Jamboree Business Parks).",South Coast Metro
+xs_txt_024,text,0,2.91,document,,"Where are there 12 cities over 100,000 in population?",Southern California.,The document does not say.
+xs_txt_025,text,1,4.71,document,,What did BSkyB name their interactive service?,Open... now called Sky Active.,Sky Active
+xs_txt_026,text,1,3.46,document,,What platform was Sentanta Sports planning on launching on?,digital terrestrial platform.,digital terrestrial
+xs_txt_027,text,1,4.1,document,,What is the universal band that digital recievers will receive free to air channels on?,Ku band.,Ku band
+xs_txt_028,text,1,2.95,document,,"When did Sky announce the total number of homes with Sky+HD was 3,222,000?",The document does not say.,The document does not say.
+xs_txt_029,text,1,3.44,document,,Fielding H. Garrison believes that the science of geology can be traced to where?,Persia.,Persia
+xs_txt_030,text,1,2.52,document,,James Hutton published a 2 volume version of his theories in what year?,1795.,1795
+xs_txt_031,text,1,3.47,document,,Horizontal layers of what are pulled along a surface into a back stop in analog versions of orogenic wedge experiments?,sand.,sand
+xs_txt_032,text,0,2.33,document,,What did the Royal Society of Edinburgh present in 1785?,Theory of the Earth.,The document does not say.
