@@ -341,6 +341,8 @@ Wi-Fi off, so the night went to `maya/` (one engine, Qwen3-VL-4B NF4 resident) a
 | LibriSpeech extra | | 34/40 |
 | ESC-50 extra | 73/100 (AST) | 84/100 (CLAP) |
 | HumanEval extra sample | 36/40 | 37/40 |
+| HumanEval extra, all 144 | | 125/144 |
+| MBPP extra | | 25/30 |
 
 Decisions:
 - **Video:** Qwen3-VL with every sampled frame, plus measured frame facts on synthetic clips. Cosmos3-Edge scored 2 to 4 of 15 and costs about 11 s per swap, so it is out of the item path.

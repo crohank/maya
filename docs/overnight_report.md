@@ -18,6 +18,8 @@ those items well, plus a better walk test set.
 | LibriSpeech extra (transcribe and questions) | 40 | | 34 |
 | ESC-50 extra (all 50 sound classes, 40 never in the pack) | 100 | 73 (AST) | 84 |
 | HumanEval extra, sample | 40 | 36 (no self-check) | 37 |
+| HumanEval extra, all | 144 | | 125 |
+| MBPP extra | 30 | | 25 |
 
 Practice pack by kind:
 

@@ -118,7 +118,8 @@ engine was not tuned on:
 | VizWiz extra | 72/80 |
 | LibriSpeech extra | 34/40 |
 | ESC-50 extra | 84/100 |
-| HumanEval extra sample | 37/40 |
+| HumanEval extra, all 144 | 125/144 |
+| MBPP extra | 25/30 |
 
 Run them: `bash scripts/gpu_job.sh pack python scripts/eval_pack.py --run <name> [--pack <folder>]`.
 
