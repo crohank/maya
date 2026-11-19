@@ -1,0 +1,21 @@
+idx,source,kind,track,cls,side,urgency,X,win_start,win_end,ready,status,audio_start,audio_dur,lag,answer,raw
+0,fast,,6,person,left,3.89,-0.558,0.392,0.767,0.817,spoken,0.867,0.697,0.1,Person left.,"{""id"": 6, ""cls"": ""person"", ""conf"": 0.871, ""box"": [0.4623, 0.5261, 0.4967, 0.6848], ""side"": ""ahead"", ""dist_m"": 12.12, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 3.89, ""age_s"": 0.77}"
+1,tone,new,3,person,left,3.77,-1.307,0.525,0.9,1.005,tone,1.005,0.15,,"[tone left, low]",
+2,tone,new,11,person,left,3.28,-1.488,2.125,2.5,2.538,tone,2.538,0.15,,"[tone left, low]",
+3,tone,new,9,person,ahead,2.81,0.136,3.625,4.0,4.077,tone,4.077,0.15,,"[tone ahead, low]",
+4,tone,new,10,person,right,1.92,1.261,4.392,4.767,4.821,tone,5.077,0.15,,"[tone right, mid]",
+5,fast,,10,person,right,1.43,1.596,4.758,5.133,5.18,spoken,5.23,0.685,0.097,Person right.,"{""id"": 10, ""cls"": ""person"", ""conf"": 0.896, ""box"": [0.6914, 0.4873, 0.7646, 0.8496], ""side"": ""right"", ""dist_m"": 5.7, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 1.43, ""age_s"": 5.13}"
+6,fast,,9,person,right,1.29,0.894,5.125,5.5,5.548,repeat,,,,Person right.,"{""id"": 9, ""cls"": ""person"", ""conf"": 0.924, ""box"": [0.7312, 0.4473, 0.8743, 1.0], ""side"": ""right"", ""dist_m"": 4.04, ""dist_bucket"": ""mid"", ""motion"": ""approaching"", ""ttc_s"": 1.29, ""age_s"": 5.5}"
+7,tone,lead,9,person,right,1.29,0.894,5.125,5.5,5.548,stale,,,,"[tone right, high]",
+8,tone,repeat,9,person,right,1.29,0.894,5.125,5.5,5.915,tone,6.077,0.15,,"[tone right, high]",
+9,fast,,102,pole,right,2.54,,11.258,11.633,11.675,spoken,11.725,0.615,0.092,Pole right.,"{""id"": 102, ""cls"": ""pole"", ""conf"": 0.47, ""box"": [0.709, 0.3745, 0.7373, 0.5356], ""side"": ""right"", ""dist_m"": 16.89, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 2.54, ""age_s"": 1.13}"
+10,tone,new,103,person,right,2.61,1.207,12.758,13.133,13.234,tone,13.234,0.15,,"[tone right, low]",
+11,fast,,103,person,right,1.74,1.578,13.125,13.5,13.614,spoken,13.664,0.685,0.164,Person right.,"{""id"": 103, ""cls"": ""person"", ""conf"": 0.939, ""box"": [0.624, 0.5469, 0.6846, 0.8408], ""side"": ""right"", ""dist_m"": 6.85, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 1.74, ""age_s"": 3.0}"
+12,fast,,163,person,right,1.25,1.295,16.892,17.267,17.321,repeat,,,,Person right.,"{""id"": 163, ""cls"": ""person"", ""conf"": 0.667, ""box"": [0.5642, 0.5522, 0.6057, 0.7046], ""side"": ""ahead"", ""dist_m"": 12.4, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 1.25, ""age_s"": 0.87}"
+13,tone,repeat,163,person,right,1.25,1.295,16.892,17.267,17.321,tone,17.321,0.15,,"[tone right, high]",
+14,tone,new,159,person,right,2.59,0.99,17.525,17.9,17.952,stale,,,,"[tone right, low]",
+15,tone,new,159,person,right,2.24,1.02,17.625,18.0,18.05,tone,18.321,0.15,,"[tone right, mid]",
+16,fast,,178,pole,right,1.02,,18.125,18.5,18.544,spoken,18.594,0.615,0.094,Pole right.,"{""id"": 178, ""cls"": ""pole"", ""conf"": 0.664, ""box"": [0.6665, 0.3915, 0.687, 0.5988], ""side"": ""right"", ""dist_m"": 13.17, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 1.02, ""age_s"": 0.73}"
+17,fast,,173,truck,right,2.43,4.707,18.892,19.267,19.323,spoken,19.373,0.639,0.106,Truck right.,"{""id"": 173, ""cls"": ""truck"", ""conf"": 0.574, ""box"": [0.7737, 0.4363, 0.9998, 0.7825], ""side"": ""right"", ""dist_m"": 7.37, ""dist_bucket"": ""far"", ""motion"": ""approaching"", ""ttc_s"": 2.43, ""age_s"": 1.87}"
+18,tone,new,130,pole,left,3.15,,19.525,19.9,19.958,tone,19.958,0.15,,"[tone left, low]",
+19,tone,new,180,person,right,1.91,1.536,19.625,20.0,20.056,stale,,,,"[tone right, mid]",

@@ -1,0 +1,2 @@
+idx,source,kind,track,cls,side,urgency,X,win_start,win_end,ready,status,audio_start,audio_dur,lag,answer,raw
+0,fast,,17,bus,right,2.0,1.524,4.396,4.771,4.89,spoken,4.94,1.103,0.169,Bus crossing right.,"{""id"": 17, ""cls"": ""bus"", ""conf"": 0.613, ""box"": [0.7012, 0.403, 1.0, 0.7328], ""side"": ""right"", ""dist_m"": 5.21, ""dist_bucket"": ""far"", ""motion"": ""crossing_left"", ""ttc_s"": null, ""age_s"": 1.27}"
