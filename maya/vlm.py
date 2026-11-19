@@ -56,10 +56,13 @@ class Vlm:
         _patch_conv3d(self.model)
         self.load_s = time.perf_counter() - t
 
-    def chat(self, content, system=None, max_new_tokens=128, history=None):
+    def chat(self, content, system=None, max_new_tokens=128, history=None, processor_kwargs=None):
         """content: list of {"type": "text"|"image"|"video", ...} for the user turn.
 
         history: earlier (user_content, assistant_text) pairs, for retry loops.
+        processor_kwargs: e.g. {"do_sample_frames": False, "video_metadata": ...} for a
+        frame list; without it the processor resamples frames as 24 fps footage
+        (maya/video.py qwen_chat).
         Returns (text, info) with input tokens and seconds.
         """
         messages = []
@@ -71,7 +74,8 @@ class Vlm:
         messages.append({"role": "user", "content": content})
         inputs = self.proc.apply_chat_template(
             messages, add_generation_prompt=True, tokenize=True, return_dict=True,
-            return_tensors="pt", enable_thinking=False).to(self.model.device)
+            return_tensors="pt", enable_thinking=False,
+            **({"processor_kwargs": processor_kwargs} if processor_kwargs else {})).to(self.model.device)
         t = time.perf_counter()
         with torch.inference_mode():
             out = self.model.generate(**inputs, max_new_tokens=max_new_tokens, do_sample=False)
