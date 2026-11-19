@@ -78,7 +78,7 @@ sets were not tuned on (two documented exceptions in the doc QA and video notes 
   - The app re-encodes them now.
   - The rotation check is not verified on a real phone clip, because this image's ffmpeg cannot write a rotation tag.
 - **The phone page** has no document button and no text-only code input. Those kinds work through the API only. (UI work was out of scope tonight.)
-- **One non-permissive model:** the code fallback, Qwen2.5-Coder-3B, is under the Qwen Research License (non-commercial). It rescues 1 practice item. Testing the Apache-2.0 1.5B coder as a replacement.
+- **Code fallback license, fixed:** Qwen2.5-Coder-3B is under the Qwen Research License (non-commercial). It is replaced by Qwen2.5-Coder-7B NF4 (Apache-2.0): same 20/20 and 37/40 with the VLM first. Alone, 7B gets 19/20 and 37/40, against 3B 18/34 and 1.5B 13/30. One extra-set item took 125 s, including a cold 7B load.
 - **Scorer keys are mine.** The practice pack keys were hand-written from `answers.json`, lenient on wording and strict on facts. One fair-looking miss is p_txt_005 ("the architect or engineer" against "the project coordinator").
 
 ## Process notes

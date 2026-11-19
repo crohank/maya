@@ -10,7 +10,7 @@ Options (eng.opts, strings):
              signature; "nodoc" asks it not to repeat the docstring (fewer tokens)
   max_new    max new tokens per generation
   fix        plain | explain: on a retry, ask for a short diagnosis before the fixed code
-  fallback   qwen25-3b (default) | none: when the self-check still fails, try this coder
+  fallback   qwen25-7b (default, Apache-2.0) | qwen25-3b | qwen25-1.5b | none: when the self-check still fails, try this coder
              too (a GPU swap: 5.8 s there, 2.9 s back to the VLM, warm file cache)
   budget_s   no new attempt starts after this many seconds (default 90)
   stop       1 | 0: stop generating at the end of the first code block
@@ -31,7 +31,11 @@ SYSTEM = ("You are a careful Python programmer. Return the complete function, in
 NODOC = (" Do not repeat the docstring and do not add comments or usage examples.")
 FULL_ASK = ("\n\nWrite the complete implementation of `{name}`, starting with its `def` line, "
             "with any imports it needs, in one ```python code block.")
-CODER_ID = "Qwen/Qwen2.5-Coder-3B-Instruct"
+# 3B is under the Qwen Research License (non-commercial); 1.5B and 7B are Apache-2.0.
+CODERS = {"qwen25-1.5b": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+          "qwen25-3b": "Qwen/Qwen2.5-Coder-3B-Instruct",
+          "qwen25-7b": "Qwen/Qwen2.5-Coder-7B-Instruct"}
+CODER_ID = CODERS["qwen25-3b"]
 STDLIB = {"math", "re", "collections", "itertools", "functools", "heapq", "bisect", "string",
           "hashlib", "statistics", "operator", "random", "fractions", "decimal", "datetime"}
 TYPING = {"List", "Tuple", "Dict", "Set", "Optional", "Any", "Union", "Callable", "Iterable",
@@ -77,18 +81,18 @@ class VlmCoder:
 
 
 class Coder:
-    def __init__(self, quant="nf4"):
+    def __init__(self, quant="nf4", model_id=CODER_ID):
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
         t = time.perf_counter()
         self.torch = torch
-        self.tok = AutoTokenizer.from_pretrained(CODER_ID)
+        self.tok = AutoTokenizer.from_pretrained(model_id)
         kw = {"device_map": "cuda", "dtype": torch.bfloat16}
         if quant == "nf4":
             kw["quantization_config"] = BitsAndBytesConfig(
                 load_in_4bit=True, bnb_4bit_quant_type="nf4",
                 bnb_4bit_compute_dtype=torch.bfloat16, bnb_4bit_use_double_quant=True)
-        self.model = AutoModelForCausalLM.from_pretrained(CODER_ID, **kw).eval()
+        self.model = AutoModelForCausalLM.from_pretrained(model_id, **kw).eval()
         self.stop = STOP
         self.load_s = time.perf_counter() - t
 
@@ -115,9 +119,9 @@ def model(eng, name="vlm"):
     stop = STOP if eng.opts.get("stop", "1") == "1" else None
     if name == "vlm":
         return VlmCoder(eng.vlm, stop)
-    if name == "qwen25-3b":
+    if name in CODERS:
         quant = eng.opts.get("quant", "nf4")
-        m = eng.gpu_model(f"coder-{quant}", lambda: Coder(quant))
+        m = eng.gpu_model(f"{name}-{quant}", lambda: Coder(quant, CODERS[name]))
         m.stop = stop
         return m
     raise ValueError(f"unknown coder {name!r}")
@@ -504,8 +508,8 @@ def answer(eng, path, question):
     budget = float(eng.opts.get("budget_s", 90))
     explain = eng.opts.get("fix", "plain") == "explain"
     coders = [eng.opts.get("coder", "vlm")]
-    if selfcheck and eng.opts.get("fallback", "qwen25-3b") not in ("none", coders[0]):
-        coders.append(eng.opts.get("fallback", "qwen25-3b"))
+    if selfcheck and eng.opts.get("fallback", "qwen25-7b") not in ("none", coders[0]):
+        coders.append(eng.opts.get("fallback", "qwen25-7b"))
     name, checks, _, ptree = checks_from(question)
     prompt, system, variant = question, SYSTEM, eng.opts.get("prompt", "plain")
     if variant == "full" and name:

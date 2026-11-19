@@ -38,7 +38,7 @@ Safety rule: Maya describes; it never decides. It says "Person ahead," never
 | Use | Model | License |
 |---|---|---|
 | Images, video, documents, code, questions about speech (the engine's main model) | `Qwen/Qwen3-VL-4B-Instruct`, quantized to NF4 on load (about 3.6 GiB) | Apache-2.0 |
-| Code fallback, only after failed self-checks | `Qwen/Qwen2.5-Coder-3B-Instruct`, NF4 | Qwen Research License (non-commercial) |
+| Code fallback, only after failed self-checks | `Qwen/Qwen2.5-Coder-7B-Instruct`, NF4 (the VLM is unloaded first) | Apache-2.0 |
 | Speech to text | faster-whisper `small.en`, CPU | MIT |
 | Sound identification | `laion/clap-htsat-unfused` (CLAP, zero-shot), CPU | Apache-2.0 |
 | Speech or sound routing, sound timelines | `MIT/ast-finetuned-audioset-10-10-0.4593` (AST), CPU | BSD-3-Clause |
