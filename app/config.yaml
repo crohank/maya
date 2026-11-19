@@ -6,30 +6,15 @@ server:
   # Served at GET /ca.crt so a phone can install the local CA (docs/phone_setup.md).
   ca_certfile: certs/ca.crt
 
-models:
-  # true: one vision model on the GPU at a time. With both resident (5.5 GiB
-  # allocated) the first video request after a photo had 0.0 GiB free.
-  # false: keep both when torch.cuda.mem_get_info shows need_gib free.
-  exclusive: true
-  cosmos:
-    id: ubr-physical-ai/Cosmos3-Edge-NF4-bnb
-    # Same processor as scripts/live_harness.py, which produced the D3 numbers.
-    processor_id: ubr-physical-ai/Cosmos3-Edge-NF4-bnb
-    max_new_tokens: 48
-    # Peak while answering a 2 s / 4 fps / 448 px clip (docs/decisions.md D3).
-    need_gib: 2.6
-    resident: true
-  qwen:
-    id: Qwen/Qwen3-VL-4B-Instruct
-    max_new_tokens: 96
-    # Peak 3.61 GiB in scripts/compare_image_models.py (docs/decisions.md D5).
-    need_gib: 3.8
-    idle_unload_s: 90
-    preload: false
-    # Written on first load (inside the hf-cache volume), read on later loads.
-    nf4_cache: /root/.cache/huggingface/maya/qwen3vl-4b-nf4
+engine:
+  # Passed as maya.engine.Engine(**opts); values are strings, like --opt key=value
+  # in scripts/eval_pack.py. Empty means the defaults in maya/*.py.
+  opts: {}
+  # Load Qwen3-VL at startup so the first request does not pay the load.
+  preload: true
 
 whisper:
+  # Spoken questions only (question_audio). Audio items use maya/audio.py's own model.
   size: small
   device: cpu
   compute_type: int8
@@ -41,18 +26,29 @@ tts:
   voice: en/en_US/lessac/medium/en_US-lessac-medium.onnx
 
 video:
+  # Live clip from "Ask about what is in front of me" (file + question_audio):
+  # only the last window_s seconds are sent, since the question is about now.
+  # An uploaded video is sent whole.
   window_s: 2.0
   fps: 4
   long_side: 448
+  # Uploaded videos that are not already H.264 MP4 are re-encoded to this long side.
+  mp4_long_side: 960
 
 image:
-  # Phone photos are 4000 px; Qwen3-VL token count grows with pixel count.
-  long_side: 1280
+  # Phone photos are 4000 px; maya/image.py caps at 1280 itself, this caps the
+  # EXIF-rotated copy the app writes first.
+  long_side: 1920
+
+guards:
+  # A header-only recording (seen: 5 bytes from iPhone Safari) cannot be decoded.
+  min_media_bytes: 2000
 
 timeouts:
   ffmpeg_s: 30
   request_s: 120
+  # Code makes up to 3 generations of up to 768 tokens plus sandbox runs.
+  code_request_s: 240
 
 logs:
   routing: results/app_routing.jsonl
-  models: results/app_models.jsonl

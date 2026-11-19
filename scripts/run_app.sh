@@ -24,10 +24,11 @@ echo "GPU memory used before start: ${used} MiB"
 
 # MAYA_OFFLINE=1 for the demo: all models come from the hf-cache volume, no network.
 args=(--rm --gpus all -p 8443:8443 --name maya-app -e HF_HUB_OFFLINE="${MAYA_OFFLINE:-0}"
-      -v hf-cache:/root/.cache/huggingface -v "$ROOT":/app -w /app)
+      -e PYTHONPATH=/app -v hf-cache:/root/.cache/huggingface -v "$ROOT":/app -w /app)
 [ "${MAYA_DETACH:-0}" = 1 ] && args+=(-d)
 
 for h in $MAYA_HOSTS; do echo "Phone URL: https://$h:8443"; done
-docker run "${args[@]}" maya-app \
+# maya-engine adds pypdf and the audio libraries the engine (maya/) needs.
+docker run "${args[@]}" maya-engine \
   uvicorn app.main:app --host 0.0.0.0 --port 8443 \
   --ssl-keyfile certs/key.pem --ssl-certfile certs/cert.pem
