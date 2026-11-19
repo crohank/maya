@@ -91,8 +91,9 @@ async def lifespan(_app):
         S.engine = Engine(**{k: str(v) for k, v in (CFG["engine"].get("opts") or {}).items()})
         if CFG["engine"].get("preload"):
             t = time.perf_counter()
-            await asyncio.to_thread(lambda: S.engine.vlm)
-            S.startup_s["vlm"] = round(time.perf_counter() - t, 2)
+            parts = await asyncio.to_thread(S.engine.warm)
+            S.startup_s["engine_warm"] = round(time.perf_counter() - t, 2)
+            S.startup_s.update({f"warm_{k}": v for k, v in parts.items()})
     log.info("startup seconds %s", S.startup_s)
     yield
 

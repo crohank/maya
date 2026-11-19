@@ -1,4 +1,5 @@
-"""Non-speech sound identification on the CPU: AST (AudioSet, 527 classes) plus a repeat-rate rule.
+"""Non-speech sound identification on the CPU: CLAP zero-shot over LABELS names the sound;
+AST (AudioSet, 527 classes) decides speech, timing and the crosswalk repeat-rate rule.
 
 `identify(eng, wav)` returns (sentence, info). `wav` is float32 mono at 16 kHz.
 Models are cached in `eng.cache` so only the first call pays the load.
@@ -10,8 +11,39 @@ import numpy as np
 SR = 16000
 AST_ID = "MIT/ast-finetuned-audioset-10-10-0.4593"
 AST_WIN = int(10.24 * SR)  # AST input is fixed at 1024 frames; shorter audio is padded
+CLAP_ID = "laion/clap-htsat-unfused"
 
-# AudioSet name -> spoken phrase. Names not listed are spoken as their first comma part.
+# CLAP zero-shot list: everyday and street sounds, spoken as they appear in an answer.
+# Written before the ESC-50 validation set existed; not edited after seeing its results.
+LABELS = [
+    "a siren", "an ambulance siren", "a police car siren", "a fire truck siren", "a car horn honking",
+    "a truck air horn", "traffic noise", "a car passing by", "a car engine idling",
+    "a car engine starting", "a motorcycle", "a bus", "a truck engine", "a train", "a train horn",
+    "a subway train", "a tram bell", "a bicycle bell", "tires skidding", "a car alarm",
+    "a truck reversing beeps", "a crosswalk signal beeping", "a crosswalk signal ticking",
+    "a crosswalk voice saying walk sign is on", "a jackhammer", "a power drill", "hammering",
+    "a chainsaw", "a lawn mower", "a leaf blower", "a helicopter", "an airplane flying overhead",
+    "a jet engine", "footsteps", "people talking", "crowd chatter", "a man speaking",
+    "a woman speaking", "a child speaking", "children playing", "laughing", "applause", "cheering",
+    "shouting", "a whistle", "coughing", "sneezing", "breathing", "snoring", "a baby crying",
+    "hands clapping", "a dog barking", "a dog growling", "a cat meowing", "a rooster crowing",
+    "a hen clucking", "birds chirping", "a crow cawing", "pigeons cooing", "a cow mooing",
+    "a pig oinking", "a sheep bleating", "a horse neighing", "a frog croaking", "crickets chirping",
+    "insects buzzing", "a duck quacking", "an owl hooting", "rain", "thunder", "wind blowing",
+    "ocean waves", "a stream of water flowing", "water dripping", "a crackling fire", "a clock ticking",
+    "an alarm clock ringing", "a phone ringing", "a doorbell", "knocking on a door", "a door slamming",
+    "a door creaking", "typing on a keyboard", "a mouse clicking", "a vacuum cleaner",
+    "a washing machine", "a microwave beeping", "a kettle whistling", "water running from a tap",
+    "a toilet flushing", "glass breaking", "dishes clattering", "food frying", "pouring water",
+    "a can opening", "a zipper", "keys jangling", "chewing", "drinking", "brushing teeth",
+    "a hair dryer", "an electric fan", "an air conditioner humming", "a smoke alarm beeping",
+    "a fire alarm ringing", "church bells", "music playing", "someone singing", "a guitar", "a piano",
+    "drums", "electronic beeping", "an elevator ding", "a cash register", "a camera shutter",
+    "paper rustling", "a mosquito buzzing", "a bee buzzing", "silence", "static noise", "a gunshot",
+    "fireworks", "a ticking timer",
+]
+
+# AudioSet name -> spoken phrase; see phrase() for names not listed.
 PHRASE = {
     "Speech": "someone speaking", "Male speech, man speaking": "a man speaking",
     "Female speech, woman speaking": "a woman speaking", "Child speech, kid speaking": "a child speaking",
@@ -88,7 +120,44 @@ PHRASE = {
     "Ping": "a ping", "Ding": "a ding", "Clicking": "clicking", "Sizzle": "sizzling", "Hum": "a humming sound",
     "Silence": "silence", "Rustle": "rustling", "Chirp tone": "electronic chirping", "Pulse": "pulsing beeps",
     "Television": "a television", "Radio": "a radio", "White noise": "static noise", "Static": "static noise",
+    # Sound-quality classes, named after the sound rather than its source.
+    "Burst, pop": "a popping sound", "Boom": "a boom", "Chop": "chopping", "Splinter": "wood splintering",
+    "Crack": "a cracking sound", "Slosh": "water sloshing", "Squish": "a squishing sound",
+    "Trickle, dribble": "trickling water", "Gush": "gushing water", "Fill (with liquid)": "liquid filling a container",
+    "Spray": "spraying", "Pump (liquid)": "a pump", "Stir": "stirring", "Thump, thud": "a thud", "Thunk": "a thunk",
+    "Bang": "a bang", "Slap, smack": "a slap", "Whack, thwack": "a whack", "Bouncing": "something bouncing",
+    "Whip": "a whip crack", "Flap": "flapping", "Scratch": "scratching", "Scrape": "scraping", "Rub": "rubbing",
+    "Roll": "something rolling", "Crushing": "crushing", "Crumpling, crinkling": "crinkling", "Tearing": "tearing",
+    "Clang": "a metal clang", "Squeal": "a squeal", "Creak": "creaking", "Whir": "a whirring sound",
+    "Clatter": "clattering", "Clickety-clack": "a clickety-clack", "Rumble": "rumbling", "Plop": "a plop of water",
+    "Jingle, tinkle": "jingling", "Zing": "a zing", "Boing": "a boing", "Crunch": "crunching",
+    "Rattle": "rattling", "Rattle (instrument)": "a rattle", "Snort": "snorting", "Grunt": "grunting",
+    "Gasp": "a gasp", "Pant": "panting", "Wheeze": "wheezing", "Sniff": "sniffing", "Throat clearing": "throat clearing",
+    "Sigh": "a sigh", "Groan": "groaning", "Whimper": "whimpering", "Wail, moan": "wailing", "Gargling": "gargling",
+    "Stomach rumble": "a stomach rumbling", "Burping, eructation": "burping", "Hiccup": "hiccups", "Fart": "a fart",
+    "Finger snapping": "fingers snapping", "Heart sounds, heartbeat": "a heartbeat",
+    "Change ringing (campanology)": "bells ringing", "Single-lens reflex camera": "a camera shutter",
+    "Gears": "gears turning", "Ratchet, pawl": "a ratchet", "Sewing machine": "a sewing machine",
+    "Scissors": "scissors", "Electric shaver, electric razor": "an electric shaver", "Shuffling cards": "cards shuffling",
+    "Writing": "writing", "Cupboard open or close": "a cupboard door", "Drawer open or close": "a drawer",
+    "Electric toothbrush": "an electric toothbrush", "Mouse": "a mouse squeaking", "Patter": "pattering",
+    "Rodents, rats, mice": "rodents", "Turkey": "a turkey", "Gobble": "a turkey gobbling",
+    "Whale vocalization": "a whale", "Snake": "a snake", "Steam": "hissing steam", "Gurgling": "gurgling water",
+    "Dental drill, dentist's drill": "a dental drill", "Filing (rasp)": "filing", "Sanding": "sanding",
+    "Bathtub (filling or washing)": "a bathtub filling", "Wind noise (microphone)": "wind",
+    "Keyboard (musical)": "a keyboard instrument", "Jingle (music)": "a jingle",
+    "Inside, small room": "a small room", "Outside, urban or manmade": "a city street",
+    "Inside, large room or hall": "a large hall", "Inside, public space": "a public space",
+    "Outside, rural or natural": "the outdoors", "Canidae, dogs, wolves": "a dog or wolf", "Chuckle, chortle": "chuckling",
+    "Domestic animals, pets": "a pet animal", "Livestock, farm animals, working animals": "farm animals",
 }
+
+
+def phrase(name):
+    """Spoken phrase for an AudioSet class: the map above, else the name without its parenthetical."""
+    if name in PHRASE:
+        return PHRASE[name]
+    return re.sub(r"\s*\(.*?\)", "", name).split(",")[0].strip().lower()
 
 # Parent or scene classes: spoken only when nothing more specific scores.
 GENERIC = {
@@ -167,6 +236,39 @@ def ast_probs(eng, wav):
     return p, [s / SR for s in starts]
 
 
+def clap_model(eng):
+    if "clap" not in eng.cache:
+        import torch
+        from transformers import ClapModel, ClapProcessor
+        proc = ClapProcessor.from_pretrained(CLAP_ID)
+        model = ClapModel.from_pretrained(CLAP_ID).eval()
+        with torch.inference_mode():
+            tok = proc.tokenizer([f"This is a sound of {l}." for l in LABELS], padding=True, return_tensors="pt")
+            te = torch.nn.functional.normalize(_emb(model.get_text_features(**tok)), dim=-1)
+            scale = float(model.logit_scale_a.exp())
+        eng.cache["clap"] = (proc, model, te, scale)
+    return eng.cache["clap"]
+
+
+def _emb(out):
+    # transformers 5 returns an output object from get_*_features; older versions a tensor.
+    return out if hasattr(out, "dim") else out.pooler_output
+
+
+def clap_ranked(eng, wav):
+    """LABELS as (phrase, prob, phrase), best first. 10 s windows at 48 kHz, embeddings averaged."""
+    import torch
+    from scipy.signal import resample_poly
+    proc, model, te, scale = clap_model(eng)
+    win = 10 * SR
+    chunks = [resample_poly(wav[s:s + win], 3, 1).astype(np.float32) for s in _windows(wav, win)]
+    f = proc.feature_extractor(chunks, sampling_rate=48000, return_tensors="pt")
+    with torch.inference_mode():
+        ae = torch.nn.functional.normalize(_emb(model.get_audio_features(**f)), dim=-1).mean(0)
+        p = torch.softmax(scale * (te @ ae), dim=0).numpy()
+    return [(LABELS[j], round(float(p[j]), 3), LABELS[j]) for j in np.argsort(-p)[:10]]
+
+
 SPEECHY = {"Speech", "Male speech, man speaking", "Female speech, woman speaking", "Child speech, kid speaking",
            "Conversation", "Narration, monologue", "Babbling", "Speech synthesizer"}
 
@@ -178,7 +280,7 @@ def ranked(agg, names, skip=()):
         name = names[j]
         if name in skip:
             continue
-        ph = PHRASE.get(name, name.split(",")[0].lower())
+        ph = phrase(name)
         sc = float(agg[j]) * (0.5 if name in GENERIC else 1.0)
         out.append((ph, sc, name))
     out.sort(key=lambda x: -x[1])
@@ -209,8 +311,8 @@ SIRENY = {"Siren", "Civil defense siren", "Emergency vehicle", "Police car (sire
 STOP = {"a", "an", "the", "or", "of", "someone", "sound", "noise", "like", "and", "maybe"}
 
 
-def _words(phrase):
-    return set(re.findall(r"[a-z]+", phrase)) - STOP
+def _words(text):
+    return set(re.findall(r"[a-z]+", text)) - STOP
 
 
 def name_sound(r):
@@ -246,7 +348,9 @@ def identify(eng, wav, probs=None, starts=None):
     agg = probs.max(0)
     names = ast_model(eng)[2]
     r = ranked(agg, names, SPEECHY)
-    out = name_sound(r)
+    # Pack sound items: AST 9/10, CLAP 10/10; ESC-50 validation: AST 74/100, CLAP 84/100.
+    rc = clap_ranked(eng, wav) if eng.opts.get("sound", "clap") == "clap" else None
+    out = name_sound(rc or r)
     segs = timeline(probs, starts, names, len(wav) / SR) if len(probs) > 1 else []
     if len({s[0] for s in segs}) > 1:
         out = "I hear several sounds: " + ", then ".join(
@@ -258,4 +362,6 @@ def identify(eng, wav, probs=None, starts=None):
                + out.replace("It sounds", "It also sounds"))
     elif reg >= 0.4 and 0.7 <= rate <= 1.5 and {n for _, _, n in r[:5]} & BEEPY and not top_names & CLOCKY:
         out += " It repeats about once a second, which could be a crosswalk button tone."
-    return out, {"detected": ", ".join(f"{p} {s:.2f}" for p, s, _ in r[:5]), "pulse": [rate, reg, span]}
+    detected = ", ".join(f"{p} {s:.2f}" for p, s, _ in (rc or r)[:5])
+    return out, {"detected": detected, "ast_top": ", ".join(f"{p} {s:.2f}" for p, s, _ in r[:5]),
+                 "pulse": [rate, reg, span]}

@@ -1,0 +1,21 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xl_aud_021,audio,0,7.91,audio_qa,,What is the name of the person being told they are mistaken?,Rao,Raoul.
+xl_aud_022,audio,1,2.23,audio_qa,,What is the atmosphere charged with?,The atmosphere is charged with vapors.,Vapours.
+xl_aud_023,audio,1,2.51,audio_qa,,Where did one of the sailors lead the speaker?,One of the sailors led the speaker to the afterdeck.,To the afterdeck.
+xl_aud_024,audio,1,3.91,audio_qa,,What kind of judgment is mentioned in the recording?,The judgment mentioned is a judgment of recognition.,A judgment of recognition.
+xl_aud_025,audio,1,3.89,audio_qa,,What did Unc and Ojo eat at noon?,Unc and Ojo ate the last of the bread which the old munchkin had placed in his pocket.,The last of the bread.
+xl_aud_026,audio,1,3.23,audio_qa,,Where does the speaker say it is better to live?,The speaker says it is better to live on the sea.,On the sea.
+xl_aud_027,audio,1,2.81,audio_qa,,What was done to him before he died?,He was crucified.,He was crucified.
+xl_aud_028,audio,0,3.52,audio_qa,,Who looked with perplexity up into the top of the hansom?,Mayhall looked with perplexity up into the top of the hansom.,Alexander Mainhall.
+xl_aud_029,audio,1,3.0,audio_qa,,Toward what were their eyes turned in anticipation?,Their eyes were turned in anticipation toward the evening sun.,Toward the evening sun.
+xl_aud_030,audio,1,3.08,audio_qa,,Who is the loving mother of this one child?,Hester Prynne is the loving mother of this one child.,Hester Prynne.
+xl_aud_031,audio,1,3.34,audio_qa,,How many days out of a hundred are wholly joyous and sunny?,There are hardly one day out of a hundred which is wholly joyous and sunny.,Hardly one.
+xl_aud_032,audio,1,2.86,audio_qa,,To which country did his thoughts speed away?,His thoughts sped away to France.,France.
+xl_aud_033,audio,1,3.16,audio_qa,,What do they fly instead of kites?,They fly falcons instead of kites.,Falcons.
+xl_aud_034,audio,1,3.14,audio_qa,,On what kind of circuits was it not found feasible to operate motors?,It was not found feasible to operate motors on alternating current circuits.,Alternating current circuits.
+xl_aud_035,audio,1,3.07,audio_qa,,"Where was the listener left, according to the speaker?",The listener was left in the room.,In the room.
+xl_aud_036,audio,1,2.44,audio_qa,,What kind of foundation does the ambition usually have?,The ambition usually has a shallow foundation.,A shallow foundation.
+xl_aud_037,audio,1,3.45,audio_qa,,What are the bands of color compared to?,The bands of color are compared to rainbow veils upon a bubble's dome.,Rainbow veils upon a bubble's dome.
+xl_aud_038,audio,1,3.59,audio_qa,,How many farmhouses can one count from the graveyard gate?,One can count a dozen gaily painted farmhouses from the graveyard gate.,A dozen.
+xl_aud_039,audio,1,2.61,audio_qa,,In which class is this point found at present?,This point is found at present among the lower middle class.,The lower middle class.
+xl_aud_040,audio,1,2.24,audio_qa,,What did Rachel's nature recoil from?,Rachel's nature recoiled from deceit.,Deceit.
