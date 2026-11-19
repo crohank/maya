@@ -1,0 +1,26 @@
+run,mode,clip,events,hits,must_warn,must_warn_hits,lead_mw_median,lead_mw_min,lead_all_median,side_ok,side_n,spoken,false_alarms,fa_no_class,minutes,utt_per_min,spoken_by_source,strict_mw,strict_on_time,strict_on_time_side,strict_spare_median,strict_relevant,strict_spoken
+197531-905015052_medium_describe,describe,197531-905015052_medium,6,2,0,0,,,6.245,1,2,7,4,0,0.268,26.162,{},0,0,0,,0,7
+3874684_720p_describe,describe,3874684_720p,11,1,7,1,2.783,2.783,2.783,0,1,10,8,7,0.438,22.856,{},7,1,0,0.844,2,10
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_describe,describe,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,6,14,6,-0.554,-0.867,-0.554,5,6,22,17,0,0.9,24.435,{},14,1,0,0.438,7,22
+london_walking_describe,describe,london_walking,12,5,8,3,0.098,-0.902,0.098,1,5,8,4,0,0.329,24.33,{},8,3,0,0.827,4,8
+197531-905015052_medium_instruct,instruct,197531-905015052_medium,6,2,0,0,,,6.189,2,2,6,3,0,0.262,22.864,{},0,0,0,,0,6
+3874684_720p_instruct,instruct,3874684_720p,11,2,7,1,2.223,2.223,4.737,0,2,10,6,3,0.432,23.171,{},7,0,0,,2,10
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_instruct,instruct,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,7,14,7,-0.494,-0.813,-0.494,4,7,21,15,2,0.906,23.172,{},14,2,0,0.336,9,21
+london_walking_instruct,instruct,london_walking,12,6,8,3,0.05,-0.194,0.312,4,6,8,3,0,0.33,24.276,{},8,1,1,0.333,4,8
+197531-905015052_medium_fastonly,fastonly,197531-905015052_medium,6,2,0,0,,,5.599,1,2,1,0,0,0.105,9.565,"{""fast"": 1}",0,0,0,,0,1
+3874684_720p_fastonly,fastonly,3874684_720p,11,4,7,3,1.933,0.753,1.343,1,4,10,5,1,0.435,22.966,"{""fast"": 10}",7,2,0,1.793,5,10
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_fastonly,fastonly,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,8,14,7,0.394,-0.49,0.364,1,8,27,17,0,0.833,32.4,"{""fast"": 27}",14,5,0,0.328,11,27
+london_walking_fastonly,fastonly,london_walking,12,3,8,3,-0.079,-0.744,-0.079,1,3,7,5,0,0.329,21.248,"{""fast"": 7}",8,1,1,0.343,2,7
+197531-905015052_medium_fused,fused,197531-905015052_medium,6,3,0,0,,,1.18,1,3,9,7,0,0.258,34.839,"{""fast"": 1, ""vlm"": 8}",0,0,0,,0,9
+3874684_720p_fused,fused,3874684_720p,11,6,7,5,0.521,-0.722,0.54,4,6,17,10,0,0.435,39.042,"{""fast"": 8, ""vlm"": 9}",7,2,1,1.001,7,17
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_fused,fused,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,9,14,8,0.2,-0.859,0.258,0,9,30,21,0,0.908,33.028,"{""fast"": 23, ""vlm"": 7}",14,4,0,0.693,12,30
+london_walking_fused,fused,london_walking,12,6,8,5,0.157,-0.737,0.21,3,6,11,6,2,0.333,33.0,"{""fast"": 3, ""vlm"": 8}",8,1,1,0.322,4,11
+197531-905015052_medium_fastonly2,fastonly2,197531-905015052_medium,6,1,0,0,,,0.705,1,1,1,0,0,0.075,13.319,"{""fast"": 1}",0,0,0,,0,1
+3874684_720p_fastonly2,fastonly2,3874684_720p,11,2,7,1,1.054,1.054,0.956,1,2,8,5,1,0.435,18.373,"{""fast"": 8}",7,1,0,0.392,2,8
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_fastonly2,fastonly2,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,9,14,8,0.259,-0.578,0.124,2,9,36,24,0,0.836,43.085,"{""fast"": 36}",14,7,3,1.34,17,36
+london_walking_fastonly2,fastonly2,london_walking,12,5,8,4,0.512,-0.112,0.608,1,5,12,4,0,0.333,36.0,"{""fast"": 12}",8,4,3,1.026,5,12
+TOTAL describe (4 clips),describe,all,44,14,29,10,-0.279,-0.902,-0.279,7,14,47,33,7,1.934,24.299,{},29,5,0,0.827,13,47
+TOTAL fastonly (4 clips),fastonly,all,44,17,29,13,0.394,-0.744,0.516,4,17,45,27,1,1.703,26.428,{},29,8,1,0.675,18,45
+TOTAL fastonly2 (4 clips),fastonly2,all,44,17,29,13,0.417,-0.578,0.447,5,17,57,33,1,1.679,33.941,{},29,12,6,1.287,24,57
+TOTAL fused (4 clips),fused,all,44,24,29,18,0.208,-0.859,0.327,8,24,67,44,2,1.935,34.618,{},29,7,2,0.55,23,67
+TOTAL instruct (4 clips),instruct,all,44,17,29,11,0.05,-0.813,0.306,10,17,45,27,5,1.93,23.318,{},29,3,1,0.333,15,45

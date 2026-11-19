@@ -14,7 +14,8 @@ to run concurrently without slowing each other on the GPU.
 Run inside the cosmos-tf container:
   python scripts/fused_harness.py --video test_videos/london_walking.mp4
   python scripts/fused_harness.py --video ... --no-vlm      # fast path only
-Writes results/live/<stem>_fused/ (or _fastonly/): annotated.mp4, log.csv, summary.md
+  python scripts/fused_harness.py --video ... --rules v1    # D7 rules
+Writes results/live/<stem>_fused2/ or _fastonly2/ (v1: _fused/, _fastonly/): annotated.mp4, log.csv, summary.md
 """
 import argparse
 import collections
@@ -49,6 +50,26 @@ TRACK_COOLDOWN_S = 5.0
 SAME_TEXT_COOLDOWN_S = 4.0
 FAST_STALE_S = 1.0
 SLOW_STALE_S = 2.5
+
+# Rules v2 (D9). The v1 "close" trigger fires about 1 s before contact (D8), so
+# v2 warns from time-to-contact alone and ignores people that are not closing in
+# (same-direction walkers read as static or receding). One warning per frame, the
+# most urgent track. Side uses a narrow centre band: an object a little off
+# centre at 3 s out passes on that side.
+V2_TTC_S = 4.0
+V2_MIN_HEIGHT = 0.15
+V2_CORRIDOR = (0.25, 0.75)
+V2_CROSS_HEIGHT = 0.30
+V2_CROSS_URGENCY = 2.0
+V2_CONFIRM, V2_WINDOW = 2, 3
+V2_TRACK_COOLDOWN_S = 4.0
+V2_FAST_STALE_S = 0.75
+# In a crowd every frame has some track under 4 s; after one warning, stay quiet
+# for V2_GAP_S unless something is under V2_GAP_OVERRIDE_S.
+V2_GAP_S = 0.0
+V2_GAP_OVERRIDE_S = 1.5
+V2_CENTRE = (0.42, 0.58)
+V2_LENGTH_SCALE = 0.8
 
 VLM_PROMPT = (
     "Objects already tracked and announced: {tracks}. Name one thing in my walking "
@@ -112,6 +133,63 @@ def fast_candidates(frames):
     return out
 
 
+def urgency_v2(tr):
+    """Seconds until the track matters (lower is more urgent), or None."""
+    if tr["cls"] not in NAMES or tr["conf"] < 0.4:
+        return None
+    x1, y1, x2, y2 = tr["box"]
+    if y2 - y1 < V2_MIN_HEIGHT:
+        return None
+    in_corridor = x1 < V2_CORRIDOR[1] and x2 > V2_CORRIDOR[0]
+    if (tr["motion"] == "approaching" and tr["ttc_s"] is not None and tr["ttc_s"] < V2_TTC_S
+            and (in_corridor or tr["cls"] in VEHICLES)):
+        return tr["ttc_s"]
+    if tr["motion"].startswith("crossing") and in_corridor and y2 - y1 >= V2_CROSS_HEIGHT:
+        return V2_CROSS_URGENCY
+    return None
+
+
+def phrase_v2(tr):
+    cx = (tr["box"][0] + tr["box"][2]) / 2
+    side = "left" if cx < V2_CENTRE[0] else "right" if cx > V2_CENTRE[1] else "ahead"
+    verb = " crossing" if tr["motion"].startswith("crossing") else ""
+    return f"{NAMES[tr['cls']]}{verb} {side}."
+
+
+def fast_candidates_v2(frames):
+    hist = collections.defaultdict(lambda: collections.deque(maxlen=V2_WINDOW))
+    last_warn = {}
+    last_any = -99.0
+    out = []
+    for fr in frames:
+        t = fr["t"]
+        ready = t + sum(fr.get("timing", {}).values()) / 1000.0
+        seen, best = set(), None
+        for tr in fr["tracks"]:
+            u = urgency_v2(tr)
+            hist[tr["id"]].append(u)
+            seen.add(tr["id"])
+            if u is None or sum(k is not None for k in hist[tr["id"]]) < V2_CONFIRM:
+                continue
+            if t - last_warn.get(tr["id"], -99) < V2_TRACK_COOLDOWN_S:
+                continue
+            if best is None or u < best[0]:
+                best = (u, tr)
+        for tid in list(hist):
+            if tid not in seen:
+                hist[tid].append(None)
+        if best and (t - last_any < V2_GAP_S and best[0] >= V2_GAP_OVERRIDE_S):
+            best = None
+        if best:
+            u, tr = best
+            last_warn[tr["id"]] = t
+            last_any = t
+            out.append(dict(source="fast", win_start=max(0.0, t - V2_WINDOW / 8), win_end=t,
+                            ready=ready, answer=phrase_v2(tr), raw=json.dumps(tr),
+                            input_tokens=0, model_s=ready - t, urgency=u))
+    return out
+
+
 def tracks_text(frames, t):
     fr = None
     for f in frames:
@@ -146,7 +224,7 @@ def slow_candidates(model, proc, args, frames, dur, td):
     return out
 
 
-def speak(cands, tts, wav_dir):
+def speak(cands, tts, wav_dir, fast_stale=FAST_STALE_S):
     cands.sort(key=lambda e: e["ready"])
     for i, e in enumerate(cands):
         e.update(idx=i, status=e.get("status", ""), tts_s=0.0, audio_start=None,
@@ -161,14 +239,18 @@ def speak(cands, tts, wav_dir):
             t_free = pending[0]["ready"]
             continue
         for e in ready:
-            limit = FAST_STALE_S if e["source"] == "fast" else SLOW_STALE_S
+            limit = fast_stale if e["source"] == "fast" else SLOW_STALE_S
             if t_free - e["ready"] > limit:
                 e["status"] = "stale"
         fresh = [e for e in ready if not e["status"]]
         if not fresh:
             continue
         fast = [e for e in fresh if e["source"] == "fast"]
-        pick = (fast or fresh)[-1]
+        # v2 candidates carry urgency: the most urgent fresh warning wins over the newest.
+        if fast and "urgency" in fast[0]:
+            pick = min(fast, key=lambda e: e["urgency"])
+        else:
+            pick = (fast or fresh)[-1]
         for e in fresh:
             if e is not pick and (e["source"] == pick["source"] or pick["source"] == "fast"):
                 e["status"] = "stale"
@@ -199,18 +281,21 @@ def main():
     ap.add_argument("--min-interval", type=float, default=1.5)
     ap.add_argument("--max-new-tokens", type=int, default=24)
     ap.add_argument("--out", default="results/live")
+    ap.add_argument("--rules", choices=["v1", "v2"], default="v2")
     args = ap.parse_args()
 
     stem = Path(args.video).stem
     pfile = args.perception or f"results/perception/{stem}.jsonl"
     frames = [json.loads(line) for line in open(pfile)]
     dur = lh.ffprobe_duration(args.video)
-    out_dir = Path(args.out) / f"{stem}_{'fastonly' if args.no_vlm else 'fused'}"
+    mode = ("fastonly" if args.no_vlm else "fused") + ("2" if args.rules == "v2" else "")
+    out_dir = Path(args.out) / f"{stem}_{mode}"
     wav_dir = out_dir / "wav"
     wav_dir.mkdir(parents=True, exist_ok=True)
-    tts = lh.Tts()
+    v2 = args.rules == "v2"
+    tts = lh.Tts(V2_LENGTH_SCALE if v2 else None)
 
-    cands = fast_candidates(frames)
+    cands = fast_candidates_v2(frames) if v2 else fast_candidates(frames)
     with tempfile.TemporaryDirectory() as td:
         if not args.no_vlm:
             from transformers import AutoModelForImageTextToText, AutoProcessor
@@ -219,7 +304,7 @@ def main():
             lh.cut_window(args.video, 0, min(args.window, dur), f"{td}/w.mp4", args.fps, args.width)
             lh.ask(model, proc, f"{td}/w.mp4", "What do you see?", 8)
             cands += slow_candidates(model, proc, args, frames, dur, td)
-        cands = speak(cands, tts, wav_dir)
+        cands = speak(cands, tts, wav_dir, V2_FAST_STALE_S if v2 else FAST_STALE_S)
         spoken = [e for e in cands if e["status"] == "spoken"]
         for e in spoken:
             print(f"[{e['source']:4}] saw {e['win_start']:5.1f}-{e['win_end']:5.1f}s  "

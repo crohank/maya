@@ -109,15 +109,16 @@ def cut_window(src, start, end, dst, fps, width):
 
 
 class Tts:
-    def __init__(self):
-        from piper import PiperVoice
+    def __init__(self, length_scale=None):
+        from piper import PiperVoice, SynthesisConfig
+        self.cfg = SynthesisConfig(length_scale=length_scale) if length_scale else None
         path = hf_hub_download("rhasspy/piper-voices", VOICE)
         hf_hub_download("rhasspy/piper-voices", VOICE + ".json")
         self.voice = PiperVoice.load(path)
 
     def say(self, text, path):
         with wave.open(path, "wb") as w:
-            self.voice.synthesize_wav(text, w)
+            self.voice.synthesize_wav(text, w, syn_config=self.cfg)
         with wave.open(path) as w:
             return w.getnframes() / w.getframerate()
 

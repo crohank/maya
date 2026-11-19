@@ -266,3 +266,62 @@ clips: chest-height phone recordings with head-on encounters and curbs.
 **Bug found in the first run.** Querying as fast as the model returned (about
 every 1.5 s) queued speech behind speech; lag grew to 72 s by the end of the
 clip. Fix: look again only after the current sentence finishes.
+
+## D9. Faster warnings (fast path v2) and a strict scorer
+
+**Strict scorer** (`scripts/score_walk.py`, second table, must_warn only). A
+warning counts only if its speech ENDS by t_close, it names the class, and it
+starts no earlier than min(t_start - 0.5, t_close - 3). One utterance credits
+one event. Side must match the label (no side word is wrong). Warn precision =
+share of spoken utterances that name some must_warn event near its time. It
+still matches by class, not identity: in a crowd, "Person right." about one
+person can be credited to another.
+
+Ceiling: 9 of the 29 must_warn events are curbs, crosswalks, signs or "other",
+which the detector has no class for. The fast path can reach at most 20/29.
+
+**v2 rules** (`scripts/fused_harness.py --rules v2`, now the default):
+- Warn from time-to-contact alone, under 4 s.
+- Drop the v1 "close" trigger, so people walking the same way stay quiet.
+- Warn when someone crosses the walking corridor close up.
+- One warning per frame, the most urgent track.
+- Confirm in 2 of 3 frames (v1 used 3 of 5).
+- Two-word phrases ("Person left.") with Piper at length_scale 0.8. Mean speech
+  is 0.77 s, down from 1.62 s.
+- Side uses a narrow centre band: below 0.42 of frame width is left, above 0.58 is right.
+
+Full table: `results/walk_scores_strict.md`. Fast-only runs, no Cosmos.
+
+| Mode | On time | On time, side right | Spare median (s) | Warn precision | Utt/min |
+|---|---|---|---|---|---|
+| describe (Cosmos only) | 5/29 (17%) | 0/29 | +0.8 | 13/47 (28%) | 24.3 |
+| fused v1 | 7/29 (24%) | 2/29 (7%) | +0.6 | 23/67 (34%) | 34.6 |
+| fast v1 | 8/29 (28%) | 1/29 (3%) | +0.7 | 18/45 (40%) | 26.4 |
+| fast v2 | 12/29 (41%) | 6/29 (21%) | +1.3 | 24/57 (42%) | 33.9 |
+
+Against the 20 detectable events, v2 is on time for 12 and also gets the side
+right for 6. Spare is the time left after the warning finishes.
+
+What is still wrong:
+- It talks too much in a crowd. Fifth Ave runs at 43 utterances per minute,
+  saying "Person left/right/ahead" every 0.8 s.
+- The side is wrong for head-on people who pass on the left. Three Fifth Ave
+  events were called "right".
+- The 4K clip's pole, bollard and curb are missed (static tracks, no growth
+  signal).
+
+`scripts/sweep_v2.py` grid (`results/sweep_v2.md`) found no setting that is
+both quieter and as timely:
+- A 1.5 to 2.5 s quiet gap after each warning cuts talk to 14 to 21 per minute.
+- But the gap drops on-time hits from 12 to between 5 and 10, and side-right
+  hits from 6 to between 1 and 5.
+- A minimum box height of 0.25 gives 9/29 on time and 6/29 side right at 22.6
+  per minute. This is the quieter alternative.
+- TTC 5 s gives 13 to 14 on time but fewer right sides.
+
+All thresholds were tuned and scored on the same 4 clips by the same
+annotator, so these numbers are optimistic. They need new clips to confirm.
+Next steps:
+- Fixing the noise needs identity, not thresholds: warn once per approaching
+  person, and use a stereo tone for repeats.
+- Record chest-height test clips with head-on passes.

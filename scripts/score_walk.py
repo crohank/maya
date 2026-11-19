@@ -25,6 +25,21 @@ Rules:
 - False alarm: a spoken utterance that matches no event.
 - Utterances per minute = spoken rows / clip length, where clip length is the
   largest win_end in the log.
+
+Strict rules (a second table), for must_warn events only:
+- On time: the utterance names the class, starts no earlier than
+  min(t_start - 0.5, t_close - 3.0) and its speech ENDS by t_close. The 0.5 s
+  is the label grid; the 3 s lets an early warning count where the label gives
+  under a second between first visible and nearest.
+  A warning still playing when the object arrives does not count.
+- One utterance credits at most one event (events taken in t_close order,
+  each gets the earliest unused on-time utterance).
+- Side: the credited utterance contains the label side word; no side word
+  counts as wrong.
+- Spare = t_close - speech end of the credited utterance.
+- Warn precision = spoken utterances that name the class of some must_warn
+  event between its earliest on-time start and t_close + 1 / all spoken utterances. On a clip
+  with no must_warn events every utterance is noise, so precision is 0.
 """
 import argparse
 import csv
@@ -35,6 +50,8 @@ import sys
 from pathlib import Path
 
 WINDOW_AFTER_CLOSE = 1.0
+LABEL_GRID_S = 0.5
+EARLY_WARN_S = 3.0
 
 # Deviations from the plain word list in the task spec, both to stop distance
 # phrases from matching: "step" is singular only, because the prompt phrases
@@ -89,7 +106,41 @@ def load_log(path):
     spoken = [r for r in rows if r["status"] == "spoken" and r.get("audio_start")]
     for r in spoken:
         r["t"] = float(r["audio_start"])
+        r["t_end"] = r["t"] + float(r.get("audio_dur") or 0.0)
     return spoken, clip_len
+
+
+def earliest(e):
+    return min(e["t_start"] - LABEL_GRID_S, e["t_close"] - EARLY_WARN_S)
+
+
+def strict_score(events, spoken):
+    mw = sorted((e for e in events if e["must_warn"]), key=lambda e: e["t_close"])
+    used = set()
+    per_event = []
+    for e in mw:
+        ok = [r for r in spoken if id(r) not in used and mentions(r["answer"], e["words"])
+              and earliest(e) <= r["t"] and r["t_end"] <= e["t_close"]]
+        first = min(ok, key=lambda r: r["t"]) if ok else None
+        if first:
+            used.add(id(first))
+        per_event.append({"event": e, "first": first,
+                          "spare": e["t_close"] - first["t_end"] if first else None,
+                          "side_ok": mentions(first["answer"], SIDE_WORDS[e["side"]]) if first else None})
+    relevant = sum(1 for r in spoken if any(
+        mentions(r["answer"], e["words"])
+        and earliest(e) <= r["t"] <= e["t_close"] + WINDOW_AFTER_CLOSE
+        for e in mw))
+    return per_event, relevant
+
+
+def strict_summary(per_event, relevant, n_spoken):
+    hits = [p for p in per_event if p["first"]]
+    spare = [p["spare"] for p in hits]
+    return {"mw": len(per_event), "on_time": len(hits),
+            "on_time_side": sum(1 for p in hits if p["side_ok"]),
+            "spare_median": statistics.median(spare) if spare else None,
+            "relevant": relevant, "spoken": n_spoken}
 
 
 def score(events, spoken):
@@ -180,9 +231,13 @@ def main():
         clip = Path(lp).stem
         mode = run_dir[len(clip):].lstrip("_") or run_dir
         sources = sorted({r.get("source", "") for r in spoken} - {""})
-        per_event, fa, fa_nc = score(load_labels(lp), spoken)
+        events = load_labels(lp)
+        per_event, fa, fa_nc = score(events, spoken)
         s = summarize(per_event, len(spoken), fa, fa_nc, clip_len / 60.0)
+        strict_pe, relevant = strict_score(events, spoken)
         results.append({"run": run_dir, "mode": mode, "clip": clip, "s": s,
+                        "strict_pe": strict_pe, "relevant": relevant,
+                        "st": strict_summary(strict_pe, relevant, len(spoken)),
                         "per_event": per_event, "fa_nc": fa_nc,
                         "sources": {src: sum(1 for r in spoken if r.get("source") == src)
                                     for src in sources}})
@@ -197,8 +252,11 @@ def main():
         t["fa_nc"] += r["s"]["fa_no_class"]
         t["minutes"] += r["s"]["minutes"]
         t["clips"] += 1
+        t.setdefault("strict_pe", []).extend(r["strict_pe"])
+        t["relevant"] = t.get("relevant", 0) + r["relevant"]
     total_rows = [{"run": f"TOTAL {m} ({t['clips']} clips)", "mode": m, "clip": "all",
-                   "s": summarize(t["per_event"], t["spoken"], t["fa"], t["fa_nc"], t["minutes"])}
+                   "s": summarize(t["per_event"], t["spoken"], t["fa"], t["fa_nc"], t["minutes"]),
+                   "st": strict_summary(t["strict_pe"], t["relevant"], t["spoken"])}
                   for m, t in sorted(totals.items())]
 
     out = Path(args.out)
@@ -236,6 +294,23 @@ def main():
                             for k, v in s.items()},
                          "spoken_by_source": json.dumps(r.get("sources", {}))})
 
+    lines += ["", "## Strict", "",
+              "must_warn events only. On time: names the class and the speech ends by "
+              "t_close; one utterance credits one event. Spare: seconds between speech "
+              "end and t_close. Warn precision: share of all spoken utterances that name "
+              "a must_warn event near its time. Rules in the scripts/score_walk.py docstring.", "",
+              "| run | on time | on time, side right | spare median (s) | warn precision | utt/min |",
+              "|---|---|---|---|---|---|"]
+    for r in results + total_rows:
+        st, s = r["st"], r["s"]
+        lines.append("| " + " | ".join([
+            r["run"], frac(st["on_time"], st["mw"]), frac(st["on_time_side"], st["mw"]),
+            num(st["spare_median"]), frac(st["relevant"], st["spoken"]),
+            num(s["utt_per_min"], "{:.1f}")]) + " |")
+        csv_rows[[c["run"] for c in csv_rows].index(r["run"])].update(
+            {f"strict_{k}": ("" if v is None else (round(v, 3) if isinstance(v, float) else v))
+             for k, v in st.items()})
+
     lines += ["", "## Per-event detail", ""]
     for r in results:
         lines.append(f"### {r['run']}")
@@ -248,6 +323,18 @@ def main():
                 e["id"], e["cls"], e["side"], "yes" if e["must_warn"] else "no",
                 f"{e['t_start']:.1f}", f"{e['t_close']:.1f}",
                 f"{f['t']:.2f}" if f else "miss", num(p["lead"]),
+                ("yes" if p["side_ok"] else "no") if f else "",
+                f["answer"].replace("|", "/") if f else ""]) + " |")
+        lines.append("")
+        lines.append("Strict (must_warn):")
+        lines.append("")
+        lines.append("| id | cls | side | t_close | speech | spare | side ok | answer |")
+        lines.append("|---|---|---|---|---|---|---|---|")
+        for p in r["strict_pe"]:
+            e, f = p["event"], p["first"]
+            lines.append("| " + " | ".join([
+                e["id"], e["cls"], e["side"], f"{e['t_close']:.1f}",
+                f"{f['t']:.2f}-{f['t_end']:.2f}" if f else "miss", num(p["spare"]),
                 ("yes" if p["side_ok"] else "no") if f else "",
                 f["answer"].replace("|", "/") if f else ""]) + " |")
         lines.append("")
