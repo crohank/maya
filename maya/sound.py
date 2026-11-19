@@ -213,6 +213,10 @@ def _windows(wav, win):
     return starts + [len(wav) - win]
 
 
+def pad_short(wav):
+    return np.pad(wav, (0, SR - len(wav))) if len(wav) < SR else wav
+
+
 def ast_model(eng):
     if "ast" not in eng.cache:
         from transformers import AutoFeatureExtractor, AutoModelForAudioClassification
@@ -229,6 +233,8 @@ def ast_probs(eng, wav):
     """
     import torch
     fx, model, _ = ast_model(eng)
+    # Under about 25 ms the AST feature extractor asserts.
+    wav = pad_short(wav)
     starts = _windows(wav, AST_WIN)
     x = fx([wav[s:s + AST_WIN] for s in starts], sampling_rate=SR, return_tensors="pt")
     with torch.inference_mode():
@@ -261,6 +267,8 @@ def clap_ranked(eng, wav):
     from scipy.signal import resample_poly
     proc, model, te, scale = clap_model(eng)
     win = 10 * SR
+    # CLAP repeat-pads a short clip, dividing by its length, so only empty audio needs padding.
+    wav = wav if len(wav) else pad_short(wav)
     chunks = [resample_poly(wav[s:s + win], 3, 1).astype(np.float32) for s in _windows(wav, win)]
     f = proc.feature_extractor(chunks, sampling_rate=48000, return_tensors="pt")
     with torch.inference_mode():

@@ -59,9 +59,15 @@ def decode(path, max_fps=12.0, long_side=640):
 def _rgb(f, long_side):
     k = min(1.0, long_side / max(f.width, f.height))
     if k < 1:
-        return f.reformat(width=round(f.width * k) // 2 * 2, height=round(f.height * k) // 2 * 2,
-                          format="rgb24").to_ndarray()
-    return f.to_ndarray(format="rgb24")
+        a = f.reformat(width=round(f.width * k) // 2 * 2, height=round(f.height * k) // 2 * 2,
+                       format="rgb24").to_ndarray()
+    else:
+        a = f.to_ndarray(format="rgb24")
+    # PyAV does not apply the display matrix, so portrait phone clips decode sideways.
+    # f.rotation is counterclockwise degrees; np.rot90 with this k matched ffmpeg's
+    # autorotate on clips tagged rotate=90, 180 and 270.
+    turns = round((getattr(f, "rotation", 0) or 0) / 90) % 4
+    return np.ascontiguousarray(np.rot90(a, turns)) if turns else a
 
 
 def pick(times, fps, max_frames):
@@ -147,6 +153,9 @@ def answer(eng, path, question):
     fps, side, cap = float(o["video_fps"]), int(o["video_side"]), int(o["video_max"])
     frames, times = decode(path)
     idx = pick(times, fps, cap)
+    if len(idx) < 2:
+        # Qwen3-VL merges frames in pairs (temporal_patch_size 2) and raises on one frame.
+        idx = idx * 2
     ims = [to_pil(frames[i], side) for i in idx]
 
     facts, cv_info = [], {}

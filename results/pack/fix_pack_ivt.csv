@@ -1,0 +1,61 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_img_001,image,1,7.61,image,,How many people are in this image?,1,1 (1 person). A man driving a small boat with a dog sitting on it's front end.
+p_img_002,image,1,0.31,image,,How many people are in this image?,2,2 (2 people). A beautiful little girl sitting next to a little boy sharing a meal.
+p_img_003,image,1,0.27,image,,How many people are in this image?,1,1 (1 person). The woman holding an umbrella smiles on the narrow street beside the sidewalk.
+p_img_004,image,1,0.32,image,,How many people are in this image?,1,1 (1 person). A man gets air catching the Frisbee near the water.
+p_img_005,image,1,0.29,image,,How many people are in this image?,3,3 (3 people). a red park bench that is by some water.
+p_img_006,image,1,0.3,image,,How many people are in this image?,3,3 (3 people). A group of kids playing a game of baseball.
+p_img_007,image,1,0.39,image,,How many people are in this image?,3,3 (3 people). a person with a shopping cart on a city street.
+p_img_008,image,1,0.35,image,,How many people are in this image?,3,3 (3 people). A trio of men drinking wine at a restaurant table.
+p_img_009,image,1,0.3,image,,How many people are in this image?,5,5 (5 people). A group of men riding on the back of motorcycles.
+p_img_010,image,0,0.29,image,,How many people are in this image?,5,6 (6 people). A group of friends hanging out in a kitchen together.
+p_img_011,image,1,0.28,image,,How many elephants are in this image?,2,There are 2 elephants.
+p_img_012,image,1,0.28,image,,How many cats are in this image?,2,There are 2 cats.
+p_img_013,image,0,0.29,image,,How many zebras are in this image?,3,There are 4 zebras.
+p_img_014,image,1,0.3,image,,How many dogs are in this image?,4,There are 4 dogs.
+p_img_015,image,1,0.3,image,,How many cows are in this image?,4,There are 4 cows.
+p_img_016,image,1,0.85,image,,What does this say,STORAGE,storage
+p_img_017,image,1,0.46,image,,What is in this box?,Fisherman's Pie,fisherman pie
+p_img_018,image,1,0.98,image,,What is this?,Toaster oven.,toaster oven
+p_img_019,image,1,1.15,image,,What is the title of this book?,Fishing in the Air,fishing in air
+p_img_020,image,1,1.24,image,,What's this?,A wooden chair with a metal frame.,chair
+p_img_021,image,1,0.98,image,,What kind of drink is this?,Sunkist Orange Soda,sunkist
+p_img_022,image,1,1.3,image,,What is this item?,Grilled Chicken with Spanish Rice by John Soules Foods.,grilled chicken spanish rice
+p_img_023,image,1,0.96,image,,What is this ?,A one hundred dollar bill.,100 dollar bill
+p_img_024,image,1,0.86,image,,What's this? What's this?,A cigarette.,cigarette
+p_img_025,image,1,0.94,image,,What is this?,A Nokia phone.,phone
+p_txt_001,text,1,3.19,document,,In Sept 1760 who negotiated a capitulation from Montreal?,Governor Vaudreuil.,Governor Vaudreuil
+p_txt_002,text,1,2.14,document,,Who defeated Montcalm at Quebec?,James Wolfe.,James Wolfe
+p_txt_003,text,1,2.01,document,,"Although some Acadians went to France and other destiantions, what North American city did many move to?",New Orleans.,New Orleans
+p_txt_004,text,1,0.86,document,,What battle outside Quebec City did British lose in 1706?,The document does not say.,The document does not say.
+p_txt_005,text,0,3.34,document,,"Whose role is to design the works, prepare the specifications and produce construction drawings, administer the contract, tender the works, and manage the works from inception to completion",The architect or engineer.,the project coordinator
+p_txt_006,text,1,2.88,document,,Having existing utility lines marked lessens the likelihood of what?,damage to existing utility lines.,damage
+p_txt_007,text,1,4.36,document,,What is the annual construction industry revenue in 2014?,$960 billion.,$960 billion
+p_txt_008,text,1,2.11,document,,How many firms were there in 2011?,The document does not say.,The document does not say.
+p_txt_009,text,1,3.11,document,,What range of years was the current warming compared to?,1000 to 1900.,between 1000 and 1900
+p_txt_010,text,1,4.8,document,,When did Barton and Whitfield demand climate research records?,23 June 2005.,23 June 2005
+p_txt_011,text,1,2.84,document,,Who was Chairman of the Subcommittee on Oversight and Investigations?,Ed Whitfield.,Ed Whitfield
+p_txt_012,text,1,5.42,document,,What year was the third assessment report published?,The document does not say.,The document does not say.
+p_txt_013,text,1,1.84,document,,What fish living in the Amazon river is known to bit humans?,piranha.,piranha
+p_txt_014,text,1,1.42,document,,Where does the Amazon region rate among the entire earth for its amount of biodiversity?,Highest.,highest on Earth
+p_txt_015,text,1,1.87,document,,What is the process of removing trees from a forest known as?,Deforestation.,Deforestation
+p_txt_016,text,1,2.82,document,,4380 species of what have been registered?,The document does not say.,The document does not say.
+p_txt_017,text,1,2.85,document,,What religion's schools does the term 'parochial schools' generally refer to?,Roman Catholic.,Roman Catholic
+p_txt_018,text,1,3.14,document,,What article of the Grundgesetz grants the right to make private schools?,"Article 7, Paragraph 4.",7
+p_txt_019,text,1,1.17,document,,Who attends Loreto Normanhurst?,Girls.,girls
+p_txt_020,text,1,0.78,document,,What part of a uniform must you wear if you go to public school in Australia?,The document does not say.,The document does not say.
+p_vid_001,video,1,1.24,video,,How many shapes appear in this video?,4,4 circles appear one at a time.
+p_vid_002,video,1,1.11,video,,Which direction does the square move?,Right.,The red square moves to the right.
+p_vid_003,video,1,1.8,video,,"What color appears first, and what color appears last?","Red appears first, and green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,1,2.94,video,,What does the sign say at the start and at the end?,"At the start, the sign says ""OPEN"". At the end, it says ""CLOSED"".","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,1.31,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.
+p_vid_006,video,1,1.88,video,,What happens to the two shapes?,They move toward each other and touch.,The two shapes move toward each other until they touch.
+p_vid_007,video,1,1.14,video,,What number is shown last?,1,A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,1,1.77,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,3,"5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,0.99,video,,How many times does the ball bounce?,3,The ball bounces 3 times.
+p_vid_010,video,1,1.45,video,,What color is the background at the end?,Blue.,The background ends blue.
+p_vid_011,video,1,1.57,video,,How many shapes appear in this video?,8,8 squares appear one at a time.
+p_vid_012,video,1,1.1,video,,Which direction does the circle move?,Up.,The green circle moves up.
+p_vid_013,video,1,2.03,video,,"What color appears first, and what color appears last?","Yellow appears first, and blue appears last.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,1,1.74,video,,What does the sign say at the start and at the end?,"PUSH, PULL.","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.32,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.

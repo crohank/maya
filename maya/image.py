@@ -10,10 +10,22 @@ LIST_PROMPT = ("{q}\nFirst list each one you can see, one per line, with where i
                "Then write the final line as: Answer: <number>")
 LONG_SIDE = 1280
 COUNT_Q = re.compile(r"\bhow many (\w+)", re.I)
+# 64 new tokens cut a transcribed menu or page short.
+READ_Q = re.compile(r"\b(read|says?|written|text|signs?|labels?|menus?|pages?)\b", re.I)
+
+
+def to_rgb(im):
+    """RGB on a white background: convert("RGB") turns transparent pixels black."""
+    if im.mode in ("RGBA", "LA", "PA") or (im.mode == "P" and "transparency" in im.info):
+        im = im.convert("RGBA")
+        bg = Image.new("RGB", im.size, (255, 255, 255))
+        bg.paste(im, mask=im.getchannel("A"))
+        return bg
+    return im.convert("RGB")
 
 
 def load(path, long_side=LONG_SIDE, upscale_to=0):
-    im = Image.open(path).convert("RGB")
+    im = to_rgb(Image.open(path))
     im.thumbnail((long_side, long_side))
     if upscale_to and max(im.size) < upscale_to:
         s = upscale_to / max(im.size)
@@ -79,5 +91,6 @@ def answer(eng, path, question):
             noun = m.group(1)
             return f"{final[-1]} {noun}.", info
         return text.strip().splitlines()[-1], info
-    text, i2 = eng.vlm.chat([{"type": "image", "image": im}, {"type": "text", "text": q}], SYSTEM, 64)
+    max_new = 256 if READ_Q.search(question) else 64
+    text, i2 = eng.vlm.chat([{"type": "image", "image": im}, {"type": "text", "text": q}], SYSTEM, max_new)
     return text, {**info, **i2}

@@ -6,7 +6,9 @@ document, that the answer is in the quoted passage, that every number in the
 question appears there too, and that capitalized names in the question appear
 somewhere in the document. Any failed check gives the refusal. Optional second
 model call (doc_verify=1) asks whether the passage answers the exact question.
-A PDF page with no text layer is transcribed by the VLM (about 27 s per page).
+A PDF page with no text layer is transcribed by the VLM (about 27 s per page),
+up to OCR_PAGES of them. Summary questions take the plain path, and a document
+over MAX_DOC_TOKENS is cut to its opening plus the best BM25 passages.
 
 Options (eng.opts, strings):
   doc_mode    quote | plain      plain is the single-call baseline
@@ -16,12 +18,20 @@ Options (eng.opts, strings):
   doc_style   short | sentence   sentence: speak a one-sentence answer when it adds no new facts
   doc_ext     ''  | pdf | txt    swap the file extension (eval of the PDF copies)
 """
+import hashlib
 import re
 import unicodedata
 import zipfile
 from pathlib import Path
 
 REFUSAL = "The document does not say."
+EMPTY = "I could not find any readable text in this document."
+OCR_PAGES = 4         # about 27 s of VLM time per scanned page
+CACHE_DOCS = 16
+MAX_DOC_TOKENS = 6000
+CHARS_PER_TOKEN = 4   # rough figure for English prose with the Qwen tokenizer
+SUMMARY_Q = re.compile(r"^\W*$|\bsummar|\bmain (points?|ideas?)\b|\bgist\b|\boverview\b|"
+                       r"^\W*what('s| is| was)\b.*\babout\W*$", re.I)
 
 PLAIN_SYSTEM = ("You answer questions using only the given document. If the document does not "
                 f"contain the answer, reply exactly: {REFUSAL}")
@@ -71,11 +81,11 @@ MONTHS = {m[:3]: m for m in "january february march april may june july august s
           "october november december".split()}
 
 
-def read_doc(path, eng=None):
+def read_doc(path, eng=None, stats=None):
     p = Path(path)
     ext = p.suffix.lower()
     if ext == ".pdf":
-        return _read_pdf(p, eng)
+        return _read_pdf(p, eng, stats)
     if ext == ".docx":
         with zipfile.ZipFile(p) as z:
             xml = z.read("word/document.xml").decode("utf-8", "replace")
@@ -88,26 +98,41 @@ def read_doc(path, eng=None):
     return text
 
 
-def _read_pdf(p, eng):
+def _read_pdf(p, eng, stats=None):
+    """Text of every page; scanned pages are OCR'd up to OCR_PAGES, the rest counted in
+    stats["skipped"]."""
     from pypdf import PdfReader
     reader = PdfReader(str(p))
-    pages = []
+    pages, ocr = [], 0
+    stats = {} if stats is None else stats
+    stats["skipped"] = 0
     for page in reader.pages:
         t = page.extract_text() or ""
         # pypdf keeps justified spacing and hard line breaks; rejoin words split at a line end.
         t = re.sub(r"(\w)-\n(\w)", r"\1\2", t)
         t = re.sub(r"[ \t]+", " ", t)
         if len(t.strip()) < 20 and eng is not None:
-            t = _ocr_page(page, eng)
+            if ocr < OCR_PAGES:
+                t = _ocr_page(page, eng)
+                ocr += 1
+            else:
+                stats["skipped"] += 1
         pages.append(t.strip())
     return "\n\n".join(pages)
 
 
 def _ocr_page(page, eng):
     """Scanned page: transcribe its embedded images with the VLM."""
+    from .image import to_rgb
     out = []
     for im in page.images:
-        content = [{"type": "image", "image": im.image.convert("RGB")},
+        pil = im.image
+        w, h = pil.size
+        # The Qwen3-VL processor raises on a side under 28 px or an aspect ratio over 200
+        # (rules, borders and spacer images in scanned PDFs).
+        if min(w, h) < 28 or max(w, h) > 200 * min(w, h):
+            continue
+        content = [{"type": "image", "image": to_rgb(pil)},
                    {"type": "text", "text": "Transcribe all text in this image exactly. Output only the text."}]
         text, _ = eng.vlm.chat(content, None, max_new_tokens=1500)
         out.append(text)
@@ -258,23 +283,84 @@ def doc_path(eng, path):
 
 
 def load_doc(eng, path):
-    """read_doc with a per-file cache, since a scanned PDF costs one VLM call per page."""
+    """(text, scanned pages skipped), cached on the file bytes: the app hands every
+    request a new temp path, and a scanned PDF costs one VLM call per page."""
     p = Path(doc_path(eng, path))
-    key = ("doc", str(p), p.stat().st_mtime)
+    key = ("doc", p.suffix.lower(), hashlib.sha1(p.read_bytes()).hexdigest())
     cache = getattr(eng, "cache", {})
     if key not in cache:
-        cache[key] = read_doc(p, eng)
+        stats = {}
+        text = read_doc(p, eng, stats)
+        old = [k for k in cache if isinstance(k, tuple) and k[:1] == ("doc",)]
+        for k in old[:max(0, len(old) - CACHE_DOCS + 1)]:
+            del cache[k]
+        cache[key] = (text, stats.get("skipped", 0))
     return cache[key]
 
 
-def answer(eng, path, question):
-    doc = load_doc(eng, path)
-    if opt(eng, "doc_mode", "quote") == "plain":
-        prompt = f"Document:\n{doc}\n\nQuestion: {question}\nAnswer in a few words."
-        text, info = eng.vlm.text(prompt, PLAIN_SYSTEM, max_new_tokens=64)
-        return text, {**info, "route": "document"}
+def chunks(doc, size=600):
+    """Runs of whole sentences of about `size` characters."""
+    out, cur = [], ""
+    for s in sentences(doc):
+        if len(s) > 4 * size:
+            # OCR text without sentence ends.
+            out += [cur] if cur else []
+            out += [s[i:i + size] for i in range(0, len(s), size)]
+            cur = ""
+            continue
+        cur = f"{cur} {s}".strip()
+        if len(cur) >= size:
+            out.append(cur)
+            cur = ""
+    return out + [cur] if cur else out
 
-    prompt = (f"Question: {question}\n\nDocument:\n{doc}\n\nQuestion: {question}\n"
+
+def fit(doc, question, summary=False):
+    """The document itself, or for one over MAX_DOC_TOKENS the passages that fit the
+    budget: the opening plus the best BM25 matches for the question, in document order
+    (for a summary, the opening only)."""
+    budget = MAX_DOC_TOKENS * CHARS_PER_TOKEN
+    if len(doc) <= budget:
+        return doc
+    parts = chunks(doc)
+    order = list(range(len(parts)))
+    if not summary:
+        from rank_bm25 import BM25Okapi
+        bm = BM25Okapi([[stem(w) for w in norm(c).split()] for c in parts])
+        scores = bm.get_scores([stem(w) for w in norm(question).split() if w not in STOP])
+        order = [0] + sorted(range(1, len(parts)), key=lambda i: (-scores[i], i))
+    keep, used = [], 0
+    for i in order:
+        if used + len(parts[i]) > budget:
+            continue
+        keep.append(i)
+        used += len(parts[i]) + 2
+    return "\n\n".join(parts[i] for i in sorted(keep))
+
+
+def answer(eng, path, question):
+    doc, skipped = load_doc(eng, path)
+    note = (f" I read only the first {OCR_PAGES} scanned pages and skipped {skipped} more."
+            if skipped else "")
+    text, info = _answer(eng, doc, question)
+    if skipped:
+        info["pages_skipped"] = skipped
+    return text + note, info
+
+
+def _answer(eng, doc, question):
+    if not doc.strip():
+        return EMPTY, {"route": "document", "why": "no text"}
+    summary = bool(SUMMARY_Q.search(question or ""))
+    if summary or opt(eng, "doc_mode", "quote") == "plain":
+        ask = ("Answer in one to three sentences." if summary else "Answer in a few words.")
+        prompt = (f"Document:\n{fit(doc, question, summary)}\n\n"
+                  f"Question: {question.strip() or 'What is this document about?'}\n{ask}")
+        text, info = eng.vlm.text(prompt, PLAIN_SYSTEM, max_new_tokens=160 if summary else 64)
+        return text, {**info, "route": "document", "summary": summary}
+
+    excerpt = fit(doc, question)
+    prompt = (f"Question: {question}\n\nDocument:\n{excerpt}\n\nQuestion: {question}\n"
               "Reply with QUOTE and ANSWER, or NONE.")
     style = opt(eng, "doc_style", "short")
     system = QUOTE_SYSTEM_SENTENCE if style == "sentence" else QUOTE_SYSTEM_SHORT

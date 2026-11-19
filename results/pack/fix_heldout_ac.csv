@@ -1,0 +1,275 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_aud_001,audio,1,5.1,audio_transcribe,wer=0.026,Transcribe this audio.,"The wind being adverse, the Dobrena did not make very rapid progress. But as the weather, in spite of a few clouds, remained calm, and the sea was quite smooth, she was enabled to hold a steady course.",The wind being adverse the dobryna did not make very rapid progress but as the weather in spite of a few clouds remained calm and the sea was quite smooth she was enabled to hold a steady course.
+h_aud_002,audio,1,5.42,audio_qa,,"Which instrument does she play, and whose letter does she read?",She plays the piano and reads Philip's letter.,She plays the piano and reads Philip's letter.
+h_aud_003,audio,1,1.87,audio_sound,,What sound is this?,It sounds like a dog barking.,Dog barking.
+h_aud_004,audio,1,2.44,audio_qa,,"According to the speaker, where was his country home?",His country home was in Essex.,An old family place in Essex.
+h_aud_005,audio,1,1.78,audio_speech_describe,,What can you hear?,"Someone is speaking. They say: ""But such was his dream is that even while the wide flukes of his engorged victim were still sticking out at the corners of his beak, his fierce red eyes were once more appearing downward into the torrent in search of fresh prey."" In the background I also hear a rooster or chicken.",A rooster crowing while a man is speaking.
+h_aud_006,audio,1,1.62,audio_speech_describe,,What can you hear?,"Someone is speaking. They say: ""The fact that it was churning day was another reason why it was inconvenient to have the widows, and why, consequently, Mrs. Poiser should scold Molly, the housemaid, with unusual severity."" In the background I also hear a clock ticking.",A clock ticking while a woman is speaking.
+h_code_001,code,1,12.35,code,,"Complete this Python function:
+
+
+def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitesp","def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitespace. Ignore the punctuation
+    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.
+
+    >>> count_vowel_words(""Anna ate a banana"")
+    3
+    >>> count_vowel_words(""rhythm"")
+    0
+    """"""
+    vowels = set('aeiou')
+    words = sentence.split()
+    count = 0
+    
+    for word in words:
+        # Remove punctuation from start and end of word
+        clean_word = word.strip('.!?:; ,')
+        if len(clean_word) == 0:
+            continue
+            
+        # Check if first and last characters are vowels (case-insensitive)
+        if clean_word[0].lower() in vowels and clean_word[-1].lower() in vowels:
+            count += 1
+            
+    return count","
+def count_vowel_words(sentence):
+    """"""Return how many words in sentence start and end with a vowel (a, e, i, o, u),
+    ignoring case. Words are separated by whitespace. Ignore the punctuation
+    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.
+
+    >>> count"
+h_code_002,code,1,8.96,code,,"Complete this Python function:
+
+
+def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading ze","def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading zeros disappear).
+    k may be larger than the number of digits.
+
+    >>> rotate_digits(12345, 2)
+    45123
+    >>> rotate_digits(1200, 1)
+    120
+    """"""
+    s = str(n)
+    length = len(s)
+    k = k % length  # Handle k larger than number of digits
+    rotated = s[-k:] + s[:-k]
+    return int(rotated)","
+def rotate_digits(n, k):
+    """"""Rotate the decimal digits of the non-negative integer n to the right by k
+    positions and return the result as an integer (leading zeros disappear).
+    k may be larger than the number of digits.
+
+    >>> rotate_digits(12345, 2)
+    45123
+    >>> rotate_digits(1200"
+h_code_003,code,1,8.7,code,,"Complete this Python function:
+
+
+def merge_ranges(ranges):
+    """"""ranges is a list of [start, end] pairs of integers, inclusive at both ends, in
+    any order. Merge ranges that overlap or touch (end ","def merge_ranges(ranges):
+    if not ranges:
+        return []
+    
+    # Sort ranges by start
+    ranges.sort(key=lambda x: x[0])
+    
+    merged = []
+    current_start, current_end = ranges[0]
+    
+    for i in range(1, len(ranges)):
+        start, end = ranges[i]
+        if start <= current_end + 1:  # overlap or touch
+            current_end = max(current_end, end)
+        else:
+            merged.append([current_start, current_end])
+            current_start, current_end = start, end
+    
+    merged.append([current_start, current_end])
+    
+    return merged","
+def merge_ranges(ranges):
+    """"""ranges is a list of [start, end] pairs of integers, inclusive at both ends, in
+    any order. Merge ranges that overlap or touch (end + 1 == next start) and
+    return the merged ranges sorted by start.
+
+    >>> merge_ranges([[1, 3], [4, 6], [8, 9]])
+    [[1, 6], [8"
+h_code_004,code,1,7.51,code,,"Complete this Python function:
+
+
+def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> sec","def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> second_largest_unique([4, 1, 4, 3])
+    3
+    >>> second_largest_unique([2, 2]) is None
+    True
+    """"""
+    distinct_nums = list(set(nums))
+    if len(distinct_nums) < 2:
+        return None
+    distinct_nums.sort(reverse=True)
+    return distinct_nums[1]","
+def second_largest_unique(nums):
+    """"""Return the second largest distinct value in the list nums, or None if nums
+    has fewer than two distinct values.
+
+    >>> second_largest_unique([4, 1, 4, 3])
+    3
+    >>> second_largest_unique([2, 2]) is None
+    True
+    """"""
+    vals = sorted(set(nums), r"
+h_code_005,code,1,5.3,code,,"Complete this Python function:
+
+
+def balance_index(nums):
+    """"""Return the smallest index i such that the sum of the elements before i equals
+    the sum of the elements after i (the element at i is ","def balance_index(nums):
+    total_sum = sum(nums)
+    left_sum = 0
+    for i in range(len(nums)):
+        # Check if left_sum equals right_sum (total_sum - left_sum - nums[i])
+        if left_sum == total_sum - left_sum - nums[i]:
+            return i
+        left_sum += nums[i]
+    return -1","
+def balance_index(nums):
+    """"""Return the smallest index i such that the sum of the elements before i equals
+    the sum of the elements after i (the element at i is in neither sum).
+    Return -1 if there is no such index.
+
+    >>> balance_index([1, 7, 3, 6, 5, 6])
+    3
+    >>> balance_index([1,"
+h_code_006,code,1,9.95,code,,"Complete this Python function:
+
+
+def sort_by_digital_root(nums):
+    """"""Return a new list with the integers in nums sorted by their digital root, in
+    ascending order. The digital root is found by s","def sort_by_digital_root(nums):
+    def digital_root(n):
+        if n == 0:
+            return 0
+        n = abs(n)
+        while n > 9:
+            s = sum(int(d) for d in str(n))
+            n = s
+        return n
+
+    # Create a list of (digital_root, original_index, value) to preserve order
+    indexed_nums = [(digital_root(x), i, x) for i, x in enumerate(nums)]
+    
+    # Sort by digital root, then by original index (to preserve order for equal roots)
+    indexed_nums.sort(key=lambda x: (x[0], x[1]))
+    
+    # Extract the values in sorted order
+    return [x[2] for x in indexed_nums]","
+def sort_by_digital_root(nums):
+    """"""Return a new list with the integers in nums sorted by their digital root, in
+    ascending order. The digital root is found by summing the digits of the
+    absolute value repeatedly until one digit is left (the digital root of 0 is 0).
+    Numbers with equal "
+h_code_007,code,0,90.9,code,"Traceback (most recent call last):
+  File ""/tmp/tmpikz_xxur/t.py"", line 50, in <module>
+    check(parse_duration)
+  File ""/tmp/tmpikz_xxur/t.py"", line 40, in check
+    assert candidate(""1h30m15s"") == 5415, ""Error""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Error
+","Complete this Python function:
+
+
+def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a","def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a whole number of any
+    length. Return the total number of seconds. An empty string is 0 seconds.
+
+    >>> parse_duration(""1h30m15s"")
+    5415
+    >>> parse_duration(""45s"")
+    45
+    """"""
+    total_seconds = 0
+    parts = text.split()
+    if not parts:
+        return 0
+    
+    # Handle case where there's no space, e.g., ""1h30m15s""
+    if len(parts) == 1:
+        parts = [p for p in text.split(' ') if p]
+        if len(parts) == 1:
+            # Split by units
+            parts = []
+            for unit in ['h', 'm', 's']:
+                if unit in text:
+                    parts.append(text.split(unit)[0])
+                    text = text.split(unit)[1]
+                    break
+            # This approach is too complex, let's use a simpler method:
+            # Split by units and parse each part
+            parts = []
+            for unit in ['h', 'm', 's']:
+                if unit in text:
+                    parts.append(text.split(unit)[0])
+                    text = text.split(unit)[1]
+                    break","
+def parse_duration(text):
+    """"""text is a duration such as ""1h30m15s"": hours (h), minutes (m) and seconds (s),
+    each part optional but always in that order, each a whole number of any
+    length. Return the total number of seconds. An empty string is 0 seconds.
+
+    >>> parse_duration(""1h30m15s"
+h_code_008,code,1,10.46,code,,"Complete this Python function:
+
+
+def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a long","def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a longest run of 0.
+
+    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])
+    3
+    >>> longest_increasing_run([5, 4, 3])
+    1
+    """"""
+    if len(nums) == 0:
+        return 0
+    
+    max_length = 1
+    current_length = 1
+    
+    for i in range(1, len(nums)):
+        if nums[i] > nums[i-1]:
+            current_length += 1
+            max_length = max(max_length, current_length)
+        else:
+            current_length = 1
+    
+    return max_length","
+def longest_increasing_run(nums):
+    """"""Return the length of the longest run of consecutive elements in nums that is
+    strictly increasing. An empty list has a longest run of 0.
+
+    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])
+    3
+    >>> longest_increasing_run([5, 4, 3])
+    1
+    """"""
+    "

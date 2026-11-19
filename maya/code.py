@@ -133,14 +133,19 @@ def extract(text):
 
 def prompt_code(question):
     """The Python part of the prompt, parsed: (source, module ast) or (None, None)."""
-    lines = question.splitlines()
+    # Fence lines become blank so a ```python block parses; prose after the code is cut
+    # by taking the longest run of lines that parses.
+    lines = [("" if re.match(r"\s*```", l) else l) for l in question.splitlines()]
     for i, line in enumerate(lines):
         if re.match(r"(from \S+ import|import |def |class |@)", line):
-            src = "\n".join(lines[i:])
-            try:
-                return src, ast.parse(src)
-            except SyntaxError:
-                return None, None
+            for j in range(len(lines), i, -1):
+                src = "\n".join(lines[i:j]).rstrip()
+                try:
+                    tree = ast.parse(src)
+                except SyntaxError:
+                    continue
+                if tree.body:
+                    return src, tree
     return None, None
 
 
@@ -230,10 +235,17 @@ def checks_from(question):
         asserts = re.findall(r"^\s*assert\s+(.+?)\s*$", question, re.M)
         called = [c for a in asserts for c in re.findall(r"\b([A-Za-z_]\w*)\s*\(", a)
                   if c not in dir(builtins)]
+        params, doc = [], ""
+        if not called:
+            # Prose with example lines and no def: "sum_digits(123) -> 6".
+            called = [m.group(1) for m in re.finditer(r"\b([A-Za-z_]\w*)\s*\(", question)
+                      if m.group(1) not in dir(builtins) and m.group(1) not in ("def", "print")
+                      and call_at(question, m.start())[0]
+                      and ARROW.match(question[call_at(question, m.start())[1]:].split("\n")[0])]
+            doc = question
         if not called:
             return None, [], src, tree
         name = max(called, key=called.count)
-        params, doc = [], ""
         for a in asserts:
             try:
                 ast.parse(a, mode="eval")
@@ -348,9 +360,12 @@ def err_tail(err):
 def self_check(code, name, checks):
     if name is None:
         # Free-form request with no function to call: run it as a program.
+        # stdin is empty (maya/sandbox.py), so a program that asks for input stops at
+        # its first input() with EOFError; that is a program waiting for a user, not a bug.
         ok, out, err = run_python(code, timeout_s=10)
-        return {"defined": ok, "error": None if ok else err_tail(err), "checks": [],
-                "stdout": out[-2000:]}
+        needs_input = not ok and re.search(r"(?m)^EOFError\b", err) is not None
+        return {"defined": ok or needs_input, "error": None if ok or needs_input else err_tail(err),
+                "checks": [], "stdout": out[-2000:], "needs_input": needs_input}
     payload = json.dumps([code, name, checks])
     ok, out, err = run_python(f"PAYLOAD = {payload!r}\n" + HARNESS, timeout_s=10)
     if "@@RESULT@@" not in out:
@@ -504,6 +519,9 @@ def answer(eng, path, question):
         if attempts and time.perf_counter() - t0 > budget:
             break
         t = time.perf_counter()
+        # A VlmCoder still bound here keeps the VLM alive through gpu_model's swap,
+        # so both models would sit on the 8 GB card.
+        m = None
         m = model(eng, coder)
         load_s[coder] = round(time.perf_counter() - t, 2)
         history = []
@@ -543,4 +561,8 @@ def answer(eng, path, question):
             "model_switch_s": load_s, "attempt_log": attempts}
     if result.get("stdout"):
         info["run_output"] = result["stdout"]
+    if result.get("needs_input"):
+        info["needs_input"] = True
+        info["note"] = ("The program asks for keyboard input, so it was only run up to its "
+                        "first prompt, with no input typed.")
     return code, info

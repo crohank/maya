@@ -49,34 +49,64 @@ def _limits(cpu_s):
 # (the route around the hook). It is a second layer, not a boundary.
 GUARD = r'''
 import os, sys
-_root = os.path.realpath(os.getcwd())
-_W = os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
-def _inside(p):
-    if isinstance(p, int):
-        return True
-    p = os.path.realpath(os.fsdecode(p))
-    return p == _root or p.startswith(_root + os.sep)
-def _hook(event, args):
-    if event == "open":
-        path, mode, flags = args
-        writing = (isinstance(mode, str) and any(c in mode for c in "wax+")) or (flags or 0) & _W
-        if writing and not _inside(path):
-            raise PermissionError(f"sandbox: write outside the work dir: {path}")
-    elif event in ("os.remove", "os.rmdir", "os.mkdir", "os.chmod", "os.chown", "os.link",
-                   "os.symlink", "os.truncate", "os.utime", "shutil.rmtree", "shutil.copyfile"):
-        if args and not _inside(args[0]):
-            raise PermissionError(f"sandbox: {event} outside the work dir")
-    elif event in ("os.rename", "os.replace"):
-        if not (_inside(args[0]) and _inside(args[1])):
-            raise PermissionError(f"sandbox: {event} outside the work dir")
-    elif event in ("os.system", "os.exec", "os.posix_spawn", "os.spawn", "subprocess.Popen",
-                   "os.fork", "os.forkpty", "pty.spawn", "socket.connect", "socket.bind",
-                   "socket.sendto", "socket.getaddrinfo", "ctypes.dlsym", "ctypes.dlsym/handle"):
-        raise PermissionError(f"sandbox: {event} is not allowed")
-    elif event == "ctypes.dlopen" and args and args[0] is not None:
-        raise PermissionError("sandbox: ctypes.dlopen is not allowed")
-sys.addaudithook(_hook)
-del _hook
+def _make_hook():
+    # State lives in this closure: as globals of __main__ (this file), the child could
+    # rebind them through sys.modules["__main__"].
+    root = os.path.realpath(os.getcwd())
+    realpath, fsdecode, sep = os.path.realpath, os.fsdecode, os.sep
+    W = os.O_WRONLY | os.O_RDWR | os.O_CREAT | os.O_TRUNC | os.O_APPEND
+    # C modules that act with no audit event: _posixsubprocess.fork_exec starts
+    # processes, _sqlite3 and the dbm modules write files, _ctypes calls libc. posix is
+    # listed so a fresh copy cannot bring back mkfifo and mknod. Refused with
+    # ImportError so numpy's "try: import ctypes" still works; scipy and sympy import
+    # ctypes unguarded and so cannot load here.
+    deny = frozenset(("_posixsubprocess", "_sqlite3", "_ctypes", "_dbm", "_gdbm", "posix"))
+    def inside(p):
+        if isinstance(p, int):
+            return True
+        p = realpath(fsdecode(p))
+        return p == root or p.startswith(root + sep)
+    def hook(event, args):
+        if event == "open":
+            path, mode, flags = args
+            writing = (isinstance(mode, str) and any(c in mode for c in "wax+")) or (flags or 0) & W
+            if writing and not inside(path):
+                raise PermissionError(f"sandbox: write outside the work dir: {path}")
+        elif event in ("os.remove", "os.rmdir", "os.mkdir", "os.chmod", "os.chown", "os.link",
+                       "os.symlink", "os.truncate", "os.utime", "os.setxattr", "os.removexattr",
+                       "shutil.rmtree", "shutil.copyfile"):
+            if args and not inside(args[0]):
+                raise PermissionError(f"sandbox: {event} outside the work dir")
+        elif event in ("os.rename", "os.replace"):
+            if not (inside(args[0]) and inside(args[1])):
+                raise PermissionError(f"sandbox: {event} outside the work dir")
+        elif event in ("os.system", "os.exec", "os.posix_spawn", "os.spawn", "subprocess.Popen",
+                       "os.fork", "os.forkpty", "pty.spawn", "socket.connect", "socket.bind",
+                       "socket.sendto", "socket.getaddrinfo", "ctypes.dlsym", "ctypes.dlsym/handle",
+                       "sqlite3.connect", "gc.get_objects", "gc.get_referrers", "gc.get_referents"):
+            # gc would hand back this hook's closure.
+            raise PermissionError(f"sandbox: {event} is not allowed")
+        elif event == "ctypes.dlopen" and args and args[0] is not None:
+            raise PermissionError("sandbox: ctypes.dlopen is not allowed")
+        # Also raised by _imp.create_dynamic, so a loader called directly is covered.
+        elif event == "import" and isinstance(args[0], str) and args[0].split(".")[0] in deny:
+            raise ImportError(f"sandbox: import of {args[0]} is not allowed")
+    return hook
+# Python 3.11 has no audit event for mkfifo or mknod.
+import posix
+def _no_node(*a, **k):
+    raise PermissionError("sandbox: mkfifo and mknod are not allowed")
+for _m in (os, posix):
+    _m.mkfifo = _m.mknod = _no_node
+# asyncio imports subprocess at load time, so it stays importable with its
+# process launcher swapped out; the hook refuses any fresh copy of _posixsubprocess.
+import subprocess, _posixsubprocess
+def _no_fork_exec(*a, **k):
+    raise PermissionError("sandbox: fork_exec is not allowed")
+_posixsubprocess.fork_exec = subprocess._fork_exec = _no_fork_exec
+del posix, _m, subprocess, _posixsubprocess
+sys.addaudithook(_make_hook())
+del _make_hook
 with open("main.py", encoding="utf-8") as _f:
     _src = _f.read()
 exec(compile(_src, "main.py", "exec"), {"__name__": "__main__", "__builtins__": __builtins__})
