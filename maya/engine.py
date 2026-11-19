@@ -9,6 +9,7 @@ different model calls `eng.gpu_model(name, loader)`, which frees whatever else
 is loaded first.
 """
 import gc
+import re
 
 from . import audio, code, docqa, image, video
 
@@ -62,4 +63,23 @@ class Engine:
         return out
 
     def answer(self, modality, path, question):
-        return HANDLERS[modality](self, path, question or "")
+        text, info = HANDLERS[modality](self, path, question or "")
+        return with_count_noun(text, question or ""), info
+
+
+COUNT_Q = re.compile(r"\bhow many ([a-z]+)\b(?= (?:are|is|appear|were|can|do|did|left|in|on|there|shown)\b)",
+                     re.I)
+
+
+def with_count_noun(text, question):
+    """'4' is a poor spoken answer; say '4 shapes.' when the model returned a bare number."""
+    m = COUNT_Q.search(question)
+    t = (text or "").strip().rstrip(".")
+    if m and re.fullmatch(r"\d+", t):
+        noun = m.group(1).lower()
+        if t == "1" and noun.endswith("s") and noun != "people":
+            noun = noun[:-1]
+        if t == "1" and noun == "people":
+            noun = "person"
+        return f"{t} {noun}."
+    return text
