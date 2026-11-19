@@ -58,8 +58,15 @@ def media_kind(filename, content_type):
     return None
 
 
+# With no file attached, these words mean a coding request ("Implement binary search",
+# "Write code to reverse a linked list"); any other no-file question gets no_media.
+CODE_WORDS = re.compile(r"\b(code|coding|function|program|script|algorithm|implement|python|"
+                        r"regex|recursion|recursive|loop|method)\b", re.I)
+
+
 def is_code_prompt(question):
-    return bool(CODE_Q.search(question or ""))
+    q = question or ""
+    return bool(CODE_Q.search(q) or CODE_WORDS.search(q))
 
 
 def route(kind, question, has_file=None, force=None):

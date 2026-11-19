@@ -9,6 +9,7 @@ import base64
 import contextlib
 import json
 import logging
+import re
 import subprocess
 import tempfile
 import threading
@@ -110,13 +111,21 @@ def _ffmpeg(args, timeout):
 def _probe(path, timeout):
     """(stream codec types, video codec name, container format names)."""
     out = subprocess.run(
-        ["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,codec_name:format=format_name",
-         "-of", "json", path], capture_output=True, text=True, timeout=timeout)
+        ["ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", path],
+        capture_output=True, text=True, timeout=timeout)
     if out.returncode != 0:
         return set(), None, ""
     d = json.loads(out.stdout or "{}")
     streams = d.get("streams", [])
-    vcodec = next((s.get("codec_name") for s in streams if s.get("codec_type") == "video"), None)
+    video = [s for s in streams if s.get("codec_type") == "video"]
+    vcodec = video[0].get("codec_name") if video else None
+    # Phone MP4s store portrait as a rotation tag; PyAV in maya/video.py ignores it,
+    # so a rotated clip is re-encoded (ffmpeg applies the rotation).
+    rotated = any(str(s.get("tags", {}).get("rotate", "0")) not in ("0", "")
+                  or any(sd.get("rotation") for sd in s.get("side_data_list", []))
+                  for s in video)
+    if rotated:
+        vcodec = f"{vcodec}+rotated"
     return {s.get("codec_type") for s in streams}, vcodec, d.get("format", {}).get("format_name", "")
 
 
@@ -133,8 +142,23 @@ def to_mp4(src, dst, long_side, timeout):
 
 def normalize_image(src, dst, long_side):
     """EXIF-rotated RGB copy; maya/image.py opens the file without applying EXIF orientation."""
-    with Image.open(src) as im:
-        out = ImageOps.exif_transpose(im).convert("RGB")
+    try:
+        im = Image.open(src)
+        im.load()
+    except Exception:
+        # HEIC and other formats PIL cannot open here: let ffmpeg decode them.
+        alt = f"{dst}.ffmpeg.png"
+        _ffmpeg(["-i", src, "-frames:v", "1", alt], CFG["timeouts"]["ffmpeg_s"])
+        im = Image.open(alt)
+    with im:
+        im = ImageOps.exif_transpose(im)
+        if im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info):
+            # Transparent pixels are black once alpha is dropped, which hides dark text.
+            rgba = im.convert("RGBA")
+            bg = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+            out = Image.alpha_composite(bg, rgba).convert("RGB")
+        else:
+            out = im.convert("RGB")
     out.thumbnail((long_side, long_side))
     out.save(dst, quality=95)
 
@@ -174,7 +198,10 @@ def prepare(r, kind, src, work, live, lat):
             normalize_image(src, path, CFG["image"]["long_side"])
         else:
             path = src
-    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError, ValueError) as e:
+    except BadMedia:
+        raise
+    except Exception as e:
+        # Includes PIL.Image.DecompressionBombError, which is not an OSError.
         raise BadMedia("unreadable", repr(e)) from e
     lat["preprocess"] = round((time.perf_counter() - t) * 1000)
     return r, path
@@ -182,7 +209,8 @@ def prepare(r, kind, src, work, live, lat):
 
 def _display(text):
     # The app font has no em or en dash glyph; model output can contain both.
-    return text.replace(" — ", ", ").replace("—", ", ").replace("–", "-")
+    text = text.replace(" — ", ", ").replace("—", ", ").replace("―", ", ")
+    return re.sub("[‒–−]", "-", text)
 
 
 def code_summary(info):
