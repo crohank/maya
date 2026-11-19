@@ -1,0 +1,21 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_txt_001,text,1,8.52,document,,In Sept 1760 who negotiated a capitulation from Montreal?,Governor Vaudreuil.,Governor Vaudreuil
+p_txt_002,text,1,1.83,document,,Who defeated Montcalm at Quebec?,James Wolfe.,James Wolfe
+p_txt_003,text,1,1.59,document,,"Although some Acadians went to France and other destiantions, what North American city did many move to?",New Orleans.,New Orleans
+p_txt_004,text,1,0.88,document,,What battle outside Quebec City did British lose in 1706?,The document does not say.,The document does not say.
+p_txt_005,text,0,3.45,document,,"Whose role is to design the works, prepare the specifications and produce construction drawings, administer the contract, tender the works, and manage the works from inception to completion",architect or engineer.,the project coordinator
+p_txt_006,text,1,2.81,document,,Having existing utility lines marked lessens the likelihood of what?,damage to existing utility lines.,damage
+p_txt_007,text,1,2.99,document,,What is the annual construction industry revenue in 2014?,$960 billion.,$960 billion
+p_txt_008,text,1,2.27,document,,How many firms were there in 2011?,The document does not say.,The document does not say.
+p_txt_009,text,1,3.65,document,,What range of years was the current warming compared to?,1000 and 1900.,between 1000 and 1900
+p_txt_010,text,1,6.31,document,,When did Barton and Whitfield demand climate research records?,23 June 2005.,23 June 2005
+p_txt_011,text,1,2.6,document,,Who was Chairman of the Subcommittee on Oversight and Investigations?,Ed Whitfield.,Ed Whitfield
+p_txt_012,text,1,4.91,document,,What year was the third assessment report published?,The document does not say.,The document does not say.
+p_txt_013,text,1,1.58,document,,What fish living in the Amazon river is known to bit humans?,piranha.,piranha
+p_txt_014,text,1,4.04,document,,Where does the Amazon region rate among the entire earth for its amount of biodiversity?,Highest on Earth.,highest on Earth
+p_txt_015,text,1,1.85,document,,What is the process of removing trees from a forest known as?,Deforestation.,Deforestation
+p_txt_016,text,1,3.25,document,,4380 species of what have been registered?,The document does not say.,The document does not say.
+p_txt_017,text,1,1.52,document,,What religion's schools does the term 'parochial schools' generally refer to?,Roman Catholic.,Roman Catholic
+p_txt_018,text,1,2.89,document,,What article of the Grundgesetz grants the right to make private schools?,"Article 7, Paragraph 4.",7
+p_txt_019,text,1,1.31,document,,Who attends Loreto Normanhurst?,Girls.,girls
+p_txt_020,text,1,0.78,document,,What part of a uniform must you wear if you go to public school in Australia?,The document does not say.,The document does not say.

@@ -1,0 +1,61 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xs_txt_001,text,1,6.45,document,,How are Air force messages delivered,Store and forward switching.,delivery of these messages by store and forward switching
+xs_txt_002,text,0,0.4,document,,What did Donald Davies Develop,Packet switching,independently developed the same message routing methodology as developed by Baran
+xs_txt_003,text,1,0.76,document,,How are the packets routed,Individually via connectionless addressing.,"individually, sometimes resulting in different paths and out-of-order delivery"
+xs_txt_004,text,1,0.64,document,,Was the RAND corporation prohibited from disclosing the research to anyone else except for the Air Force?,The document does not say.,The document does not say.
+xs_txt_005,text,1,0.71,document,,Where did the first Huguenot colonists settle?,Cape of Good Hope,at the Cape of Good Hope
+xs_txt_006,text,1,0.51,document,,The Huguenots were the first Europeans to live in what modern New York borough?,Brooklyn,Brooklyn
+xs_txt_007,text,1,0.97,document,,What event was the worst example of Huguenot persecution?,St. Bartholomew's Day massacre,St. Bartholomew's Day massacre
+xs_txt_008,text,0,0.62,document,,What did Jan van Riebeeck's father do for a living?,Walloon church minister,The document does not say.
+xs_txt_009,text,1,0.66,document,,Ctenophores and cnidarians are classified as what?,Diploblastic,diploblastic
+xs_txt_010,text,1,0.81,document,,What makes ctenophores different from all other animals?,They have colloblasts.,by having colloblasts
+xs_txt_011,text,1,0.84,document,,What does  mnemiopsis eat?,Fish larvae and organisms that feed fish.,fish larvae and organisms
+xs_txt_012,text,0,1.49,document,,What kind of animals are cilia considered?,Cilia are considered locomotory structures in ctenophores.,The document does not say.
+xs_txt_013,text,1,0.73,document,,What period did plates reverse directions to compress the Tethys floor?,Jurassic Period,Jurassic Period
+xs_txt_014,text,1,0.79,document,,What period did the Rhine capture streams?,Pliocene period,Pliocene period
+xs_txt_015,text,0,0.6,document,,The Rhine and what other river drained the northern flanks of the alps?,Rhone,Danube
+xs_txt_016,text,0,1.27,document,,How high did the sea level rise during the ice ages?,120 m (390 ft),The document does not say.
+xs_txt_017,text,1,0.57,document,,Some elements of the Brotherhood directed what action against the government?,Violence,violence
+xs_txt_018,text,1,0.53,document,,What did Maududi believe Muslim society could not be Islamic in the absence of?,Sharia,Sharia
+xs_txt_019,text,1,0.8,document,,Where was the Muslim Brotherhood founded?,"Ismailiyah, Egypt","Ismailiyah, Egypt"
+xs_txt_020,text,0,1.06,document,,Who was it essential for Islam to not imitate?,It was essential for Islam to not imitate the West.,The document does not say.
+xs_txt_021,text,1,0.5,document,,What is the metric they use to determine how busy airports are?,Passenger volume,passenger volume
+xs_txt_022,text,1,0.47,document,,The Port of Long Beach belongs to which region of California?,Southern California,Southern
+xs_txt_023,text,0,0.54,document,,What other business district does Orange County envelop outside of Downtown Santa Ana and Newport Center?,Irvine business centers,South Coast Metro
+xs_txt_024,text,0,0.48,document,,"Where are there 12 cities over 100,000 in population?",Southern California,The document does not say.
+xs_txt_025,text,1,0.56,document,,What did BSkyB name their interactive service?,Sky Active,Sky Active
+xs_txt_026,text,1,0.59,document,,What platform was Sentanta Sports planning on launching on?,Digital terrestrial platform,digital terrestrial
+xs_txt_027,text,1,0.58,document,,What is the universal band that digital recievers will receive free to air channels on?,Ku band,Ku band
+xs_txt_028,text,1,1.01,document,,"When did Sky announce the total number of homes with Sky+HD was 3,222,000?",The document does not say.,The document does not say.
+xs_txt_029,text,1,0.55,document,,Fielding H. Garrison believes that the science of geology can be traced to where?,Persia,Persia
+xs_txt_030,text,1,0.99,document,,James Hutton published a 2 volume version of his theories in what year?,1795,1795
+xs_txt_031,text,1,0.47,document,,Horizontal layers of what are pulled along a surface into a back stop in analog versions of orogenic wedge experiments?,Sand,sand
+xs_txt_032,text,0,1.49,document,,What did the Royal Society of Edinburgh present in 1785?,"A paper entitled ""Theory of the Earth"" by James Hutton.",The document does not say.
+xs_txt_033,text,1,0.59,document,,"What culture's arrival in Scotland is know as the ""Davidian Revolution""?",Norman culture,Norman
+xs_txt_034,text,1,0.68,document,,What major conquest did Tancred play a roll in?,Conquest of Jerusalem,Jerusalem
+xs_txt_035,text,1,0.71,document,,Who was in charge of the papal army in the War of Barbastro?,William of Montreuil,William of Montreuil
+xs_txt_036,text,0,1.49,document,,What did the Normans take part in in the 10th century?,The Normans took part in the Reconquista in Iberia.,The document does not say.
+xs_txt_037,text,1,0.59,document,,Who did the Mongols bring to China as administrators?,Central Asian Muslims,Central Asian Muslims
+xs_txt_038,text,1,0.64,document,,What modern city did Khanbaliq become?,Beijing,Beijing
+xs_txt_039,text,1,0.66,document,,Which part of China had people ranked higher in the class system?,Northern China,Northern
+xs_txt_040,text,0,1.82,document,,Who thought that the Yuan's social class system should be called social classes?,"The historian Frederick W. Mote thought that the term ""social classes"" was misleading.",The document does not say.
+xs_txt_041,text,1,0.65,document,,Who is Kearney Boulevard named after?,M. Theo Kearney,M. Theo Kearney
+xs_txt_042,text,1,0.58,document,,Who founded Woodward Park?,Ralph Woodward,Ralph Woodward
+xs_txt_043,text,1,0.64,document,,What is the name of the first aviation community built?,Sierra Sky Park,Sierra Sky Park
+xs_txt_044,text,1,0.89,document,,"Whos is Kerman, California named after?",The document does not say.,The document does not say.
+xs_txt_045,text,1,0.59,document,,Turing machines are commonly employed to define what?,Complexity classes,complexity classes
+xs_txt_046,text,1,0.81,document,,What is the most critical resource in the analysis of computational problems associated with non-deterministic Turing machines?,Non-deterministic time,time
+xs_txt_047,text,1,0.68,document,,"Assuming that T represents a polynomial in T(n), what is the term given to the corresponding algorithm?",Polynomial time algorithm,polynomial time algorithm
+xs_txt_048,text,0,0.52,document,,What does not often help algorithms solve problems more efficiently?,Determinism,The document does not say.
+xs_txt_049,text,1,0.62,document,,What is set up to scrutinize private bills submitted by party outsiders?,Private Bill Committees,type of committee
+xs_txt_050,text,1,0.77,document,,What do the membership of the committees reflect?,Balance of parties across Parliament,balance of parties
+xs_txt_051,text,1,0.51,document,,"Economy, Energy and Tourism is one of the what?",Subject Committees,current Subject Committees
+xs_txt_052,text,1,0.7,document,,Mandatory Committees exists in the fifth session of what?,The document does not say.,The document does not say.
+xs_txt_053,text,1,0.67,document,,What minor amount of liquid oxygen was produced by early French experimenters?,Only a few drops.,few drops
+xs_txt_054,text,1,0.55,document,,Where does oxygen rank by mass in the planet's biosphere?,Most abundant,most abundant
+xs_txt_055,text,1,0.62,document,,What is the name for a form of oxygen in which electrons are paired?,Singlet oxygen,Singlet
+xs_txt_056,text,0,2.0,document,,"Who liquified oxygen in a stable state on March 22, 1883?",Zygmunt Wróblewski and Karol Olszewski,The document does not say.
+xs_txt_057,text,1,0.55,document,,What are internet pharmacies also called?,Online pharmacies,online pharmacies
+xs_txt_058,text,1,0.49,document,,How fast is pharmacy informatics growing?,Quickly,quickly
+xs_txt_059,text,1,1.06,document,,What is there a push for in the U.S. to reduce consumer drug costs?,Legalize importation of medications from Canada and other countries.,to legalize importation of medications from Canada and other countries
+xs_txt_060,text,1,0.66,document,,What is not an example of a controlled substance?,The document does not say.,The document does not say.
