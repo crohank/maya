@@ -8,6 +8,7 @@ and swap is timed and logged to results/app_models.jsonl.
 import gc
 import json
 import logging
+import re
 import threading
 import time
 from pathlib import Path
@@ -28,6 +29,8 @@ COSMOS_DEFAULT_QUESTION = (
     "in under 10 words. Example answers: 'Person walking toward you, slightly "
     "left.' 'Bus passing on your right.' 'Pole two steps ahead.'"
 )
+COSMOS_SUFFIX = " Answer in one short sentence about what you see."
+TIMESTAMP_JUNK = re.compile(r"<\s*[\d.]+(\s*seconds?)?\s*>")
 QWEN_SYSTEM = (
     "You help a person with low vision. Read any text exactly as written, "
     "including numbers. Answer in at most two sentences."
@@ -113,9 +116,21 @@ class ModelManager:
                 llm_int8_skip_modules=["model.visual", "lm_head"],
             )
             proc = AutoProcessor.from_pretrained(spec["id"])
-            model = AutoModelForImageTextToText.from_pretrained(
-                spec["id"], device_map="cuda", quantization_config=quant, dtype=torch.bfloat16,
-            ).eval()
+            # Quantizing the 8 GB BF16 checkpoint on every load is the slow part of
+            # a swap, so the first load saves the NF4 weights and later loads read those.
+            cache = Path(spec.get("nf4_cache", ""))
+            if spec.get("nf4_cache") and (cache / "config.json").exists():
+                model = AutoModelForImageTextToText.from_pretrained(
+                    cache, device_map="cuda", dtype=torch.bfloat16).eval()
+            else:
+                model = AutoModelForImageTextToText.from_pretrained(
+                    spec["id"], device_map="cuda", quantization_config=quant, dtype=torch.bfloat16,
+                ).eval()
+                if spec.get("nf4_cache"):
+                    try:
+                        model.save_pretrained(cache)
+                    except Exception:
+                        log.exception("could not save NF4 copy to %s", cache)
             if not patch_conv3d(model):
                 log.warning("Qwen3-VL patch embed not patched; expect about 15 s per image")
         self.loaded[name] = (model, proc)
@@ -142,9 +157,10 @@ class ModelManager:
                 return 0.0
             t = time.perf_counter()
             need = self.cfg[name]["need_gib"]
+            exclusive = self.cfg.get("exclusive", True)
             evicted = []
             for other in list(self.loaded):
-                if free_gib() >= need:
+                if not exclusive and free_gib() >= need:
                     break
                 self._unload(other)
                 evicted.append(other)
@@ -164,8 +180,17 @@ class ModelManager:
             self._log("warm_up", model=name, seconds=round(time.perf_counter() - t, 2))
 
     def ask_video(self, clip_path, question):
-        return self._ask("cosmos", COSMOS_SYSTEM, {"type": "video", "path": clip_path},
-                         question or COSMOS_DEFAULT_QUESTION)
+        media = {"type": "video", "path": clip_path}
+        if not question:
+            return self._ask("cosmos", COSMOS_SYSTEM, media, COSMOS_DEFAULT_QUESTION)
+        text, info = self._ask("cosmos", COSMOS_SYSTEM, media, question + COSMOS_SUFFIX)
+        # "Is it safe to cross?" on the 3874684 clip returned only timestamps
+        # ("<0.75 seconds> <1.25 seconds> ..."); fall back to the describe prompt.
+        if TIMESTAMP_JUNK.search(text) or not re.search(r"[A-Za-z]{3}", text):
+            text, retry = self._ask("cosmos", COSMOS_SYSTEM, media, COSMOS_DEFAULT_QUESTION)
+            info["model_s"] += retry["model_s"]
+            info["retried"] = True
+        return text, info
 
     def ask_image(self, image, question):
         return self._ask("qwen", QWEN_SYSTEM, {"type": "image", "image": image}, question)
@@ -188,7 +213,9 @@ class ModelManager:
         try:
             if "qwen" in self.loaded and time.time() - self.last_used["qwen"] > idle:
                 self._unload("qwen")
-            if self.cfg["cosmos"].get("resident") and "cosmos" not in self.loaded:
+            # Only refill an empty GPU: with exclusive on, loading Cosmos while
+            # Qwen is still in use would evict Qwen between two reads.
+            if self.cfg["cosmos"].get("resident") and not self.loaded:
                 self.ensure("cosmos")
         finally:
             self.lock.release()

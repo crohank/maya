@@ -33,9 +33,14 @@ def last_window(src, dst, work_dir, window_s, fps, long_side, timeout):
 
 
 def last_frame(src, dst, timeout):
-    # -update 1 rewrites one file per decoded frame, so the last frame wins even
-    # when the container has no duration to seek from.
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-an", "-update", "1", dst], timeout)
+    """Write the last frame (within 0.25 s) of `src` to `dst`, a .ppm path.
+
+    -update 1 rewrites one file per output frame, so the last frame wins even when
+    the container has no duration to seek from. On an 8 s 720p WebM: every frame
+    to PNG 1.5 s, fps=4 to PPM 0.8 s.
+    """
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", src, "-an", "-vf", "fps=4",
+          "-update", "1", dst], timeout)
 
 
 def load_image(path, long_side):

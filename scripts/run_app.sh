@@ -22,7 +22,8 @@ fi
 used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1)
 echo "GPU memory used before start: ${used} MiB"
 
-args=(--rm --gpus all -p 8443:8443 --name maya-app
+# MAYA_OFFLINE=1 for the demo: all models come from the hf-cache volume, no network.
+args=(--rm --gpus all -p 8443:8443 --name maya-app -e HF_HUB_OFFLINE="${MAYA_OFFLINE:-0}"
       -v hf-cache:/root/.cache/huggingface -v "$ROOT":/app -w /app)
 [ "${MAYA_DETACH:-0}" = 1 ] && args+=(-d)
 

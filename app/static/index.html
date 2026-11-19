@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#000000">
   <title>Maya</title>
-  <link rel="stylesheet" href="/static/app.css">
+  <link rel="stylesheet" href="static/app.css">
 </head>
 <body>
   <main>
@@ -28,7 +28,7 @@
     <section aria-labelledby="upload-heading">
       <h2 id="upload-heading">Send a file</h2>
       <label for="question" class="field-label">Question for the file (optional)</label>
-      <input id="question" type="text" autocomplete="off" placeholder="For example: what does the sign say?">
+      <input id="question" type="text" autocomplete="off">
       <div class="actions">
         <button id="photo-btn" type="button" class="big">Upload a photo</button>
         <button id="video-btn" type="button" class="big">Upload a video</button>
@@ -41,13 +41,16 @@
 
     <section aria-labelledby="settings-heading">
       <h2 id="settings-heading">Settings</h2>
-      <label class="check"><input id="speak-toggle" type="checkbox" checked> Speak answers aloud</label>
+      <div class="check">
+        <input id="speak-toggle" type="checkbox" checked>
+        <label for="speak-toggle">Speak answers aloud</label>
+      </div>
       <button id="camera-btn" type="button" class="big">Turn camera on</button>
       <p class="hint">Camera or microphone blocked? <a href="/ca.crt">Download the Maya certificate</a> and trust it, then reload this page.</p>
     </section>
 
     <audio id="player" preload="auto"></audio>
   </main>
-  <script src="/static/app.js"></script>
+  <script src="static/app.js"></script>
 </body>
 </html>

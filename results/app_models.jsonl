@@ -1,0 +1,23 @@
+{"ts": 1795048314.974, "event": "load", "model": "cosmos", "seconds": 4.13, "free_gib": 4.6, "allocated_gib": 2.22}
+{"ts": 1795048316.9, "event": "warm_up", "model": "cosmos", "seconds": 1.92, "free_gib": 4.55, "allocated_gib": 2.23}
+{"ts": 1795048323.327, "event": "unload", "model": "cosmos", "seconds": 0.43, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048327.116, "event": "load", "model": "qwen", "seconds": 3.79, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048327.119, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 4.22, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048344.368, "event": "unload", "model": "qwen", "seconds": 0.23, "free_gib": 4.62, "allocated_gib": 0.02}
+{"ts": 1795048346.82, "event": "load", "model": "cosmos", "seconds": 2.45, "free_gib": 4.54, "allocated_gib": 2.24}
+{"ts": 1795048346.822, "event": "swap", "model": "cosmos", "evicted": ["qwen"], "seconds": 2.68, "free_gib": 4.54, "allocated_gib": 2.24}
+{"ts": 1795048385.34, "event": "load", "model": "cosmos", "seconds": 4.7, "free_gib": 4.6, "allocated_gib": 2.22}
+{"ts": 1795048386.652, "event": "warm_up", "model": "cosmos", "seconds": 1.31, "free_gib": 4.55, "allocated_gib": 2.23}
+{"ts": 1795048404.018, "event": "unload", "model": "cosmos", "seconds": 0.22, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048406.977, "event": "load", "model": "qwen", "seconds": 2.96, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048406.982, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 3.18, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048409.646, "event": "unload", "model": "qwen", "seconds": 0.35, "free_gib": 4.61, "allocated_gib": 0.02}
+{"ts": 1795048412.264, "event": "load", "model": "cosmos", "seconds": 2.62, "free_gib": 4.54, "allocated_gib": 2.24}
+{"ts": 1795048412.266, "event": "swap", "model": "cosmos", "evicted": ["qwen"], "seconds": 2.97, "free_gib": 4.54, "allocated_gib": 2.24}
+{"ts": 1795048457.375, "event": "load", "model": "cosmos", "seconds": 4.54, "free_gib": 4.6, "allocated_gib": 2.22}
+{"ts": 1795048459.513, "event": "warm_up", "model": "cosmos", "seconds": 2.13, "free_gib": 4.55, "allocated_gib": 2.23}
+{"ts": 1795048464.992, "event": "unload", "model": "cosmos", "seconds": 0.21, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048468.156, "event": "load", "model": "qwen", "seconds": 3.16, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048468.159, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 3.37, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048564.842, "event": "unload", "model": "qwen", "seconds": 0.31, "free_gib": 4.62, "allocated_gib": 0.02}
+{"ts": 1795048567.852, "event": "load", "model": "cosmos", "seconds": 3.01, "free_gib": 4.54, "allocated_gib": 2.24}

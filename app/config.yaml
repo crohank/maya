@@ -7,6 +7,10 @@ server:
   ca_certfile: certs/ca.crt
 
 models:
+  # true: one vision model on the GPU at a time. With both resident (5.5 GiB
+  # allocated) the first video request after a photo had 0.0 GiB free.
+  # false: keep both when torch.cuda.mem_get_info shows need_gib free.
+  exclusive: true
   cosmos:
     id: ubr-physical-ai/Cosmos3-Edge-NF4-bnb
     # Same processor as scripts/live_harness.py, which produced the D3 numbers.
@@ -22,6 +26,8 @@ models:
     need_gib: 3.8
     idle_unload_s: 90
     preload: false
+    # Written on first load (inside the hf-cache volume), read on later loads.
+    nf4_cache: /root/.cache/huggingface/maya/qwen3vl-4b-nf4
 
 whisper:
   size: small

@@ -116,7 +116,7 @@ def _answer(r, kind, question, file_path, work, lat):
     else:
         img_path = file_path
         if kind == "video":
-            img_path = f"{work}/last.png"
+            img_path = f"{work}/last.ppm"
             media.last_frame(file_path, img_path, to)
         image = media.load_image(img_path, CFG["image"]["long_side"])
         lat["preprocess"] = round((time.perf_counter() - t) * 1000)

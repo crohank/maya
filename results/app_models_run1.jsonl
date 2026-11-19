@@ -1,0 +1,20 @@
+{"ts": 1795048207.754, "event": "load", "model": "cosmos", "seconds": 4.32, "free_gib": 4.6, "allocated_gib": 2.22}
+{"ts": 1795048208.983, "event": "warm_up", "model": "cosmos", "seconds": 1.23, "free_gib": 4.55, "allocated_gib": 2.23}
+{"ts": 1795048221.71, "event": "unload", "model": "cosmos", "seconds": 0.17, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048243.499, "event": "load", "model": "qwen", "seconds": 21.79, "free_gib": 3.53, "allocated_gib": 3.28}
+{"ts": 1795048243.528, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 21.99, "free_gib": 3.53, "allocated_gib": 3.28}
+{"ts": 1795048245.416, "event": "unload", "model": "qwen", "seconds": 0.21, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048249.201, "event": "load", "model": "cosmos", "seconds": 3.78, "free_gib": 4.56, "allocated_gib": 2.23}
+{"ts": 1795048249.203, "event": "swap", "model": "cosmos", "evicted": ["qwen"], "seconds": 4.0, "free_gib": 4.56, "allocated_gib": 2.23}
+{"ts": 1795048250.414, "event": "unload", "model": "cosmos", "seconds": 0.19, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048256.534, "event": "load", "model": "qwen", "seconds": 6.11, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048256.536, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 6.31, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048259.242, "event": "unload", "model": "qwen", "seconds": 0.24, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048266.066, "event": "load", "model": "cosmos", "seconds": 6.82, "free_gib": 4.56, "allocated_gib": 2.23}
+{"ts": 1795048266.069, "event": "swap", "model": "cosmos", "evicted": ["qwen"], "seconds": 7.07, "free_gib": 4.56, "allocated_gib": 2.23}
+{"ts": 1795048266.303, "event": "unload", "model": "cosmos", "seconds": 0.23, "free_gib": 4.64, "allocated_gib": 0.01}
+{"ts": 1795048271.374, "event": "load", "model": "qwen", "seconds": 5.07, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048271.376, "event": "swap", "model": "qwen", "evicted": ["cosmos"], "seconds": 5.31, "free_gib": 3.55, "allocated_gib": 3.26}
+{"ts": 1795048281.406, "event": "unload", "model": "qwen", "seconds": 0.27, "free_gib": 4.61, "allocated_gib": 0.02}
+{"ts": 1795048287.243, "event": "load", "model": "cosmos", "seconds": 5.82, "free_gib": 4.54, "allocated_gib": 2.24}
+{"ts": 1795048287.245, "event": "swap", "model": "cosmos", "evicted": ["qwen"], "seconds": 6.11, "free_gib": 4.54, "allocated_gib": 2.24}
