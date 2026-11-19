@@ -1,0 +1,13 @@
+run,mode,clip,events,hits,must_warn,must_warn_hits,lead_mw_median,lead_mw_min,lead_all_median,side_ok,side_n,spoken,false_alarms,fa_no_class,minutes,utt_per_min,spoken_by_source,strict_mw,strict_on_time,strict_on_time_side,strict_spare_median,strict_relevant,strict_spoken
+sanpo_7X41_wkj_0000_shift7,shift7,sanpo_7X41_wkj_0000,8,6,4,4,0.33,-0.399,0.901,0,6,16,12,2,0.487,32.877,"{""fast"": 16}",4,2,0,1.867,5,16
+sanpo_8WF0e5NO_0195_shift7,shift7,sanpo_8WF0e5NO_0195,2,0,2,0,,,,0,0,4,4,0,0.384,10.404,"{""fast"": 4}",2,0,0,,0,4
+sanpo_RqOwmltc_0000_shift7,shift7,sanpo_RqOwmltc_0000,28,27,8,8,1.877,1.57,1.908,3,27,24,4,0,0.497,48.322,"{""fast"": 24}",8,8,1,1.67,19,24
+sanpo_UGNwBEZM_0353_shift7,shift7,sanpo_UGNwBEZM_0353,9,4,6,3,0.121,-0.021,0.279,3,4,11,7,0,0.489,22.5,"{""fast"": 11}",6,2,1,1.14,6,11
+sanpo_cBVSUvSN_0000_shift7,shift7,sanpo_cBVSUvSN_0000,17,15,7,7,2.195,1.613,2.195,8,15,25,8,4,0.498,50.223,"{""fast"": 25}",7,7,4,1.452,15,25
+sanpo_eHxtA669_0000_shift7,shift7,sanpo_eHxtA669_0000,7,5,3,1,2.41,2.41,1.264,3,5,11,6,0,0.487,22.603,"{""fast"": 11}",3,1,1,1.644,4,11
+sanpo_qFDP9gJD_0000_shift7,shift7,sanpo_qFDP9gJD_0000,1,1,0,0,,,2.337,1,1,18,16,0,0.473,38.028,"{""fast"": 18}",0,0,0,,0,18
+sanpo_qn1eNtR0_0029_shift7,shift7,sanpo_qn1eNtR0_0029,6,2,3,0,,,0.018,2,2,12,10,3,0.484,24.77,"{""fast"": 12}",3,0,0,,0,12
+sanpo_qttyxdua_0000_shift7,shift7,sanpo_qttyxdua_0000,0,0,0,0,,,,0,0,10,10,0,0.438,22.842,"{""fast"": 10}",0,0,0,,0,10
+sanpo_wXwTZnJH_0007_shift7,shift7,sanpo_wXwTZnJH_0007,3,1,0,0,,,1.612,0,1,11,10,0,0.424,25.916,"{""fast"": 11}",0,0,0,,0,11
+sanpo_x5OCPnbr_0078_shift7,shift7,sanpo_x5OCPnbr_0078,3,3,0,0,,,0.724,1,3,20,14,0,0.48,41.667,"{""fast"": 20}",0,0,0,,0,20
+TOTAL shift7 (11 clips),shift7,all,84,64,33,23,1.808,-0.399,1.631,21,64,162,101,9,5.141,31.511,{},33,20,7,1.644,49,162

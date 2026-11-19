@@ -1,0 +1,3 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xs_txt_001,text,1,12.41,document,,How are Air force messages delivered,By store and forward switching using packet switching with message blocks.,delivery of these messages by store and forward switching
+xs_txt_004,text,1,1.32,document,,Was the RAND corporation prohibited from disclosing the research to anyone else except for the Air Force?,The document does not say.,The document does not say.

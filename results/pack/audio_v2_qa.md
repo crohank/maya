@@ -4,7 +4,7 @@ Options: defaults. Engine load 0.0 s. Scoring rules in the scripts/eval_pack.py 
 
 | Modality | Pass | Median s | Max s |
 |---|---|---|---|
-| audio | 4/5 | 3.01 | 8.67 |
+| audio | 4/5 | 2.79 | 9.64 |
 | all | 4/5 | | |
 
 ## Failures

@@ -1,0 +1,16 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_vid_001,video,1,4.2,video,,How many shapes appear in this video?,Four.,4 circles appear one at a time.
+p_vid_002,video,0,1.23,video,,Which direction does the square move?,The red square moves downward.,The red square moves to the right.
+p_vid_003,video,0,1.59,video,,"What color appears first, and what color appears last?","Red appears first, and green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,0,2.02,video,,What does the sign say at the start and at the end?,The sign says OPEN at the start and CLOSE at the end.,"The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,1.27,video,,Does the bar get taller or shorter?,The bar gets taller.,The bar gets taller.
+p_vid_006,video,0,1.58,video,,What happens to the two shapes?,The blue square and red circle merge into a single shape.,The two shapes move toward each other until they touch.
+p_vid_007,video,0,1.17,video,,What number is shown last?,1,A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,0,1.78,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,2,"5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,0.98,video,,How many times does the ball bounce?,3,The ball bounces 3 times.
+p_vid_010,video,0,1.54,video,,What color is the background at the end?,Blue.,The background ends blue.
+p_vid_011,video,1,1.74,video,,How many shapes appear in this video?,Eight.,8 squares appear one at a time.
+p_vid_012,video,1,1.39,video,,Which direction does the circle move?,The green circle moves upward.,The green circle moves up.
+p_vid_013,video,0,1.5,video,,"What color appears first, and what color appears last?","Yellow appears first, and blue appears last.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,0,2.03,video,,What does the sign say at the start and at the end?,The sign says PUSH at the start and it says PULL at the end.,"The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.37,video,,Does the bar get taller or shorter?,The bar gets taller.,The bar gets taller.

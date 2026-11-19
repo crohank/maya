@@ -1,0 +1,6 @@
+run,mode,clip,events,hits,must_warn,must_warn_hits,lead_mw_median,lead_mw_min,lead_all_median,side_ok,side_n,spoken,false_alarms,fa_no_class,minutes,utt_per_min,spoken_by_source,strict_mw,strict_on_time,strict_on_time_side,strict_spare_median,strict_relevant,strict_spoken
+197531-905015052_medium_shift7,shift7,197531-905015052_medium,6,0,0,0,,,,0,0,1,1,0,0.075,13.319,"{""fast"": 1}",0,0,0,,0,1
+3874684_720p_shift7,shift7,3874684_720p,11,3,7,1,1.488,1.488,1.488,0,3,8,5,0,0.435,18.373,"{""fast"": 8}",7,1,0,0.838,1,8
+fifth-avenue-point-of-view-manhattan-nyc-looking-around-day_shift7,shift7,fifth-avenue-point-of-view-manhattan-nyc-looking-around-day,15,4,14,4,-0.107,-0.479,-0.107,2,4,36,31,0,0.836,43.085,"{""fast"": 36}",14,4,0,0.713,10,36
+london_walking_shift7,shift7,london_walking,12,7,8,4,-0.234,-0.52,-0.112,1,7,12,6,0,0.333,36.0,"{""fast"": 12}",8,2,0,0.695,5,12
+TOTAL shift7 (4 clips),shift7,all,44,14,29,9,-0.113,-0.52,0.067,3,14,57,43,0,1.679,33.941,{},29,7,0,0.838,16,57

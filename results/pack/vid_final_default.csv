@@ -1,0 +1,16 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_vid_001,video,1,6.75,video,,How many shapes appear in this video?,4,4 circles appear one at a time.
+p_vid_002,video,1,1.16,video,,Which direction does the square move?,Right.,The red square moves to the right.
+p_vid_003,video,1,1.75,video,,"What color appears first, and what color appears last?","Red appears first, and green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,1,2.93,video,,What does the sign say at the start and at the end?,"At the start, the sign says ""OPEN"". At the end, it says ""CLOSED"".","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,1.32,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.
+p_vid_006,video,1,1.68,video,,What happens to the two shapes?,They move toward each other and touch.,The two shapes move toward each other until they touch.
+p_vid_007,video,1,1.23,video,,What number is shown last?,1,A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,1,1.89,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,3,"5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,0.98,video,,How many times does the ball bounce?,3,The ball bounces 3 times.
+p_vid_010,video,1,1.59,video,,What color is the background at the end?,Blue.,The background ends blue.
+p_vid_011,video,1,1.71,video,,How many shapes appear in this video?,8,8 squares appear one at a time.
+p_vid_012,video,1,1.11,video,,Which direction does the circle move?,Up.,The green circle moves up.
+p_vid_013,video,1,1.65,video,,"What color appears first, and what color appears last?","Yellow appears first, and blue appears last.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,1,1.8,video,,What does the sign say at the start and at the end?,"PUSH, PULL.","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.51,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.

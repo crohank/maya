@@ -2,7 +2,7 @@
 
 Project: Maya, an offline multimodal assistant (IEEE AI Hackathon). Repo root:
 `C:\Users\Rohan Kumar\Documents\Projects\IEEE Hackathon`. Use Git Bash. The host
-has no Python; everything runs in Docker image `maya-engine`.
+has no Python; everything runs in Docker image `maya-engine`. Never run `python`, `python3` or `py` on the host: Windows opens the Microsoft Store for them, which pops up on the user's screen.
 
 ## What is judged
 
@@ -39,9 +39,11 @@ bash scripts/gpu_job.sh <tag> python -c "..."        # ad-hoc checks
 - It waits for the GPU lock (other agents share the GPU), so a run may queue for minutes. That is expected.
 - Network is OFF inside these jobs (models come from the `hf-cache` volume). Model-written code runs there too.
 - `scripts/gpu_guard.sh` pauses jobs if the GPU reaches 82 C and resumes at 72 C. A paused job is not a hang.
+- Hold the GPU lock only for work that uses the GPU. CPU-only experiments (whisper, AST, CLAP, OpenCV, sandbox tests) run without the lock using the CPU command below, with `--cpus 6`.
+- Keep each GPU job under about 10 minutes (split long variant sweeps into separate jobs) so the shared queue rotates.
 - Keep runs small while iterating (`--ids` or one modality). Do not loop the full pack.
 - CPU-only checks without a model can use:
-  `MSYS_NO_PATHCONV=1 docker run --rm --network none -v "$(pwd -W):/app" -w /app -e PYTHONPATH=/app maya-engine python ...`
+  `MSYS_NO_PATHCONV=1 docker run --rm --network none --cpus 6 -e HF_HUB_OFFLINE=1 -v hf-cache:/root/.cache/huggingface -v "$(pwd -W):/app" -w /app -e PYTHONPATH=/app maya-engine python ...`
 
 ## Downloads
 
@@ -69,3 +71,10 @@ No new pip packages in the image: if you need one, say so in your report.
 
 Variants tried with practice-pack scores and median seconds per item, the config you
 recommend (default options in code), which items still fail and why, and files changed.
+
+## Data downloads (added later in the night)
+
+The user allowed open datasets from official sources (Hugging Face dataset repos of the
+publisher, the dataset authors' official GitHub or storage bucket, openslr.org). Store under
+`data/` (gitignored). Keep at least 10 GB free on C: at all times (`df -h /c`): the data
+agents share about 12 GB in total, extra-pack data at most 4 GB, walking video at most 7 GB.

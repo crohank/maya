@@ -16,3 +16,24 @@ results/app_*.jsonl
 Kaggle Data/
 .gpu_lock/
 results/gpu_temps.csv
+
+# downloaded open datasets, keep local
+data/
+heldout/video/
+heldout/audio/
+heldout/image/
+heldout/text/*.pdf
+
+# second copy of the practice pack at the repo root (same files as Kaggle Data/)
+/LICENSES.md
+/answers.json
+/items.json
+/audio/
+/code/
+/image/
+/text/
+/video/
+results/sanpo/live/
+results/sanpo/perception/
+results/sanpo/walk_v4_cache/
+results/pack_*.log

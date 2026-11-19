@@ -1,0 +1,25 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_vid_001,video,1,3.06,video,,How many shapes appear in this video?,6,6 triangles appear one at a time.
+h_vid_002,video,1,0.99,video,,"How many shapes show up, one after another?",3,3 stars appear one at a time.
+h_vid_003,video,1,1.13,video,,Which direction does the hexagon move?,Left.,The purple hexagon moves to the left.
+h_vid_004,video,1,0.98,video,,Which way is the triangle moving?,Down.,The orange triangle moves down.
+h_vid_005,video,1,1.23,video,,In which direction does the diamond move?,Right and up.,The cyan diamond moves diagonally up and to the right (from the bottom left to the top right).
+h_vid_006,video,1,1.75,video,,"What color appears first, and what color appears last?","Purple appears first, and cyan appears last.","A purple triangle appears first, then orange, then white, and cyan appears last."
+h_vid_007,video,1,1.33,video,,Which color shows up first and which shows up last?,"Brown, then black.","A brown star appears first, then pink, and black appears last."
+h_vid_008,video,1,1.62,video,,What does the sign say at the start and at the end?,"ENTER, EXIT.","The sign says ""ENTER"" at the start and ""EXIT"" at the end."
+h_vid_009,video,1,2.88,video,,"What word is on the sign at the beginning, and what does it change to?","The word on the sign at the beginning is ""SALE,"" and it changes to ""SOLD OUT.""","The sign says ""SALE"" at the beginning and changes to ""SOLD OUT""."
+h_vid_010,video,1,1.04,video,,Does the bar get taller or shorter?,shorter,The bar gets shorter.
+h_vid_011,video,1,1.3,video,,Is the bar growing or shrinking?,growing,The bar is growing (it gets taller).
+h_vid_012,video,1,2.03,video,,What happens to the two shapes?,"The orange triangle moves left, and the purple triangle moves right, moving apart from each other.","The two shapes start next to each other and move apart, away from each other."
+h_vid_013,video,1,1.38,video,,Do the two shapes move toward each other or away from each other?,They move toward each other.,"They move toward each other (one from the top, one from the bottom) until they touch."
+h_vid_014,video,1,1.34,video,,What number is shown last?,6,It counts up from 1 to 6; the last number shown is 6.
+h_vid_015,video,1,1.1,video,,What is the final number displayed?,3,A countdown from 9 to 3; the final number displayed is 3.
+h_vid_016,video,1,1.71,video,,Some shapes appear and then a few vanish. How many remain at the end?,2,"6 hexagons appear, 4 disappear, so 2 are left at the end."
+h_vid_017,video,1,1.58,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,4,"7 stars appear, 3 disappear, so 4 are left at the end."
+h_vid_018,video,1,0.76,video,,How many times does the ball bounce?,1,The ball bounces once (1 time).
+h_vid_019,video,1,1.06,video,,How many bounces does the ball make?,5,The ball bounces 5 times.
+h_vid_020,video,1,1.39,video,,What color is the background at the end?,orange,The background ends orange.
+h_vid_021,video,1,1.29,video,,What color is the background at the beginning of the video?,Pink.,The background starts pink.
+h_vid_022,video,0,1.54,video,,How many shapes appear in this video?,2,5 small circles appear one at a time.
+h_vid_023,video,0,0.91,video,,How many times does the ball bounce?,1,The ball bounces 2 times.
+h_vid_024,video,1,1.41,video,,Which direction does the dot move?,Down and left.,The small black dot moves diagonally down and to the left (from the top right to the bottom left).
