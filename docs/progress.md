@@ -1,5 +1,7 @@
 # Progress log
 
+> Older snapshot (D1 to D5). Current state: `README.md` and `docs/decisions.md` D6 to D9.
+
 Snapshot: 2026-11-18 evening. Code due 2026-11-19 end of day, demo 2026-11-20 1 PM.
 Detailed measurements and reasoning live in `docs/decisions.md` (D1 to D5).
 

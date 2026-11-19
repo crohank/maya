@@ -6,3 +6,8 @@ results/labels_frames/
 certs/
 __pycache__/
 *.pyc
+
+# phone and teammate uploads saved at the repo root
+/*.mp4
+# runtime logs from the app (contain spoken questions)
+results/app_*.jsonl
