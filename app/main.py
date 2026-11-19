@@ -172,6 +172,15 @@ async def ask(file: UploadFile | None = File(None), question: str | None = Form(
         log_extra = dict(kind=kind, question=question, file_bytes=size,
                          content_type=getattr(file, "content_type", None))
 
+        # A header-only recording (seen: 5 bytes from iPhone Safari) cannot be decoded.
+        if kind == "video" and size < 2000:
+            text = "The camera had only just started. Hold the phone steady for two seconds, then ask again."
+            audio = await asyncio.to_thread(_speak, text, lat)
+            lat["total"] = round((time.perf_counter() - t0) * 1000)
+            S.routing.write(r, status=422, error="clip too short", latency_ms=lat, **log_extra)
+            return JSONResponse({"text": text, "route": r.name, "question": question,
+                                 "latency_ms": lat, "audio_b64": audio}, status_code=422)
+
         if r.model is None:
             text = NO_MEDIA_TEXT if r.name == "no_media" else STUB_TEXT[r.name]
             status = 400 if r.name == "no_media" else 501

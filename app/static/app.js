@@ -7,6 +7,7 @@
 // hence two recorders instead of one with a timeslice.
 const SEGMENT_MS = 10000;
 const MAX_QUESTION_MS = 15000;
+const MIN_CLIP_MS = 2000;
 
 const $ = (id) => document.getElementById(id);
 const answerEl = $("answer");
@@ -101,7 +102,10 @@ function startRolling() {
 function grabClip() {
   // Oldest running recorder holds the longest stretch ending now.
   const rec = recorders.slice().sort((a, b) => a.started - b.started)[0];
-  return new Promise((resolve) => {
+  // A recorder stopped right after it started (camera just switched on, or a
+  // restart) returns a header-only blob; a phone sent a 5-byte clip that way.
+  const wait = Math.max(0, MIN_CLIP_MS - (Date.now() - rec.started));
+  return new Promise((resolve) => setTimeout(resolve, wait)).then(() => new Promise((resolve) => {
     clearTimeout(rec.timer);
     rec.mr.onstop = () => {
       const type = rec.mr.mimeType || VIDEO_TYPE || "video/webm";
@@ -110,7 +114,7 @@ function grabClip() {
       if (i >= 0) recorders[i] = newRecorder();
     };
     rec.mr.stop();
-  });
+  }));
 }
 
 function recordQuestion() {
