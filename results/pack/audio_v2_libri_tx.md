@@ -1,0 +1,17 @@
+# Pack run: audio_v2_libri_tx (data/extra/librispeech)
+
+Options: defaults. Engine load 0.0 s. Scoring rules in the scripts/eval_pack.py docstring.
+
+| Modality | Pass | Median s | Max s |
+|---|---|---|---|
+| audio | 16/20 | 3.45 | 10.18 |
+| all | 16/20 | | |
+
+## Failures
+
+| id | answer | reference | note |
+|---|---|---|---|
+| xl_aud_001 | That is all quite true, Mr. Neverbend," said Sir Ferdinand O'Brown. | That is all quite true mister neverbend said sir ferdinando brown. | wer=0.273 |
+| xl_aud_002 | In autumn, the woodcutters always came and felled some of the largest trees. | In autumn the wood cutters always came and felled some of the largest trees. | wer=0.143 |
+| xl_aud_007 | Those pretty wrongs that liberty commits, When I am some time absent from thy heart, Thy beauty and thy years fall well befits, For still temptation follows whe | Those pretty wrongs that liberty commits when i am sometime absent from thy heart thy beauty and thy | wer=0.103 |
+| xl_aud_011 | Why a tongue impressed with honey from every wind? | Why a tongue impress'd with honey from every wind. | wer=0.111 |

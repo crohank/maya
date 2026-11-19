@@ -1,0 +1,101 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xe_aud_001,audio,0,5.81,audio_sound,,What sound is this?,"It sounds like an air conditioner, or possibly a printer.",Vacuum cleaner.
+xe_aud_002,audio,0,1.42,audio_sound,,What sound is this?,It sounds like rattle.,Crickets chirping.
+xe_aud_003,audio,1,3.27,audio_sound,,What sound is this?,It sounds like giggle.,Laughing.
+xe_aud_004,audio,1,1.82,audio_sound,,What sound is this?,It sounds like a dog barking.,Dog barking.
+xe_aud_005,audio,1,1.61,audio_sound,,What sound is this?,It sounds like a clock ticking.,Clock ticking.
+xe_aud_006,audio,1,1.37,audio_sound,,What sound is this?,It sounds like birds singing.,Birds chirping.
+xe_aud_007,audio,0,1.63,audio_sound,,What sound is this?,"I am not sure. It might be creak, or single-lens reflex camera.",Mouse clicking.
+xe_aud_008,audio,0,1.3,audio_sound,,What sound is this?,"I am not sure. It might be slap, or typing on a keyboard.",Can opening.
+xe_aud_009,audio,1,3.01,audio_sound,,What sound is this?,"It sounds like sigh, or possibly sneezing.",Sneezing.
+xe_aud_010,audio,1,1.85,audio_sound,,What sound is this?,"It sounds like crack, or possibly a crackling fire.",Crackling fire.
+xe_aud_011,audio,1,1.42,audio_sound,,What sound is this?,It sounds like footsteps.,Footsteps.
+xe_aud_012,audio,1,1.28,audio_sound,,What sound is this?,"It sounds like an engine idling, or possibly a car.",Engine running.
+xe_aud_013,audio,1,1.53,audio_sound,,What sound is this?,"It sounds like something breaking, or possibly glass shattering.",Glass breaking.
+xe_aud_014,audio,1,1.6,audio_sound,,What sound is this?,It sounds like typing on a keyboard.,Keyboard typing.
+xe_aud_015,audio,1,1.68,audio_sound,,What sound is this?,It sounds like a cow mooing.,Cow mooing.
+xe_aud_016,audio,1,1.61,audio_sound,,What sound is this?,It sounds like crickets.,Crickets chirping.
+xe_aud_017,audio,1,1.4,audio_sound,,What sound is this?,It sounds like a fly buzzing.,Insects buzzing.
+xe_aud_018,audio,1,2.83,audio_sound,,What sound is this?,It sounds like a chainsaw.,Chainsaw.
+xe_aud_019,audio,0,1.46,audio_sound,,What sound is this?,It sounds like rain.,Crackling fire.
+xe_aud_020,audio,0,1.5,audio_sound,,What sound is this?,"I am not sure. It might be a vehicle, or an engine.",Washing machine.
+xe_aud_021,audio,1,1.49,audio_sound,,What sound is this?,It sounds like fireworks.,Fireworks.
+xe_aud_022,audio,0,2.74,audio_sound,,What sound is this?,"I am not sure. It might be glass clinking, or grunt.",Coughing.
+xe_aud_023,audio,1,1.69,audio_sound,,What sound is this?,It sounds like a rooster or chicken.,Hen clucking.
+xe_aud_024,audio,1,1.6,audio_sound,,What sound is this?,It sounds like ocean waves.,Ocean waves.
+xe_aud_025,audio,1,1.59,audio_sound,,What sound is this?,"It sounds like a chainsaw, or possibly an engine revving.",Chainsaw.
+xe_aud_026,audio,1,1.28,audio_sound,,What sound is this?,It sounds like knocking.,Knocking on a door.
+xe_aud_027,audio,1,1.6,audio_sound,,What sound is this?,It sounds like applause.,Clapping.
+xe_aud_028,audio,1,1.33,audio_sound,,What sound is this?,It sounds like ocean waves.,Ocean waves.
+xe_aud_029,audio,0,1.29,audio_sound,,What sound is this?,It sounds like a civil defense siren.,Wind blowing.
+xe_aud_030,audio,0,1.51,audio_sound,,What sound is this?,It sounds like snort.,Breathing.
+xe_aud_031,audio,1,1.4,audio_sound,,What sound is this?,It sounds like a train.,Train.
+xe_aud_032,audio,1,1.39,audio_sound,,What sound is this?,"It sounds like water dripping, or possibly pouring liquid.",Water pouring.
+xe_aud_033,audio,0,1.52,audio_sound,,What sound is this?,"I am not sure. It might be crunch, or crackling.",Footsteps.
+xe_aud_034,audio,1,1.4,audio_sound,,What sound is this?,It sounds like a sheep.,Sheep bleating.
+xe_aud_035,audio,1,1.47,audio_sound,,What sound is this?,It sounds like applause.,Clapping.
+xe_aud_036,audio,1,1.81,audio_sound,,What sound is this?,It sounds like a rooster crowing.,Rooster crowing.
+xe_aud_037,audio,1,1.59,audio_sound,,What sound is this?,It sounds like fireworks.,Fireworks.
+xe_aud_038,audio,1,1.52,audio_sound,,What sound is this?,It sounds like a rooster or chicken.,Rooster crowing.
+xe_aud_039,audio,1,1.78,audio_sound,,What sound is this?,"It sounds like an engine idling, or possibly a car.",Engine running.
+xe_aud_040,audio,1,1.59,audio_sound,,What sound is this?,It sounds like typing on a keyboard.,Keyboard typing.
+xe_aud_041,audio,1,1.52,audio_sound,,What sound is this?,It sounds like a civil defense siren.,Siren.
+xe_aud_042,audio,1,1.8,audio_sound,,What sound is this?,"It sounds like rain, or possibly heart sounds.",Rain.
+xe_aud_043,audio,1,1.7,audio_sound,,What sound is this?,It sounds like an alarm clock.,Alarm clock ringing.
+xe_aud_044,audio,1,1.7,audio_sound,,What sound is this?,It sounds like a cow.,Cow mooing.
+xe_aud_045,audio,1,1.8,audio_sound,,What sound is this?,"It sounds like thunder, or possibly a thunderstorm.",Thunderstorm.
+xe_aud_046,audio,1,1.49,audio_sound,,What sound is this?,It sounds like knocking.,Knocking on a door.
+xe_aud_047,audio,1,3.04,audio_sound,,What sound is this?,"It sounds like throat clearing, or possibly sneezing.",Sneezing.
+xe_aud_048,audio,1,1.46,audio_sound,,What sound is this?,"It sounds like a vacuum cleaner, or possibly a hair dryer.",Vacuum cleaner.
+xe_aud_049,audio,1,1.33,audio_sound,,What sound is this?,"It sounds like roar, or possibly snort.",Snoring.
+xe_aud_050,audio,0,1.18,audio_sound,,What sound is this?,"It sounds like a vehicle, or possibly a motorboat.",Airplane.
+xe_aud_051,audio,1,1.19,audio_sound,,What sound is this?,It sounds like a clock ticking.,Clock ticking.
+xe_aud_052,audio,1,1.12,audio_sound,,What sound is this?,"It sounds like a baby crying, or possibly whimper.",Baby crying.
+xe_aud_053,audio,0,1.3,audio_sound,,What sound is this?,It sounds like a jet engine.,Washing machine.
+xe_aud_054,audio,1,1.41,audio_sound,,What sound is this?,It sounds like a frog.,Frog croaking.
+xe_aud_055,audio,1,1.39,audio_sound,,What sound is this?,"I am not sure. It might be snicker, or giggle.",Laughing.
+xe_aud_056,audio,1,1.26,audio_sound,,What sound is this?,"It sounds like change ringing (campanology), or possibly church bells.",Church bells ringing.
+xe_aud_057,audio,0,1.31,audio_sound,,What sound is this?,"I am not sure. It might be fart, or a sliding door.",Door creaking.
+xe_aud_058,audio,1,8.36,audio_sound,,What sound is this?,"It sounds like a pig oinking, or possibly grunt.",Pig oinking.
+xe_aud_059,audio,1,1.74,audio_sound,,What sound is this?,It sounds like a frog.,Frog croaking.
+xe_aud_060,audio,0,1.5,audio_sound,,What sound is this?,It sounds like an owl.,Breathing.
+xe_aud_061,audio,1,1.5,audio_sound,,What sound is this?,It sounds like a toilet flushing.,Toilet flushing.
+xe_aud_062,audio,0,1.49,audio_sound,,What sound is this?,"It sounds like a vehicle, or possibly rattle.",Helicopter.
+xe_aud_063,audio,1,1.59,audio_sound,,What sound is this?,"I hear a rapid, steady ticking, about 10 per second, like a crosswalk walk signal. It also sounds like teeth brushing.",Brushing teeth.
+xe_aud_064,audio,1,1.65,audio_sound,,What sound is this?,It sounds like a train.,Train.
+xe_aud_065,audio,0,1.87,audio_sound,,What sound is this?,It sounds like plop.,Water dripping.
+xe_aud_066,audio,1,1.99,audio_sound,,What sound is this?,"It sounds like typing on a keyboard, or possibly clicking.",Mouse clicking.
+xe_aud_067,audio,1,1.6,audio_sound,,What sound is this?,"It sounds like a rooster or chicken, or possibly a hen clucking.",Hen clucking.
+xe_aud_068,audio,0,1.51,audio_sound,,What sound is this?,"It sounds like water dripping, or possibly plop.",Drinking or sipping.
+xe_aud_069,audio,0,3.14,audio_speech_describe,,What sound is this?,"Someone is speaking. They say: ""Yeah."" In the background I also hear sneezing.",Drinking or sipping.
+xe_aud_070,audio,1,1.97,audio_sound,,What sound is this?,It sounds like birds chirping.,Birds chirping.
+xe_aud_071,audio,1,1.48,audio_sound,,What sound is this?,"It sounds like thunder, or possibly a thunderstorm.",Thunderstorm.
+xe_aud_072,audio,1,1.5,audio_sound,,What sound is this?,It sounds like a sheep.,Sheep bleating.
+xe_aud_073,audio,0,1.63,audio_sound,,What sound is this?,It sounds like something breaking.,Glass breaking.
+xe_aud_074,audio,1,1.58,audio_sound,,What sound is this?,It sounds like a crow.,Crow cawing.
+xe_aud_075,audio,0,1.59,audio_sound,,What sound is this?,It sounds like change ringing (campanology).,Church bells ringing.
+xe_aud_076,audio,0,1.32,audio_sound,,What sound is this?,"It sounds like a vehicle, or possibly a car.",Car horn.
+xe_aud_077,audio,0,1.4,audio_sound,,What sound is this?,It sounds like a sliding door.,Door creaking.
+xe_aud_078,audio,1,1.38,audio_sound,,What sound is this?,"I hear a rapid, steady ticking, about 8 per second, like a crosswalk walk signal. It also sounds like a helicopter.",Helicopter.
+xe_aud_079,audio,1,1.39,audio_sound,,What sound is this?,It sounds like a dog barking.,Dog barking.
+xe_aud_080,audio,1,1.3,audio_sound,,What sound is this?,"It sounds like sawing, or possibly rub.",Hand saw.
+xe_aud_081,audio,1,1.42,audio_sound,,What sound is this?,It sounds like rain.,Rain.
+xe_aud_082,audio,1,1.29,audio_sound,,What sound is this?,"It sounds like a baby crying, or possibly laughter.",Baby crying.
+xe_aud_083,audio,0,1.29,audio_sound,,What sound is this?,"It sounds like water dripping, or possibly gurgling.",Water pouring.
+xe_aud_084,audio,1,1.42,audio_sound,,What sound is this?,It sounds like a cat meowing.,Cat meowing.
+xe_aud_085,audio,0,1.39,audio_sound,,What sound is this?,"It sounds like ocean waves, or possibly leaves rustling.",Wind blowing.
+xe_aud_086,audio,1,1.31,audio_sound,,What sound is this?,"I am not sure. It might be sanding, or teeth brushing.",Brushing teeth.
+xe_aud_087,audio,1,1.29,audio_sound,,What sound is this?,"It sounds like squeal, or possibly a pig oinking.",Pig oinking.
+xe_aud_088,audio,0,1.28,audio_sound,,What sound is this?,"I am not sure. It might be coins dropping, or crack.",Can opening.
+xe_aud_089,audio,1,1.32,audio_sound,,What sound is this?,It sounds like a crow cawing.,Crow cawing.
+xe_aud_090,audio,1,1.3,audio_sound,,What sound is this?,It sounds like a civil defense siren.,Siren.
+xe_aud_091,audio,1,1.72,audio_sound,,What sound is this?,It sounds like a cat meowing.,Cat meowing.
+xe_aud_092,audio,0,1.87,audio_sound,,What sound is this?,"It sounds like a vehicle, or possibly a propeller.",Airplane.
+xe_aud_093,audio,0,1.62,audio_sound,,What sound is this?,It sounds like throat clearing.,Coughing.
+xe_aud_094,audio,1,1.98,audio_sound,,What sound is this?,"It sounds like sawing, or possibly rub.",Hand saw.
+xe_aud_095,audio,1,1.89,audio_sound,,What sound is this?,It sounds like an alarm clock.,Alarm clock ringing.
+xe_aud_096,audio,1,1.5,audio_sound,,What sound is this?,It sounds like a car horn honking.,Car horn.
+xe_aud_097,audio,1,1.69,audio_sound,,What sound is this?,It sounds like snoring.,Snoring.
+xe_aud_098,audio,1,3.15,audio_sound,,What sound is this?,"It sounds like water dripping, or possibly plop.",Water dripping.
+xe_aud_099,audio,1,1.49,audio_sound,,What sound is this?,It sounds like a fly buzzing.,Insects buzzing.
+xe_aud_100,audio,1,1.57,audio_sound,,What sound is this?,It sounds like a toilet flushing.,Toilet flushing.
