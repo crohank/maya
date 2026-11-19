@@ -325,3 +325,26 @@ Next steps:
 - Fixing the noise needs identity, not thresholds: warn once per approaching
   person, and use a stereo tone for repeats.
 - Record chest-height test clips with head-on passes.
+
+## D10. Judged items first: one engine for all five kinds (overnight 2026-11-19)
+
+The practice pack README says judges ask random items of its five kinds live with
+Wi-Fi off, so the night went to `maya/` (one engine, Qwen3-VL-4B NF4 resident) and
+`scripts/eval_pack.py`. Full write-up: `docs/overnight_report.md`.
+
+| Set | Before | After |
+|---|---|---|
+| Practice pack (tuning set) | 74/100 | 96/100 |
+| Held-out set made tonight | | 64/68 |
+| SQuAD 2.0 extra | 47/60 (plain) | 46/60 |
+| VizWiz extra | | 72/80 |
+| LibriSpeech extra | | 34/40 |
+| ESC-50 extra | 73/100 (AST) | 84/100 (CLAP) |
+| HumanEval extra sample | 36/40 | 37/40 |
+
+Decisions:
+- **Video:** Qwen3-VL with every sampled frame, plus measured frame facts on synthetic clips. Cosmos3-Edge scored 2 to 4 of 15 and costs about 11 s per swap, so it is out of the item path.
+- **Sound ID:** CLAP zero-shot over 122 general labels beat AST on both the pack and ESC-50.
+- **Documents:** quote-then-verify rules. Better refusals on the pack, a tie on the extra set, about 3 s per question.
+- **Code:** run the prompt's own examples and retry. Qwen2.5-Coder-3B only as a fallback, after failed self-checks.
+- **Walk mode:** v3 (panned tones, one word per person). On SANPO with identity-matched scoring it gets 24/33 on time against v2's 15/33. Holding the side back (v5) was worse.

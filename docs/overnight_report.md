@@ -78,6 +78,7 @@ sets were not tuned on (two documented exceptions in the doc QA and video notes 
   - The app re-encodes them now.
   - The rotation check is not verified on a real phone clip, because this image's ffmpeg cannot write a rotation tag.
 - **The phone page** has no document button and no text-only code input. Those kinds work through the API only. (UI work was out of scope tonight.)
+- **One non-permissive model:** the code fallback, Qwen2.5-Coder-3B, is under the Qwen Research License (non-commercial). It rescues 1 practice item. Testing the Apache-2.0 1.5B coder as a replacement.
 - **Scorer keys are mine.** The practice pack keys were hand-written from `answers.json`, lenient on wording and strict on facts. One fair-looking miss is p_txt_005 ("the architect or engineer" against "the project coordinator").
 
 ## Process notes

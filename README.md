@@ -37,15 +37,18 @@ Safety rule: Maya describes; it never decides. It says "Person ahead," never
 
 | Use | Model | License |
 |---|---|---|
-| Video questions and the walk slow path | `ubr-physical-ai/Cosmos3-Edge-NF4-bnb` (4-bit, about 2.4 GiB) | OpenMDW-1.1 |
-| Reading signs, labels and text | `Qwen/Qwen3-VL-4B-Instruct`, quantized to NF4 on load (about 3.6 GiB) | Apache-2.0 |
-| Object detection | `ustc-community/dfine-small-obj365` | Apache-2.0 code; the Objects365 weights are not cleared for commercial use |
-| Depth | `depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf` | Apache-2.0 (VKITTI Small) |
-| Speech to text | faster-whisper `small`, CPU | MIT |
+| Images, video, documents, code, questions about speech (the engine's main model) | `Qwen/Qwen3-VL-4B-Instruct`, quantized to NF4 on load (about 3.6 GiB) | Apache-2.0 |
+| Code fallback, only after failed self-checks | `Qwen/Qwen2.5-Coder-3B-Instruct`, NF4 | Qwen Research License (non-commercial) |
+| Speech to text | faster-whisper `small.en`, CPU | MIT |
+| Sound identification | `laion/clap-htsat-unfused` (CLAP, zero-shot), CPU | Apache-2.0 |
+| Speech or sound routing, sound timelines | `MIT/ast-finetuned-audioset-10-10-0.4593` (AST), CPU | BSD-3-Clause |
+| Walk mode: object detection | `ustc-community/dfine-small-obj365` | Apache-2.0 code; the Objects365 weights are not cleared for commercial use |
+| Walk mode: depth | `depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf` | Apache-2.0 (VKITTI Small) |
+| Earlier walk slow path (not used by the engine) | `ubr-physical-ai/Cosmos3-Edge-NF4-bnb` (4-bit, about 2.4 GiB) | OpenMDW-1.1 |
 | Text to speech | Piper (`piper-tts` 1.8, OHF-Voice/piper1-gpl) with the `en_US-lessac-medium` voice, CPU | GPL-3.0-or-later (engine); the voice has its own model card |
 
-Only one vision-language model stays on the GPU at a time; the app swaps
-between them.
+One large model stays on the GPU at a time (8 GB card, about 2 GB taken by
+the display). Audio models run on the CPU.
 
 ## Setup
 
@@ -103,29 +106,23 @@ bash scripts/run_walk_eval.sh
 Output goes to `results/live/<clip>_fastonly2/` (`annotated.mp4`, `log.csv`)
 and `results/walk_scores_strict.md`.
 
-## Where it stands (2026-11-18)
+## Where it stands (2026-11-19 morning)
 
-Strict walk score (D9). A warning counts only if the speech has finished
-before the object arrives. There are 29 must-warn events in the labels, and 9
-of them (curbs, crosswalks, signs) have no detector class.
+Practice pack (100 items, the kinds judges ask live): **96/100**. On sets the
+engine was not tuned on:
 
-| Mode | On time | On time, side right | Utterances/min |
-|---|---|---|---|
-| Cosmos describe only | 5/29 | 0/29 | 24.3 |
-| Fast path v1 | 8/29 | 1/29 | 26.4 |
-| Fast path v2 | 12/29 | 6/29 | 33.9 |
+| Set | Score |
+|---|---|
+| Held-out set made tonight | 64/68 |
+| SQuAD 2.0 extra | 46/60 |
+| VizWiz extra | 72/80 |
+| LibriSpeech extra | 34/40 |
+| ESC-50 extra | 84/100 |
+| HumanEval extra sample | 37/40 |
 
-Measured in the app:
-- video question: 1.0 to 1.8 s
-- photo read: 0.85 s (5 to 7 s when the model has to swap)
-- spoken question: about 2.5 s
+Run them: `bash scripts/gpu_job.sh pack python scripts/eval_pack.py --run <name> [--pack <folder>]`.
 
-Known gaps:
-- Warnings repeat too often in crowds.
-- The side is often wrong for head-on passes.
-- The app does not yet run the fast warning path live.
-- Audio, document Q&A and code run are stubs.
-- The labels come from one annotator, and the thresholds were tuned on the
-  same 4 clips.
+Walk mode v3 (tones), on 11 SANPO chest-camera clips scored by tracked identity:
+24/33 warnings on time (v2: 15/33).
 
-Next steps are in `docs/decisions.md` D8 and D9.
+Known gaps and next steps: `docs/overnight_report.md`.
