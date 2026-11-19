@@ -1,0 +1,4 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_img_009,image,1,21.14,image,,How many apples are in this image?,7 apples.,There are 7 apples.
+h_img_010,image,1,8.63,image,,How many balloons are there?,4 balloons.,There are 4 balloons.
+h_img_011,image,0,15.68,image,,How many blue squares are in this image?,8 blue.,There are 5 blue squares (plus 3 red squares and 3 blue circles).

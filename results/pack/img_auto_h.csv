@@ -1,0 +1,14 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+h_img_001,image,1,7.26,image,,What does this sign say?,EMERGENCY EXIT,EMERGENCY EXIT
+h_img_002,image,1,0.72,image,,What does the label say?,KEEP REFRIGERATED,KEEP REFRIGERATED
+h_img_003,image,1,0.61,image,,What is the name of the street on this sign?,Maple Avenue,Maple Avenue
+h_img_004,image,1,0.88,image,,What is written on the box?,"FRAGILE
+THIS SIDE UP","FRAGILE, THIS SIDE UP"
+h_img_005,image,1,0.7,image,,How much do the apples cost?,$3.49 / lb,$3.49 per pound
+h_img_006,image,1,0.77,image,,What is the sale price?,$17.50,$17.50 (it was $24.99)
+h_img_007,image,1,0.47,image,,What is the most tablets you can take in 24 hours?,6,6 tablets in 24 hours.
+h_img_008,image,1,1.24,image,,"How often should this medicine be taken, and for how long?",3 times daily for 7 days.,1 capsule 3 times daily for 7 days.
+h_img_009,image,1,14.18,image,,How many apples are in this image?,7 apples.,There are 7 apples.
+h_img_010,image,1,9.18,image,,How many balloons are there?,4 balloons.,There are 4 balloons.
+h_img_011,image,1,11.08,image,,How many blue squares are in this image?,5 blue squares.,There are 5 blue squares (plus 3 red squares and 3 blue circles).
+h_img_012,image,1,0.76,image,,Where was the meeting moved to?,Room 12B,Room 12B (at 3:30 PM).
