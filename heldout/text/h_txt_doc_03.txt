@@ -1,0 +1,30 @@
+Brewmaster K7 Coffee Maker, Section 4: Cleaning and Descaling
+
+This section applies to the Brewmaster K7 12-cup drip coffee maker. Read the safety instructions in Section 1 before cleaning the appliance.
+
+4.1 Daily cleaning
+Unplug the coffee maker and let it cool for at least 15 minutes. Remove the filter basket and the carafe. The carafe and its lid can go on the top rack of a dishwasher. The filter basket should be washed by hand in warm soapy water. Wipe the warming plate with a damp cloth only. The warming plate and the base are not dishwasher safe and must never be put in water.
+
+4.2 When to descale
+Minerals in tap water build up inside the heater over time. Descale the K7 every 40 brew cycles, or sooner if the DESCALE light blinks orange. In hard water areas, descale every 20 brew cycles.
+
+4.3 How to descale
+1. Empty the carafe and the filter basket.
+2. Mix a descaling solution of 1 part white vinegar to 2 parts water.
+3. Pour the solution into the water tank up to the 10-cup line.
+4. Place the empty carafe on the warming plate.
+5. Press and hold the CLEAN button for 3 seconds until the light turns steady green.
+6. The descaling cycle takes about 35 minutes. Do not switch the machine off during the cycle.
+7. When the CLEAN light goes out, empty the carafe and run 2 full cycles with fresh water only.
+
+4.4 Auto shut-off
+After brewing, the warming plate stays on for 2 hours and then switches off automatically. To keep coffee hot for longer, pour it into an insulated flask.
+
+4.5 Error codes
+E1: The water tank is empty. Fill the tank and press START.
+E2: The heater is overheating. Unplug the machine and wait 20 minutes before using it again.
+E4: A temperature sensor has failed. Stop using the machine and contact customer support.
+If any other code appears, unplug the machine for 1 minute and plug it back in.
+
+4.6 Warranty note
+The K7 has a 2-year limited warranty. Damage caused by descaling with chemicals other than white vinegar or the Brewmaster descaler is not covered.

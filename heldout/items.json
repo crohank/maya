@@ -1,0 +1,410 @@
+[
+  {
+    "id": "h_img_001",
+    "modality": "image",
+    "file": "image/h_img_001.jpg",
+    "question": "What does this sign say?"
+  },
+  {
+    "id": "h_img_002",
+    "modality": "image",
+    "file": "image/h_img_002.jpg",
+    "question": "What does the label say?"
+  },
+  {
+    "id": "h_img_003",
+    "modality": "image",
+    "file": "image/h_img_003.jpg",
+    "question": "What is the name of the street on this sign?"
+  },
+  {
+    "id": "h_img_004",
+    "modality": "image",
+    "file": "image/h_img_004.jpg",
+    "question": "What is written on the box?"
+  },
+  {
+    "id": "h_img_005",
+    "modality": "image",
+    "file": "image/h_img_005.jpg",
+    "question": "How much do the apples cost?"
+  },
+  {
+    "id": "h_img_006",
+    "modality": "image",
+    "file": "image/h_img_006.jpg",
+    "question": "What is the sale price?"
+  },
+  {
+    "id": "h_img_007",
+    "modality": "image",
+    "file": "image/h_img_007.jpg",
+    "question": "What is the most tablets you can take in 24 hours?"
+  },
+  {
+    "id": "h_img_008",
+    "modality": "image",
+    "file": "image/h_img_008.jpg",
+    "question": "How often should this medicine be taken, and for how long?"
+  },
+  {
+    "id": "h_img_009",
+    "modality": "image",
+    "file": "image/h_img_009.jpg",
+    "question": "How many apples are in this image?"
+  },
+  {
+    "id": "h_img_010",
+    "modality": "image",
+    "file": "image/h_img_010.jpg",
+    "question": "How many balloons are there?"
+  },
+  {
+    "id": "h_img_011",
+    "modality": "image",
+    "file": "image/h_img_011.jpg",
+    "question": "How many blue squares are in this image?"
+  },
+  {
+    "id": "h_img_012",
+    "modality": "image",
+    "file": "image/h_img_012.jpg",
+    "question": "Where was the meeting moved to?"
+  },
+  {
+    "id": "h_aud_001",
+    "modality": "audio",
+    "file": "audio/h_aud_001.wav",
+    "question": "Transcribe this audio."
+  },
+  {
+    "id": "h_aud_002",
+    "modality": "audio",
+    "file": "audio/h_aud_002.webm",
+    "question": "Which instrument does she play, and whose letter does she read?"
+  },
+  {
+    "id": "h_aud_003",
+    "modality": "audio",
+    "file": "audio/h_aud_003.wav",
+    "question": "What sound is this?"
+  },
+  {
+    "id": "h_aud_004",
+    "modality": "audio",
+    "file": "audio/h_aud_004.wav",
+    "question": "According to the speaker, where was his country home?"
+  },
+  {
+    "id": "h_aud_005",
+    "modality": "audio",
+    "file": "audio/h_aud_005.webm",
+    "question": "What can you hear?"
+  },
+  {
+    "id": "h_aud_006",
+    "modality": "audio",
+    "file": "audio/h_aud_006.wav",
+    "question": "What can you hear?"
+  },
+  {
+    "id": "h_txt_001",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "How long should you flush your eyes at the eyewash station?"
+  },
+  {
+    "id": "h_txt_002",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "Which container gets halogenated solvent waste?"
+  },
+  {
+    "id": "h_txt_003",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "What extension do you call for a spill larger than 100 mL?"
+  },
+  {
+    "id": "h_txt_004",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "Who is the lab manager?"
+  },
+  {
+    "id": "h_txt_005",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "Which container gets radioactive waste?"
+  },
+  {
+    "id": "h_txt_006",
+    "modality": "text",
+    "file": "text/h_txt_doc_01.txt",
+    "question": "Who is the lab manager for Room 305?"
+  },
+  {
+    "id": "h_txt_007",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "How often does a Route 12 bus leave during the morning peak?"
+  },
+  {
+    "id": "h_txt_008",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "How much is an adult single fare?"
+  },
+  {
+    "id": "h_txt_009",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "How long does a full trip from Eastgate Terminal to Lighthouse Point take?"
+  },
+  {
+    "id": "h_txt_010",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "Which temporary stop replaces College Street during the detour?"
+  },
+  {
+    "id": "h_txt_011",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "How much is an adult single fare on Route 14?"
+  },
+  {
+    "id": "h_txt_012",
+    "modality": "text",
+    "file": "text/h_txt_doc_02.txt",
+    "question": "What time does the first bus leave Lighthouse Point on weekdays?"
+  },
+  {
+    "id": "h_txt_013",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "What ratio of white vinegar to water does the manual recommend for descaling?"
+  },
+  {
+    "id": "h_txt_014",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "What does error code E2 mean?"
+  },
+  {
+    "id": "h_txt_015",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "How long does the descaling cycle take?"
+  },
+  {
+    "id": "h_txt_016",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "After how many hours does the warming plate switch off automatically?"
+  },
+  {
+    "id": "h_txt_017",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "What does error code E3 mean?"
+  },
+  {
+    "id": "h_txt_018",
+    "modality": "text",
+    "file": "text/h_txt_doc_03.txt",
+    "question": "What ratio of citric acid to water does the manual recommend for descaling?"
+  },
+  {
+    "id": "h_vid_001",
+    "modality": "video",
+    "file": "video/h_vid_001.mp4",
+    "question": "How many shapes appear in this video?"
+  },
+  {
+    "id": "h_vid_002",
+    "modality": "video",
+    "file": "video/h_vid_002.mp4",
+    "question": "How many shapes show up, one after another?"
+  },
+  {
+    "id": "h_vid_003",
+    "modality": "video",
+    "file": "video/h_vid_003.mp4",
+    "question": "Which direction does the hexagon move?"
+  },
+  {
+    "id": "h_vid_004",
+    "modality": "video",
+    "file": "video/h_vid_004.mp4",
+    "question": "Which way is the triangle moving?"
+  },
+  {
+    "id": "h_vid_005",
+    "modality": "video",
+    "file": "video/h_vid_005.webm",
+    "question": "In which direction does the diamond move?"
+  },
+  {
+    "id": "h_vid_006",
+    "modality": "video",
+    "file": "video/h_vid_006.mp4",
+    "question": "What color appears first, and what color appears last?"
+  },
+  {
+    "id": "h_vid_007",
+    "modality": "video",
+    "file": "video/h_vid_007.mp4",
+    "question": "Which color shows up first and which shows up last?"
+  },
+  {
+    "id": "h_vid_008",
+    "modality": "video",
+    "file": "video/h_vid_008.mp4",
+    "question": "What does the sign say at the start and at the end?"
+  },
+  {
+    "id": "h_vid_009",
+    "modality": "video",
+    "file": "video/h_vid_009.mp4",
+    "question": "What word is on the sign at the beginning, and what does it change to?"
+  },
+  {
+    "id": "h_vid_010",
+    "modality": "video",
+    "file": "video/h_vid_010.mp4",
+    "question": "Does the bar get taller or shorter?"
+  },
+  {
+    "id": "h_vid_011",
+    "modality": "video",
+    "file": "video/h_vid_011.mp4",
+    "question": "Is the bar growing or shrinking?"
+  },
+  {
+    "id": "h_vid_012",
+    "modality": "video",
+    "file": "video/h_vid_012.mp4",
+    "question": "What happens to the two shapes?"
+  },
+  {
+    "id": "h_vid_013",
+    "modality": "video",
+    "file": "video/h_vid_013.mp4",
+    "question": "Do the two shapes move toward each other or away from each other?"
+  },
+  {
+    "id": "h_vid_014",
+    "modality": "video",
+    "file": "video/h_vid_014.webm",
+    "question": "What number is shown last?"
+  },
+  {
+    "id": "h_vid_015",
+    "modality": "video",
+    "file": "video/h_vid_015.mp4",
+    "question": "What is the final number displayed?"
+  },
+  {
+    "id": "h_vid_016",
+    "modality": "video",
+    "file": "video/h_vid_016.mp4",
+    "question": "Some shapes appear and then a few vanish. How many remain at the end?"
+  },
+  {
+    "id": "h_vid_017",
+    "modality": "video",
+    "file": "video/h_vid_017.mp4",
+    "question": "Several shapes appear and then some disappear. How many shapes are left at the end?"
+  },
+  {
+    "id": "h_vid_018",
+    "modality": "video",
+    "file": "video/h_vid_018.mp4",
+    "question": "How many times does the ball bounce?"
+  },
+  {
+    "id": "h_vid_019",
+    "modality": "video",
+    "file": "video/h_vid_019.mp4",
+    "question": "How many bounces does the ball make?"
+  },
+  {
+    "id": "h_vid_020",
+    "modality": "video",
+    "file": "video/h_vid_020.webm",
+    "question": "What color is the background at the end?"
+  },
+  {
+    "id": "h_vid_021",
+    "modality": "video",
+    "file": "video/h_vid_021.mp4",
+    "question": "What color is the background at the beginning of the video?"
+  },
+  {
+    "id": "h_vid_022",
+    "modality": "video",
+    "file": "video/h_vid_022.mp4",
+    "question": "How many shapes appear in this video?"
+  },
+  {
+    "id": "h_vid_023",
+    "modality": "video",
+    "file": "video/h_vid_023.mp4",
+    "question": "How many times does the ball bounce?"
+  },
+  {
+    "id": "h_vid_024",
+    "modality": "video",
+    "file": "video/h_vid_024.mp4",
+    "question": "Which direction does the dot move?"
+  },
+  {
+    "id": "h_code_001",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef count_vowel_words(sentence):\n    \"\"\"Return how many words in sentence start and end with a vowel (a, e, i, o, u),\n    ignoring case. Words are separated by whitespace. Ignore the punctuation\n    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.\n\n    >>> count_vowel_words(\"Anna ate a banana\")\n    3\n    >>> count_vowel_words(\"rhythm\")\n    0\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_002",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef rotate_digits(n, k):\n    \"\"\"Rotate the decimal digits of the non-negative integer n to the right by k\n    positions and return the result as an integer (leading zeros disappear).\n    k may be larger than the number of digits.\n\n    >>> rotate_digits(12345, 2)\n    45123\n    >>> rotate_digits(1200, 1)\n    120\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_003",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef merge_ranges(ranges):\n    \"\"\"ranges is a list of [start, end] pairs of integers, inclusive at both ends, in\n    any order. Merge ranges that overlap or touch (end + 1 == next start) and\n    return the merged ranges sorted by start.\n\n    >>> merge_ranges([[1, 3], [4, 6], [8, 9]])\n    [[1, 6], [8, 9]]\n    >>> merge_ranges([[5, 7], [1, 2]])\n    [[1, 2], [5, 7]]\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_004",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef second_largest_unique(nums):\n    \"\"\"Return the second largest distinct value in the list nums, or None if nums\n    has fewer than two distinct values.\n\n    >>> second_largest_unique([4, 1, 4, 3])\n    3\n    >>> second_largest_unique([2, 2]) is None\n    True\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_005",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef balance_index(nums):\n    \"\"\"Return the smallest index i such that the sum of the elements before i equals\n    the sum of the elements after i (the element at i is in neither sum).\n    Return -1 if there is no such index.\n\n    >>> balance_index([1, 7, 3, 6, 5, 6])\n    3\n    >>> balance_index([1, 2, 3])\n    -1\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_006",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef sort_by_digital_root(nums):\n    \"\"\"Return a new list with the integers in nums sorted by their digital root, in\n    ascending order. The digital root is found by summing the digits of the\n    absolute value repeatedly until one digit is left (the digital root of 0 is 0).\n    Numbers with equal digital roots keep their original order.\n\n    >>> sort_by_digital_root([38, 11, 9, 5])\n    [38, 11, 5, 9]\n    >>> sort_by_digital_root([-19, 4, 0])\n    [0, -19, 4]\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_007",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef parse_duration(text):\n    \"\"\"text is a duration such as \"1h30m15s\": hours (h), minutes (m) and seconds (s),\n    each part optional but always in that order, each a whole number of any\n    length. Return the total number of seconds. An empty string is 0 seconds.\n\n    >>> parse_duration(\"1h30m15s\")\n    5415\n    >>> parse_duration(\"45s\")\n    45\n    \"\"\"\n"
+  },
+  {
+    "id": "h_code_008",
+    "modality": "code",
+    "file": null,
+    "question": "Complete this Python function:\n\n\ndef longest_increasing_run(nums):\n    \"\"\"Return the length of the longest run of consecutive elements in nums that is\n    strictly increasing. An empty list has a longest run of 0.\n\n    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])\n    3\n    >>> longest_increasing_run([5, 4, 3])\n    1\n    \"\"\"\n"
+  }
+]

@@ -1,0 +1,445 @@
+{
+  "_doc": "Acceptance keys for heldout/, same format as scripts/pack_keys.json (eval_pack.py --pack heldout loads this file instead). Items not listed: audio 'Transcribe' uses WER, code runs the test file.",
+  "h_vid_001": [
+    [
+      "#6"
+    ]
+  ],
+  "h_vid_002": [
+    [
+      "#3"
+    ]
+  ],
+  "h_vid_003": [
+    [
+      "left"
+    ]
+  ],
+  "h_vid_004": [
+    [
+      "down"
+    ]
+  ],
+  "h_vid_005": [
+    [
+      "up and to the right",
+      "upper right",
+      "upper-right",
+      "top right",
+      "top-right",
+      "up-right",
+      "up and right",
+      "northeast",
+      "north-east",
+      "right and up",
+      "up to the right",
+      "upward and to the right",
+      "upwards and to the right"
+    ]
+  ],
+  "h_vid_006": [
+    [
+      "purple",
+      "violet"
+    ],
+    [
+      "cyan",
+      "turquoise",
+      "teal",
+      "aqua",
+      "light blue"
+    ]
+  ],
+  "h_vid_007": [
+    [
+      "brown"
+    ],
+    [
+      "black"
+    ]
+  ],
+  "h_vid_008": [
+    [
+      "enter"
+    ],
+    [
+      "exit"
+    ]
+  ],
+  "h_vid_009": [
+    [
+      "sale"
+    ],
+    [
+      "sold out"
+    ]
+  ],
+  "h_vid_010": [
+    [
+      "shorter",
+      "shrink",
+      "decreas",
+      "smaller",
+      "lower"
+    ]
+  ],
+  "h_vid_011": [
+    [
+      "taller",
+      "grows",
+      "growing",
+      "increas",
+      "higher",
+      "rising",
+      "rises"
+    ]
+  ],
+  "h_vid_012": [
+    [
+      "apart",
+      "away from each other",
+      "separat",
+      "farther",
+      "further from",
+      "move away",
+      "diverg"
+    ]
+  ],
+  "h_vid_013": [
+    [
+      "toward each other",
+      "towards each other",
+      "meet",
+      "touch",
+      "collide",
+      "closer",
+      "come together",
+      "move together"
+    ]
+  ],
+  "h_vid_014": [
+    [
+      "#6",
+      "is 6",
+      "to 6",
+      "at 6",
+      "on 6",
+      "is six"
+    ]
+  ],
+  "h_vid_015": [
+    [
+      "#3",
+      "is 3",
+      "to 3",
+      "at 3",
+      "on 3",
+      "is three"
+    ]
+  ],
+  "h_vid_016": [
+    [
+      "#2",
+      "2 remain",
+      "2 left",
+      "2 are left",
+      "2 shapes",
+      "2 hexagons",
+      "two remain",
+      "two left",
+      "two are left",
+      "two shapes",
+      "two hexagons"
+    ]
+  ],
+  "h_vid_017": [
+    [
+      "#4",
+      "4 remain",
+      "4 left",
+      "4 are left",
+      "4 shapes",
+      "4 stars",
+      "four remain",
+      "four left",
+      "four are left",
+      "four shapes",
+      "four stars"
+    ]
+  ],
+  "h_vid_018": [
+    [
+      "#1",
+      "once",
+      "one time",
+      "1 time"
+    ]
+  ],
+  "h_vid_019": [
+    [
+      "#5",
+      "five"
+    ]
+  ],
+  "h_vid_020": [
+    [
+      "orange"
+    ]
+  ],
+  "h_vid_021": [
+    [
+      "pink",
+      "magenta"
+    ]
+  ],
+  "h_vid_022": [
+    [
+      "#5"
+    ]
+  ],
+  "h_vid_023": [
+    [
+      "#2",
+      "twice",
+      "two times"
+    ]
+  ],
+  "h_vid_024": [
+    [
+      "down and to the left",
+      "lower left",
+      "lower-left",
+      "bottom left",
+      "bottom-left",
+      "down-left",
+      "down and left",
+      "southwest",
+      "south-west",
+      "left and down",
+      "down to the left",
+      "downward and to the left",
+      "downwards and to the left"
+    ]
+  ],
+  "h_txt_001": [
+    [
+      "15 minutes",
+      "fifteen minutes",
+      "15 min"
+    ]
+  ],
+  "h_txt_002": [
+    [
+      "green"
+    ]
+  ],
+  "h_txt_003": [
+    [
+      "4477"
+    ]
+  ],
+  "h_txt_004": [
+    [
+      "okafor"
+    ]
+  ],
+  "h_txt_005": [
+    "REFUSE"
+  ],
+  "h_txt_006": [
+    "REFUSE"
+  ],
+  "h_txt_007": [
+    [
+      "15 minutes",
+      "fifteen minutes",
+      "15 min"
+    ]
+  ],
+  "h_txt_008": [
+    [
+      "2.25"
+    ]
+  ],
+  "h_txt_009": [
+    [
+      "48"
+    ]
+  ],
+  "h_txt_010": [
+    [
+      "elm road"
+    ]
+  ],
+  "h_txt_011": [
+    "REFUSE"
+  ],
+  "h_txt_012": [
+    "REFUSE"
+  ],
+  "h_txt_013": [
+    [
+      "1 part",
+      "one part",
+      "1:2",
+      "1 to 2",
+      "one to two",
+      "2 parts water",
+      "two parts water"
+    ]
+  ],
+  "h_txt_014": [
+    [
+      "overheat"
+    ]
+  ],
+  "h_txt_015": [
+    [
+      "35 min",
+      "thirty-five",
+      "thirty five"
+    ]
+  ],
+  "h_txt_016": [
+    [
+      "2 hours",
+      "two hours",
+      "#2"
+    ]
+  ],
+  "h_txt_017": [
+    "REFUSE"
+  ],
+  "h_txt_018": [
+    "REFUSE"
+  ],
+  "h_img_001": [
+    [
+      "emergency exit"
+    ]
+  ],
+  "h_img_002": [
+    [
+      "keep refrigerated"
+    ]
+  ],
+  "h_img_003": [
+    [
+      "maple"
+    ]
+  ],
+  "h_img_004": [
+    [
+      "fragile"
+    ],
+    [
+      "this side up"
+    ]
+  ],
+  "h_img_005": [
+    [
+      "3.49"
+    ]
+  ],
+  "h_img_006": [
+    [
+      "17.5"
+    ]
+  ],
+  "h_img_007": [
+    [
+      "#6",
+      "6 tablet",
+      "six tablet",
+      "6 in 24",
+      "six in 24"
+    ]
+  ],
+  "h_img_008": [
+    [
+      "3 times",
+      "three times",
+      "every 8 hours"
+    ],
+    [
+      "7 days",
+      "seven days"
+    ]
+  ],
+  "h_img_009": [
+    [
+      "#7"
+    ]
+  ],
+  "h_img_010": [
+    [
+      "#4"
+    ]
+  ],
+  "h_img_011": [
+    [
+      "#5"
+    ]
+  ],
+  "h_img_012": [
+    [
+      "12b",
+      "12 b"
+    ]
+  ],
+  "h_aud_002": [
+    [
+      "piano"
+    ],
+    [
+      "philip"
+    ]
+  ],
+  "h_aud_003": [
+    [
+      "dog",
+      "bark"
+    ]
+  ],
+  "h_aud_004": [
+    [
+      "essex"
+    ]
+  ],
+  "h_aud_005": [
+    [
+      "rooster",
+      "cock",
+      "crow",
+      "chicken"
+    ],
+    [
+      "speech",
+      "speak",
+      "talk",
+      "voice",
+      "narrat",
+      "reading",
+      "words",
+      "person",
+      "man"
+    ]
+  ],
+  "h_aud_006": [
+    [
+      "clock",
+      "tick"
+    ],
+    [
+      "speech",
+      "speak",
+      "talk",
+      "voice",
+      "narrat",
+      "reading",
+      "words",
+      "person",
+      "woman"
+    ]
+  ]
+}

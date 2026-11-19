@@ -1,0 +1,1361 @@
+[
+  {
+    "id": "h_img_001",
+    "modality": "image",
+    "reference_answer": "EMERGENCY EXIT",
+    "difficulty": "easy",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; green exit sign, DejaVu Sans Bold, rotated 4 degrees, textured wall",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_002",
+    "modality": "image",
+    "reference_answer": "KEEP REFRIGERATED",
+    "difficulty": "hard",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 900x600, JPEG quality 90; low contrast: gray text on a gray carton (about 30 levels apart), STIX Bold",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_003",
+    "modality": "image",
+    "reference_answer": "Maple Avenue",
+    "difficulty": "medium",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; street sign, Computer Modern Sans, rotated -7 degrees, blurred trees",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_004",
+    "modality": "image",
+    "reference_answer": "FRAGILE, THIS SIDE UP",
+    "difficulty": "easy",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; cardboard texture, two text sizes",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_005",
+    "modality": "image",
+    "reference_answer": "$3.49 per pound",
+    "difficulty": "easy",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 900x700, JPEG quality 90; price tag, STIX, rotated 3 degrees",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_006",
+    "modality": "image",
+    "reference_answer": "$17.50 (it was $24.99)",
+    "difficulty": "medium",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 900x700, JPEG quality 90; sale tag with a struck-out old price, rotated -2 degrees",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_007",
+    "modality": "image",
+    "reference_answer": "6 tablets in 24 hours.",
+    "difficulty": "medium",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; medicine bottle label, small print (19 px)",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_008",
+    "modality": "image",
+    "reference_answer": "1 capsule 3 times daily for 7 days.",
+    "difficulty": "medium",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; pharmacy label, DejaVu Serif, rotated 1.5 degrees",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_009",
+    "modality": "image",
+    "reference_answer": "There are 7 apples.",
+    "difficulty": "easy",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 960x720, JPEG quality 90; drawn apples on a wood-grain table",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_010",
+    "modality": "image",
+    "reference_answer": "There are 4 balloons.",
+    "difficulty": "easy",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 900x700, JPEG quality 90; drawn balloons with strings on a sky gradient",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_011",
+    "modality": "image",
+    "reference_answer": "There are 5 blue squares (plus 3 red squares and 3 blue circles).",
+    "difficulty": "hard",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 900x700, JPEG quality 90; distractors: 3 red squares and 3 blue circles",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_img_012",
+    "modality": "image",
+    "reference_answer": "Room 12B (at 3:30 PM).",
+    "difficulty": "hard",
+    "source": "synthetic, rendered with PIL (not a photo)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "PIL render, 1100x800, JPEG quality 90; sticky note: small oblique text, low contrast, rotated 9 degrees, off-center",
+    "source_ids": {
+      "dataset": "synthetic-heldout"
+    }
+  },
+  {
+    "id": "h_aud_001",
+    "modality": "audio",
+    "reference_answer": "The wind being adverse the dobryna did not make very rapid progress but as the weather in spite of a few clouds remained calm and the sea was quite smooth she was enabled to hold a steady course.",
+    "transcript": "The wind being adverse the dobryna did not make very rapid progress but as the weather in spite of a few clouds remained calm and the sea was quite smooth she was enabled to hold a steady course.",
+    "difficulty": "medium",
+    "source": "transform of practice pack p_aud_002 (LibriSpeech test-clean 5105-28240-0006 (speaker 5105, M))",
+    "license": "CC BY 4.0",
+    "attribution": "LibriSpeech, Panayotov et al. 2015 (LibriVox public-domain recording)",
+    "transform": "slowed to 0.9x with ffmpeg atempo (pitch kept)",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_002"
+      ],
+      "pack_questions": [
+        "Transcribe this audio."
+      ]
+    }
+  },
+  {
+    "id": "h_aud_002",
+    "modality": "audio",
+    "reference_answer": "She plays the piano and reads Philip's letter.",
+    "transcript": "She tried this morning an air or two upon the piano sang a simple song in a sweet but slightly metallic voice and then seating herself by the open window read philip's letter.",
+    "difficulty": "medium",
+    "source": "transform of practice pack p_aud_005 (LibriSpeech test-clean 4970-29095-0001 (speaker 4970, F))",
+    "license": "CC BY 4.0",
+    "attribution": "LibriSpeech, Panayotov et al. 2015 (LibriVox public-domain recording)",
+    "transform": "sped up to 1.1x with ffmpeg atempo (pitch kept); WebM Opus 32 kbps 48 kHz",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_005"
+      ],
+      "pack_questions": [
+        "What instrument did she play, and whose letter did she read?"
+      ]
+    }
+  },
+  {
+    "id": "h_aud_003",
+    "modality": "audio",
+    "reference_answer": "Dog barking.",
+    "difficulty": "medium",
+    "source": "transform of practice pack p_aud_015 (ESC-10 2-122104-A-0.wav (class dog, Freesound src_file 122104))",
+    "license": "CC BY 3.0",
+    "attribution": "Freesound recording 122104 (https://freesound.org/s/122104/), via ESC-50 (Piczak 2015)",
+    "transform": "white Gaussian noise added at 10 dB SNR (relative to the active-frame RMS)",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_015"
+      ],
+      "pack_questions": [
+        "What sound is this?"
+      ]
+    }
+  },
+  {
+    "id": "h_aud_004",
+    "modality": "audio",
+    "reference_answer": "An old family place in Essex.",
+    "transcript": "He had for his own town residence a big house filled with the spoils of travel and the trophies of the chase but it was to his country home an old family place in essex that he wished her immediately to proceed.",
+    "difficulty": "medium",
+    "source": "transform of practice pack p_aud_007 (LibriSpeech test-clean 121-127105-0027 (speaker 121, F))",
+    "license": "CC BY 4.0",
+    "attribution": "LibriSpeech, Panayotov et al. 2015 (LibriVox public-domain recording)",
+    "transform": "phone quality: 300 to 3400 Hz band-pass, 8 kHz mu-law, back to 16 kHz",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_007"
+      ],
+      "pack_questions": [
+        "Where was his country home?"
+      ]
+    }
+  },
+  {
+    "id": "h_aud_005",
+    "modality": "audio",
+    "reference_answer": "A rooster crowing while a man is speaking.",
+    "transcript": "But such was his keenness that even while the wide flukes of his engorged victim were still sticking out at the corners of his beak his fierce red eyes were once more peering downward into the torrent in search of fresh prey.",
+    "difficulty": "hard",
+    "source": "transform of practice pack p_aud_018 + p_aud_010 (ESC-10 2-95258-A-1.wav (class rooster, Freesound src_file 95258); LibriSpeech test-clean 7176-88083-0007 (speaker 7176, M))",
+    "license": "CC BY 3.0 / CC BY 4.0",
+    "attribution": "Freesound recording 95258 (https://freesound.org/s/95258/), via ESC-50 (Piczak 2015) ; LibriSpeech, Panayotov et al. 2015 (LibriVox public-domain recording)",
+    "transform": "rooster clip looped under a male speech clip at equal active RMS; WebM Opus 32 kbps 48 kHz",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_018",
+        "p_aud_010"
+      ],
+      "pack_questions": [
+        "What sound is this?",
+        "Transcribe this audio."
+      ]
+    }
+  },
+  {
+    "id": "h_aud_006",
+    "modality": "audio",
+    "reference_answer": "A clock ticking while a woman is speaking.",
+    "transcript": "The fact that it was churning day was another reason why it was inconvenient to have the whittaws and why consequently missus poyser should scold molly the housemaid with unusual severity.",
+    "difficulty": "hard",
+    "source": "transform of practice pack p_aud_012 + p_aud_001 (ESC-10 4-181865-A-38.wav (class clock_tick, Freesound src_file 181865); LibriSpeech test-clean 2094-142345-0014 (speaker 2094, F))",
+    "license": "CC BY 3.0 / CC BY 4.0",
+    "attribution": "Freesound recording 181865 (https://freesound.org/s/181865/), via ESC-50 (Piczak 2015) ; LibriSpeech, Panayotov et al. 2015 (LibriVox public-domain recording)",
+    "transform": "clock ticking clip looped under a female speech clip at 3 dB below the speech active RMS",
+    "source_ids": {
+      "dataset": "pack-transform",
+      "pack_ids": [
+        "p_aud_012",
+        "p_aud_001"
+      ],
+      "pack_questions": [
+        "What sound is this?",
+        "What kind of day was it, according to the recording?"
+      ]
+    }
+  },
+  {
+    "id": "h_txt_001",
+    "modality": "text",
+    "reference_answer": "15 minutes.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_002",
+    "modality": "text",
+    "reference_answer": "The green carboy in fume hood 2.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_003",
+    "modality": "text",
+    "reference_answer": "Extension 4477 (campus safety).",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_004",
+    "modality": "text",
+    "reference_answer": "Dr. Helen Okafor.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_005",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_006",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_01",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 2 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_01"
+    }
+  },
+  {
+    "id": "h_txt_007",
+    "modality": "text",
+    "reference_answer": "Every 15 minutes.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_008",
+    "modality": "text",
+    "reference_answer": "$2.25.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_009",
+    "modality": "text",
+    "reference_answer": "48 minutes.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_010",
+    "modality": "text",
+    "reference_answer": "The temporary stop on Elm Road.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_011",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_012",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_02",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_02"
+    }
+  },
+  {
+    "id": "h_txt_013",
+    "modality": "text",
+    "reference_answer": "1 part white vinegar to 2 parts water.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_txt_014",
+    "modality": "text",
+    "reference_answer": "The heater is overheating; unplug and wait 20 minutes.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_txt_015",
+    "modality": "text",
+    "reference_answer": "About 35 minutes.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_txt_016",
+    "modality": "text",
+    "reference_answer": "After 2 hours.",
+    "answerable": true,
+    "difficulty": "easy",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "original question; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_txt_017",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_txt_018",
+    "modality": "text",
+    "reference_answer": "The document does not say.",
+    "answerable": false,
+    "difficulty": "hard",
+    "source": "written for the held-out set, document h_txt_doc_03",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "unanswerable: reuses the wording of an answerable question with one detail changed; PDF has 1 page(s) with embedded text",
+    "source_ids": {
+      "dataset": "heldout-docs",
+      "doc": "h_txt_doc_03"
+    }
+  },
+  {
+    "id": "h_vid_001",
+    "modality": "video",
+    "reference_answer": "6 triangles appear one at a time.",
+    "difficulty": "medium",
+    "source": "synthetic, family T1 (shapes appear one at a time), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.2 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        1
+      ]
+    },
+    "params": {
+      "template": [
+        1
+      ],
+      "count": 6,
+      "shape": "triangle",
+      "colors": [
+        "orange",
+        "pink",
+        "cyan",
+        "white",
+        "yellow",
+        "green"
+      ],
+      "interval": 0.8,
+      "background": "navy",
+      "radius": 28
+    }
+  },
+  {
+    "id": "h_vid_002",
+    "modality": "video",
+    "reference_answer": "3 stars appear one at a time.",
+    "difficulty": "easy",
+    "source": "synthetic, family T1 (shapes appear one at a time), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        1
+      ]
+    },
+    "params": {
+      "template": [
+        1
+      ],
+      "count": 3,
+      "shape": "star",
+      "colors": [
+        "pink",
+        "purple"
+      ],
+      "interval": 1.4,
+      "background": "lightgray",
+      "radius": 45
+    }
+  },
+  {
+    "id": "h_vid_003",
+    "modality": "video",
+    "reference_answer": "The purple hexagon moves to the left.",
+    "difficulty": "easy",
+    "source": "synthetic, family T2 (shape moves in one direction), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.5 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        2
+      ]
+    },
+    "params": {
+      "template": [
+        2
+      ],
+      "shape": "hexagon",
+      "color": "purple",
+      "direction": "left",
+      "background": "beige"
+    }
+  },
+  {
+    "id": "h_vid_004",
+    "modality": "video",
+    "reference_answer": "The orange triangle moves down.",
+    "difficulty": "easy",
+    "source": "synthetic, family T2 (shape moves in one direction), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 3.5 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        2
+      ]
+    },
+    "params": {
+      "template": [
+        2
+      ],
+      "shape": "triangle",
+      "color": "orange",
+      "direction": "down",
+      "background": "darkgray",
+      "duration": 3.5
+    }
+  },
+  {
+    "id": "h_vid_005",
+    "modality": "video",
+    "reference_answer": "The cyan diamond moves diagonally up and to the right (from the bottom left to the top right).",
+    "difficulty": "medium",
+    "source": "synthetic, family T2 (shape moves in one direction), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.0 s, 640x480, 24 fps, VP8 WebM (live muxer, no duration in header), no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        2
+      ]
+    },
+    "params": {
+      "template": [
+        2
+      ],
+      "shape": "diamond",
+      "color": "cyan",
+      "direction": "up-right diagonal",
+      "background": "white"
+    }
+  },
+  {
+    "id": "h_vid_006",
+    "modality": "video",
+    "reference_answer": "A purple triangle appears first, then orange, then white, and cyan appears last.",
+    "difficulty": "hard",
+    "source": "synthetic, family T3 (colors in order), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.3 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        3
+      ]
+    },
+    "params": {
+      "template": [
+        3
+      ],
+      "shape": "triangle",
+      "colors": [
+        "purple",
+        "orange",
+        "white",
+        "cyan"
+      ],
+      "interval": 1.1,
+      "layout": "cumulative, random positions",
+      "background": "darkgray"
+    }
+  },
+  {
+    "id": "h_vid_007",
+    "modality": "video",
+    "reference_answer": "A brown star appears first, then pink, and black appears last.",
+    "difficulty": "medium",
+    "source": "synthetic, family T3 (colors in order), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        3
+      ]
+    },
+    "params": {
+      "template": [
+        3
+      ],
+      "shape": "star",
+      "colors": [
+        "brown",
+        "pink",
+        "black"
+      ],
+      "interval": 1.5,
+      "layout": "one at a time in the center",
+      "background": "beige"
+    }
+  },
+  {
+    "id": "h_vid_008",
+    "modality": "video",
+    "reference_answer": "The sign says \"ENTER\" at the start and \"EXIT\" at the end.",
+    "difficulty": "medium",
+    "source": "synthetic, family T4 (sign text changes), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.5 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        4
+      ]
+    },
+    "params": {
+      "template": [
+        4
+      ],
+      "words": [
+        "ENTER",
+        "EXIT"
+      ],
+      "change_at": 3.0,
+      "board": "green",
+      "ink": "white",
+      "font": "DejaVu Sans Bold"
+    }
+  },
+  {
+    "id": "h_vid_009",
+    "modality": "video",
+    "reference_answer": "The sign says \"SALE\" at the beginning and changes to \"SOLD OUT\".",
+    "difficulty": "medium",
+    "source": "synthetic, family T4 (sign text changes), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 8.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        4
+      ]
+    },
+    "params": {
+      "template": [
+        4
+      ],
+      "words": [
+        "SALE",
+        "SOLD OUT"
+      ],
+      "change_at": 4.5,
+      "board": "yellow",
+      "ink": "black",
+      "font": "DejaVu Serif Bold"
+    }
+  },
+  {
+    "id": "h_vid_010",
+    "modality": "video",
+    "reference_answer": "The bar gets shorter.",
+    "difficulty": "easy",
+    "source": "synthetic, family T5 (bar grows or shrinks), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        5
+      ]
+    },
+    "params": {
+      "template": [
+        5
+      ],
+      "bar": "shorter",
+      "bar_color": "orange",
+      "background": "navy",
+      "height_px": [
+        330,
+        60
+      ]
+    }
+  },
+  {
+    "id": "h_vid_011",
+    "modality": "video",
+    "reference_answer": "The bar is growing (it gets taller).",
+    "difficulty": "easy",
+    "source": "synthetic, family T5 (bar grows or shrinks), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 7.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        5
+      ]
+    },
+    "params": {
+      "template": [
+        5
+      ],
+      "bar": "taller",
+      "bar_color": "purple",
+      "background": "white",
+      "height_px": [
+        100,
+        260
+      ],
+      "x": 200
+    }
+  },
+  {
+    "id": "h_vid_012",
+    "modality": "video",
+    "reference_answer": "The two shapes start next to each other and move apart, away from each other.",
+    "difficulty": "medium",
+    "source": "synthetic, family T6 (two shapes move together or apart), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 5.5 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        6
+      ]
+    },
+    "params": {
+      "template": [
+        6
+      ],
+      "shapes": [
+        "triangle",
+        "star"
+      ],
+      "colors": [
+        "orange",
+        "purple"
+      ],
+      "motion": "apart (horizontal)",
+      "background": "white"
+    }
+  },
+  {
+    "id": "h_vid_013",
+    "modality": "video",
+    "reference_answer": "They move toward each other (one from the top, one from the bottom) until they touch.",
+    "difficulty": "medium",
+    "source": "synthetic, family T6 (two shapes move together or apart), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        6
+      ]
+    },
+    "params": {
+      "template": [
+        6
+      ],
+      "shapes": [
+        "hexagon",
+        "circle"
+      ],
+      "colors": [
+        "cyan",
+        "brown"
+      ],
+      "motion": "together (vertical)",
+      "background": "lightgray"
+    }
+  },
+  {
+    "id": "h_vid_014",
+    "modality": "video",
+    "reference_answer": "It counts up from 1 to 6; the last number shown is 6.",
+    "difficulty": "easy",
+    "source": "synthetic, family T7 (count up or down), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.5 s, 640x480, 24 fps, VP8 WebM (live muxer, no duration in header), no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        7
+      ]
+    },
+    "params": {
+      "template": [
+        7
+      ],
+      "numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "interval": 1.0,
+      "direction": "count up",
+      "font": "DejaVu Serif Bold",
+      "background": "purple to navy gradient"
+    }
+  },
+  {
+    "id": "h_vid_015",
+    "modality": "video",
+    "reference_answer": "A countdown from 9 to 3; the final number displayed is 3.",
+    "difficulty": "medium",
+    "source": "synthetic, family T7 (count up or down), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.3 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        7
+      ]
+    },
+    "params": {
+      "template": [
+        7
+      ],
+      "numbers": [
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3
+      ],
+      "interval": 0.8,
+      "direction": "count down, stops at 3",
+      "font": "DejaVu Sans Mono Bold",
+      "background": "beige"
+    }
+  },
+  {
+    "id": "h_vid_016",
+    "modality": "video",
+    "reference_answer": "6 hexagons appear, 4 disappear, so 2 are left at the end.",
+    "difficulty": "hard",
+    "source": "synthetic, family T8 (shapes appear then some disappear), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 8.9 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        8
+      ]
+    },
+    "params": {
+      "template": [
+        8
+      ],
+      "shape": "hexagon",
+      "appear": 6,
+      "disappear": 4,
+      "colors": [
+        "cyan",
+        "orange"
+      ],
+      "interval": 0.7,
+      "background": "darkgray"
+    }
+  },
+  {
+    "id": "h_vid_017",
+    "modality": "video",
+    "reference_answer": "7 stars appear, 3 disappear, so 4 are left at the end.",
+    "difficulty": "hard",
+    "source": "synthetic, family T8 (shapes appear then some disappear), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 8.1 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        8
+      ]
+    },
+    "params": {
+      "template": [
+        8
+      ],
+      "shape": "star",
+      "appear": 7,
+      "disappear": 3,
+      "colors": [
+        "purple",
+        "pink",
+        "orange"
+      ],
+      "interval": 0.6,
+      "background": "beige"
+    }
+  },
+  {
+    "id": "h_vid_018",
+    "modality": "video",
+    "reference_answer": "The ball bounces once (1 time).",
+    "difficulty": "medium",
+    "source": "synthetic, family T9 (ball bounces), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 3.1 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        9
+      ]
+    },
+    "params": {
+      "template": [
+        9
+      ],
+      "bounces": 1,
+      "color": "pink",
+      "decay": 0.55,
+      "background": "navy",
+      "drift_px_s": 40
+    }
+  },
+  {
+    "id": "h_vid_019",
+    "modality": "video",
+    "reference_answer": "The ball bounces 5 times.",
+    "difficulty": "hard",
+    "source": "synthetic, family T9 (ball bounces), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 4.9 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        9
+      ]
+    },
+    "params": {
+      "template": [
+        9
+      ],
+      "bounces": 5,
+      "color": "orange",
+      "decay": 1.0,
+      "fall_s": 0.45,
+      "background": "white",
+      "radius": 18
+    }
+  },
+  {
+    "id": "h_vid_020",
+    "modality": "video",
+    "reference_answer": "The background ends orange.",
+    "difficulty": "easy",
+    "source": "synthetic, family T10 (background color changes), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 7.5 s, 640x480, 24 fps, VP8 WebM (live muxer, no duration in header), no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        10
+      ]
+    },
+    "params": {
+      "template": [
+        10
+      ],
+      "colors": [
+        "green",
+        "purple",
+        "orange"
+      ],
+      "segment_s": 2.5,
+      "distractor": "white circle"
+    }
+  },
+  {
+    "id": "h_vid_021",
+    "modality": "video",
+    "reference_answer": "The background starts pink.",
+    "difficulty": "medium",
+    "source": "synthetic, family T10 (background color changes), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.0 s, 640x480, 24 fps, H.264 MP4, no audio",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        10
+      ]
+    },
+    "params": {
+      "template": [
+        10
+      ],
+      "colors": [
+        "pink",
+        "cyan",
+        "black"
+      ],
+      "segment_s": 2.0,
+      "distractor": "yellow square",
+      "asked": "start color"
+    }
+  },
+  {
+    "id": "h_vid_022",
+    "modality": "video",
+    "reference_answer": "5 small circles appear one at a time.",
+    "difficulty": "hard",
+    "source": "synthetic, family T1 (shapes appear one at a time), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.2 s, 640x480, 24 fps, H.264 MP4, no audio; harder: gaussian noise sigma 28 per pixel per frame, small objects (radius 13 px)",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        1
+      ]
+    },
+    "params": {
+      "template": [
+        1
+      ],
+      "count": 5,
+      "shape": "circle",
+      "colors": [
+        "white",
+        "black"
+      ],
+      "interval": 1.0,
+      "background": "gray",
+      "radius": 13
+    }
+  },
+  {
+    "id": "h_vid_023",
+    "modality": "video",
+    "reference_answer": "The ball bounces 2 times.",
+    "difficulty": "hard",
+    "source": "synthetic, family T9 (ball bounces), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 3.3 s, 640x480, 24 fps, H.264 MP4, no audio; harder: vertical gradient background, small ball (radius 12 px)",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        9
+      ]
+    },
+    "params": {
+      "template": [
+        9
+      ],
+      "bounces": 2,
+      "color": "yellow",
+      "decay": 0.7,
+      "radius": 12,
+      "background": "sky blue to dark green gradient"
+    }
+  },
+  {
+    "id": "h_vid_024",
+    "modality": "video",
+    "reference_answer": "The small black dot moves diagonally down and to the left (from the top right to the bottom left).",
+    "difficulty": "hard",
+    "source": "synthetic, family T2 (shape moves in one direction), held-out style",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "synthetic clip 6.0 s, 640x480, 24 fps, H.264 MP4, no audio; harder: tiny object (radius 6 px) plus gaussian noise sigma 12",
+    "source_ids": {
+      "dataset": "synthetic-heldout",
+      "templates": [
+        2
+      ]
+    },
+    "params": {
+      "template": [
+        2
+      ],
+      "shape": "circle",
+      "color": "black",
+      "direction": "down-left diagonal",
+      "radius": 6,
+      "background": "white"
+    }
+  },
+  {
+    "id": "h_code_001",
+    "modality": "code",
+    "reference_answer": "\ndef count_vowel_words(sentence):\n    \"\"\"Return how many words in sentence start and end with a vowel (a, e, i, o, u),\n    ignoring case. Words are separated by whitespace. Ignore the punctuation\n    characters . , ! ? ; : at the start or end of a word. A one-letter vowel word counts.\n\n    >>> count_vowel_words(\"Anna ate a banana\")\n    3\n    >>> count_vowel_words(\"rhythm\")\n    0\n    \"\"\"\n    vowels = set(\"aeiouAEIOU\")\n    n = 0\n    for w in sentence.split():\n        w = w.strip(\".,!?;:\")\n        if w and w[0] in vowels and w[-1] in vowels:\n            n += 1\n    return n\n",
+    "entry_point": "count_vowel_words",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_002",
+    "modality": "code",
+    "reference_answer": "\ndef rotate_digits(n, k):\n    \"\"\"Rotate the decimal digits of the non-negative integer n to the right by k\n    positions and return the result as an integer (leading zeros disappear).\n    k may be larger than the number of digits.\n\n    >>> rotate_digits(12345, 2)\n    45123\n    >>> rotate_digits(1200, 1)\n    120\n    \"\"\"\n    s = str(n)\n    k %= len(s)\n    if k == 0:\n        return n\n    return int(s[-k:] + s[:-k])\n",
+    "entry_point": "rotate_digits",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_003",
+    "modality": "code",
+    "reference_answer": "\ndef merge_ranges(ranges):\n    \"\"\"ranges is a list of [start, end] pairs of integers, inclusive at both ends, in\n    any order. Merge ranges that overlap or touch (end + 1 == next start) and\n    return the merged ranges sorted by start.\n\n    >>> merge_ranges([[1, 3], [4, 6], [8, 9]])\n    [[1, 6], [8, 9]]\n    >>> merge_ranges([[5, 7], [1, 2]])\n    [[1, 2], [5, 7]]\n    \"\"\"\n    out = []\n    for s, e in sorted(ranges):\n        if out and s <= out[-1][1] + 1:\n            out[-1][1] = max(out[-1][1], e)\n        else:\n            out.append([s, e])\n    return out\n",
+    "entry_point": "merge_ranges",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_004",
+    "modality": "code",
+    "reference_answer": "\ndef second_largest_unique(nums):\n    \"\"\"Return the second largest distinct value in the list nums, or None if nums\n    has fewer than two distinct values.\n\n    >>> second_largest_unique([4, 1, 4, 3])\n    3\n    >>> second_largest_unique([2, 2]) is None\n    True\n    \"\"\"\n    vals = sorted(set(nums), reverse=True)\n    return vals[1] if len(vals) > 1 else None\n",
+    "entry_point": "second_largest_unique",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_005",
+    "modality": "code",
+    "reference_answer": "\ndef balance_index(nums):\n    \"\"\"Return the smallest index i such that the sum of the elements before i equals\n    the sum of the elements after i (the element at i is in neither sum).\n    Return -1 if there is no such index.\n\n    >>> balance_index([1, 7, 3, 6, 5, 6])\n    3\n    >>> balance_index([1, 2, 3])\n    -1\n    \"\"\"\n    total, left = sum(nums), 0\n    for i, x in enumerate(nums):\n        if left == total - left - x:\n            return i\n        left += x\n    return -1\n",
+    "entry_point": "balance_index",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_006",
+    "modality": "code",
+    "reference_answer": "\ndef sort_by_digital_root(nums):\n    \"\"\"Return a new list with the integers in nums sorted by their digital root, in\n    ascending order. The digital root is found by summing the digits of the\n    absolute value repeatedly until one digit is left (the digital root of 0 is 0).\n    Numbers with equal digital roots keep their original order.\n\n    >>> sort_by_digital_root([38, 11, 9, 5])\n    [38, 11, 5, 9]\n    >>> sort_by_digital_root([-19, 4, 0])\n    [0, -19, 4]\n    \"\"\"\n    def root(n):\n        n = abs(n)\n        return 0 if n == 0 else 1 + (n - 1) % 9\n    return sorted(nums, key=root)\n",
+    "entry_point": "sort_by_digital_root",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_007",
+    "modality": "code",
+    "reference_answer": "\ndef parse_duration(text):\n    \"\"\"text is a duration such as \"1h30m15s\": hours (h), minutes (m) and seconds (s),\n    each part optional but always in that order, each a whole number of any\n    length. Return the total number of seconds. An empty string is 0 seconds.\n\n    >>> parse_duration(\"1h30m15s\")\n    5415\n    >>> parse_duration(\"45s\")\n    45\n    \"\"\"\n    import re\n    m = re.fullmatch(r\"(?:(\\d+)h)?(?:(\\d+)m)?(?:(\\d+)s)?\", text)\n    h, mi, s = (int(g) if g else 0 for g in m.groups())\n    return h * 3600 + mi * 60 + s\n",
+    "entry_point": "parse_duration",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  },
+  {
+    "id": "h_code_008",
+    "modality": "code",
+    "reference_answer": "\ndef longest_increasing_run(nums):\n    \"\"\"Return the length of the longest run of consecutive elements in nums that is\n    strictly increasing. An empty list has a longest run of 0.\n\n    >>> longest_increasing_run([1, 2, 2, 3, 4, 1])\n    3\n    >>> longest_increasing_run([5, 4, 3])\n    1\n    \"\"\"\n    best = cur = 0\n    for i, x in enumerate(nums):\n        cur = cur + 1 if i and x > nums[i - 1] else 1\n        best = max(best, cur)\n    return best\n",
+    "entry_point": "longest_increasing_run",
+    "difficulty": "easy",
+    "source": "written for the held-out set (HumanEval-style, not from HumanEval)",
+    "license": "CC BY 4.0",
+    "attribution": "Maya team, synthetic held-out set (not part of the practice pack)",
+    "transform": "prompt and tests written by hand; reference solution passes the tests",
+    "source_ids": {
+      "dataset": "heldout-code"
+    }
+  }
+]
