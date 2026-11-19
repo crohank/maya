@@ -1,0 +1,690 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+p_img_001,image,1,6.91,image,,How many people are in this image?,1,1 (1 person). A man driving a small boat with a dog sitting on it's front end.
+p_img_002,image,1,0.31,image,,How many people are in this image?,2,2 (2 people). A beautiful little girl sitting next to a little boy sharing a meal.
+p_img_003,image,1,0.28,image,,How many people are in this image?,1,1 (1 person). The woman holding an umbrella smiles on the narrow street beside the sidewalk.
+p_img_004,image,1,0.3,image,,How many people are in this image?,1,1 (1 person). A man gets air catching the Frisbee near the water.
+p_img_005,image,1,0.28,image,,How many people are in this image?,3,3 (3 people). a red park bench that is by some water.
+p_img_006,image,1,0.29,image,,How many people are in this image?,3,3 (3 people). A group of kids playing a game of baseball.
+p_img_007,image,1,0.29,image,,How many people are in this image?,3,3 (3 people). a person with a shopping cart on a city street.
+p_img_008,image,1,0.34,image,,How many people are in this image?,3,3 (3 people). A trio of men drinking wine at a restaurant table.
+p_img_009,image,1,0.3,image,,How many people are in this image?,5,5 (5 people). A group of men riding on the back of motorcycles.
+p_img_010,image,0,0.3,image,,How many people are in this image?,5,6 (6 people). A group of friends hanging out in a kitchen together.
+p_img_011,image,1,0.29,image,,How many elephants are in this image?,2,There are 2 elephants.
+p_img_012,image,1,0.29,image,,How many cats are in this image?,2,There are 2 cats.
+p_img_013,image,0,0.3,image,,How many zebras are in this image?,3,There are 4 zebras.
+p_img_014,image,1,0.39,image,,How many dogs are in this image?,4,There are 4 dogs.
+p_img_015,image,1,0.34,image,,How many cows are in this image?,4,There are 4 cows.
+p_img_016,image,1,1.0,image,,What does this say,STORAGE,storage
+p_img_017,image,1,0.36,image,,What is in this box?,Fisherman's Pie,fisherman pie
+p_img_018,image,1,0.99,image,,What is this?,Toaster oven.,toaster oven
+p_img_019,image,1,0.95,image,,What is the title of this book?,Fishing in the Air,fishing in air
+p_img_020,image,1,0.89,image,,What's this?,A wooden chair with a metal frame.,chair
+p_img_021,image,1,1.02,image,,What kind of drink is this?,Sunkist Orange Soda,sunkist
+p_img_022,image,1,1.41,image,,What is this item?,Grilled Chicken with Spanish Rice by John Soules Foods.,grilled chicken spanish rice
+p_img_023,image,1,0.53,image,,What is this ?,A one hundred dollar bill.,100 dollar bill
+p_img_024,image,1,0.92,image,,What's this? What's this?,A cigarette.,cigarette
+p_img_025,image,1,0.97,image,,What is this?,A Nokia phone.,phone
+p_aud_001,audio,1,3.15,audio_qa,,"What kind of day was it, according to the recording?",It was a churning day.,It was churning day.
+p_aud_002,audio,1,1.71,audio_transcribe,wer=0.026,Transcribe this audio.,"The wind being adverse, the Dobrena did not make very rapid progress. But as the weather, in spite of a few clouds, remained calm, and the sea was quite smooth, she was enabled to hold a steady course.",The wind being adverse the dobryna did not make very rapid progress but as the weather in spite of a few clouds remained calm and the sea was quite smooth she was enabled to hold a steady course.
+p_aud_003,audio,1,2.78,audio_qa,,Which polar traveler is named as someone inspired by the book?,Sir Ernest Shackleton is the polar traveler named as someone inspired by the book.,Sir Ernest Shackleton.
+p_aud_004,audio,1,1.7,audio_transcribe,wer=0.077,Transcribe this audio.,The old servant told him quietly as they crept back to Gamewell that this passageway led from the hut in the Pleasance to Sherwood and that Jeffrey for the time was hiding with the outlaws in the forest.,The old servant told him quietly as they crept back to gamewell that this passage way led from the hut in the pleasance to sherwood and that geoffrey for the time was hiding with the outlaws in the forest.
+p_aud_005,audio,1,2.43,audio_qa,,"What instrument did she play, and whose letter did she read?",She played the piano and read Philip's letter.,She played the piano and read Philip's letter.
+p_aud_006,audio,1,1.67,audio_transcribe,wer=0.000,Transcribe this audio.,"On Saturday mornings, when the sodality met in the chapel to recite the little office, his place was a cushioned kneeling-desk at the right of the altar from which he led his wing of boys through the responses.",On saturday mornings when the sodality met in the chapel to recite the little office his place was a cushioned kneeling desk at the right of the altar from which he led his wing of boys through the responses.
+p_aud_007,audio,1,2.13,audio_qa,,Where was his country home?,His country home was in Essex.,An old family place in Essex.
+p_aud_008,audio,1,1.72,audio_transcribe,wer=0.000,Transcribe this audio.,Shall I never miss home talk and blessing and the common kiss that comes to each in turn? Nor count it strange when I look up to drop on a new range of walls and floors another home than this.,Shall i never miss home talk and blessing and the common kiss that comes to each in turn nor count it strange when i look up to drop on a new range of walls and floors another home than this.
+p_aud_009,audio,0,2.64,audio_qa,,"Whose tale is about to be told, and who is being addressed?",The tale about solans is about to be told to Socrates.,"A tale of Solon's, told to Socrates."
+p_aud_010,audio,1,1.85,audio_transcribe,wer=0.000,Transcribe this audio.,"But such was his keenness that, even while the wide flukes of his engorged victim were still sticking out at the corners of his beak, his fierce red eyes were once more peering downward into the torrent in search of fresh prey.",But such was his keenness that even while the wide flukes of his engorged victim were still sticking out at the corners of his beak his fierce red eyes were once more peering downward into the torrent in search of fresh prey.
+p_aud_011,audio,1,2.38,audio_sound,,What sound is this?,It sounds like a chainsaw.,Chainsaw.
+p_aud_012,audio,1,0.77,audio_sound,,What sound is this?,It sounds like a ticking timer.,Clock ticking.
+p_aud_013,audio,1,0.69,audio_sound,,What sound is this?,It sounds like a crackling fire.,Crackling fire.
+p_aud_014,audio,1,0.68,audio_sound,,What sound is this?,It sounds like a baby crying.,Baby crying.
+p_aud_015,audio,1,0.67,audio_sound,,What sound is this?,It sounds like a dog barking.,Dog barking.
+p_aud_016,audio,1,0.65,audio_sound,,What sound is this?,"It sounds like a helicopter, or possibly an airplane flying overhead.",Helicopter.
+p_aud_017,audio,1,0.69,audio_sound,,What sound is this?,It sounds like rain.,Rain.
+p_aud_018,audio,1,0.7,audio_sound,,What sound is this?,It sounds like a rooster crowing.,Rooster crowing.
+p_aud_019,audio,1,0.71,audio_sound,,What sound is this?,It sounds like ocean waves.,Ocean waves.
+p_aud_020,audio,1,0.71,audio_sound,,What sound is this?,It sounds like sneezing.,Sneezing.
+p_txt_001,text,1,3.94,document,,In Sept 1760 who negotiated a capitulation from Montreal?,Governor Vaudreuil.,Governor Vaudreuil
+p_txt_002,text,1,1.9,document,,Who defeated Montcalm at Quebec?,James Wolfe.,James Wolfe
+p_txt_003,text,1,1.52,document,,"Although some Acadians went to France and other destiantions, what North American city did many move to?",New Orleans.,New Orleans
+p_txt_004,text,1,0.81,document,,What battle outside Quebec City did British lose in 1706?,The document does not say.,The document does not say.
+p_txt_005,text,0,3.56,document,,"Whose role is to design the works, prepare the specifications and produce construction drawings, administer the contract, tender the works, and manage the works from inception to completion",The architect or engineer.,the project coordinator
+p_txt_006,text,1,2.96,document,,Having existing utility lines marked lessens the likelihood of what?,damage to existing utility lines.,damage
+p_txt_007,text,1,4.15,document,,What is the annual construction industry revenue in 2014?,$960 billion.,$960 billion
+p_txt_008,text,1,2.31,document,,How many firms were there in 2011?,The document does not say.,The document does not say.
+p_txt_009,text,1,3.03,document,,What range of years was the current warming compared to?,1000 to 1900.,between 1000 and 1900
+p_txt_010,text,1,4.93,document,,When did Barton and Whitfield demand climate research records?,23 June 2005.,23 June 2005
+p_txt_011,text,1,2.72,document,,Who was Chairman of the Subcommittee on Oversight and Investigations?,Ed Whitfield.,Ed Whitfield
+p_txt_012,text,1,5.08,document,,What year was the third assessment report published?,The document does not say.,The document does not say.
+p_txt_013,text,1,1.98,document,,What fish living in the Amazon river is known to bit humans?,piranha.,piranha
+p_txt_014,text,1,1.46,document,,Where does the Amazon region rate among the entire earth for its amount of biodiversity?,Highest.,highest on Earth
+p_txt_015,text,1,1.89,document,,What is the process of removing trees from a forest known as?,Deforestation.,Deforestation
+p_txt_016,text,1,2.8,document,,4380 species of what have been registered?,The document does not say.,The document does not say.
+p_txt_017,text,1,1.77,document,,What religion's schools does the term 'parochial schools' generally refer to?,Roman Catholic.,Roman Catholic
+p_txt_018,text,1,3.12,document,,What article of the Grundgesetz grants the right to make private schools?,"Article 7, Paragraph 4.",7
+p_txt_019,text,1,1.22,document,,Who attends Loreto Normanhurst?,Girls.,girls
+p_txt_020,text,1,0.84,document,,What part of a uniform must you wear if you go to public school in Australia?,The document does not say.,The document does not say.
+p_vid_001,video,1,1.22,video,,How many shapes appear in this video?,4,4 circles appear one at a time.
+p_vid_002,video,1,1.12,video,,Which direction does the square move?,Right.,The red square moves to the right.
+p_vid_003,video,1,1.7,video,,"What color appears first, and what color appears last?","Red appears first, and green appears last.","A red circle appears first, then blue, and green appears last."
+p_vid_004,video,1,2.63,video,,What does the sign say at the start and at the end?,"At the start, the sign says ""OPEN"". At the end, it says ""CLOSED"".","The sign says ""OPEN"" at the start and ""CLOSED"" at the end."
+p_vid_005,video,1,1.4,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.
+p_vid_006,video,1,1.71,video,,What happens to the two shapes?,They move toward each other and touch.,The two shapes move toward each other until they touch.
+p_vid_007,video,1,1.18,video,,What number is shown last?,1,A countdown from 5 to 1; the last number shown is 1.
+p_vid_008,video,1,1.81,video,,Several shapes appear and then some disappear. How many shapes are left at the end?,3,"5 squares appear, 2 disappear, so 3 are left at the end."
+p_vid_009,video,1,0.96,video,,How many times does the ball bounce?,3,The ball bounces 3 times.
+p_vid_010,video,1,1.44,video,,What color is the background at the end?,Blue.,The background ends blue.
+p_vid_011,video,1,1.64,video,,How many shapes appear in this video?,8,8 squares appear one at a time.
+p_vid_012,video,1,1.15,video,,Which direction does the circle move?,Up.,The green circle moves up.
+p_vid_013,video,1,1.65,video,,"What color appears first, and what color appears last?","Yellow appears first, and blue appears last.","A yellow square appears first, then red, and blue appears last."
+p_vid_014,video,1,1.83,video,,What does the sign say at the start and at the end?,"PUSH, PULL.","The sign says ""PUSH"" at the start and ""PULL"" at the end."
+p_vid_015,video,1,1.27,video,,Does the bar get taller or shorter?,It gets taller.,The bar gets taller.
+p_code_001,code,1,2.78,code,,"Complete this Python function:
+
+
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+      ","def digitSum(s):
+    total = 0
+    for char in s:
+        if char.isupper():
+            total += ord(char)
+    return total","
+def digitSum(s):
+    """"""Task
+    Write a function that takes a string as input and returns the sum of the upper characters only'
+    ASCII codes.
+
+    Examples:
+        digitSum("""") => 0
+        digitSum(""abAB"") => 131
+        digitSum(""abcCd"") => 67
+        digitSum(""helloE"") => 69
+        digitSu"
+p_code_002,code,1,4.77,code,,"Complete this Python function:
+
+
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on com","def split_words(txt):
+    if ' ' in txt:
+        return txt.split()
+    elif ',' in txt:
+        return txt.split(',')
+    else:
+        count = 0
+        for char in txt:
+            if char.islower():
+                pos = ord(char) - ord('a')
+                if pos % 2 == 1:
+                    count += 1
+        return count","
+def split_words(txt):
+    '''
+    Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you
+    should split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the
+    alphabet, ord('a') = 0, ord"
+p_code_003,code,1,6.8,code,,"Complete this Python function:
+
+
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md","import hashlib
+
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+    if not text:
+        return None
+    return hashlib.md5(text.encode('utf-8')).hexdigest()","
+def string_to_md5(text):
+    """"""
+    Given a string 'text', return its md5 hash equivalent string.
+    If 'text' is an empty string, return None.
+
+    >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
+    """"""
+    import hashlib
+    return hashlib.md5(text.encode('ascii')).hexdi"
+p_code_004,code,1,7.46,code,,"Complete this Python function:
+
+from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested par","from typing import List
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    result = []
+    current_group = """"
+    balance = 0
+    
+    for char in paren_string.replace(' ', ''):
+        if char == '(':
+            if balance == 0:
+                current_group = """"
+            balance += 1
+            current_group += char
+        elif char == ')':
+            balance -= 1
+            current_group += char
+            if balance == 0:
+                result.append(current_group)
+                current_group = """"
+    
+    return result","from typing import List
+
+
+def separate_paren_groups(paren_string: str) -> List[str]:
+    """""" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balan"
+p_code_005,code,1,11.02,code,,"Complete this Python function:
+
+
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even","def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort_even([5, 6, 3, 4])
+    [3, 6, 5, 4]
+    """"""
+    even_indices = [l[i] for i in range(0, len(l), 2)]
+    even_indices.sort()
+    result = l.copy()
+    for i in range(0, len(l), 2):
+        result[i] = even_indices.pop(0)
+    return result","
+
+def sort_even(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sort_even([1, 2, 3])
+    [1, 2, 3]
+    >>> sort"
+p_code_006,code,1,37.03,code,,"Complete this Python function:
+
+
+def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones i","def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number of stones in each level in a list, where element at index
+    i represents the number of stones in the level (i+1).
+
+    Examples:
+    >>> make_a_pile(3)
+    [3, 5, 7]
+    """"""
+    stones = []
+    current_stones = n
+    for _ in range(n):
+        stones.append(current_stones)
+        # Determine the next number of stones based on the current number's parity
+        if current_stones % 2 == 0:
+            current_stones += 2  # Next even number
+        else:
+            current_stones += 2  # Next odd number
+    return stones","
+def make_a_pile(n):
+    """"""
+    Given a positive integer n, you have to make a pile of n levels of stones.
+    The first level has n stones.
+    The number of stones in the next level is:
+        - the next odd number if n is odd.
+        - the next even number if n is even.
+    Return the number o"
+p_code_007,code,1,7.57,code,,"Complete this Python function:
+
+
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket ","def fruit_distribution(s, n):
+    # Split the string to extract the numbers
+    parts = s.split()
+    # Find the numbers for apples and oranges
+    apples = int(parts[0].rstrip('s'))
+    oranges = int(parts[3].rstrip('s'))
+    # Calculate mangoes
+    mangoes = n - apples - oranges
+    return mangoes","
+def fruit_distribution(s,n):
+    """"""
+    In this task, you will be given a string that represents a number of apples and oranges 
+    that are distributed in a basket of fruit this basket contains 
+    apples, oranges, and mango fruits. Given the string that represents the total number of 
+    the "
+p_code_008,code,1,8.5,code,,"Complete this Python function:
+
+
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and re","def file_name_check(file_name):
+    if file_name.count('.') != 1:
+        return 'No'
+    
+    dot_index = file_name.find('.')
+    prefix = file_name[:dot_index]
+    suffix = file_name[dot_index+1:]
+    
+    if not prefix or not prefix[0].isalpha():
+        return 'No'
+    
+    if suffix not in ['txt', 'exe', 'dll']:
+        return 'No'
+    
+    digit_count = sum(1 for c in file_name if c.isdigit())
+    if digit_count > 3:
+        return 'No'
+    
+    return 'Yes'","
+def file_name_check(file_name):
+    """"""Create a function which takes a string representing a file's name, and returns
+    'Yes' if the the file's name is valid, and returns 'No' otherwise.
+    A file's name is considered to be valid if and only if all the following conditions 
+    are met:
+    - Th"
+p_code_009,code,1,10.45,code,,"Complete this Python function:
+
+
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)","def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False
+    """"""
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    i = 3
+    while i * i <= n:
+        if n % i == 0:
+            return False
+        i += 2
+    return True","
+
+def is_prime(n):
+    """"""Return true if a given number is prime, and false otherwise.
+    >>> is_prime(6)
+    False
+    >>> is_prime(101)
+    True
+    >>> is_prime(11)
+    True
+    >>> is_prime(13441)
+    True
+    >>> is_prime(61)
+    True
+    >>> is_prime(4)
+    False
+    >>> is_prime(1)
+    False"
+p_code_010,code,1,5.08,code,,"Complete this Python function:
+
+from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element fou","from typing import List, Tuple
+from typing import List
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    if not numbers:
+        return []
+    result = [numbers[0]]
+    current_max = numbers[0]
+    for num in numbers[1:]:
+        if num > current_max:
+            current_max = num
+        result.append(current_max)
+    return result","from typing import List, Tuple
+
+
+def rolling_max(numbers: List[int]) -> List[int]:
+    """""" From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+    [1, 2, 3, 3, 3, 4, 4]
+    """"""
+    running_"
+p_code_011,code,1,5.66,code,,"Complete this Python function:
+
+
+def any_int(x, y, z):
+    '''
+    Create a function that takes 3 numbers.
+    Returns true if one of the numbers is equal to the sum of the other two, and all numbers ","def any_int(x, y, z):
+    # Check if all numbers are integers
+    if not all(isinstance(n, int) for n in [x, y, z]):
+        return False
+    
+    # Check if one number is the sum of the other two
+    return x == y + z or y == x + z or z == x + y","
+def any_int(x, y, z):
+    '''
+    Create a function that takes 3 numbers.
+    Returns true if one of the numbers is equal to the sum of the other two, and all numbers are integers.
+    Returns false in any other cases.
+    
+    Examples
+    any_int(5, 2, 7) ➞ True
+    
+    any_int(3, 2, 2) ➞ False
+"
+p_code_012,code,1,3.5,code,,"Complete this Python function:
+
+
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+","def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string)","
+
+def strlen(string: str) -> int:
+    """""" Return length of given string
+    >>> strlen('')
+    0
+    >>> strlen('abc')
+    3
+    """"""
+    return len(string)
+"
+p_code_013,code,1,3.95,code,,"Complete this Python function:
+
+
+def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Retur","def next_smallest(lst):
+    if len(lst) < 2:
+        return None
+    unique_vals = list(set(lst))
+    if len(unique_vals) < 2:
+        return None
+    unique_vals.sort()
+    return unique_vals[1]","
+def next_smallest(lst):
+    """"""
+    You are given a list of integers.
+    Write a function next_smallest() that returns the 2nd smallest element of the list.
+    Return None if there is no such element.
+    
+    next_smallest([1, 2, 3, 4, 5]) == 2
+    next_smallest([5, 1, 4, 3, 2]) == 2
+    next_sm"
+p_code_014,code,1,39.96,code,,"Complete this Python function:
+
+
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3","def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    if n == 1:
+        return 2
+    if n == 2:
+        return 3
+    
+    # Generate Fibonacci numbers and check for primality
+    a, b = 2, 3
+    for i in range(2, n):
+        c = a + b
+        a, b = b, c
+        if is_prime(c):
+            # We don't store in a list, we just count the primes
+            pass
+    
+    # We need to generate the sequence until we have n primes
+    # Start with the first two primes: 2, 3
+    # Then generate Fibonacci numbers and check for primality
+    count = 2
+    a, b = 2, 3
+    while count < n:
+        c = a + b
+        a, b = b, c
+        if is_prime(c):
+            count += 1
+    
+    return b
+
+def is_prime(num):
+    if num < 2:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num**0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True","
+
+def prime_fib(n: int):
+    """"""
+    prime_fib returns n-th number that is a Fibonacci number and it's also prime.
+    >>> prime_fib(1)
+    2
+    >>> prime_fib(2)
+    3
+    >>> prime_fib(3)
+    5
+    >>> prime_fib(4)
+    13
+    >>> prime_fib(5)
+    89
+    """"""
+    import math
+
+    def is_prime(p):
+  "
+p_code_015,code,1,6.23,code,,"Complete this Python function:
+
+
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller t","def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncate_number(3.5)
+    0.5
+    """"""
+    return number - int(number)","
+
+def truncate_number(number: float) -> float:
+    """""" Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> trunca"
+p_code_016,code,1,6.69,code,,"Complete this Python function:
+
+
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three,","def sort_third(l: list):
+    # Extract elements at indices divisible by 3
+    third_elements = [l[i] for i in range(0, len(l), 3)]
+    # Sort these elements
+    third_elements.sort()
+    # Create result list
+    result = l[:]
+    # Replace elements at indices divisible by 3 with sorted values
+    for i in range(0, len(l), 3):
+        result[i] = third_elements.pop(0)
+    return result","
+
+def sort_third(l: list):
+    """"""This function takes a list l and returns a list l' such that
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but so"
+p_code_017,code,1,3.47,code,,"Complete this Python function:
+
+
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the o","def solve(N):
+    if N == 0:
+        return ""0""
+    digit_sum = sum(int(d) for d in str(N))
+    return bin(digit_sum)[2:]","
+def solve(N):
+    """"""Given a positive integer N, return the total sum of its digits in binary.
+    
+    Example
+        For N = 1000, the sum of digits will be 1 the output should be ""1"".
+        For N = 150, the sum of digits will be 6 the output should be ""110"".
+        For N = 147, the sum of di"
+p_code_018,code,1,8.05,code,,"Complete this Python function:
+
+
+def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n an","def rounded_avg(n, m):
+    if n > m:
+        return -1
+    # Calculate the average of integers from n to m (inclusive)
+    total = sum(range(n, m + 1))
+    count = m - n + 1
+    avg = total / count
+    # Round to nearest integer
+    rounded_avg_int = round(avg)
+    # Convert to binary, removing the '0b' prefix
+    binary_str = bin(rounded_avg_int)[2:]
+    return ""0b"" + binary_str","
+def rounded_avg(n, m):
+    """"""You are given two positive integers n and m, and your task is to compute the
+    average of the integers from n through m (including n and m). 
+    Round the answer to the nearest integer and convert that to binary.
+    If n is greater than m, return -1.
+    Example:
+ "
+p_code_019,code,1,3.64,code,,"Complete this Python function:
+
+
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list ","import math
+
+def sum_squares(lst):
+    total = 0
+    for num in lst:
+        rounded_num = math.ceil(num)
+        total += rounded_num ** 2
+    return total","
+
+def sum_squares(lst):
+    """"""You are given a list of numbers.
+    You need to return the sum of squared numbers in the given list,
+    round each element in the list to the upper int(Ceiling) first.
+    Examples:
+    For lst = [1,2,3] the output should be 14
+    For lst = [1,4,9] the output should"
+p_code_020,code,1,6.63,code,,"Complete this Python function:
+
+
+def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factoria","def f(n):
+    result = []
+    for i in range(1, n + 1):
+        if i % 2 == 0:
+            factorial = 1
+            for j in range(1, i + 1):
+                factorial *= j
+            result.append(factorial)
+        else:
+            # Sum of numbers from 1 to i
+            summation = i * (i + 1) // 2
+            result.append(summation)
+    return result","
+def f(n):
+    """""" Implement the function f that takes n as a parameter,
+    and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
+    or the sum of numbers from 1 to i otherwise.
+    i starts from 1.
+    the factorial of i is the multiplicati"

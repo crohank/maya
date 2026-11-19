@@ -1,0 +1,98 @@
+id,modality,pass,seconds,route,note,question,answer,reference
+xv_img_001,image,1,6.64,image,,What is the title of this book? ,dog years,dog years
+xv_img_002,image,1,0.39,image,,What color is this,white with purple trim,white
+xv_img_003,image,1,1.17,image,,What is on the pillowcase?,TEXAS and a longhorn silhouette.,texas
+xv_img_004,image,1,1.03,image,,What does the small label on this disc say?,Prop Of Quartics Inc,prop quartics inc
+xv_img_005,image,1,4.42,image,,What does the screen say?,"Windows 7 Home Premium
+Choose a user name for your account and name your computer to distinguish it on the network.
+Type a user name (for example, John):
+Type a computer name
+PC
+Copyright © 2009 Microsoft Corporation. All rights reserved.",windows 7 home premium
+xv_img_006,image,0,0.89,image,,Help me with this capture.,Click here to hear an audio caption.,casithwo
+xv_img_007,image,1,0.8,image,,What color is this skirt?,blue,blue
+xv_img_008,image,1,0.84,image,,What are the letters to enter in to obtain the prize?,cjo,cjo
+xv_img_009,image,1,4.21,image,,What does this say?,"shower curtain
+rid'eau de douche
+corrina para ducha
+100% polyester / poliester
+70"" x 72"" (178 cm x 183 cm)
+water resistant / resistant à l'eau / resistente al agua
+ROYAL
+INTERNATIONAL",shower curtain
+xv_img_010,image,1,1.94,image,,What does my computer screen show?,"A blurry view of a YouTube page with the text ""YouTube Survivor: Chinese Synchro"" visible.",youtube
+xv_img_011,image,1,2.05,image,,I said what is the title of this paper? Tell me if I need to move it. Thanks.,"The title of the paper is ""Coordinate Plan Graphing Project"".
+
+No, you do not need to move it.",coordinate plan graphing project
+xv_img_012,image,1,1.39,image,,What does the text at the top of this screen say?,Checking file system on C:,checking file system on c:
+xv_img_013,image,1,0.77,image,,What is the app on the top left?,Messages,messages
+xv_img_014,image,1,0.79,image,,What color is this band?,gold,gold
+xv_img_015,image,1,0.41,image,,What is that a picture of?,a mouth with teeth,mouth
+xv_img_016,image,1,2.05,image,,what is in this picture?,"a laptop with a bright screen displaying images of shoes and a red box, and a black keyboard below it.",laptop
+xv_img_017,image,1,0.95,image,,What is in this bottle?,Bacon Bits,bacon bits
+xv_img_018,image,1,1.97,image,,What is this?,"An empty plate with blue floral patterns, sitting on a wooden desk next to a computer keyboard and monitor.",plate
+xv_img_019,image,1,0.85,image,,What letters do I type in to win the prize?,ZLN,zln
+xv_img_020,image,1,0.95,image,,What is that?,A laptop computer.,laptop
+xv_img_021,image,1,1.51,image,,What is it?,A laptop computer displaying a webpage with app recommendations for visually impaired users.,laptop
+xv_img_022,image,1,0.84,image,,What's in that bottle?,Water.,water
+xv_img_023,image,1,0.94,image,,What kind of computer is this?,Dell monitor.,dell
+xv_img_024,image,1,2.06,image,,What is this?,"A menu with sections for Chicken & Duck, Seafood, and Vegetables & Tofu (Bean Curd).",menu
+xv_img_025,image,1,1.23,image,,What does the text over the OK button say on this screen?,'octavarium test guitar' saved.,octavarium test guitar saved
+xv_img_026,image,1,1.06,image,,What colors are in this shirt?,Red and white.,red white
+xv_img_027,image,1,0.58,image,,What color is my Mac? ,Silver.,silver
+xv_img_028,image,1,0.3,image,,What is this?,tablet computer,tablet
+xv_img_029,image,1,0.92,image,,What kind of card is this?,iTunes card,itunes
+xv_img_030,image,1,0.89,image,,What is this?,tongue,tongue
+xv_img_031,image,1,0.61,image,,What is the password shown in this captcha?,38i9Rg48,38i9rg48
+xv_img_032,image,1,1.25,image,,Can you tell me the price of this computer please?,"$12,999.01",12999.01
+xv_img_033,image,1,0.8,image,,What is this item?,pear,pear
+xv_img_034,image,1,1.3,image,,What does this computer screen say?,"NIB
+NIB - Nigeria Business Best Place to Work",nib
+xv_img_035,image,0,1.63,image,,What is this capture?,Skype sign up page with CAPTCHA text.,was uctoft
+xv_img_036,image,1,1.1,image,,What credit card is this?,Regal Crown Club card.,regal crown club
+xv_img_037,image,0,0.95,image,,I need to know what the image says so I can get this password reset.,PKRS7,pkrsf
+xv_img_038,image,1,0.83,image,,what is on my table?,laptop,laptop
+xv_img_039,image,0,1.1,image,,"What is the captcha, please?",pAbn24d,pabw24nd
+xv_img_040,image,1,1.44,image,,What dvd is this?,"Shrek
+It's a DVD of the movie Shrek.",shrek
+xv_img_041,image,1,0.58,image,,Can you please read to me what is shown on this display? ,Use Washer/Dryer Swipe Card,use washer dryer swipe card
+xv_img_042,image,1,0.94,image,,What is this can?,Pepsi can,pepsi
+xv_img_043,image,1,0.93,image,,What temperature is the thermostat set to?,72°,72
+xv_img_044,image,1,0.89,image,,What is this bottle of detergent? ,Woolite,woolite
+xv_img_045,image,1,0.81,image,,What color is this?,blue,blue
+xv_img_046,image,1,0.99,image,,What is this?,1 watt led aluminum flashlight,flashlight
+xv_img_047,image,1,0.78,image,,What color is this skirt? thank you.,blue,blue
+xv_img_048,image,1,0.87,image,,Could you please tell me what this fragrance is?  Thank you.,Perfect Strength,perfect strength
+xv_img_049,image,1,0.79,image,,What's the color of this shirt? ,white,white
+xv_img_050,image,1,0.79,image,,What color is my hair?,brown,brown
+xv_img_051,image,1,0.86,image,,What is this color?,Red.,red
+xv_img_052,image,1,0.79,image,,What color is this?,gray,grey
+xv_img_053,image,1,1.61,image,,What kind of soda is this? It didn't work.,"coca-cola
+It's a regular coca-cola bottle.",cola
+xv_img_054,image,1,0.83,image,,What color is this?,gray,grey
+xv_img_055,image,1,0.89,image,,Where is this box from?,FedEx,fedex
+xv_img_056,image,1,0.78,image,,What color is this shirt?,gray,grey
+xv_img_057,image,1,1.38,image,,What flavor is this?,"Dark Chocolate, Peanut & Almond",dark chocolate peanut almond
+xv_img_058,image,1,0.97,image,,What color jewelry should I wear with this outfit?,gold or silver.,silver
+xv_img_059,image,1,0.78,image,,What color is the car in this photograph?,white,white
+xv_img_060,image,1,0.79,image,,What is this?,keyboard,keyboard
+xv_img_061,image,0,1.3,image,,what's this? what's this?,"a toy train face, specifically thomas the tank engine.",thomas train
+xv_img_062,image,0,0.59,image,,What is this?,A cup.,mug
+xv_img_063,image,1,0.8,image,,What color is this?,gray,grey
+xv_img_064,image,0,0.91,image,,"Hi, can you tell me what color this t-shirt is, please?",light green,white
+xv_img_065,image,0,0.79,image,,What color is this shirt please?,blue,grey
+xv_img_066,image,1,0.38,image,,What is this?,couch with pillows,couch
+xv_img_067,image,1,0.92,image,,What is this?,A vase.,vase
+xv_img_068,image,1,0.94,image,,What beer is that?,Corona Extra,corona extra
+xv_img_069,image,1,0.84,image,,I wonder the brand of this computer.,sony,sony
+xv_img_070,image,1,0.7,image,,What is in the tin?,Baked Beans,baked beans
+xv_img_071,image,1,0.78,image,,What color is this?,gray,grey
+xv_img_072,image,1,1.05,image,,What's the name of this perfume?,elle Yves Saint Laurent,elle
+xv_img_073,image,1,1.05,image,,What is that?,A blue couch with pillows.,couch
+xv_img_074,image,1,0.8,image,,I know but what color?,white,white
+xv_img_075,image,1,1.24,image,,What is the title of this cd?,Jazz Collection 1: Grand Reunion,jazz collection
+xv_img_076,image,1,0.94,image,,I believe this is silver oak.  What year is it?,2000,2000
+xv_img_077,image,1,0.94,image,,What kind of dog is this?,Bulldog.,bulldog
+xv_img_078,image,1,1.04,image,,What is this thing?,P-touch label maker.,label maker
+xv_img_079,image,1,1.63,image,,What's this?,A bed with a blue and white patterned blanket and a zebra-striped pillow.,bed
+xv_img_080,image,1,0.9,image,,What flavor are these pringles?,Thai Sweet Chili,thai sweet chili
