@@ -214,6 +214,8 @@ def _display(text):
 
 
 def code_summary(info):
+    if info.get("needs_input"):
+        return "Here is the program. It waits for typed input, so I did not run it to the end."
     n, p = info.get("self_checks"), info.get("self_checks_passed")
     if not isinstance(n, int) or not isinstance(p, int):
         return "Here is the function."
