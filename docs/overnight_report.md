@@ -46,15 +46,40 @@ sets were not tuned on (two documented exceptions in the doc QA and video notes 
 - **Documents** (`maya/docqa.py`):
   - The model quotes a sentence from the document plus a short answer. Code then checks that the quote is really there and that the question's numbers and names appear in it. If either fails, it says "The document does not say."
   - Pages with no text layer are read by the VLM.
+  - A code-only check refuses when the question flips a relation the passage states (rise or drop, first or last, a negation). It caught 2 more traps on the dev half of the SQuAD extra set, none on the held-out half, and caused no false refusals.
   - Costs about 3 s per question, against 0.6 s for the plain prompt.
 - **Code** (`maya/code.py`, `maya/sandbox.py`):
   - The prompt's own examples run in a sandbox, with up to 2 retries.
-  - If the main model still fails its own checks, it falls back to Qwen2.5-Coder-3B.
+  - If the main model still fails its own checks, it falls back to Qwen2.5-Coder-7B (Apache-2.0, 4-bit, loaded only then).
   - The sandbox: resource limits, runs as an unprivileged user, no network, an audit hook.
 - **App** (`app/main.py`, `app/router.py`):
   - `/ask` now answers all five kinds through one engine, and `/document/ask` and `/code/run` are real.
   - Phone WebM is converted first.
   - Startup warms every model, so the first item is not 5 to 8 s slower.
+  - End-to-end check (`scripts/smoke_app.py`, real app and engine, practice items): all 16 requests returned 200.
+
+    | Item | Warm time |
+    |---|---|
+    | Photo | 0.35 s |
+    | Video | 1.3 to 1.6 s |
+    | Audio | 1.3 to 2.7 s |
+    | Document | 2.6 to 4.2 s |
+    | Code | 3.3 to 6.2 s |
+    | Live clip with a spoken question | 2.2 s |
+
+    Startup takes about 10 s.
+  - Real street video, not just the synthetic clips, gets sensible answers in 3 to 7 s, including a 4K clip. One likely slip: it called a sunset sky "pale blue".
+- **Review:** a read-only review found 16 input bugs, most of them confirmed. All are fixed, with 117 CPU tests, and the scores did not move. The fixes cover:
+  - one-frame and rotated videos
+  - transparent PNGs
+  - scanned and long PDFs
+  - fenced code prompts
+  - four sandbox escapes
+  - very short audio
+  - no-file prompts like "Implement binary search"
+  - DecompressionBomb images
+  - HEIC photos
+  - Trade-off: scipy and sympy no longer import inside the sandbox, because both need ctypes.
 - **Walk mode** (`scripts/walk_v3.py` to `walk_v5.py`):
   - New test set: 11 SANPO chest-camera clips (Google Research, CC BY 4.0) with labels made automatically from depth and instance masks.
   - New scorer: a warning only counts if it was about the right tracked person. A time-shifted baseline scores 0 to 1 of 33, so talking often no longer scores.
@@ -73,7 +98,7 @@ sets were not tuned on (two documented exceptions in the doc QA and video notes 
 - **Code sandbox:**
   - Generated code can still write into the repo through the Docker Windows file mount. The audit hook blocks the known ways, but it is not a hard boundary.
   - The real fix is to run the app with `/app` read-only and a separate results volume, or run code in a sidecar container.
-- **Unanswerable traps that change a relation** ("rise" for "drop") still get answered: about 8 of 15 on the SQuAD extra set.
+- **Unanswerable traps that swap a role** (who presented to whom, which noun a number belongs to) still get answered: about 8 of 15 on the SQuAD extra set. Model-based verifiers caught some, but always refused a real question too, so they stay off.
 - **Rotated phone MP4s:**
   - The app re-encodes them now.
   - The rotation check is not verified on a real phone clip, because this image's ffmpeg cannot write a rotation tag.
