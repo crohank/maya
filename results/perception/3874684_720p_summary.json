@@ -1,0 +1,29 @@
+{
+  "video": "test_videos/3874684_720p.mp4",
+  "frames": 210,
+  "fps": 8.0,
+  "load_s": 1.98,
+  "detect_ms": {
+    "median": 31.25,
+    "p90": 60.09,
+    "max": 95.73
+  },
+  "depth_ms": {
+    "median": 10.68,
+    "p90": 20.75,
+    "max": 31.16
+  },
+  "track_ms": {
+    "median": 7.26,
+    "p90": 10.68,
+    "max": 28.83
+  },
+  "depth_scale_final": 0.47,
+  "depth_scale_samples": 1,
+  "total_ms": {
+    "median": 49.63,
+    "p90": 88.56
+  },
+  "peak_vram_mib": 202.2,
+  "peak_reserved_mib": 240.0
+}

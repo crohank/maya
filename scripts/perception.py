@@ -63,6 +63,10 @@ CLASS_MAP = {
     "potted plant": "potted plant", "suitcase": "luggage",
 }
 
+# The detector often fires car and truck (or SUV and pickup) on one vehicle. These
+# classes share NMS and track matching; a track reports its highest summed-score class.
+GROUP = {"car": "vehicle", "truck": "vehicle", "bus": "vehicle"}
+
 # Tracker
 HIGH_CONF = 0.50
 MATCH_IOU = 0.25
@@ -74,9 +78,21 @@ HIST_S = 1.0
 MIN_HIST_S = 0.5
 EMA = 0.5
 SCALE_ENTER = 0.15   # box size growth 15 %/s: approaching (receding if negative)
-LAT_ENTER = 0.12     # 12 % of frame width per second after camera compensation
+LAT_ENTER = 0.08     # 8 % of frame width per second after camera compensation
 STAY = 0.6           # current label holds while its score is >= STAY * enter
 SWITCH_FRAMES = 2
+# Below this box height (fraction of frame) one pixel of box jitter is over 3 % of the
+# size, enough to fake a 15 %/s growth rate; such tracks stay "static".
+MIN_MOTION_H = 0.04
+
+# Metric scale. Depth-Anything-V2 VKITTI was trained on a car roof camera; on these
+# handheld clips it reads 2 to 3 times too far (docs/perception.md). Each frame, standing
+# people give a second estimate, d = PERSON_H * f / box_height_px, with f from an assumed
+# FOV over the long image side, and the depth map is rescaled by the EMA of their ratio.
+PERSON_H = 1.7
+LONG_FOV_DEG = 78.0  # wider than a 26 mm phone lens (68 deg) on purpose, see docs/perception.md
+SCALE_PRIOR = 0.5    # used until people are seen; final values on 3 clips with people: 0.28, 0.52, 0.62
+SCALE_EMA = 0.15
 
 
 def _iou(a, b):
@@ -94,8 +110,9 @@ def _iou(a, b):
 def _nms(boxes, scores, classes, thr=0.6):
     """Per-class NMS: Car/SUV/Van map to one class and can stack on the same object."""
     keep = []
-    for c in set(classes):
-        idx = [i for i in range(len(classes)) if classes[i] == c]
+    groups = [GROUP.get(c, c) for c in classes]
+    for g in set(groups):
+        idx = [i for i in range(len(groups)) if groups[i] == g]
         idx.sort(key=lambda i: -scores[i])
         while idx:
             i = idx.pop(0)
@@ -119,6 +136,7 @@ class _Track:
         self.id = tid
         self.box = box
         self.cls = cls
+        self.cls_score = {cls: conf}
         self.conf = conf
         self.t0 = t
         self.t_seen = t
@@ -134,7 +152,9 @@ class _Track:
     def predict(self, t):
         return self.box + self.vel * min(t - self.t_seen, 0.5)
 
-    def update(self, box, conf, t):
+    def update(self, box, conf, t, cls):
+        self.cls_score[cls] = self.cls_score.get(cls, 0.0) + conf
+        self.cls = max(self.cls_score, key=self.cls_score.get)
         dt = t - self.t_seen
         if dt > 0:
             self.vel = 0.5 * self.vel + 0.5 * (box - self.box) / dt
@@ -163,8 +183,16 @@ class Perception:
         self.mean = torch.tensor([0.485, 0.456, 0.406], device=device).view(1, 3, 1, 1)
         self.std = torch.tensor([0.229, 0.224, 0.225], device=device).view(1, 3, 1, 1)
 
+        self.keep_idx = torch.tensor([i for i, n in enumerate(self.label_map) if n],
+                                     device=device)
+        self.keep_names = [self.label_map[i] for i in self.keep_idx.tolist()]
+        if device.startswith("cuda"):
+            torch.backends.cudnn.benchmark = True
+
         self.tracks = []
         self.next_id = 1
+        self.log_scale = math.log(SCALE_PRIOR)
+        self.scale_samples = 0
         self.prev_gray = None
         self.cam_x = 0.0  # accumulated horizontal camera shift, frame widths
         self.last_timing = {"detect_ms": 0.0, "depth_ms": 0.0, "track_ms": 0.0}
@@ -178,28 +206,24 @@ class Perception:
         x = F.interpolate(img, size=(DET_SIZE, DET_SIZE), mode="bilinear",
                           align_corners=False, antialias=True)
         out = self.det(pixel_values=x.to(self.dtype))
-        logits = out.logits[0].float()
+        scores = out.logits[0, :, self.keep_idx].float().sigmoid()
         boxes = out.pred_boxes[0].float()  # cx, cy, w, h normalized
         # D-FINE uses sigmoid focal scores; top-k over (query, class) like its postprocessor.
-        scores = logits.sigmoid()
-        flat = scores.flatten()
-        k = min(300, flat.numel())
-        top, idx = flat.topk(k)
-        q = idx // scores.shape[1]
-        c = idx % scores.shape[1]
+        top, idx = scores.flatten().topk(min(100, scores.numel()))
         m = top > DET_THRESH
-        top, q, c = top[m].cpu().numpy(), q[m].cpu().numpy(), c[m].cpu().numpy()
-        b = boxes[torch.as_tensor(q, device=boxes.device)].cpu().numpy() if len(q) else np.zeros((0, 4))
-        xyxy = np.stack([b[:, 0] - b[:, 2] / 2, b[:, 1] - b[:, 3] / 2,
-                         b[:, 0] + b[:, 2] / 2, b[:, 1] + b[:, 3] / 2], 1).clip(0, 1) if len(b) else b
+        q = (idx // scores.shape[1])[m]
+        c = (idx % scores.shape[1])[m]
+        b = boxes[q]
+        b = torch.stack([b[:, 0] - b[:, 2] / 2, b[:, 1] - b[:, 3] / 2,
+                         b[:, 0] + b[:, 2] / 2, b[:, 1] + b[:, 3] / 2], 1).clamp(0, 1)
+        xyxy, top, c = b.cpu().numpy(), top[m].cpu().numpy(), c.cpu().numpy()
         keep_b, keep_s, keep_c = [], [], []
-        for bb, s, ci in zip(xyxy, top, c):
-            name = self.label_map[ci] if ci < len(self.label_map) else None
-            if name is None or bb[2] - bb[0] < 1e-3 or bb[3] - bb[1] < 1e-3:
+        for bb, sc, ci in zip(xyxy, top, c):
+            if bb[2] - bb[0] < 1e-3 or bb[3] - bb[1] < 1e-3:
                 continue
             keep_b.append(bb)
-            keep_s.append(float(s))
-            keep_c.append(name)
+            keep_s.append(float(sc))
+            keep_c.append(self.keep_names[ci])
         if not keep_b:
             return np.zeros((0, 4)), [], []
         keep_b = np.array(keep_b)
@@ -232,6 +256,35 @@ class Perception:
         if patch.numel() == 0:
             return None
         return float(patch.median())
+
+    @staticmethod
+    def _person_dist(b, H, W):
+        # Standing, uncut people only: a box touching the frame edge or a seated
+        # person underestimates height and overestimates distance.
+        bh, bw = (b[3] - b[1]) * H, (b[2] - b[0]) * W
+        if b[1] < 0.01 or b[3] > 0.99 or bh < 0.05 * H or not 1.8 < bh / max(bw, 1) < 5.0:
+            return None
+        f = (max(H, W) / 2) / math.tan(math.radians(LONG_FOV_DEG / 2))
+        return float(PERSON_H * f / bh)
+
+    def _update_scale(self, depth, boxes, scores, classes, H, W):
+        logs = []
+        for b, sc, c in zip(boxes, scores, classes):
+            if c != "person" or sc < 0.6:
+                continue
+            pd = self._person_dist(b, H, W)
+            raw = self._box_dist(depth, b) if pd else None
+            if raw and raw > 0.3:
+                logs.append(math.log(pd / raw))
+        if logs:
+            a = SCALE_EMA if self.scale_samples else 0.5
+            self.log_scale = (1 - a) * self.log_scale + a * float(np.median(logs))
+            self.log_scale = min(max(self.log_scale, math.log(0.1)), math.log(2.0))
+            self.scale_samples += len(logs)
+
+    @property
+    def scale(self):
+        return math.exp(self.log_scale)
 
     def _camera_shift(self, frame_rgb):
         # Global horizontal shift from phase correlation on a 192 px wide gray frame.
@@ -267,6 +320,9 @@ class Perception:
         tr.rates = new if tr.rates is None else EMA * new + (1 - EMA) * tr.rates
 
         s, l, d = tr.rates
+        if tr.box[3] - tr.box[1] < MIN_MOTION_H:
+            tr.motion, tr.pending, tr.pending_n = "static", None, 0
+            return
         # A shrinking box with depth not growing (or the reverse) is ambiguous; scale
         # leads because box size is measured directly and depth is noisier.
         scores = {
@@ -305,7 +361,8 @@ class Perception:
             iou = _iou(boxes[dets], pb)
             for a, i in enumerate(dets):
                 for b, j in enumerate(unmatched_trs):
-                    if classes[i] != self.tracks[j].cls:
+                    if GROUP.get(classes[i], classes[i]) != GROUP.get(self.tracks[j].cls,
+                                                                      self.tracks[j].cls):
                         iou[a, b] = 0.0
             ri, ci = linear_sum_assignment(-iou)
             used_d, used_t = set(), set()
@@ -332,11 +389,12 @@ class Perception:
         t2 = time.perf_counter()
 
         self._camera_shift(frame_rgb)
+        self._update_scale(depth, boxes, scores, classes, H, W)
         matches, new_dets = self._associate(boxes, scores, classes, t)
         matched = set()
         for i, j in matches:
             tr = self.tracks[j]
-            tr.update(boxes[i], scores[i], t)
+            tr.update(boxes[i], scores[i], t, classes[i])
             matched.add(tr.id)
         for i in new_dets:
             if scores[i] >= HIGH_CONF:
@@ -350,7 +408,15 @@ class Perception:
         for tr in self.tracks:
             if tr.id not in matched:
                 continue
-            tr.dist = self._box_dist(depth, tr.box)
+            # People: height-based distance when the box is whole (it does not depend on
+            # the depth scale); everything else: rescaled metric depth. EMA over frames.
+            d = self._person_dist(tr.box, H, W) if tr.cls == "person" else None
+            if d is None:
+                raw = self._box_dist(depth, tr.box)
+                d = None if raw is None else raw * self.scale
+            if d is not None and tr.dist is not None:
+                d = 0.5 * d + 0.5 * tr.dist
+            tr.dist = d if d is not None else tr.dist
             tr.hist.append((t, tr.box.copy(), tr.dist, self.cam_x))
             while tr.hist and t - tr.hist[0][0] > HIST_S + 0.3:
                 tr.hist.popleft()
@@ -485,6 +551,8 @@ def main():
                       "p90": round(float(np.percentile(v, 90)), 2),
                       "max": round(float(v.max()), 2)}
     tot = np.array([sum(x.values()) for x in steady])
+    summary["depth_scale_final"] = round(p.scale, 3)
+    summary["depth_scale_samples"] = p.scale_samples
     summary["total_ms"] = {"median": round(float(np.median(tot)), 2),
                            "p90": round(float(np.percentile(tot, 90)), 2)}
     if args.device.startswith("cuda"):

@@ -1,0 +1,29 @@
+{
+  "video": "test_videos/london_walking.mp4",
+  "frames": 161,
+  "fps": 8.0,
+  "load_s": 1.89,
+  "detect_ms": {
+    "median": 38.55,
+    "p90": 78.61,
+    "max": 85.06
+  },
+  "depth_ms": {
+    "median": 11.56,
+    "p90": 21.32,
+    "max": 28.23
+  },
+  "track_ms": {
+    "median": 4.93,
+    "p90": 6.95,
+    "max": 20.21
+  },
+  "depth_scale_final": 0.519,
+  "depth_scale_samples": 1099,
+  "total_ms": {
+    "median": 56.22,
+    "p90": 104.91
+  },
+  "peak_vram_mib": 196.2,
+  "peak_reserved_mib": 216.0
+}

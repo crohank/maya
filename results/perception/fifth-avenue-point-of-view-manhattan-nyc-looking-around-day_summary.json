@@ -1,0 +1,29 @@
+{
+  "video": "test_videos/fifth-avenue-point-of-view-manhattan-nyc-looking-around-day.mp4",
+  "frames": 437,
+  "fps": 8.0,
+  "load_s": 1.8,
+  "detect_ms": {
+    "median": 31.12,
+    "p90": 74.28,
+    "max": 106.6
+  },
+  "depth_ms": {
+    "median": 9.94,
+    "p90": 20.15,
+    "max": 32.25
+  },
+  "track_ms": {
+    "median": 5.99,
+    "p90": 10.15,
+    "max": 16.6
+  },
+  "depth_scale_final": 0.475,
+  "depth_scale_samples": 1903,
+  "total_ms": {
+    "median": 47.62,
+    "p90": 102.3
+  },
+  "peak_vram_mib": 196.2,
+  "peak_reserved_mib": 216.0
+}

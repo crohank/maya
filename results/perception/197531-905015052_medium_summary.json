@@ -1,0 +1,29 @@
+{
+  "video": "test_videos/197531-905015052_medium.mp4",
+  "frames": 132,
+  "fps": 8.0,
+  "load_s": 1.99,
+  "detect_ms": {
+    "median": 34.33,
+    "p90": 82.28,
+    "max": 90.9
+  },
+  "depth_ms": {
+    "median": 10.58,
+    "p90": 23.7,
+    "max": 27.83
+  },
+  "track_ms": {
+    "median": 7.26,
+    "p90": 11.17,
+    "max": 13.22
+  },
+  "depth_scale_final": 0.268,
+  "depth_scale_samples": 412,
+  "total_ms": {
+    "median": 53.23,
+    "p90": 112.57
+  },
+  "peak_vram_mib": 202.2,
+  "peak_reserved_mib": 240.0
+}
