@@ -39,14 +39,14 @@ offered ("slow down", "stop", "keep straight") rather than judging free space.
 Each version was reviewed by a fresh agent that checked every spoken line against frames
 1 s before, at and 1 s after, using the same rules each time.
 
-| | v1 | v2 | v3 | v4 | v6 | v7 |
-|---|---|---|---|---|---|---|
-| Lines | 164 | 117 | 93 | 107 | 119 | 108 |
-| Correct and useful | 56 (34%) | 51 (44%) | 53 (57%) | 63 (59%) | 66 (55%) | 57 (53%) |
-| Correct but noise | 59 | 36 | 26 | 29 | 30 | 33 |
-| Wrong | 38 | 21 | 11 | 10 | 18 | 13 |
-| Late | 11 | 9 | 3 | 5 | 5 | 5 |
-| Missed events | 47 | 38 | 55 | 47 | 41 | 45 |
+| | v1 | v2 | v3 | v4 | v6 | v7 | v10 |
+|---|---|---|---|---|---|---|---|
+| Lines | 164 | 117 | 93 | 107 | 119 | 108 | 114 |
+| Correct and useful | 56 (34%) | 51 (44%) | 53 (57%) | 63 (59%) | 66 (55%) | 57 (53%) | 58 (51%) |
+| Correct but noise | 59 | 36 | 26 | 29 | 30 | 33 | 44 |
+| Wrong | 38 | 21 | 11 | 10 | 18 | 13 | 8 |
+| Late | 11 | 9 | 3 | 5 | 5 | 5 | 4 |
+| Missed events | 47 | 38 | 55 | 47 | 41 | 45 | 42 |
 
 - v1: the combined version as first built (Cosmos MOVE and DESCRIBE, Cosmos street/sidewalk
   words). DESCRIBE was useful 2 times in 25 and almost always said "2 steps".
@@ -58,18 +58,26 @@ Each version was reviewed by a fresh agent that checked every spoken line agains
   "Cars passing." only at the curb.
 - v7: stricter lane words (3 checks in a row); lost the real in-path warnings along with the
   phantom ones, so the reviewer picked v6.
+- v8: v6 with at most one curb word per 20 s (not reviewed on its own).
+- v10: v8 with one Cosmos call per second for both ground and lane obstacles, the version that
+  fits the live GPU budget. Its reviewer judged noise more strictly; 95 of its 114 lines match
+  v7 word for word, and by the v7 bar it would be about 63 useful and 38 noise.
 
 The reviewers judged spoken words only, not beeps. Of 45 "person approaching" moments in
 the held-out notes, 38 got a beep or a word within 2 s before to 1 s after.
 
 ## Recommended setting
 
-v8 without MOVE: v6 plus at most one curb word per 20 s, which removed 2 of 3 mid-crossing
-curb words and kept the 4 well-timed ones (not reviewed separately). Videos in
-`data/review/FINAL_walk/recommended/`, settings in
-`experiments/cosmos_combined/run_recommended.sh`). v4 is the more cautious choice: fewer
-wrong lines (10 against 18) but more missed obstacles. With MOVE kept, as asked, it is
-`data/review/FINAL_walk/with_steering/`; the reviews say a blind user is worse off with it.
+v10 without MOVE: the fewest wrong (8) and late (4) lines of any version, about as many misses
+as v6, and the only version that runs live on the laptop GPU. Videos in
+`data/review/FINAL_walk/recommended/`, settings in `experiments/cosmos_combined/run_recommended.sh`.
+With MOVE kept, as asked: `data/review/FINAL_walk/with_steering/` (same settings plus Cosmos
+steering); the reviews say a blind user is worse off with it.
+
+What still fails, from the v10 review: curb words without step up or down and some mid-crossing,
+distances that read long under 2 m, about 21 fixed obstacles never named (barrels, some boards,
+bollards), and 15 people walking straight at the walker with no word (beeps were not judged;
+across the held-out notes 38 of 45 approaching people got a beep or a word).
 
 ## Other findings
 
@@ -87,7 +95,7 @@ wrong lines (10 against 18) but more missed obstacles. With MOVE kept, as asked,
 - I ran `python3` on the Windows host once by mistake at about 00:35 (a compile check); it may
   have opened the Microsoft Store page.
 
-## Live GPU budget (measured, not yet wired in)
+## Live GPU budget
 
 The simulation times each model call separately. On one laptop GPU, per second of walking:
 tracking at 8 fps about 0.42 s, the Cosmos street check 0.25 s and the lane check 0.3 s, which

@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.55,1.55,2.94,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+WALK,,,2.46,2.94,4.57,spoken,False,,,1,,"Person crossing left, close.","Person crossing left, close."
+MOVE,2.46,0.6,3.07,,,silent,,,person left ttc 2.0s,1,3.27,,keep straight
+ALERT,,,6.33,6.33,7.26,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,6.57,7.26,8.5,spoken,False,,,74,,"Trash can right, 8.","Trash can right, 8."
+MOVE,6.96,0.5,7.46,,,silent,,,person left ttc 3.6s,46,8.9,,keep straight
+WALK,,,13.18,13.18,14.38,spoken,False,,,109,,"Person left, close.","Person left, close."

@@ -1,0 +1,11 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.23,1.23,2.11,spoken,False,,,,,Trash can ahead.,Trash can ahead.
+ALERT,,,3.17,3.17,3.94,spoken,False,,,,,Cart ahead.,Cart ahead.
+WALK,,,3.7,3.94,5.05,spoken,False,,,20,,"Cart left, 4.","Cart left, 4."
+MOVE,3.7,0.51,4.21,5.05,5.69,spoken,False,True,cart left ttc 1.8s,20,3.9,Step right.,step right
+WALK,,,4.55,,,dropped,,,,42,,Person ahead.,Person ahead.
+MOVE,4.46,0.52,4.98,,,silent,,,person left ttc 1.9s,1,5.27,,keep straight
+MOVE,5.68,0.5,6.18,,,silent,,,person left ttc 2.8s,9,6.77,,keep straight
+ALERT,,,10.33,10.33,11.05,spoken,False,,,,,Pole ahead.,Pole ahead.
+WALK,,,12.72,12.72,13.42,spoken,False,,,51,,Person left.,Person left.
+MOVE,12.72,0.52,13.23,,,silent,,,person left ttc 3.8s,51,14.9,,keep straight

@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# The recommended walk setting from the 2026-11-20 overnight reviews (v8 = v6 plus a 20 s curb-word gap), for the clips given
-# as stems. Needs results/perception/<stem>.jsonl, results/scene/<stem>_{cv2,stripes,path}.jsonl
-# in the main checkout (mounted at /main). Add --move-gate 0.8 --options xk for Cosmos steering.
+# The recommended walk setting from the 2026-11-20 overnight reviews (v10), for the clips given
+# as stems. Needs results/perception/<stem>.jsonl and results/scene/<stem>_{lg,stripes}.jsonl in
+# the main checkout (mounted at /main): perception.py, lane_ground_probe.py, stripes.py.
+# Add --move-gate 0.8 --options xk (and drop the last line's MOVE flags) for Cosmos steering.
 python experiments/cosmos_combined/sim_walk_combined.py "$@" \
-  --scene-tag cv2 --corner stripes --corner-word "Curb and crosswalk ahead." --stages 0 --vlm-obstacles 0 \
-  --describe off --steps 1 --stairs 0 --traffic-gap 20 --alert-repeat 30 --window 1.0 \
+  --scene-tag lg --path-tag lg --corner stripes --corner-word "Curb and crosswalk ahead." --stages 0 \
+  --vlm-obstacles 0 --describe off --steps 1 --stairs 0 --traffic-gap 20 --alert-repeat 30 --window 1.0 \
   --wset still_min_h=0.07 --wset still_words=1 --wset steps_style=short --wset riders=1 \
-  --traffic-near-corner 10 --path-obstacles 1 --corner-gap 20 --move-gate 0.4 --trigger-ttc 0.1 --options sk
+  --traffic-near-corner 10 --path-obstacles 1 --corner-gap 20 \
+  --move-gate 0.4 --trigger-ttc 0.1 --options sk
