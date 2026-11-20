@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,spoken,text
+ALERT,,,1.79,1.79,2.8,spoken,False,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,2.0,2.06,4.06,4.06,4.09,spoken,True,,,,"A person with a backpack, moving away, center. 3 steps. Right.","A person with a backpack, moving away, center. 3 steps. Right."
+ALERT,,,4.09,4.09,5.02,spoken,False,,,,Cars passing.,Cars passing.
+WALK,,,5.39,5.39,6.09,spoken,False,,,10,Person left.,Person left.
+ALERT,,,7.01,7.01,7.67,spoken,False,,,,Siren.,Siren.
+ALERT,,,7.05,7.67,8.55,spoken,False,,,,Trash can left.,Trash can left.
+MOVE,5.39,2.34,7.73,8.55,9.52,spoken,False,False,person left ttc 4.0s,10,1 step right,"Instruction: 1 step right
+Reason: A person is approaching, so taking a small right step reduces the risk of collision by shifting your weight forward and minimizing the chance of being hit."
+MOVE,7.73,1.96,9.69,9.69,10.65,spoken,False,True,person right ttc 2.0s,60,1 step left,"Instruction: 1 step left
+Reason: A person is approaching from behind, so stepping left keeps a safe distance and avoids collision."
+MOVE,9.69,1.68,11.37,11.37,12.02,spoken,False,True,person left ttc 3.3s,54,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance as a blind pedestrian."

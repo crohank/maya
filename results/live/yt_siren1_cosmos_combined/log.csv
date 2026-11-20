@@ -1,0 +1,15 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,spoken,text
+ALERT,,,1.9,1.9,2.91,spoken,False,,,,Crosswalk ahead.,Crosswalk ahead.
+ALERT,,,2.31,2.91,3.57,spoken,False,,,,Siren.,Siren.
+DESCRIBE,2.0,1.4,3.4,,,dropped,,,,,"Two women across, mid-stride, approaching. Left of center.","Two women across, mid-stride, approaching. Left of center."
+WALK,,,3.56,3.57,4.27,spoken,False,,,1,Person left.,Person left.
+ALERT,,,4.18,4.27,5.2,spoken,False,,,,Cars passing.,Cars passing.
+WALK,,,5.19,5.2,6.03,spoken,False,,,90,Person ahead.,Person ahead.
+MOVE,3.4,2.0,5.41,6.03,7.0,spoken,False,True,person left ttc 2.5s,27,1 step right,"Instruction: 1 step right
+Reason: A person is approaching, so taking a right step avoids collision by shifting laterally while maintaining balance."
+MOVE,5.41,2.22,7.63,7.63,8.28,spoken,False,True,person ahead ttc 1.3s,90,slow down,"Instruction: slow down
+Reason: A person is approaching, slowing down helps avoid accidental collisions and allows more reaction time."
+ALERT,,,7.92,8.28,9.19,spoken,False,,,,In the crosswalk.,In the crosswalk.
+DESCRIBE,8.37,1.64,10.01,10.01,10.01,spoken,True,,,,"Two people crossing street ahead, 3 steps each.","Two people crossing street ahead, 3 steps each."
+ALERT,,,10.01,10.01,10.82,spoken,False,,,,Barrier right.,Barrier right.
+ALERT,,,12.02,12.02,12.68,spoken,False,,,,Siren.,Siren.

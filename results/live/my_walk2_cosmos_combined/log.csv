@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,spoken,text
+DESCRIBE,2.0,0.95,2.95,2.95,3.18,spoken,True,,,,"A person in white shirt, black pants, left, approaching.","A person in white shirt, black pants, left, approaching."
+WALK,,,3.18,3.18,3.95,spoken,False,,,1,Person right.,Person right.
+MOVE,3.18,1.57,4.75,4.75,5.71,spoken,False,True,person right ttc 2.3s,1,1 step left,"Instruction: 1 step left
+Reason: A person is approaching from the right side, posing a potential collision risk if I continue walking forward without adjustment."
+DESCRIBE,6.9,0.77,7.67,7.67,9.76,spoken,False,,,,"A man in white shirt, left, approaching.","A man in white shirt, left, approaching."
+DESCRIBE,9.76,0.82,10.58,10.58,11.55,spoken,True,,,,"A person in white shirt, black pants, left, approaching.","A person in white shirt, black pants, left, approaching."
+WALK,,,11.55,11.55,12.39,spoken,False,,,66,Person ahead.,Person ahead.
+MOVE,11.55,1.36,12.91,12.91,13.56,spoken,False,False,person ahead ttc 3.5s,66,slow down,"Instruction: slow down
+Reason: A pedestrian is approaching directly ahead, posing a potential collision risk. Reducing speed allows me to react promptly and maintain safety."
+DESCRIBE,14.22,0.93,15.14,15.14,18.02,spoken,False,,,,"A person in black with white sneakers, center, approaching.","A person in black with white sneakers, center, approaching."
+DESCRIBE,18.02,1.24,19.26,19.26,22.5,spoken,False,,,,"A man in black pants and blue shirt, ahead, three steps apart.","A man in black pants and blue shirt, ahead, three steps apart."
+DESCRIBE,22.5,1.11,23.61,23.61,27.17,spoken,False,,,,"A man in black pants and blue shirt, moving away, right foreground.","A man in black pants and blue shirt, moving away, right foreground."

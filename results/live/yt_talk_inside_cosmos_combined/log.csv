@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,spoken,text
+WALK,,,0.84,0.84,1.68,spoken,False,,,14,Person ahead.,Person ahead.
+WALK,,,1.49,1.68,2.37,spoken,False,,,19,Person left.,Person left.
+WALK,,,2.38,2.38,3.22,spoken,False,,,16,Person ahead.,Person ahead.
+MOVE,2.0,1.96,3.96,3.96,4.61,spoken,False,True,person left ttc 1.7s,19,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance as a blindperson."
+MOVE,3.96,1.81,5.77,5.77,6.42,spoken,False,True,person ahead ttc 1.5s,16,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance as a blindperson."
+MOVE,5.77,1.69,7.46,7.46,8.11,spoken,False,True,person left ttc 2.3s,42,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance while walking."
+WALK,,,8.18,8.18,9.02,spoken,False,,,64,Person ahead.,Person ahead.
+MOVE,7.81,1.79,9.6,9.6,10.25,spoken,False,False,person right ttc 3.0s,60,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance as a blindperson moving forward."
+WALK,,,9.69,10.25,10.95,spoken,False,,,76,Person left.,Person left.
+WALK,,,11.06,11.06,11.9,spoken,False,,,84,Person ahead.,Person ahead.
+MOVE,9.69,2.03,11.72,11.9,12.55,spoken,False,True,person left ttc 1.4s,76,slow down,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance while walking."

@@ -1,0 +1,22 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,spoken,text
+ALERT,,,2.06,2.06,3.07,spoken,False,,,,Crosswalk ahead.,Crosswalk ahead.
+MOVE,2.0,0.72,2.72,3.07,4.03,spoken,False,True,person left ttc 3.9s,30,1 step right,"Instruction: 1 step right
+Keep straight"
+WALK,,,2.96,,,dropped,,,,52,Person left.,Person left.
+MOVE,2.96,1.54,4.5,4.5,5.46,spoken,False,True,person left ttc 0.8s,52,1 step right,"Instruction: 1 step right
+Reason: A person is approaching from the left, which is outside my field of view."
+MOVE,4.5,1.5,5.99,5.99,6.95,spoken,False,True,trash can left ttc 2.0s,4,1 step right,"Instruction: 1 step right
+Reason: The trash can is approaching from the left, taking a right turn would redirect your path away from it."
+ALERT,,,6.06,6.95,7.86,spoken,False,,,,In the crosswalk.,In the crosswalk.
+WALK,,,6.33,,,dropped,,,,18,Stroller ahead.,Stroller ahead.
+MOVE,6.18,2.23,8.41,8.41,9.37,spoken,False,False,person right ttc 3.1s,97,1 step left,"Instruction: 1 step left
+Reason: A person is approaching from the right side, which is my left when facing forward. Taking one step to the left will create enough space to avoid collision while maintaining balance."
+ALERT,,,9.87,9.87,10.8,spoken,False,,,,Cars passing.,Cars passing.
+MOVE,8.41,1.52,9.94,10.8,11.76,spoken,False,True,stroller ahead ttc 2.7s,18,1 step right,"Instruction: 1 step right
+Reason: The stroller is approaching directly ahead, moving right increases the distance between you and the stroller for safety."
+MOVE,9.94,2.27,12.21,12.21,13.17,spoken,False,True,person ahead ttc 2.0s,140,1 step right,"Instruction: 1 step right
+Reason: There is a pedestrian crossing the crosswalk directly in front of me, posing a potential collision risk while I am walking. Moving slightly to the right will create enough space to avoid a crash and maintain safety for everyone on the street."
+WALK,,,13.04,13.17,14.11,spoken,False,,,194,Truck crossing left.,Truck crossing left.
+DESCRIBE,13.17,0.88,14.05,,,dropped,,,,,"Red truck, red post, parked. All around you.","Red truck, red post, parked. All around you."
+MOVE,14.38,1.02,15.4,15.4,16.36,spoken,False,True,pole right ttc 2.3s,208,1 step right,"Instruction: 1 step right
+Reason: A pole is approaching on my right side, taking priority."
