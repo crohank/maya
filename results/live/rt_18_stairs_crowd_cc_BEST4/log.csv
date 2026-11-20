@@ -1,0 +1,7 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.04,1.04,2.62,spoken,False,,,13,,"Person crossing right, 9.","Person crossing right, 9."
+MOVE,1.71,0.5,2.21,,,silent,,,person ahead ttc 3.8s,6,2.27,,keep straight
+WALK,,,2.56,2.62,3.85,spoken,False,,,57,,"Person right, close.","Person right, close."
+MOVE,2.56,0.51,3.07,3.85,4.46,spoken,False,True,person right ttc 1.2s,57,2.13,Step left.,step left
+WALK,,,3.82,4.46,5.66,spoken,False,,,116,,"Person left, close.","Person left, close."
+WALK,,,5.1,5.66,6.81,spoken,False,,,118,,"Person right, 6.","Person right, 6."

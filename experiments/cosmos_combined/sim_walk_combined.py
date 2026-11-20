@@ -360,7 +360,7 @@ def run_clip(stem, o, speech, voice):
                 run = run + 1 if r["stripes"] else 0
                 # stripes reaching the bottom edge are under the walker: already crossing
                 # (v2 review: "Curb and crosswalk ahead" said mid-crossing 4 times)
-                under = o["stripe_under"] < 9 and ((r.get("nearest") or 0) >= o["stripe_under"] or any(
+                under = o["stripe_under"] < 9 and ((r.get("nearest") or 0) >= o["stripe_under"] or o["stripe_road"] and any(
                     x["road"] for x in rows if r["t"] - 2 <= x["t"] <= r["t"]))
                 if run == 2 and r["t"] - last > 8 and not under:
                     last = r["t"]
@@ -446,6 +446,7 @@ def main():
     ap.add_argument("--wset", action="append", default=[], help="walk_v3 BASE key=value")
     ap.add_argument("--stripe-under", type=float, default=9.0, help="skip the corner word when stripes reach this low")
     ap.add_argument("--traffic-gap", type=float, default=8.0)
+    ap.add_argument("--stripe-road", type=int, default=0, help="1: also skip when Cosmos ground said street (v3: too strong, 1 corner word in 22 clips)")
     ap.add_argument("--alert-repeat", type=float, default=10.0)
     ap.add_argument("--render-dir")
     ap.add_argument("--names", help="json map stem -> output file name")

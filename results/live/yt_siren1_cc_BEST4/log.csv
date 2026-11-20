@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.55,1.55,2.94,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+ALERT,,,2.05,2.94,3.6,spoken,False,,,,,Siren.,Siren.
+WALK,,,3.45,3.6,5.17,spoken,False,,,47,,"Person crossing right, 6.","Person crossing right, 6."
+ALERT,,,4.48,5.17,6.1,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,6.06,0.6,6.66,,,silent,,,person left ttc 2.5s,90,6.0,,keep straight

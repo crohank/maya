@@ -77,6 +77,8 @@ BASE = dict(
     steps=0,               # 1: "Person left, 3 steps." (steps_away)
     step_m=0.75, vfov_portrait=60.0, vfov_landscape=45.0,
     still_min_h=0.15, still_near_bot=0.75,   # UX3: still_min_h=0.07
+    close_h=0.6,           # box at least this tall, or cut off at the bottom: "close" instead of steps
+    steps_style="long",    # long: "Person left, 3 steps." short: "Person left, 3."
     still_words=0,         # 1: a still obstacle can take the word slot when the most urgent track is not new
     pan_rate=9.0,          # camera turn: median lateral rate (width/s) above this means no "crossing"
     crowd_n=0,             # this many approaching people: say "Crowd ahead." instead of person words
@@ -211,26 +213,36 @@ def urgency(tr, cfg):
     return None, None
 
 
+STEPS_STYLE = ["long"]   # set by simulate from cfg["steps_style"]
+
+
 def phrase(name, verb, side, steps):
+    if steps == 0:
+        return f"{name}{verb} {side}, close."
+    if steps and STEPS_STYLE[0] == "short":
+        return f"{name}{verb} {side}, {steps}."
     return f"{name}{verb} {side}, {steps} step{'s' if steps != 1 else ''}." if steps else f"{name}{verb} {side}."
 
 
 def steps_away(tr, cfg):
     """Distance in walking steps from the box height and the class height (HEIGHT_M), the
     same pinhole model predict() uses for X. Vertical field of view is a guess per
-    orientation (phone portrait about 60 deg, landscape about 45 deg). None beyond 9 steps
-    or when the box is cut off at the top or bottom edge (height then understates size)."""
+    orientation (phone portrait about 60 deg, landscape about 45 deg).
+
+    0 means "close": a box cut off at the bottom edge or taller than close_h understates
+    the distance it implies (v2 review: people 1 to 2 m away called 4 to 9 steps; v3:
+    the rt_04 van at 1 m was "8 steps"). None beyond 9 steps or when only the top is cut."""
     x1, y1, x2, y2 = tr["box"]
     h = y2 - y1
-    if tr["cls"] not in HEIGHT_M or h <= 0 or y1 <= 0.01:
+    if tr["cls"] not in HEIGHT_M or h <= 0:
+        return None
+    if y2 >= 0.97 or h >= cfg["close_h"]:
+        return 0
+    if y1 <= 0.01:
         return None
     vfov = math.radians(cfg["vfov_portrait"] if tr["_aspect"] < 1 else cfg["vfov_landscape"])
     z = HEIGHT_M[tr["cls"]] / (h * 2 * math.tan(vfov / 2))
     n = max(1, round(z / cfg["step_m"]))
-    if y2 >= 0.97:
-        # feet cut off by the frame edge: the box understates height, so z reads long
-        # (v2 review: people 1 to 2 m away called 4 to 9 steps)
-        n = min(n, 2)
     return n if n <= 9 else None
 
 
@@ -295,6 +307,7 @@ def simulate(frames, cfg, voice, scene=()):
     scene: cues from walk_scene.scene_cues(), queued at their ready time. Urgency 0
     makes them win over object words queued at the same moment.
     """
+    STEPS_STYLE[0] = cfg["steps_style"]
     scene = [dict(source="scene", track=-(i + 1), cls="scene", name=c["answer"].split()[0],
                   side="ahead", urgency=0.0, ready=c["ready"], win_start=c["t"], win_end=c["t"],
                   answer=c["answer"], X=None, prev_kind=-99.0, raw=c["kind"])
