@@ -62,14 +62,18 @@ Each version was reviewed by a fresh agent that checked every spoken line agains
 - v10: v8 with one Cosmos call per second for both ground and lane obstacles, the version that
   fits the live GPU budget. Its reviewer judged noise more strictly; 95 of its 114 lines match
   v7 word for word, and by the v7 bar it would be about 63 useful and 38 noise.
+- v11: v10 plus a word for anyone on a dead-centre course (within 0.5 m) even when a person
+  was named in the last 8 s: 12 new lines; I checked 8 against frames, 6 useful, 2 noise, none
+  wrong. Approaching people in the notes with a word: 30 to 34 of 45. Not reviewed in full.
 
 The reviewers judged spoken words only, not beeps. Of 45 "person approaching" moments in
 the held-out notes, 38 got a beep or a word within 2 s before to 1 s after.
 
 ## Recommended setting
 
-v10 without MOVE: the fewest wrong (8) and late (4) lines of any version, about as many misses
-as v6, and the only version that runs live on the laptop GPU. Videos in
+v11 without MOVE (v10 plus head-on words). v10 had the fewest wrong (8) and late (4) lines of
+any version, about as many misses as v6, and is the only version that runs live on the laptop
+GPU. Videos in
 `data/review/FINAL_walk/recommended/`, settings in `experiments/cosmos_combined/run_recommended.sh`.
 With MOVE kept, as asked: `data/review/FINAL_walk/with_steering/` (same settings plus Cosmos
 steering); the reviews say a blind user is worse off with it.

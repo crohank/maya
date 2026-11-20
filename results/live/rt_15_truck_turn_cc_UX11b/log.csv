@@ -1,0 +1,3 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,2.95,2.95,4.69,spoken,False,,,5,,"Truck crossing left, close.","Truck crossing left, close."
+WALK,,,13.96,13.96,15.11,spoken,False,,,409,,"Car left, close.","Car left, close."

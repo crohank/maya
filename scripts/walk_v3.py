@@ -77,6 +77,7 @@ BASE = dict(
     steps=0,               # 1: "Person left, 3 steps." (steps_away)
     step_m=0.75, vfov_portrait=60.0, vfov_landscape=45.0,
     still_min_h=0.15, still_near_bot=0.75,   # UX3: still_min_h=0.07
+    headon_x=0.0, headon_u=3.0,   # 0.5: dead-centre tracks get a word despite new_kind_s
     riders=0,              # 1: person on a bike box is named "Bike" (mark_riders)
     close_h=0.6,           # box at least this tall, or cut off at the bottom: "close" instead of steps
     steps_style="long",    # long: "Person left, 3 steps." short: "Person left, 3."
@@ -436,8 +437,13 @@ def simulate(frames, cfg, voice, scene=()):
                  raw=json.dumps({k: v for k, v in tr.items() if not k.startswith("_")}))
         veh = tr["cls"] in fh.VEHICLES
         if cfg["words"] == "once":
+            # head-on: a track predicted to pass within headon_x metres of the centre line gets
+            # its word even if its kind was named in the last new_kind_s (v3 to v10 reviews: 12
+            # to 15 people walking straight at the walker got no word)
+            headon = (cfg["headon_x"] > 0 and c["X"] is not None and abs(c["X"]) <= cfg["headon_x"]
+                      and u < cfg["headon_u"])
             want = tid not in worded and (veh or now - kind_last.get(name, -99) > cfg["new_kind_s"]
-                                          or u < cfg["word_ttc"])
+                                          or u < cfg["word_ttc"] or headon)
             want = want and (u < cfg["word_ttc"] or now - max(worded.values(), default=-99) >= cfg["word_gap"])
             # In a crowd one "Crowd ahead." stands for the people; tones keep marking the nearest.
             want = want and not (tr["cls"] == "person" and now - st["crowd"] < cfg["crowd_s"]

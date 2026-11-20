@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,3.22,3.22,3.99,spoken,False,,,44,,Person right.,Person right.
+WALK,,,4.55,4.55,5.91,spoken,False,,,53,,"Car ahead, 5.","Car ahead, 5."
+WALK,,,7.84,7.84,9.02,spoken,False,,,80,,"Car right, close.","Car right, close."
+WALK,,,8.84,9.02,10.24,spoken,False,,,137,,"Car left, 7.","Car left, 7."

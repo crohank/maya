@@ -1,0 +1,9 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.18,1.18,2.14,spoken,False,,,,,Sign board ahead.,Sign board ahead.
+WALK,,,1.96,2.14,3.32,spoken,False,,,15,,"Person right, 8.","Person right, 8."
+WALK,,,3.55,3.55,4.8,spoken,False,,,43,,"Chair right, close.","Chair right, close."
+WALK,,,4.83,4.83,6.08,spoken,False,,,57,,"Planter right, 4.","Planter right, 4."
+ALERT,,,7.05,7.05,8.41,spoken,False,,,,,"Curb ahead, step down.","Curb ahead, step down."
+WALK,,,8.58,8.58,9.95,spoken,False,,,106,,"Trash can right, 6.","Trash can right, 6."
+ALERT,,,9.26,9.95,10.88,spoken,False,,,,,Cars passing.,Cars passing.
+ALERT,,,10.23,10.88,11.76,spoken,False,,,,,Trash can ahead.,Trash can ahead.

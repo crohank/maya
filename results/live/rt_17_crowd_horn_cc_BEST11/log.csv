@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+MOVE,1.7,0.5,2.2,2.2,2.82,spoken,False,False,luggage right ttc 2.0s,28,2.5,Step left.,step left
+ALERT,,,3.23,3.23,4.04,spoken,False,,,,,Planter ahead.,Planter ahead.
+ALERT,,,5.17,5.17,6.13,spoken,False,,,,,Sign board ahead.,Sign board ahead.
+WALK,,,5.5,6.13,7.68,spoken,False,,,1,,"Person crossing ahead, close.","Person crossing ahead, close."
+MOVE,5.5,0.53,6.03,,,silent,,,person ahead ttc 2.0s,1,0.13,,keep straight
+WALK,,,8.22,8.22,9.32,spoken,False,,,139,,"Person left, 7.","Person left, 7."
+MOVE,8.22,0.5,8.72,,,silent,,,person left ttc 2.6s,139,7.9,,keep straight
