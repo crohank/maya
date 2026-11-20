@@ -1,0 +1,15 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.85,1.85,2.86,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,2.0,1.37,3.37,3.37,3.55,spoken,True,,,,,"A man in white shirt, ahead, 3 steps.","A man in white shirt, ahead, 3 steps."
+WALK,,,3.55,3.55,4.32,spoken,False,,,7,,Person right.,Person right.
+MOVE,3.55,2.12,5.67,5.67,6.67,spoken,False,True,person right ttc 2.9s,7,5.5,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from a safe distance; stepping left keeps you away from the vehicle while maintaining awareness of surroundings."
+MOVE,5.67,1.67,7.35,7.35,8.35,spoken,False,True,person right ttc 2.2s,11,6.27,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a single step left avoids collision."
+MOVE,7.35,2.07,9.42,9.42,10.42,spoken,False,True,person right ttc 2.3s,1,6.77,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from behind, so stepping left keeps a safe distance and avoids collision."
+DESCRIBE,10.41,1.32,11.74,11.74,12.32,spoken,True,,,,,"Two people ahead, center. Moving away.","Two people ahead, center. Moving away."
+WALK,,,12.32,12.32,13.02,spoken,False,,,10,,Person left.,Person left.
+MOVE,12.32,1.74,14.06,14.06,15.01,spoken,False,False,person left ttc 3.2s,10,14.4,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+WALK,,,14.95,15.01,15.89,spoken,False,,,85,,Trash can left.,Trash can left.

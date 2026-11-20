@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.23,2.23,3.24,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,3.39,3.39,4.16,spoken,False,,,7,,Person right.,Person right.
+DESCRIBE,2.0,1.62,3.62,,,dropped,,,,,,"A man with a white cane, ahead, 3 steps. Crossing across the street.","A man with a white cane, ahead, 3 steps. Crossing across the street."
+ALERT,,,4.82,4.82,5.75,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,3.62,1.76,5.38,5.75,6.75,spoken,False,True,person right ttc 3.7s,7,4.77,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right; stepping left creates distance while maintaining balance."
+ALERT,,,7.88,7.88,8.79,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+MOVE,6.46,1.77,8.23,8.79,9.74,spoken,False,False,person ahead ttc 3.9s,76,9.77,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance while walking forward."
+WALK,,,9.95,9.95,10.96,spoken,False,,,104,,Bike crossing left.,Bike crossing left.
+MOVE,8.23,2.23,10.46,10.96,11.91,spoken,False,False,person ahead ttc 2.1s,87,12.4,1 step right.,"Instruction: 1 step right
+Reason: A vehicle is approaching, moving the blind person sideways away from its path ensures safety without needing to stop abruptly."
+MOVE,10.46,2.25,12.71,12.71,13.66,spoken,False,True,bicycle left ttc 2.0s,104,9.77,1 step right.,"Instruction: 1 step right
+Reason: The bicycle is approaching from your left, moving toward you; taking a single step to the right creates distance between you and the bike while maintaining balance."
+ALERT,,,14.01,14.01,15.31,spoken,False,,,,,"Curb ahead, step up.","Curb ahead, step up."
+DESCRIBE,13.66,1.82,15.48,15.48,20.81,spoken,False,,,,,"A black car approaching, left front, 3 steps. A yellow taxi turning, right front, 4 steps.","A black car approaching, left front, 3 steps. A yellow taxi turning, right front, 4 steps."

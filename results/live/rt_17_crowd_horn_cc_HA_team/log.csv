@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.86,0.86,1.63,spoken,False,,,8,,Person right.,Person right.
+MOVE,2.0,1.87,3.87,3.87,4.87,spoken,False,True,person right ttc 2.8s,7,1.63,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from a safe distance; stepping left keeps you away from the potential path conflict."
+DESCRIBE,4.87,1.69,6.56,6.56,8.45,spoken,True,,,,,"Group of women and man, mid distance, moving away from camera.","Group of women and man, mid distance, moving away from camera."
+MOVE,6.56,1.89,8.45,8.45,9.11,spoken,False,True,person ahead ttc 2.0s,1,0.13,Slow down.,"Instruction: slow down
+Reason: A person is approaching, so reducing speed minimizes the chance of collision."
+WALK,,,9.56,9.56,10.44,spoken,False,,,159,,Trash can left.,Trash can left.
+MOVE,8.45,1.39,9.83,10.44,11.1,spoken,False,True,person left ttc 2.6s,139,7.9,Slow down.,"Instruction: slow down
+Reason: To detect the approaching person and avoid collision"
+ALERT,,,11.96,11.96,12.63,spoken,False,,,,,Curb ahead.,Curb ahead.
+MOVE,9.83,2.7,12.53,12.63,13.59,spoken,False,True,trash can left ttc 1.7s,159,11.13,1 step right.,"Instruction: 1 step right
+Reason: The trash can is approaching from the left, taking up that space, so shifting slightly to the right will keep you clear of it while maintaining balance."
+WALK,,,13.45,13.59,14.67,spoken,False,,,207,,Person crossing right.,Person crossing right.
+ALERT,,,14.16,14.67,15.59,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,13.45,1.55,15.0,15.59,16.26,spoken,False,True,person right ttc 2.0s,207,13.63,Slow down.,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance while walking."

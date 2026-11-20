@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,1.02,2.02,2.02,2.23,spoken,True,,,,,"Pedestrian crossing ahead, 6 steps. Crosswalk right, 3 steps.","Pedestrian crossing ahead, 6 steps. Crosswalk right, 3 steps."
+ALERT,,,2.23,2.23,3.24,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+MOVE,2.69,0.57,3.26,,,silent,,,person right ttc 3.7s,7,4.77,,keep straight
+WALK,,,3.39,3.39,4.16,spoken,False,,,7,,Person right.,Person right.
+ALERT,,,4.82,4.82,5.75,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,6.46,0.62,7.08,,,silent,,,person ahead ttc 3.9s,76,9.77,,keep straight
+ALERT,,,7.88,7.88,8.79,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+MOVE,7.82,0.52,8.34,,,silent,,,person ahead ttc 2.1s,87,12.4,,keep straight
+WALK,,,9.95,9.95,10.96,spoken,False,,,104,,Bike crossing left.,Bike crossing left.
+DESCRIBE,9.0,0.97,9.97,,,dropped,,,,,,"Pedestrian crossing, 2 steps. Crosswalk right, 1 step.","Pedestrian crossing, 2 steps. Crosswalk right, 1 step."
+MOVE,9.97,0.51,10.49,10.96,11.62,spoken,False,True,bicycle left ttc 2.0s,104,9.77,Slow down.,slow down
+ALERT,,,14.01,14.01,15.31,spoken,False,,,,,"Curb ahead, step up.","Curb ahead, step up."

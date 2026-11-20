@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.83,0.83,1.71,spoken,False,,,3,,Trash can left.,Trash can left.
+WALK,,,1.18,1.71,2.55,spoken,False,,,12,,Person ahead.,Person ahead.
+DESCRIBE,1.0,0.87,1.87,,,dropped,,,,,,"Pedestrians approaching, trash bin right, 3 steps.","Pedestrians approaching, trash bin right, 3 steps."
+MOVE,1.87,0.66,2.53,2.55,3.5,spoken,False,False,person ahead ttc 0.4s,12,3.9,1 step right.,1 step right
+WALK,,,3.7,3.7,4.33,spoken,False,,,20,,Cart left.,Cart left.
+MOVE,3.7,0.52,4.22,4.33,4.97,spoken,False,True,cart left ttc 1.8s,20,3.9,Step right.,step right
+WALK,,,4.55,4.97,5.8,spoken,False,,,42,,Person ahead.,Person ahead.
+MOVE,4.46,0.52,4.98,,,silent,,,person left ttc 1.9s,1,5.27,,keep straight
+MOVE,5.68,0.59,6.27,,,silent,,,person left ttc 2.8s,9,6.77,,keep straight
+DESCRIBE,9.0,0.97,9.97,9.97,12.72,spoken,True,,,,,"Crosswalk ahead, 2 steps. Pedestrians approaching, 1 step.","Crosswalk ahead, 2 steps. Pedestrians approaching, 1 step."
+WALK,,,12.72,12.72,13.42,spoken,False,,,51,,Person left.,Person left.
+MOVE,12.72,0.56,13.28,,,silent,,,person left ttc 3.8s,51,14.9,,keep straight

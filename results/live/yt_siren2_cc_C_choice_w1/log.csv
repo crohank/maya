@@ -1,0 +1,12 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.79,1.79,2.8,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,1.0,1.11,2.11,,,dropped,,,,,,"Pedestrians right, 2 steps. Crosswalk ahead, 1 step.","Pedestrians right, 2 steps. Crosswalk ahead, 1 step."
+ALERT,,,4.09,4.09,5.02,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,5.39,5.39,6.09,spoken,False,,,10,,Person left.,Person left.
+MOVE,5.39,0.54,5.93,6.09,6.75,spoken,False,False,person left ttc 4.0s,10,9.13,Slow down.,slow down
+MOVE,6.34,0.56,6.9,6.9,7.56,spoken,False,False,person left ttc 2.6s,70,9.13,Slow down.,slow down
+ALERT,,,7.01,7.56,8.22,spoken,False,,,,,Siren.,Siren.
+ALERT,,,7.05,8.22,9.11,spoken,False,,,,,Trash can left.,Trash can left.
+MOVE,7.04,0.59,7.64,9.11,9.77,spoken,False,True,person right ttc 2.0s,60,8.63,Slow down.,slow down
+DESCRIBE,8.3,0.79,9.09,,,dropped,,,,,,"Red mailbox left, 2 steps.","Red mailbox left, 2 steps."
+MOVE,9.09,0.57,9.66,9.77,10.43,spoken,False,False,person left ttc 3.3s,54,10.13,Slow down.,slow down

@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,2.0,1.3,3.3,3.3,5.97,spoken,False,,,,,"A black pickup truck ahead, left, approaching.","A black pickup truck ahead, left, approaching."
+WALK,,,6.45,6.45,7.17,spoken,False,,,16,,Pole ahead.,Pole ahead.
+DESCRIBE,5.97,1.53,7.5,7.5,11.95,spoken,False,,,,,No obstacles. No pedestrians. Empty street. Car approaching. Far car.,No obstacles. No pedestrians. Empty street. Car approaching. Far car.
+DESCRIBE,11.95,1.43,13.38,13.38,16.64,spoken,False,,,,,"A person walking left to right across the road, 3 steps away.","A person walking left to right across the road, 3 steps away."
+DESCRIBE,16.64,1.56,18.2,18.2,18.2,spoken,True,,,,,A person in orange crossing road from left. 3 steps. Moving away.,A person in orange crossing road from left. 3 steps. Moving away.
+WALK,,,18.2,18.2,18.86,spoken,False,,,50,,Car left.,Car left.
+MOVE,18.2,1.81,20.01,20.01,20.96,spoken,False,False,car left ttc 2.1s,50,20.25,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching car while maintaining balance and visibility."
+WALK,,,23.31,23.31,24.03,spoken,False,,,106,,Cone right.,Cone right.
+DESCRIBE,22.89,1.86,24.76,24.76,26.81,spoken,True,,,,,No obstacles. No pedestrians. Vehicles approaching. Left. Slowly.,No obstacles. No pedestrians. Vehicles approaching. Left. Slowly.
+MOVE,24.76,2.06,26.81,26.81,27.81,spoken,False,True,traffic cone right ttc 3.4s,106,26.13,1 step left.,"Instruction: 1 step left
+Reason: The cone is approaching from the right, taking a step left will maintain distance and avoid collision."

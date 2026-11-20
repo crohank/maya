@@ -1,0 +1,11 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.04,1.04,2.12,spoken,False,,,13,,Person crossing right.,Person crossing right.
+DESCRIBE,1.0,1.01,2.01,,,dropped,,,,,,"Person right, 2 steps. Escalator up, 1 step.","Person right, 2 steps. Escalator up, 1 step."
+WALK,,,2.56,2.56,3.33,spoken,False,,,57,,Person right.,Person right.
+MOVE,2.01,0.64,2.64,,,silent,,,person ahead ttc 3.8s,6,2.27,,keep straight
+MOVE,2.64,0.56,3.2,3.33,3.94,spoken,False,True,person right ttc 1.2s,57,2.13,Step left.,step left
+WALK,,,3.82,3.94,4.64,spoken,False,,,116,,Person left.,Person left.
+WALK,,,5.1,5.1,5.87,spoken,False,,,118,,Person right.,Person right.
+WALK,,,5.46,5.87,6.7,spoken,False,,,98,,Person ahead.,Person ahead.
+MOVE,5.46,0.6,6.06,6.7,7.65,spoken,False,True,person ahead ttc 1.3s,98,5.77,1 step right.,1 step right
+DESCRIBE,9.0,1.38,10.38,10.38,13.33,spoken,False,,,,,"Stairs right, 6 steps. People approaching, crowd.","Stairs right, 6 steps. People approaching, crowd."

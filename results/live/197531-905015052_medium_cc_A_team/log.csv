@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,2.0,0.67,2.67,2.67,4.89,spoken,True,,,,,"Two people ahead, left, 3 steps.","Two people ahead, left, 3 steps."
+WALK,,,4.89,4.89,5.92,spoken,False,,,17,,Bus crossing right.,Bus crossing right.
+DESCRIBE,4.9,0.96,5.86,,,dropped,,,,,,"Bus entering frame, moving right, just past center.","Bus entering frame, moving right, just past center."
+DESCRIBE,8.83,1.08,9.91,9.91,12.5,spoken,False,,,,,"A bus, moving away. Right. Nearby.","A bus, moving away. Right. Nearby."
+DESCRIBE,12.5,0.93,13.42,13.42,15.88,spoken,False,,,,,"A bus moving away, right side. 3 steps.","A bus moving away, right side. 3 steps."

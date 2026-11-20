@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.92,1.92,2.93,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+ALERT,,,3.82,3.82,4.73,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+WALK,,,4.0,4.73,5.33,spoken,False,,,61,,Car right.,Car right.
+MOVE,2.0,2.13,4.13,5.33,6.33,spoken,False,True,person right ttc 1.9s,2,3.27,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right; stepping left keeps you farther from the potential collision point."
+ALERT,,,5.8,6.33,7.26,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,4.13,1.85,5.98,7.26,8.26,spoken,False,True,person right ttc 3.2s,54,3.27,1 step left.,"Instruction: 1 step left
+Reason: A vehicle is approaching from behind, taking up space that could cause a collision."
+MOVE,5.98,1.64,7.62,8.26,9.21,spoken,False,True,person left ttc 2.0s,79,6.0,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a right step avoids collision."
+DESCRIBE,8.57,1.45,10.02,10.02,11.06,spoken,True,,,,,"A black car, coming towards me, 3 steps. Right.","A black car, coming towards me, 3 steps. Right."
+WALK,,,11.06,11.06,11.76,spoken,False,,,161,,Person left.,Person left.
+MOVE,11.06,2.09,13.15,13.15,14.1,spoken,False,False,person left ttc 1.5s,161,14.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching from the left; stepping right increases my margin of safety while maintaining awareness of the approaching individual."
+MOVE,13.15,1.88,15.03,15.03,15.88,spoken,False,True,person left ttc 3.6s,141,14.27,2 steps left.,"Instruction: 2 steps left
+Reason: A person is approaching from the left, so taking two steps in that direction avoids a collision."

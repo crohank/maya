@@ -1,0 +1,15 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.89,1.89,2.9,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,2.69,2.9,3.56,spoken,False,,,36,,Car ahead.,Car ahead.
+DESCRIBE,2.0,1.66,3.66,3.66,3.87,spoken,True,,,,,"A person in white shirt, ahead, 3 steps. A car, ahead, 4 steps.","A person in white shirt, ahead, 3 steps. A car, ahead, 4 steps."
+ALERT,,,3.87,3.87,4.8,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,3.66,2.03,5.69,5.69,6.64,spoken,False,True,car ahead ttc 0.5s,36,5.27,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching car, I pivot slightly right while maintaining speed to ensure clearance as I exit the lane."
+WALK,,,6.71,6.71,7.41,spoken,False,,,101,,Person left.,Person left.
+ALERT,,,8.19,8.19,9.1,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+MOVE,6.71,1.84,8.55,9.1,10.05,spoken,False,False,person left ttc 0.9s,101,9.5,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching from the left; stepping right keeps you centered while avoiding the vehicle."
+DESCRIBE,10.0,1.4,11.4,11.4,13.96,spoken,True,,,,,"A man on a bicycle, right, mid-action, ahead of me.","A man on a bicycle, right, mid-action, ahead of me."
+WALK,,,13.96,13.96,14.66,spoken,False,,,313,,Person left.,Person left.
+WALK,,,14.69,14.69,15.35,spoken,False,,,368,,Car ahead.,Car ahead.
+DESCRIBE,14.23,1.51,15.74,15.74,18.14,spoken,False,,,,,"Cyclist right, 3 steps, moving away.","Cyclist right, 3 steps, moving away."

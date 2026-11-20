@@ -1,0 +1,12 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,2.0,0.94,2.94,2.94,3.18,spoken,True,,,,,"A person in white shirt, black pants, left, approaching.","A person in white shirt, black pants, left, approaching."
+WALK,,,3.18,3.18,3.95,spoken,False,,,1,,Person right.,Person right.
+MOVE,3.18,1.61,4.79,4.79,5.79,spoken,False,True,person right ttc 2.3s,1,3.77,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right side, posing a potential collision risk if I continue walking forward without adjustment."
+DESCRIBE,6.92,1.15,8.07,8.07,11.55,spoken,True,,,,,"A man in white shirt, black pants, approaching from behind, left side. 3 steps.","A man in white shirt, black pants, approaching from behind, left side. 3 steps."
+WALK,,,11.55,11.55,12.39,spoken,False,,,66,,Person ahead.,Person ahead.
+MOVE,11.55,1.42,12.97,12.97,13.63,spoken,False,False,person ahead ttc 3.5s,66,15.27,Slow down.,"Instruction: slow down
+Reason: A pedestrian is approaching directly ahead, posing a potential collision risk. Reducing speed allows me to react promptly and maintain safety."
+DESCRIBE,13.63,0.74,14.37,14.37,16.96,spoken,False,,,,,"A police officer, moving away from camera, center.","A police officer, moving away from camera, center."
+DESCRIBE,16.96,1.32,18.28,18.28,23.3,spoken,False,,,,,"A person in black with long hair, light shirt, and white shoes, holding a cell phone, walking forward.","A person in black with long hair, light shirt, and white shoes, holding a cell phone, walking forward."
+DESCRIBE,23.3,1.13,24.43,24.43,28.76,spoken,False,,,,,"A man in black and blue with FedEx on back, right, moving away, ahead of camera.","A man in black and blue with FedEx on back, right, moving away, ahead of camera."

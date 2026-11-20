@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.91,2.91,3.92,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,2.0,1.53,3.53,,,dropped,,,,,,"Two people crossing street ahead, left of center.","Two people crossing street ahead, left of center."
+WALK,,,4.55,4.55,5.21,spoken,False,,,53,,Car ahead.,Car ahead.
+ALERT,,,5.88,5.88,6.79,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+ALERT,,,6.95,6.95,7.88,spoken,False,,,,,Cars passing.,Cars passing.
+DESCRIBE,6.1,1.48,7.58,,,dropped,,,,,,Two people walking away center. Left of me. 4 steps.,Two people walking away center. Left of me. 4 steps.
+WALK,,,7.84,7.88,8.48,spoken,False,,,80,,Car right.,Car right.
+WALK,,,8.84,8.84,9.5,spoken,False,,,137,,Car left.,Car left.
+MOVE,7.84,2.32,10.15,10.15,11.15,spoken,False,True,car right ttc 0.7s,80,7.9,1 step left.,"Instruction: 1 step left
+Reason: The car is approaching from the right, moving toward you, so shifting slightly left increases your lateral distance from the vehicle for added clearance."
+MOVE,10.15,1.89,12.04,12.04,12.99,spoken,False,True,car left ttc 0.9s,137,9.5,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching car, moving slightly right creates enough space to pass safely without swerving."
+DESCRIBE,12.99,1.98,14.98,14.98,19.71,spoken,False,,,,,"A black car approaching left crosswalk. Ahead, 3 steps. From left. Still in motion.","A black car approaching left crosswalk. Ahead, 3 steps. From left. Still in motion."

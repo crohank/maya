@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+MOVE,2.0,1.0,3.0,3.0,3.66,spoken,False,False,person right ttc 3.1s,15,4.4,Slow down.,slow down
+DESCRIBE,3.66,1.41,5.07,5.07,7.0,spoken,True,,,,,"Curb right, 2 steps. Pedestrian crossing ahead.","Curb right, 2 steps. Pedestrian crossing ahead."
+MOVE,5.96,1.04,7.0,7.0,7.66,spoken,False,True,person left ttc 2.3s,67,5.0,Slow down.,slow down
+MOVE,7.0,1.03,8.03,8.03,8.69,spoken,False,True,person left ttc 3.8s,77,5.77,Slow down.,slow down
+MOVE,8.03,1.02,9.05,9.05,9.71,spoken,False,False,person right ttc 2.0s,3,10.13,Slow down.,slow down
+MOVE,9.05,1.01,10.06,10.06,10.72,spoken,False,False,trash can right ttc 1.1s,106,10.9,Slow down.,slow down
+DESCRIBE,10.72,1.43,12.15,12.15,15.35,spoken,False,,,,,"Trash bin right, 2 steps. People ahead, 3 steps.","Trash bin right, 2 steps. People ahead, 3 steps."

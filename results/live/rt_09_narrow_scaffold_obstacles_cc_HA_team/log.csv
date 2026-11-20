@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.96,0.96,1.66,spoken,False,,,7,,Person left.,Person left.
+MOVE,2.0,1.85,3.85,3.85,4.8,spoken,False,False,person left ttc 3.1s,4,6.4,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+WALK,,,6.05,6.05,6.75,spoken,False,,,36,,Person left.,Person left.
+DESCRIBE,4.8,1.53,6.33,,,dropped,,,,,,"A man with a scooter parked behind me, left, 3 steps away.","A man with a scooter parked behind me, left, 3 steps away."
+MOVE,6.33,2.03,8.36,8.36,9.02,spoken,False,True,person left ttc 1.3s,36,7.27,Slow down.,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance with a cane."
+ALERT,,,9.85,9.85,10.81,spoken,False,,,,,Scaffolding right.,Scaffolding right.
+ALERT,,,10.96,10.96,11.66,spoken,False,,,,,In the street.,In the street.
+MOVE,10.32,1.7,12.02,12.02,12.97,spoken,False,False,person left ttc 2.4s,114,12.9,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+ALERT,,,12.92,12.97,13.6,spoken,False,,,,,Pole left.,Pole left.
+WALK,,,13.55,13.6,14.37,spoken,False,,,166,,Person right.,Person right.
+DESCRIBE,12.97,1.34,14.31,,,dropped,,,,,,"A person in black shirt, ahead, 3 steps.","A person in black shirt, ahead, 3 steps."
+MOVE,14.31,1.71,16.02,16.02,16.68,spoken,False,True,person right ttc 1.0s,166,14.9,Slow down.,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance while walking."

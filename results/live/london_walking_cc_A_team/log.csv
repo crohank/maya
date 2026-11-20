@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.82,0.82,1.52,spoken,False,,,6,,Person left.,Person left.
+MOVE,2.0,2.41,4.41,4.41,5.26,spoken,False,True,person left ttc 3.8s,3,2.0,2 steps left.,"Instruction: 2 steps left
+Reason: A person is approaching from the left, so taking two steps in that direction avoids collision."
+WALK,,,5.18,5.26,6.02,spoken,False,,,10,,Person right.,Person right.
+MOVE,4.41,2.23,6.64,6.64,7.59,spoken,False,True,person ahead ttc 2.8s,9,5.77,1 step right.,"Instruction: 1 step right
+Reason: The approaching person is slightly to my right, so stepping right aligns with their path while maintaining safe distance."
+MOVE,6.64,1.74,8.37,8.37,9.37,spoken,False,True,person right ttc 1.9s,10,5.63,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a step left avoids collision."
+DESCRIBE,9.37,1.5,10.87,10.87,12.61,spoken,False,,,,,"Right, person, moving forward.","Right, person, moving forward."
+WALK,,,13.61,13.61,14.38,spoken,False,,,103,,Person right.,Person right.
+DESCRIBE,12.61,2.43,15.04,15.04,17.03,spoken,True,,,,,"A person in dark clothing, ahead, 3 steps. A person in light shirt, ahead, 4 steps.","A person in dark clothing, ahead, 3 steps. A person in light shirt, ahead, 4 steps."
+MOVE,15.04,1.99,17.03,17.03,18.03,spoken,False,True,person right ttc 2.6s,103,14.13,1 step left.,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+WALK,,,18.68,18.68,19.36,spoken,False,,,178,,Pole right.,Pole right.
+MOVE,18.05,2.27,20.32,20.32,21.32,spoken,False,True,person right ttc 2.2s,159,19.9,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a small left step reduces the chance of collision while maintaining balance."

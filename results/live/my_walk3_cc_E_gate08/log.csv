@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.06,2.06,3.07,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,1.0,1.1,2.1,,,dropped,,,,,,"Pedestrians oncoming, trash bin right, crosswalk width.","Pedestrians oncoming, trash bin right, crosswalk width."
+WALK,,,2.96,3.07,3.77,spoken,False,,,52,,Person left.,Person left.
+MOVE,3.82,0.29,4.11,4.11,4.57,spoken,False,True,trash can left ttc 2.0s,4,2.63,Stop.,stop
+ALERT,,,6.06,6.06,6.97,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+WALK,,,6.33,6.97,7.79,spoken,False,,,18,,Stroller ahead.,Stroller ahead.
+MOVE,6.18,0.29,6.47,7.79,8.25,spoken,False,False,person right ttc 3.1s,97,9.27,Stop.,stop
+MOVE,6.47,0.24,6.71,8.25,8.72,spoken,False,False,stroller ahead ttc 2.7s,18,8.77,Stop.,stop
+DESCRIBE,9.0,0.65,9.65,9.65,9.87,spoken,True,,,,,"Crosswalk ahead, 3 steps. Pedestrians right, 2 steps.","Crosswalk ahead, 3 steps. Pedestrians right, 2 steps."
+ALERT,,,9.87,9.87,10.8,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,9.65,0.25,9.91,10.8,11.26,spoken,False,True,person ahead ttc 2.0s,140,8.13,Stop.,stop
+WALK,,,13.04,13.04,13.98,spoken,False,,,194,,Truck crossing left.,Truck crossing left.
+MOVE,14.38,0.3,14.68,14.68,15.34,spoken,False,True,pole right ttc 2.3s,208,13.77,Slow down.,slow down

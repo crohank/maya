@@ -1,0 +1,10 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+MOVE,2.0,1.04,3.04,3.04,3.7,spoken,False,True,person left ttc 3.8s,3,2.0,Slow down.,slow down
+MOVE,3.04,1.02,4.06,4.06,4.72,spoken,False,False,person left ttc 3.3s,11,4.63,Slow down.,slow down
+MOVE,4.08,1.06,5.13,5.13,5.79,spoken,False,False,person ahead ttc 2.8s,9,5.77,Slow down.,slow down
+MOVE,5.13,1.03,6.16,6.16,6.82,spoken,False,True,person right ttc 1.9s,10,5.63,Slow down.,slow down
+DESCRIBE,6.82,1.38,8.2,8.2,11.23,spoken,False,,,,,"Pedestrians approaching, no obstructions, smooth pavement.","Pedestrians approaching, no obstructions, smooth pavement."
+DESCRIBE,11.23,1.56,12.8,12.8,14.26,spoken,True,,,,,"Pedestrians right, 3 steps. Crosswalk ahead, 2 steps.","Pedestrians right, 3 steps. Crosswalk ahead, 2 steps."
+MOVE,13.23,1.02,14.26,14.26,14.92,spoken,False,True,person right ttc 2.6s,103,14.13,Slow down.,slow down
+DESCRIBE,17.08,1.48,18.56,18.56,19.54,spoken,True,,,,,"Crosswalk ahead, 2 steps. Pedestrians right, 3 steps.","Crosswalk ahead, 2 steps. Pedestrians right, 3 steps."
+MOVE,18.56,0.98,19.54,19.54,20.2,spoken,False,False,person right ttc 2.2s,159,19.9,Slow down.,slow down

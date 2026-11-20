@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.83,0.83,1.71,spoken,False,,,3,,Trash can left.,Trash can left.
+WALK,,,1.18,1.71,2.55,spoken,False,,,12,,Person ahead.,Person ahead.
+WALK,,,3.7,3.7,4.33,spoken,False,,,20,,Cart left.,Cart left.
+MOVE,2.0,2.07,4.07,4.33,4.99,spoken,False,True,person ahead ttc 0.4s,12,3.9,Slow down.,"Instruction: slow down
+Reason: A person is approaching, maintaining distance, and I need to reduce speed for safety."
+WALK,,,4.55,4.99,5.82,spoken,False,,,42,,Person ahead.,Person ahead.
+MOVE,4.07,2.42,6.49,6.49,7.44,spoken,False,True,cart left ttc 1.8s,20,3.9,1 step right.,"Instruction: 1 step right
+Reason: The wheelbarrow is approaching quickly from the opposite direction, so taking a single step to the right creates enough space to avoid collision while maintaining balance."
+MOVE,6.49,1.77,8.26,8.26,9.21,spoken,False,True,person left ttc 2.8s,9,6.77,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+MOVE,8.26,1.9,10.16,10.16,11.11,spoken,False,False,person left ttc 3.3s,55,14.9,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and staying visible to others."
+MOVE,10.57,1.79,12.36,12.36,13.31,spoken,False,False,person left ttc 3.9s,51,14.9,1 step right.,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and continuing forward safely."
+WALK,,,12.72,13.31,14.01,spoken,False,,,51,,Person left.,Person left.
+DESCRIBE,13.31,1.71,15.02,15.02,17.97,spoken,False,,,,,"A man at the back of a truck, left, 3 steps away.","A man at the back of a truck, left, 3 steps away."

@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.96,1.96,2.73,spoken,False,,,15,,Person right.,Person right.
+DESCRIBE,1.0,1.44,2.44,,,dropped,,,,,,"Crosswalk ahead, 2 steps. People on right, 1 step.","Crosswalk ahead, 2 steps. People on right, 1 step."
+MOVE,2.44,0.51,2.96,2.96,3.42,spoken,False,False,person right ttc 3.1s,15,4.4,Stop.,stop
+WALK,,,8.58,8.58,9.42,spoken,False,,,106,,Trash can right.,Trash can right.
+DESCRIBE,9.0,0.82,9.82,9.82,11.9,spoken,False,,,,,"Trash bin right, 1 step. Clear.","Trash bin right, 1 step. Clear."

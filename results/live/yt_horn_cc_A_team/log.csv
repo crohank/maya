@@ -1,0 +1,12 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.91,1.91,2.92,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+ALERT,,,4.04,4.04,4.97,spoken,False,,,,,Cars passing.,Cars passing.
+DESCRIBE,2.0,2.41,4.41,,,dropped,,,,,,"A person, likely a man, walking across the crosswalk ahead, mid-motion.","A person, likely a man, walking across the crosswalk ahead, mid-motion."
+ALERT,,,5.12,5.12,6.42,spoken,False,,,,,"Curb ahead, step up.","Curb ahead, step up."
+WALK,,,7.32,7.32,8.09,spoken,False,,,239,,Person right.,Person right.
+ALERT,,,9.03,9.03,9.83,spoken,False,,,,,On the sidewalk.,On the sidewalk.
+MOVE,7.32,2.56,9.88,9.88,10.88,spoken,False,False,person right ttc 1.5s,239,11.77,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right; stepping left creates distance while maintaining natural movement."
+ALERT,,,10.02,10.88,11.58,spoken,False,,,,,Car horn.,Car horn.
+MOVE,10.56,1.61,12.17,12.17,12.83,spoken,False,True,person right ttc 3.0s,263,11.9,Slow down.,"Instruction: slow down
+Reason: To detect the approaching person and avoid collision"

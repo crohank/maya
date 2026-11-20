@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,0.99,1.99,1.99,4.14,spoken,False,,,,,"Construction barrier left, 3 steps.","Construction barrier left, 3 steps."
+WALK,,,5.81,5.81,6.58,spoken,False,,,5,,Person right.,Person right.
+DESCRIBE,9.0,1.27,10.27,10.27,13.72,spoken,False,,,,,"Pedestrians ahead, 6 steps. Crosswalk right, 3 steps.","Pedestrians ahead, 6 steps. Crosswalk right, 3 steps."
+WALK,,,14.6,14.6,15.37,spoken,False,,,16,,Person right.,Person right.

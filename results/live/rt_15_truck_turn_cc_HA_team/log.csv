@@ -1,0 +1,12 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.21,2.21,3.22,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+ALERT,,,3.19,3.22,4.13,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+DESCRIBE,2.0,1.25,3.25,,,dropped,,,,,,"Person crossing left, 3 steps, moving away.","Person crossing left, 3 steps, moving away."
+ALERT,,,4.17,4.17,5.1,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,5.12,5.12,6.13,spoken,False,,,5,,Truck crossing right.,Truck crossing right.
+MOVE,5.12,1.84,6.97,6.97,7.97,spoken,False,False,truck right ttc 2.0s,5,7.63,1 step left.,"Instruction: 1 step left
+Reason: The truck is approaching from the right, taking up a significant portion of the field of view."
+DESCRIBE,7.96,1.88,9.84,9.84,13.96,spoken,True,,,,,"A person with a pink bag, coming from left, mid-frame, crossing towards right. 3 steps.","A person with a pink bag, coming from left, mid-frame, crossing towards right. 3 steps."
+WALK,,,13.96,13.96,14.62,spoken,False,,,409,,Car left.,Car left.
+MOVE,13.96,2.26,16.23,16.23,17.18,spoken,False,True,car left ttc 0.5s,409,14.9,1 step right.,"Instruction: 1 step right
+Reason: The car is approaching from the left, moving rightward relative to the pedestrian; taking a single step right aligns with the natural path of travel while maintaining balance."

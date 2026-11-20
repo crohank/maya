@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.84,0.84,1.68,spoken,False,,,14,,Person ahead.,Person ahead.
+WALK,,,1.49,1.68,2.37,spoken,False,,,19,,Person left.,Person left.
+WALK,,,2.38,2.38,3.22,spoken,False,,,16,,Person ahead.,Person ahead.
+MOVE,2.0,1.04,3.04,3.22,3.88,spoken,False,True,person left ttc 1.7s,19,1.77,Slow down.,slow down
+MOVE,3.04,1.1,4.14,4.14,4.8,spoken,False,True,person ahead ttc 1.5s,16,3.5,Slow down.,slow down
+MOVE,4.39,0.99,5.38,5.38,6.04,spoken,False,False,person left ttc 2.3s,42,6.13,Slow down.,slow down
+DESCRIBE,6.04,1.6,7.64,7.64,8.18,spoken,True,,,,,"Crowd ahead, 6 steps. Bus stop right, 5 steps.","Crowd ahead, 6 steps. Bus stop right, 5 steps."
+WALK,,,8.18,8.18,9.02,spoken,False,,,64,,Person ahead.,Person ahead.
+MOVE,7.81,1.09,8.9,9.02,9.68,spoken,False,False,person right ttc 3.0s,60,10.5,Slow down.,slow down
+WALK,,,9.69,9.69,10.39,spoken,False,,,76,,Person left.,Person left.
+MOVE,9.69,1.03,10.72,10.72,11.38,spoken,False,True,person left ttc 1.4s,76,9.13,Slow down.,slow down
+WALK,,,11.06,11.38,12.22,spoken,False,,,84,,Person ahead.,Person ahead.

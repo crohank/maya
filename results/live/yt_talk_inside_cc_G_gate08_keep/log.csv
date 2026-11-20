@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.84,0.84,1.68,spoken,False,,,14,,Person ahead.,Person ahead.
+WALK,,,1.49,1.68,2.37,spoken,False,,,19,,Person left.,Person left.
+DESCRIBE,1.0,1.11,2.11,,,dropped,,,,,,"Crowd ahead, 6 steps. Bus stop right, 5 steps.","Crowd ahead, 6 steps. Bus stop right, 5 steps."
+WALK,,,2.38,2.38,3.22,spoken,False,,,16,,Person ahead.,Person ahead.
+MOVE,2.11,0.54,2.64,3.22,3.85,spoken,False,True,person left ttc 1.4s,19,1.77,Step right.,step right
+MOVE,2.64,0.54,3.18,,,silent,,,person ahead ttc 1.5s,16,3.5,,keep straight
+MOVE,4.39,0.53,4.93,,,silent,,,person left ttc 2.3s,42,6.13,,keep straight
+WALK,,,8.18,8.18,9.02,spoken,False,,,64,,Person ahead.,Person ahead.
+MOVE,7.81,0.55,8.36,,,silent,,,person right ttc 3.0s,60,10.5,,keep straight
+WALK,,,9.69,9.69,10.39,spoken,False,,,76,,Person left.,Person left.
+DESCRIBE,9.0,1.07,10.07,,,dropped,,,,,,"Crowd ahead, 6 steps. Mainland edge, 5 steps.","Crowd ahead, 6 steps. Mainland edge, 5 steps."
+MOVE,10.07,0.53,10.59,,,silent,,,person left ttc 1.4s,76,9.13,,keep straight
+WALK,,,11.06,11.06,11.9,spoken,False,,,84,,Person ahead.,Person ahead.

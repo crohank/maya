@@ -1,0 +1,17 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.16,2.16,3.17,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,3.35,3.35,4.19,spoken,False,,,62,,Person ahead.,Person ahead.
+DESCRIBE,2.0,1.93,3.93,,,dropped,,,,,,"A man in a green shirt, 3 steps behind.","A man in a green shirt, 3 steps behind."
+MOVE,3.93,1.92,5.84,5.84,6.5,spoken,False,True,person ahead ttc 1.1s,62,5.5,Slow down.,"Instruction: slow down
+Reason: A person is approaching, slowing down will give me time to react and avoid collision."
+WALK,,,6.56,6.56,7.58,spoken,False,,,159,,Car crossing ahead.,Car crossing ahead.
+ALERT,,,7.92,7.92,8.85,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,6.56,2.21,8.77,8.85,9.8,spoken,False,True,car ahead ttc 2.0s,159,7.0,1 step right.,"Instruction: 1 step right
+Reason: The car is approaching head-on, taking up the central path; shifting slightly right creates enough lateral distance to avoid collision while maintaining forward motion."
+WALK,,,9.33,9.8,10.57,spoken,False,,,432,,Person right.,Person right.
+MOVE,9.06,2.29,11.35,11.35,12.35,spoken,False,True,person right ttc 2.0s,447,11.27,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a small left step reduces the chance of collision while maintaining balance."
+MOVE,11.35,2.12,13.47,13.47,14.42,spoken,False,True,person ahead ttc 2.8s,484,12.4,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so stepping right creates space between you and them while maintaining your path."
+MOVE,13.47,2.25,15.72,15.72,16.67,spoken,False,True,person left ttc 1.7s,508,14.9,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a small right step reduces the chance of collision while maintaining balance."

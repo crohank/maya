@@ -1,0 +1,16 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.88,0.88,1.58,spoken,False,,,3,,Person left.,Person left.
+MOVE,2.0,1.77,3.77,3.77,4.72,spoken,False,True,person left ttc 2.8s,3,2.77,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a right step avoids collision."
+MOVE,3.77,2.12,5.89,5.89,6.55,spoken,False,True,person left ttc 2.5s,19,4.5,Slow down.,"Instruction: slow down
+Reason: A person is approaching, maintaining distance, and I can see their outline clearly while moving forward at a normal pace."
+MOVE,5.89,1.61,7.51,7.51,8.17,spoken,False,True,person left ttc 3.3s,2,0.4,Slow down.,"Instruction: slow down
+Reason: To avoid collision with approaching person while maintaining balance as a blindperson"
+DESCRIBE,8.17,1.37,9.54,9.54,10.75,spoken,True,,,,,"Three people, male, black suit, moving forward.","Three people, male, black suit, moving forward."
+WALK,,,10.75,10.75,11.52,spoken,False,,,144,,Person right.,Person right.
+MOVE,9.89,2.02,11.9,11.9,12.9,spoken,False,True,person right ttc 3.1s,35,9.77,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right; stepping left increases the distance between you and their path."
+MOVE,11.9,1.65,13.55,13.55,14.21,spoken,False,True,person right ttc 1.4s,144,11.13,Slow down.,"Instruction: slow down
+Reason: To detect the approaching person and avoid collision before stopping."
+WALK,,,14.45,14.45,15.1,spoken,False,,,145,,Bike right.,Bike right.
+DESCRIBE,14.22,1.74,15.95,15.95,20.29,spoken,False,,,,,"A person in black and white striped shirt, ahead, 3 steps away, moving away.","A person in black and white striped shirt, ahead, 3 steps away, moving away."

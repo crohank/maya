@@ -1,0 +1,12 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,2.0,1.2,3.2,3.2,5.08,spoken,False,,,,,"Black truck left, 3 steps.","Black truck left, 3 steps."
+WALK,,,6.45,6.45,7.17,spoken,False,,,16,,Pole ahead.,Pole ahead.
+DESCRIBE,6.0,1.66,7.66,7.66,10.7,spoken,False,,,,,"Curb right, 2 steps. Crosswalk ahead, 3 steps.","Curb right, 2 steps. Crosswalk ahead, 3 steps."
+DESCRIBE,10.7,1.71,12.41,12.41,15.58,spoken,False,,,,,"Crosswalk ahead, 2 steps. Unclear, 1 step.","Crosswalk ahead, 2 steps. Unclear, 1 step."
+DESCRIBE,15.58,1.38,16.96,16.96,18.2,spoken,True,,,,,"Crosswalk ahead, 2 steps. Unobstructed.","Crosswalk ahead, 2 steps. Unobstructed."
+WALK,,,18.2,18.2,18.86,spoken,False,,,50,,Car left.,Car left.
+MOVE,18.2,1.01,19.22,19.22,19.88,spoken,False,False,car left ttc 2.1s,50,20.25,Slow down.,slow down
+DESCRIBE,20.4,1.46,21.86,21.86,23.31,spoken,True,,,,,"Crosswalk ahead, 2 steps. Pedestrians approaching.","Crosswalk ahead, 2 steps. Pedestrians approaching."
+WALK,,,23.31,23.31,24.03,spoken,False,,,106,,Cone right.,Cone right.
+MOVE,23.31,1.01,24.33,24.33,24.99,spoken,False,False,traffic cone right ttc 3.4s,106,26.13,Slow down.,slow down
+DESCRIBE,25.5,1.6,27.1,27.1,29.98,spoken,False,,,,,"Crosswalk ahead, 3 steps. Pedestrians approaching.","Crosswalk ahead, 3 steps. Pedestrians approaching."

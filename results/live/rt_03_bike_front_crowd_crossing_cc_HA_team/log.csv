@@ -1,0 +1,16 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.86,1.86,2.87,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,2.0,1.61,3.61,3.61,3.83,spoken,True,,,,,"A person in red shorts approaching. Left, 3 steps. Crossing.","A person in red shorts approaching. Left, 3 steps. Crossing."
+ALERT,,,3.83,3.83,4.76,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,7.06,7.06,7.72,spoken,False,,,43,,Car ahead.,Car ahead.
+MOVE,7.06,1.85,8.9,8.9,9.85,spoken,False,True,car ahead ttc 1.5s,43,7.9,1 step right.,"Instruction: 1 step right
+Reason: The car is approaching head-on, veering right avoids collision while maintaining forward motion."
+WALK,,,8.96,,,dropped,,,,224,,Person right.,Person right.
+WALK,,,10.55,10.55,11.25,spoken,False,,,342,,Person left.,Person left.
+MOVE,8.96,1.9,10.86,11.25,12.25,spoken,False,True,person right ttc 1.1s,224,10.0,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a slight left step avoids collision."
+WALK,,,12.05,12.25,13.08,spoken,False,,,367,,Person ahead.,Person ahead.
+MOVE,10.86,2.15,13.01,13.08,14.03,spoken,False,True,person left ttc 0.8s,342,10.77,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a single step right while maintaining forward motion avoids a collision and keeps your balance."
+MOVE,13.01,1.96,14.97,14.97,15.92,spoken,False,True,stroller left ttc 3.3s,372,13.4,1 step right.,"Instruction: 1 step right
+Reason: A stroller approaches from the left; shifting right creates space while maintaining awareness of surroundings."

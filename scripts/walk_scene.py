@@ -101,12 +101,23 @@ def scene_path(stem, tag=""):
     return Path("results/scene") / f"{stem}{'_' + tag if tag else ''}.jsonl"
 
 
+class CosmosVlm:
+    """Cosmos3-Edge 4-bit with the Vlm.chat signature, for walk branches that use Cosmos only."""
+
+    def __init__(self):
+        from maya.video import cosmos_loader
+        self.cm = cosmos_loader()
+
+    def chat(self, content, system=None, max_new_tokens=8):
+        from maya.video import cosmos_chat
+        return cosmos_chat(self.cm, content, system or "Answer briefly.", max_new_tokens, None)
+
+
 def probe(args):
     import cv2
     from PIL import Image
 
-    from maya.vlm import Vlm
-    vlm = Vlm()
+    vlm = CosmosVlm() if args.model == "cosmos" else __import__("maya.vlm", fromlist=["Vlm"]).Vlm()
     cap = cv2.VideoCapture(args.video)
     fps = cap.get(cv2.CAP_PROP_FPS)
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -301,6 +312,7 @@ if __name__ == "__main__":
     p.add_argument("--long-side", type=int, default=448)
     p.add_argument("--tag", default="")
     p.add_argument("--prompt", default="v1", choices=["v1", "v2"])
+    p.add_argument("--model", default="qwen", choices=["qwen", "cosmos"])
     s = sub.add_parser("score")
     s.add_argument("--video", required=True)
     s.add_argument("--tag", default="")

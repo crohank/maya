@@ -1,0 +1,21 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.83,1.83,2.84,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,2.95,2.95,4.13,spoken,False,,,1,,Person crossing ahead.,Person crossing ahead.
+WALK,,,3.68,4.13,4.83,spoken,False,,,121,,Person left.,Person left.
+MOVE,2.0,1.86,3.86,4.83,5.78,spoken,False,False,person ahead ttc 2.0s,1,4.9,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so moving right creates space between you and them while maintaining your path."
+ALERT,,,4.51,5.78,6.71,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,3.86,2.58,6.43,6.71,7.66,spoken,False,True,person left ttc 0.8s,121,4.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a single step right while maintaining forward motion avoids a collision by shifting your center of gravity early and allowing you time to adjust balance before impact."
+WALK,,,7.06,7.66,8.5,spoken,False,,,149,,Person ahead.,Person ahead.
+MOVE,6.43,1.81,8.25,8.5,9.45,spoken,False,True,person left ttc 1.8s,130,4.9,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching from the left; stepping right creates distance while maintaining balance."
+WALK,,,8.56,,,dropped,,,,204,,Person right.,Person right.
+MOVE,8.25,1.64,9.89,9.89,10.84,spoken,False,True,person ahead ttc 2.0s,140,6.77,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, I adjust laterally to avoid collision."
+MOVE,9.89,1.81,11.7,11.7,12.65,spoken,False,True,person left ttc 2.0s,162,10.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a single step right while maintaining balance will avoid collision."
+MOVE,11.85,1.95,13.8,13.8,14.75,spoken,False,True,person left ttc 2.4s,258,13.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a right step avoids collision."
+MOVE,13.8,1.64,15.44,15.44,16.39,spoken,False,True,person left ttc 3.2s,257,14.4,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, keeping both hands in front for safety."

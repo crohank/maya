@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,0.87,1.87,1.87,4.71,spoken,False,,,,,"Black truck approaching, 3 steps. Road clear.","Black truck approaching, 3 steps. Road clear."
+WALK,,,6.45,6.45,7.17,spoken,False,,,16,,Pole ahead.,Pole ahead.
+DESCRIBE,9.0,1.18,10.18,10.18,13.16,spoken,False,,,,,"Crosswalk ahead, 2 steps. Pedestrians approaching.","Crosswalk ahead, 2 steps. Pedestrians approaching."
+DESCRIBE,17.0,0.95,17.95,17.95,18.2,spoken,True,,,,,"Crosswalk ahead, 2 steps. Pedestrians near.","Crosswalk ahead, 2 steps. Pedestrians near."
+WALK,,,18.2,18.2,18.86,spoken,False,,,50,,Car left.,Car left.
+WALK,,,23.31,23.31,24.03,spoken,False,,,106,,Cone right.,Cone right.
+DESCRIBE,25.0,0.98,25.98,25.98,28.96,spoken,False,,,,,"Crosswalk ahead, 2 steps. Pedestrians approaching.","Crosswalk ahead, 2 steps. Pedestrians approaching."

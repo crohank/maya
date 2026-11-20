@@ -1,0 +1,13 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.79,1.79,2.8,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+ALERT,,,4.09,4.09,5.02,spoken,False,,,,,Cars passing.,Cars passing.
+DESCRIBE,2.0,2.21,4.21,,,dropped,,,,,,"A person with a backpack, moving away, center. 3 steps. Right.","A person with a backpack, moving away, center. 3 steps. Right."
+WALK,,,5.39,5.39,6.09,spoken,False,,,10,,Person left.,Person left.
+ALERT,,,7.02,7.02,7.68,spoken,False,,,,,Siren.,Siren.
+ALERT,,,7.05,7.68,8.56,spoken,False,,,,,Trash can left.,Trash can left.
+MOVE,5.39,2.59,7.98,8.56,9.52,spoken,False,False,person left ttc 4.0s,10,9.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching, so taking a small right step reduces the risk of collision by shifting your weight forward and minimizing the chance of being hit."
+MOVE,7.98,1.9,9.87,9.87,10.87,spoken,False,True,person right ttc 2.0s,60,8.63,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching, so taking a single step left creates distance without collision."
+MOVE,9.87,1.86,11.73,11.73,12.39,spoken,False,True,person left ttc 3.3s,54,10.13,Slow down.,"Instruction: slow down
+Reason: To avoid collision with the approaching person while maintaining balance while walking."

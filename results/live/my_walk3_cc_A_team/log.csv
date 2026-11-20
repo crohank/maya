@@ -1,0 +1,22 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.06,2.06,3.07,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+MOVE,2.0,0.67,2.67,3.07,4.02,spoken,False,True,person left ttc 3.9s,30,1.0,1 step right.,"Instruction: 1 step right
+Keep straight"
+WALK,,,2.96,,,dropped,,,,52,,Person left.,Person left.
+MOVE,2.96,1.27,4.23,4.23,5.18,spoken,False,True,person left ttc 0.8s,52,2.9,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching from the left, which is outside my field of view."
+MOVE,4.23,1.57,5.79,5.79,6.74,spoken,False,True,trash can left ttc 2.0s,4,2.63,1 step right.,"Instruction: 1 step right
+Reason: The trash can is approaching from the left, taking a right turn would redirect your path away from it."
+ALERT,,,6.06,6.74,7.65,spoken,False,,,,,In the crosswalk.,In the crosswalk.
+WALK,,,6.33,,,dropped,,,,18,,Stroller ahead.,Stroller ahead.
+MOVE,6.18,1.92,8.1,8.1,9.1,spoken,False,False,person right ttc 3.1s,97,9.27,1 step left.,"Instruction: 1 step left
+Reason: A person is approaching from the right side, which is my left when facing forward. Taking one step to the left will create enough space to avoid collision while maintaining balance."
+MOVE,8.1,1.72,9.81,9.81,10.76,spoken,False,True,stroller ahead ttc 2.7s,18,8.77,1 step right.,"Instruction: 1 step right
+Reason: The stroller is approaching head-on, moving right of the camera's perspective, requiring an immediate lateral adjustment to avoid collision."
+ALERT,,,9.87,10.76,11.69,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,9.81,2.62,12.43,12.43,13.38,spoken,False,True,person ahead ttc 2.0s,140,8.13,1 step right.,"Instruction: 1 step right
+Reason: A person is approaching from the opposite direction, posing a potential collision risk while I am crossing the street. By shifting slightly to the right, I create additional space for them to pass safely without obstructing my view or causing an accident."
+WALK,,,13.04,13.38,14.32,spoken,False,,,194,,Truck crossing left.,Truck crossing left.
+DESCRIBE,13.38,0.66,14.04,,,dropped,,,,,,"Red truck, left, approaching.","Red truck, left, approaching."
+MOVE,14.38,1.09,15.48,15.48,16.43,spoken,False,True,pole right ttc 2.3s,208,13.77,1 step right.,"Instruction: 1 step right
+Reason: A pole is approaching on my right side, taking priority."

@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.86,1.86,2.87,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+DESCRIBE,1.0,1.42,2.42,,,dropped,,,,,,"Pedestrian approaching, yellow taxi, 3 steps.","Pedestrian approaching, yellow taxi, 3 steps."
+ALERT,,,3.83,3.83,4.76,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,7.06,7.06,7.72,spoken,False,,,43,,Car ahead.,Car ahead.
+MOVE,7.06,0.57,7.63,7.72,8.67,spoken,False,False,car ahead ttc 1.5s,43,7.9,1 step right.,1 step right
+WALK,,,8.96,8.96,9.73,spoken,False,,,224,,Person right.,Person right.
+DESCRIBE,9.0,1.22,10.22,10.22,10.55,spoken,True,,,,,"Pedestrians right, 3 steps. Crosswalk line, 2 steps.","Pedestrians right, 3 steps. Crosswalk line, 2 steps."
+WALK,,,10.55,10.55,11.25,spoken,False,,,342,,Person left.,Person left.
+MOVE,10.55,0.53,11.08,,,silent,,,person left ttc 0.8s,342,10.77,,keep straight
+MOVE,11.08,0.51,11.6,,,silent,,,person left ttc 2.5s,250,12.5,,keep straight
+WALK,,,12.05,12.05,12.89,spoken,False,,,367,,Person ahead.,Person ahead.
+MOVE,11.82,0.54,12.37,,,silent,,,person right ttc 3.0s,238,12.4,,keep straight
+MOVE,12.37,0.51,12.88,,,silent,,,person ahead ttc 0.3s,367,14.9,,keep straight

@@ -39,6 +39,24 @@ from sim_walk_cosmos_only import DESCRIBE, MOVE, SIDE_WORD, TRACK_COOLDOWN, TRIG
 
 WINDOW_S, FPS_IN = 2.0, 4
 WAIT_S = {3: 2.0, 2: 0.75, 1: 0.0}
+
+# v1 prompts. v0 (the Mac prompts) on 8 real clips: 18 of 24 MOVE lines LATE, and the
+# model picked "1 step right" or "slow down" whatever the scene, twice stepping toward
+# the object ("1 step right" for a pole on the right). CHOICE offers only moves that do
+# not head toward the object's side and asks for the instruction alone (fewer tokens).
+CHOICE = """I am blind and I am walking. The video comes from a phone camera on my chest, facing where I walk. The last frame is now.
+
+A {object} is {side}, about {seconds} seconds from reaching me.
+Pick the one instruction that keeps me clear of it, judging the free space you see: {options}.
+Answer with only the instruction."""
+OPTIONS = {"left": ['"1 step right"', '"slow down"', '"keep straight"'],
+           "right": ['"1 step left"', '"slow down"', '"keep straight"'],
+           "ahead": ['"1 step left"', '"1 step right"', '"slow down"', '"stop"']}
+SHORT_DESCRIBE = """I am blind and I am walking. The video comes from a phone camera on my chest, facing where I walk. The last frame is now.
+
+Name at most two things within about 5 steps that matter for my next steps: people coming toward me, obstacles in my path, a curb or crosswalk. Say what, which side, and how many steps, in 8 words or fewer, like "Bench left, 3 steps. Person ahead, 4 steps."
+Never mention clothing or colors. Describe; do not tell me what to do. If nothing is near, say "Clear."
+"""
 PRIO = {"MOVE": 3, "ALERT": 3, "WALK": 2, "DESCRIBE": 1}
 COLOR = {"MOVE": (255, 80, 80), "ALERT": (255, 200, 0), "WALK": (120, 180, 255), "DESCRIBE": (120, 220, 120)}
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -61,10 +79,10 @@ class Speech:
         return path, len(w3.read_mono(path)) / w3.SR
 
 
-def cut(src, t_end, path):
-    t0 = max(0.0, t_end - WINDOW_S)
+def cut(src, t_end, path, window=WINDOW_S, fps=FPS_IN):
+    t0 = max(0.0, t_end - window)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t0:.3f}", "-i", src, "-t", f"{t_end - t0:.3f}",
-                    "-vf", f"fps={FPS_IN},scale=-2:432", "-an", "-c:v", "libx264", "-preset", "veryfast",
+                    "-vf", f"fps={fps},scale=-2:432", "-an", "-c:v", "libx264", "-preset", "veryfast",
                     "-pix_fmt", "yuv420p", path], check=True)
 
 
@@ -77,7 +95,7 @@ def t_close(frames, tid):
     return best[1]
 
 
-def triggers_from(frames, words, tones):
+def triggers_from(frames, words, tones, gate=0.0):
     """The teammate's rule on Maya's own walk events: first word or new tone per track,
     urgency under TRIGGER_TTC, detector confidence at least MIN_CONF, 4 s per-track cooldown."""
     ev = [(x["ready"], x) for x in words if x["source"] == "fast" and x["status"] == "spoken"]
@@ -85,6 +103,11 @@ def triggers_from(frames, words, tones):
     seen, out = {}, []
     for ready, x in sorted(ev, key=lambda v: v[0]):
         tid, urg = x["track"], float(x["urgency"])
+        X = x.get("X")
+        # gate: ask for a move only when walk v3 predicts the object passes within gate metres
+        # of the walker's centre line (X is None for objects it cannot place; those pass).
+        if gate and X is not None and abs(float(X)) > gate:
+            continue
         if urg >= TRIGGER_TTC or (tid in seen and ready - seen[tid] < TRACK_COOLDOWN):
             continue
         conf = min(((f["t"], tr["conf"]) for f in frames for tr in f["tracks"] if tr["id"] == tid),
@@ -92,22 +115,36 @@ def triggers_from(frames, words, tones):
         if conf < MIN_CONF:
             continue
         seen[tid] = ready
-        out.append(dict(t=ready, track=tid, cls=x["cls"], side=x["side"], urgency=urg, t_close=t_close(frames, tid)))
+        out.append(dict(t=ready, track=tid, cls=x["cls"], side=x["side"], urgency=urg, t_close=t_close(frames, tid),
+                        X=x.get("X")))
     return out
 
 
-def cosmos_loop(src, dur, triggers, speech):
+
+def move_options(e, o):
+    """v1: fixed per side. x: from the predicted pass offset X (metres, + is right): a step
+    away from the side it passes on, or stop; both sides when it comes straight on."""
+    if o["options"] == "v1" or e.get("X") in (None, ""):
+        return OPTIONS.get(e["side"], OPTIONS["ahead"])
+    X = float(e["X"])
+    if abs(X) < 0.2:
+        return ['"1 step left"', '"1 step right"', '"keep straight"' if o["options"] == "xk" else '"stop"']
+    away = '"1 step right"' if X < 0 else '"1 step left"'
+    return [away, '"keep straight"'] if o["options"] == "xk" else [away, '"stop"']
+
+def cosmos_loop(src, dur, triggers, speech, o):
     from maya.video import cosmos_loader
-    cm = cosmos_loader()
+    cm = o.get("cm") or cosmos_loader()
+    o["cm"] = cm
     proc, model, torch = cm["proc"], cm["model"], cm["torch"]
 
     def ask(prompt, t_end, td, max_new):
         clip = f"{td}/win_{t_end:.2f}.mp4"
-        cut(src, t_end, clip)
+        cut(src, t_end, clip, o["window"], o["fps_in"])
         msgs = [{"role": "user", "content": [{"type": "video", "path": clip}, {"type": "text", "text": prompt}]}]
         x = proc.apply_chat_template(msgs, add_generation_prompt=True, tokenize=True, return_dict=True,
                                      return_tensors="pt", enable_thinking=False,
-                                     processor_kwargs={"fps": FPS_IN}).to(model.device)
+                                     processor_kwargs={"fps": o["fps_in"]}).to(model.device)
         t = time.perf_counter()
         with torch.inference_mode():
             out = model.generate(**x, max_new_tokens=max_new, do_sample=False, repetition_penalty=1.1)
@@ -116,27 +153,57 @@ def cosmos_loop(src, dur, triggers, speech):
 
     with tempfile.TemporaryDirectory() as td:
         ask("Hi", WINDOW_S, td, 4)
-    rows, clock, voice_free, done = [], WINDOW_S, 0.0, set()
+    rows, clock, voice_free, done, last_desc, last_desc_t = [], o["window"], 0.0, set(), None, -99.0
     with tempfile.TemporaryDirectory() as td:
         while clock < dur - 0.5:
             waiting = [e for e in triggers if e["t"] <= clock and id(e) not in done]
             if waiting:
                 e = waiting[-1]
                 done.update(id(w) for w in waiting)
-                prompt, mode = MOVE.format(object=e["cls"], side=SIDE_WORD.get(e["side"], e["side"]),
-                                           seconds=max(1, round(e["urgency"]))), "MOVE"
-            elif voice_free <= clock:
-                e, prompt, mode = None, DESCRIBE, "DESCRIBE"
+                side = SIDE_WORD.get(e["side"], e["side"])
+                sec = max(1, round(e["urgency"]))
+                if o["move"] == "choice":
+                    prompt = CHOICE.format(object=e["cls"], side=side, seconds=sec,
+                                           options=", ".join(move_options(e, o)))
+                else:
+                    prompt = MOVE.format(object=e["cls"], side=side, seconds=sec)
+                mode = "MOVE"
+            elif voice_free <= clock and clock - last_desc_t >= o["describe_gap"] and o["describe"] != "off":
+                e, mode = None, "DESCRIBE"
+                prompt = SHORT_DESCRIBE if o["describe"] == "short" else DESCRIBE
+                last_desc_t = clock
             else:
-                clock = min([voice_free] + [t["t"] for t in triggers if id(t) not in done and t["t"] > clock])
+                nxt = [t["t"] for t in triggers if id(t) not in done and t["t"] > clock]
+                if voice_free > clock:
+                    nxt.append(voice_free)
+                if o["describe"] != "off":
+                    nxt.append(max(voice_free, last_desc_t + o["describe_gap"]))
+                nxt = [n for n in nxt if n > clock]
+                if not nxt:
+                    break
+                clock = min(nxt)
                 continue
-            text, dt = ask(prompt, clock, td, 32 if mode == "DESCRIBE" else 128)
+            max_new = o["describe_tokens"] if mode == "DESCRIBE" else o["move_tokens"]
+            text, dt = ask(prompt, clock, td, max_new)
             ready = clock + dt
             spoken = text
             if mode == "MOVE":
                 spoken = next((ln.split(":", 1)[1].strip() for ln in text.splitlines()
                                if ln.lower().startswith("instruction")), text.splitlines()[0] if text else "")
+                spoken = spoken.strip().strip('"').strip()
+                if o["move"] == "choice" and spoken.lower().rstrip(".") == "keep straight":
+                    spoken = ""   # nothing to do: stay quiet, the beep already marked it
+                elif spoken and not spoken.endswith("."):
+                    spoken += "."
+                spoken = spoken[:1].upper() + spoken[1:]
             spoken = spoken.replace("\n", " ").strip()
+            if mode == "DESCRIBE":
+                if spoken.lower().strip(".") in ("clear", "clear around you") or spoken == last_desc:
+                    spoken_out = ""   # repeats and "Clear." carry nothing a walker can use
+                else:
+                    spoken_out = spoken
+                last_desc = spoken
+                spoken = spoken_out
             _, sdur = speech.get(spoken) if spoken else (None, 0.0)
             voice_free = max(voice_free, ready) + sdur
             rows.append(dict(mode=mode, request_t=round(clock, 2), model_s=round(dt, 2), ready=round(ready, 2),
@@ -145,8 +212,6 @@ def cosmos_loop(src, dur, triggers, speech):
                              spoken=spoken, text=text))
             print(mode, round(clock, 2), round(dt, 2), spoken[:80], flush=True)
             clock = ready
-    del model
-    torch.cuda.empty_cache()
     return rows
 
 
@@ -155,6 +220,8 @@ def schedule(items, speech):
     out, cur = [], None
     for it in sorted(items, key=lambda i: i["ready"]):
         if not it["spoken"]:
+            it.update(status="silent", start=None, end=None)
+            out.append(it)
             continue
         path, d = speech.get(it["spoken"])
         it.update(wav=str(path), dur=d, prio=PRIO[it["mode"]])
@@ -262,56 +329,106 @@ def render(src, frames, sched, tones, dur, out_mp4, bg_volume=0.45):
         subprocess.run(cmd, check=True)
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--stem", required=True)
-    ap.add_argument("--video", help="default /main/data/walk8/<stem>.mp4")
-    ap.add_argument("--out-video", required=True)
-    args = ap.parse_args()
-    src = args.video or f"/main/data/walk8/{args.stem}.mp4"
-    frames = [json.loads(line) for line in open(f"/main/results/perception/{args.stem}.jsonl")]
-    dur = min(frames[-1]["t"], lh.ffprobe_duration(src))
+def find_video(stem):
+    for p in (f"/main/data/walk8/{stem}.mp4", f"/main/data/realtest/{stem}.mp4", f"/main/test_videos/{stem}.mp4",
+              f"/main/data/user_clips/{stem}.mp4"):
+        if Path(p).exists():
+            return p
+    raise SystemExit(f"no video for {stem}")
 
+
+def run_clip(stem, o, speech, voice):
+    src = o.get("video") or find_video(stem)
+    frames = [json.loads(line) for line in open(f"/main/results/perception/{stem}.jsonl")]
+    dur = min(frames[-1]["t"], lh.ffprobe_duration(src))
     cfg = dict(w3.BASE, scene=1, scene_tag="v2", sounds=1)
     w3.annotate(frames, w3.video_aspect(src), cfg)
-    rows = [json.loads(line) for line in open(f"/main/results/scene/{args.stem}_v2.jsonl")]
-    scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
+    scene = []
+    sp = Path(f"/main/results/scene/{stem}_{o['scene_tag']}.jsonl")
+    if sp.exists():
+        rows = [json.loads(line) for line in open(sp)]
+        stripe_cues = []
+        if o["corner"] == "stripes":
+            # Cosmos-only stack: the corner word comes from stripes.py (pixels), and a row
+            # counts as "at the edge" for traffic and obstacle words when stripes were seen
+            # in the last 3 s or the ground crop said street.
+            st = [json.loads(line) for line in open(f"/main/results/scene/{stem}_stripes.jsonl")]
+            run, last = 0, -99.0
+            for r in st:
+                run = run + 1 if r["stripes"] else 0
+                if run == 2 and r["t"] - last > 8:
+                    last = r["t"]
+                    stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer="Crosswalk ahead.", kind="corner"))
+            seen = [r["t"] for r in st if r["stripes"]]
+            for r in rows:
+                r["edge"] = r["road"] or any(r["t"] - 3 <= s <= r["t"] for s in seen)
+        scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
+        if o["corner"] == "stripes":
+            scene = [c for c in scene if c["kind"] != "corner"] + stripe_cues
     if lh.has_audio(src):
         from maya import audio, sound
         from maya.engine import Engine
-        heard = sound.alert_timeline(Engine(), audio.load(src))
+        eng = o.setdefault("eng", Engine())
+        heard = sound.alert_timeline(eng, audio.load(src))
         scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph.split(" ", 1)[1].capitalize() + ".", kind="sound")
                                for end, dt, ph in heard]
-        import torch
-        torch.cuda.empty_cache()
-    voice = w3.Voice(w3.fh.V2_LENGTH_SCALE)
     words, tones = w3.simulate(frames, cfg, voice, scene)
-
-    speech = Speech("/app/results/live/phrases_combined")
-    triggers = triggers_from(frames, words, tones)
-    print("triggers:", [(round(e["t"], 2), e["cls"], e["side"], e["urgency"]) for e in triggers], flush=True)
-    cosmos = cosmos_loop(src, dur, triggers, speech)
-
+    triggers = triggers_from(frames, words, tones, o["move_gate"])
+    print(stem, "triggers:", [(round(e["t"], 2), e["cls"], e["side"], e["urgency"]) for e in triggers], flush=True)
+    cosmos = cosmos_loop(src, dur, triggers, speech, o)
     items = [dict(c) for c in cosmos]
     for x in words:
         if x["status"] != "spoken":
             continue
         mode = "ALERT" if x["source"] == "scene" else "WALK"
+        if mode == "WALK" and o["walk_words"] == "off":
+            continue
         items.append(dict(mode=mode, ready=round(x["ready"], 2), spoken=x["answer"], text=x["answer"],
                           track=x["track"] if mode == "WALK" else "", t_close=None, trigger=""))
     sched = schedule(items, speech)
-    out_dir = Path(f"/app/results/live/{args.stem}_cosmos_combined")
+    out_dir = Path(f"/app/results/live/{stem}_cc_{o['tag']}")
     out_dir.mkdir(parents=True, exist_ok=True)
     keys = ["mode", "request_t", "model_s", "ready", "start", "end", "status", "cut_off", "late", "trigger", "track",
-            "spoken", "text"]
+            "t_close", "spoken", "text"]
     with open(out_dir / "log.csv", "w", newline="") as f:
         wr = csv.DictWriter(f, fieldnames=keys, extrasaction="ignore")
         wr.writeheader()
         for s in sched:
             wr.writerow({k: (round(v, 2) if isinstance(v, float) else v) for k, v in s.items()})
-    Path(args.out_video).parent.mkdir(parents=True, exist_ok=True)
-    render(src, frames, sched, tones, dur, args.out_video)
-    print("wrote", args.out_video, flush=True)
+    (out_dir / "settings.json").write_text(json.dumps({k: v for k, v in o.items() if k not in ("cm", "eng")}))
+    if o.get("render_dir"):
+        name = o.get("names", {}).get(stem, stem)
+        out_mp4 = f"{o['render_dir']}/{name}.mp4"
+        Path(out_mp4).parent.mkdir(parents=True, exist_ok=True)
+        render(src, frames, sched, tones, dur, out_mp4)
+        print("wrote", out_mp4, flush=True)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("stems", nargs="+")
+    ap.add_argument("--tag", required=True)
+    ap.add_argument("--move", default="choice", choices=["team", "choice"])
+    ap.add_argument("--move-tokens", type=int, default=12)
+    ap.add_argument("--describe", default="short", choices=["team", "short", "off"])
+    ap.add_argument("--describe-tokens", type=int, default=24)
+    ap.add_argument("--describe-gap", type=float, default=4.0)
+    ap.add_argument("--window", type=float, default=2.0)
+    ap.add_argument("--fps-in", type=int, default=4)
+    ap.add_argument("--walk-words", default="on", choices=["on", "off"])
+    ap.add_argument("--move-gate", type=float, default=0.0, help="metres; 0 = every trigger")
+    ap.add_argument("--scene-tag", default="v2", help="v2: Qwen3-VL scene rows; cv2: Cosmos")
+    ap.add_argument("--corner", default="vlm", choices=["vlm", "stripes"])
+    ap.add_argument("--options", default="v1", choices=["v1", "x", "xk"])
+    ap.add_argument("--render-dir")
+    ap.add_argument("--names", help="json map stem -> output file name")
+    args = ap.parse_args()
+    o = dict(vars(args))
+    o["names"] = json.loads(args.names) if args.names else {}
+    speech = Speech("/app/results/live/phrases_combined")
+    voice = w3.Voice(w3.fh.V2_LENGTH_SCALE)
+    for stem in args.stems:
+        run_clip(stem, o, speech, voice)
 
 
 if __name__ == "__main__":

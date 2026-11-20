@@ -1,0 +1,7 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.97,1.97,2.98,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,2.71,2.98,3.64,spoken,False,,,69,,Truck left.,Truck left.
+ALERT,,,3.89,3.89,4.82,spoken,False,,,,,Cars passing.,Cars passing.
+DESCRIBE,2.0,2.04,4.04,,,dropped,,,,,,"A woman with a pink shirt, black pants, and white shoes, crossing the street, is moving away from me. 3 steps.","A woman with a pink shirt, black pants, and white shoes, crossing the street, is moving away from me. 3 steps."
+ALERT,,,5.01,5.01,5.89,spoken,False,,,,,Truck backing up.,Truck backing up.
+DESCRIBE,9.98,1.37,11.36,11.36,14.25,spoken,False,,,,,"A person, female, walking away, 6 steps.","A person, female, walking away, 6 steps."
