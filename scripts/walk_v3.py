@@ -72,6 +72,7 @@ BASE = dict(
     tones=1,
     lead_tone="busy",      # never | busy | always
     tone_s=0.15, tone_gap=0.85, tone_stale=0.3,
+    tone_style="pattern",  # pattern (1, 2 or 3 pulses, octaves apart) | pitch (one tone, 660/990/1480 Hz)
     tone_repeat=(3.0, 2.0, 1.0),   # seconds between tones per track, low / mid / high urgency
     bands=(2.5, 1.5),      # TTC under 2.5 s is mid, under 1.5 s is high
     word_stale=0.75,
@@ -82,6 +83,8 @@ BASE = dict(
     scene_stale=2.0,
 )
 TONE_HZ = (660.0, 990.0, 1480.0)
+# (Hz, pulses, pulse s, gap s, gain) per band; high is quieter because it sounds louder.
+PATTERN = ((440.0, 1, 0.15, 0.0, 0.45), (880.0, 2, 0.07, 0.05, 0.42), (1760.0, 3, 0.05, 0.03, 0.32))
 PAN = {"left": -0.8, "ahead": 0.0, "right": 0.8}
 SR = 22050
 SAME_TEXT_S = fh.SAME_TEXT_COOLDOWN_S
@@ -612,16 +615,26 @@ Notes:
 """
 
 
-def tone_wav(side, b, cfg):
-    n = int(SR * cfg["tone_s"])
+def _beep(f, dur, gain):
+    n = int(SR * dur)
     t = np.arange(n) / SR
-    f = TONE_HZ[b]
     x = np.sin(2 * np.pi * f * t) + 0.3 * np.sin(4 * np.pi * f * t)
     ramp = int(SR * 0.01)
     env = np.ones(n)
     env[:ramp] = 0.5 - 0.5 * np.cos(np.pi * np.arange(ramp) / ramp)
     env[-ramp:] = env[:ramp][::-1]
-    x = 0.45 * x * env / 1.3
+    return gain * x * env / 1.3
+
+
+def tone_wav(side, b, cfg):
+    if cfg["tone_style"] == "pattern":
+        # One, two or three pulses an octave apart: three tones a fifth apart
+        # (TONE_HZ) were hard to tell apart by ear (user listening test, 2026-11-19).
+        f, k, dur, gap, gain = PATTERN[b]
+        x = np.concatenate([np.concatenate([_beep(f, dur, gain), np.zeros(int(SR * gap))])
+                            for _ in range(k)])[:-int(SR * gap) or None]
+    else:
+        x = _beep(TONE_HZ[b], cfg["tone_s"], 0.45)
     a = (PAN[side] + 1) * np.pi / 4
     return np.stack([x * np.cos(a), x * np.sin(a)], axis=1)
 
