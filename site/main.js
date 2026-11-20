@@ -24,3 +24,26 @@
     });
   });
 })();
+
+// The ticker only moves when the reader allows motion, and the button stops it.
+(function () {
+  var ticker = document.querySelector(".ticker");
+  var button = ticker && ticker.querySelector(".ticker-toggle");
+  if (!ticker || !button || !window.matchMedia) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function apply() {
+    var moving = !reduce.matches;
+    ticker.classList.toggle("is-moving", moving);
+    button.hidden = !moving;
+  }
+
+  button.addEventListener("click", function () {
+    var paused = ticker.classList.toggle("is-paused");
+    button.textContent = paused ? "Play scrolling" : "Pause scrolling";
+  });
+
+  if (reduce.addEventListener) reduce.addEventListener("change", apply);
+  else if (reduce.addListener) reduce.addListener(apply);
+  apply();
+})();
