@@ -35,6 +35,35 @@ PROMPT = (
 # A JSON reply took 1.7 to 2.1 s per frame (about 25 new tokens); three words take a few.
 KEYS = ("edge", "crosswalk", "traffic")
 
+# v2 adds the crossing stage and obstacles: on clip 03 (YouTube 7:58) v1 said edge=yes on
+# every frame from 0.5 s to 11.5 s, so it could not tell the curb from the middle of the road.
+PROMPT_V2 = (
+    "This photo is from a camera worn by a pedestrian, facing the way they walk. "
+    "The bottom edge of the photo is the ground just in front of their feet.\n"
+    "1 edge: yes if they are at a curb or the start of a crosswalk, or already in the road.\n"
+    "2 crosswalk: yes if crosswalk stripes are on the ground right in front of them.\n"
+    "3 traffic: yes if a vehicle is moving in the road right in front of them.\n"
+    "4 road: yes if the ground at the very bottom of the photo is road or crosswalk "
+    "stripes (they are in the street), no if it is sidewalk.\n"
+    "5 curb_up: yes if they are in the street and a raised sidewalk curb is one or two "
+    "steps ahead.\n"
+    "6 obstacle: one word for an object standing on the ground in their walking path within "
+    "about five steps: barrier, cone, cart, pole, bin, sign, scaffolding, bike, box, or none. "
+    "People and moving cars do not count.\n"
+    "7 side of that obstacle: left, right, ahead, or none.\n"
+    "Reply with exactly seven words in that order. Example: yes no no no no none none"
+)
+KEYS_V2 = ("edge", "crosswalk", "traffic", "road", "curb_up")
+# Asked on the whole frame, "road" copied "edge" (yes for the whole approach). On a crop of
+# the bottom 28% the model cannot see the corner, only the ground at the walker's feet:
+# clip 03 flipped to street at 5.5 s (stepped off about 6 s), 0.25 s per call.
+GROUND_Q = ("This photo shows only the ground just in front of a pedestrian's feet. Is the pedestrian "
+            "standing in the street (asphalt road or painted crosswalk stripes) or on the sidewalk "
+            "(concrete paving slabs or a curb ramp)? Answer one word: street or sidewalk.")
+GROUND_CROP = 0.72
+OBSTACLES = {"barrier": "Barrier", "cone": "Cone", "cart": "Cart", "pole": "Pole", "bin": "Trash can",
+             "sign": "Sign", "scaffolding": "Scaffolding", "bike": "Bike", "box": "Box"}
+
 CUE = dict(
     confirm=2,        # consecutive edge=yes answers before the corner cue
     off_s=5.0,        # edge=no for this long ends the corner episode
@@ -44,6 +73,17 @@ CUE = dict(
     track_bottom=0.55,  # tracks source: vehicle box bottom below this fraction of the frame
     track_motion="crossing",  # tracks source: moving (any non-static label) | crossing
     traffic_needs_edge=1,   # 1: only while the current frame also says edge
+    # v2 rows only (probe --prompt v2):
+    stages=1,          # "In the crosswalk." / "Curb ahead, step up." / "On the sidewalk."
+    road_confirm=2,    # consecutive street answers to enter the street
+    # Waiting on the stripes at a corner flipped street/sidewalk every second or two
+    # (Manhattan recording 14 to 21 s, 97 to 115 s), so leaving takes longer and
+    # "On the sidewalk." only follows a crossing that lasted min_cross_s.
+    road_leave=3,
+    min_cross_s=4.0,
+    obstacles=1,       # "Barrier right." for objects in the path at a corner or in the street
+    obstacle_confirm=2,
+    obstacle_gap=10.0,  # seconds before the same obstacle word again
 )
 
 
@@ -85,13 +125,27 @@ def probe(args):
             im = Image.fromarray(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
             im.thumbnail((args.long_side, args.long_side))
             t0 = time.perf_counter()
-            text, _ = vlm.chat([{"type": "image", "image": im}, {"type": "text", "text": PROMPT}],
-                               None, 8)
+            v2 = args.prompt == "v2"
+            text, _ = vlm.chat([{"type": "image", "image": im},
+                                {"type": "text", "text": PROMPT_V2 if v2 else PROMPT}], None, 16 if v2 else 8)
             lat = time.perf_counter() - t0
             row = dict(t=round(int(i) / fps, 3), lat=round(lat, 3), raw=text.strip())
-            words = re.findall(r"\b(yes|no)\b", text.lower())
-            for j, k in enumerate(KEYS):
+            words = re.findall(r"[a-z]+", text.lower())
+            for j, k in enumerate(KEYS_V2 if v2 else KEYS):
                 row[k] = j < len(words) and words[j] == "yes"
+            if v2:
+                h = bgr.shape[0]
+                ground = Image.fromarray(cv2.cvtColor(bgr[int(h * GROUND_CROP):], cv2.COLOR_BGR2RGB))
+                ground.thumbnail((args.long_side, args.long_side))
+                t1 = time.perf_counter()
+                g, _ = vlm.chat([{"type": "image", "image": ground}, {"type": "text", "text": GROUND_Q}], None, 3)
+                row["road"] = "street" in g.lower()
+                row["ground_raw"] = g.strip()
+                row["lat"] = round(lat + time.perf_counter() - t1, 3)
+                ob = words[5] if len(words) > 5 else "none"
+                row["obstacle"] = ob if ob in OBSTACLES else None
+                side = words[6] if len(words) > 6 else "none"
+                row["obstacle_side"] = side if side in ("left", "right", "ahead") else "ahead"
             f.write(json.dumps(row) + "\n")
             print(row["t"], row["lat"], row["edge"], row["crosswalk"], row["traffic"], flush=True)
             i += step
@@ -133,7 +187,58 @@ def scene_cues(rows, cfg, frames=None):
             if hit:
                 last_traffic = ready
                 cues.append(dict(t=r["t"], ready=ready, answer="Cars passing.", kind="traffic"))
+    if rows and "road" in rows[0]:
+        cues += crossing_cues(rows, cfg)
+    return sorted(cues, key=lambda c: c["ready"])
+
+
+def crossing_cues(rows, cfg):
+    """Stage changes while crossing and obstacles at the corner, from v2 rows.
+
+    The walker's cane finds the near curb; what it cannot tell them is that they are
+    now in the street, that the far curb is a step or two ahead, or that a barrier
+    stands in the crosswalk.
+    """
+    cues, in_road, stepped_up, near, last_ob, entered = [], False, False, -99.0, {}, -99.0
+    n, m, k = cfg["road_confirm"], cfg["obstacle_confirm"], cfg["road_leave"]
+    for i, r in enumerate(rows):
+        ready = r["t"] + r["lat"]
+        last = rows[max(0, i - n + 1):i + 1]
+        if r["edge"] or r["road"]:
+            near = r["t"]
+        if cfg["stages"] and len(last) == n:
+            if not in_road and all(x["road"] for x in last):
+                in_road, stepped_up, entered = True, False, r["t"]
+                word = "In the crosswalk." if any(x["crosswalk"] for x in last) else "In the street."
+                cues.append(dict(t=r["t"], ready=ready, answer=word, kind="stage"))
+            elif in_road and not stepped_up and all(x["curb_up"] and x["road"] for x in last):
+                stepped_up = True
+                cues.append(dict(t=r["t"], ready=ready, answer="Curb ahead, step up.", kind="stage"))
+            elif in_road and i + 1 >= k and not any(x["road"] for x in rows[i - k + 1:i + 1]):
+                in_road = False
+                if r["t"] - entered >= cfg["min_cross_s"] + k - 1:
+                    cues.append(dict(t=r["t"], ready=ready, answer="On the sidewalk.", kind="stage"))
+        recent = rows[max(0, i - m + 1):i + 1]
+        ob = r.get("obstacle")
+        if cfg["obstacles"] and ob and r["t"] - near <= 3.0 and len(recent) == m \
+                and all(x.get("obstacle") == ob for x in recent) and ready - last_ob.get(ob, -99) >= cfg["obstacle_gap"]:
+            last_ob[ob] = ready
+            cues.append(dict(t=r["t"], ready=ready, kind="obstacle",
+                             answer=f"{OBSTACLES[ob]} {r['obstacle_side']}."))
     return cues
+
+
+def stage_verdict(c, crossings):
+    """Right when it lands near the matching edge of a labelled crossing span [a, b]."""
+    t = c["ready"]
+    for a, b in crossings:
+        if c["answer"].startswith("In the") and a - 1 <= t <= a + 2.5:
+            return f"right, {t - a:+.1f} s from stepping into the street"
+        if c["answer"].startswith("Curb ahead") and b - 3 <= t <= b + 1:
+            return f"right, {b + 1 - t:.1f} s before the far curb"
+        if c["answer"].startswith("On the") and b <= t <= b + 3.5:
+            return f"right, {t - b - 1:+.1f} s from stepping up"
+    return "wrong time"
 
 
 def in_spans(t, spans, pad=0.0):
@@ -172,6 +277,10 @@ def score(args):
                 verdict = f"corner {ep + 1}, {abs(lead):.1f} s {'before' if lead >= 0 else 'after'} reaching the edge"
             else:
                 verdict = "repeat inside a corner" if in_spans(c["ready"], lab["edge"]) else "false alarm on the sidewalk"
+        elif c["kind"] == "stage":
+            verdict = stage_verdict(c, lab.get("crossing", []))
+        elif c["kind"] == "obstacle":
+            verdict = "check by eye"
         else:
             verdict = "traffic there" if in_spans(c["ready"], lab["traffic"], pad=1.0) else \
                 "no moving traffic in front" if in_spans(c["ready"], lab["edge"]) else "false alarm on the sidewalk"
@@ -191,6 +300,7 @@ if __name__ == "__main__":
     p.add_argument("--fps", type=float, default=2.0)
     p.add_argument("--long-side", type=int, default=448)
     p.add_argument("--tag", default="")
+    p.add_argument("--prompt", default="v1", choices=["v1", "v2"])
     s = sub.add_parser("score")
     s.add_argument("--video", required=True)
     s.add_argument("--tag", default="")

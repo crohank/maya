@@ -90,6 +90,7 @@ BASE = dict(
     scene=0,
     scene_traffic="tracks",  # vlm | tracks | off
     scene_stale=2.0,
+    scene_tag="",           # "v2": results/scene/<stem>_v2.jsonl with crossing stages and obstacles
     # "Siren." / "Car horn." from the clip's own audio (maya.sound.alert_timeline, AST on CPU).
     sounds=0,
     bg_volume=0.2,          # level of the clip's own sound under the cues in annotated.mp4
@@ -757,7 +758,7 @@ def cmd_run(args):
     scene = ()
     if cfg["scene"]:
         import walk_scene
-        rows = [json.loads(line) for line in open(walk_scene.scene_path(stem))]
+        rows = [json.loads(line) for line in open(walk_scene.scene_path(stem, cfg["scene_tag"]))]
         scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
     if cfg["sounds"] and lh.has_audio(args.video):
         from maya import audio, sound

@@ -1,0 +1,8 @@
+{
+  "video": "data/walk8/yt_siren1.mp4",
+  "source": "12 s from 'Manhattan POV Walking Park Avenue' (Strolling The City, YouTube), 7:58 to 8:10. Local test clip only. Labelled by eye from 2 fps frames.",
+  "edge": [[2, 11]],
+  "crossing": [[6.5, 11]],
+  "traffic": [[2, 4]],
+  "duration_s": 12.0
+}
