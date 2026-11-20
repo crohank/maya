@@ -81,6 +81,9 @@ BASE = dict(
     scene=0,
     scene_traffic="tracks",  # vlm | tracks | off
     scene_stale=2.0,
+    # "Siren." / "Car horn." from the clip's own audio (maya.sound.alert_timeline, AST on CPU).
+    sounds=0,
+    bg_volume=0.2,          # level of the clip's own sound under the cues in annotated.mp4
 )
 TONE_HZ = (660.0, 990.0, 1480.0)
 # (Hz, pulses, pulse s, gap s, gain) per band; high is quieter because it sounds louder.
@@ -693,7 +696,8 @@ def render(video, dur, words, tones, cfg, out_dir, td):
     vf = f"[0:v]subtitles={srt}:force_style='FontSize=16,Outline=2,MarginV=20'[vout]"
     if lh.has_audio(video):
         # A mono source track would otherwise make amix output mono and lose the pan.
-        af = "[0:a]volume=0.2,aformat=channel_layouts=stereo[bg];[1:a][bg]amix=inputs=2:normalize=0:duration=first[aout]"
+        af = (f"[0:a]volume={cfg['bg_volume']},aformat=channel_layouts=stereo[bg];"
+              "[1:a][bg]amix=inputs=2:normalize=0:duration=first[aout]")
         cmd += ["-filter_complex", vf + ";" + af, "-map", "[vout]", "-map", "[aout]"]
     else:
         cmd += ["-filter_complex", vf, "-map", "[vout]", "-map", "1:a"]
@@ -725,6 +729,12 @@ def cmd_run(args):
         import walk_scene
         rows = [json.loads(line) for line in open(walk_scene.scene_path(stem))]
         scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
+    if cfg["sounds"] and lh.has_audio(args.video):
+        from maya import audio, sound
+        from maya.engine import Engine
+        heard = sound.alert_timeline(Engine(), audio.load(args.video))
+        scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph[2:].capitalize() + ".", kind="sound")
+                               for end, dt, ph in heard]
     words, tones = simulate(frames, cfg, voice, scene)
     out_dir = Path(args.out) / f"{stem}_{args.tag}"
     (out_dir / "wav").mkdir(parents=True, exist_ok=True)
