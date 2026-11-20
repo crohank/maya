@@ -5,7 +5,7 @@
 Private, on-device scene and hazard cues for people with vision loss. No cloud, no
 signal needed.
 
-Project web page: _link coming soon_
+Project web page: https://maya-travel-aid.vercel.app
 
 Built for the IEEE AI Hackathon (Multimodal LLM Challenge). Every model is open and
 runs on one laptop GPU. Nothing is sent to a cloud service.

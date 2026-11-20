@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maya: an offline AI travel aid for blind and low-vision people</title>
+<meta name="description" content="Maya runs on one laptop with open models. It watches the sidewalk, listens to the street and gives short beeps and words, with no cloud and no signal needed.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<div class="domes" aria-hidden="true"></div>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">Maya</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#who">Who it is for</a></li>
+        <li><a href="#local">Fully local</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#demos">Demo videos</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#limits">Limits</a></li>
+        <li><a href="#credits">Credits</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <h1 id="hero-title">Maya: an offline AI travel aid for blind and low-vision people</h1>
+      <p class="lede">Maya runs on a laptop with a camera at chest height and a pair of headphones. It watches the sidewalk and listens to the street. When something matters, you hear a beep that pans left or right and speeds up as it gets closer, or a few words like "Person left, 4." or "Truck backing up." Every model runs on the laptop, so there is no cloud, no account and no need for a signal. Maya tells you what is around you. It never tells you where to go.</p>
+
+      <figure class="clip hero-media">
+        <video id="v-hero" controls preload="metadata" width="1280" height="486"
+          poster="videos/rt_05_taxi_turn_crossing.jpg"
+          aria-label="Demo video, 15 seconds, side by side. A walker reaches a Manhattan crosswalk and crosses while a taxi turns across it, traffic passes and a person crosses in front. Left half: the camera view with boxes around what Maya detects and the line it speaks. Right half: the same view blurred and dimmed to suggest low vision.">
+          <source src="videos/rt_05_taxi_turn_crossing.mp4" type="video/mp4">
+        </video>
+        <figcaption>A full crossing. Left: what Maya sees and says. Right: the same street through a blurred, dim low-vision view.</figcaption>
+      </figure>
+      <p class="headphones">Use headphones: beeps move left and right.</p>
+      <details open>
+        <summary id="t-hero-sum">What Maya says in this clip</summary>
+        <ol class="lines" data-video="v-hero">
+          <li data-t="0.73"><time>0.7 s</time> <q>Curb and crosswalk ahead, 5.</q></li>
+          <li data-t="3.83"><time>3.8 s</time> <q>Car ahead, close.</q></li>
+          <li data-t="5.16"><time>5.2 s</time> <q>Cars passing.</q></li>
+          <li data-t="6.09"><time>6.1 s</time> <q>Person ahead, 6.</q></li>
+          <li data-t="10.19"><time>10.2 s</time> <q>Person crossing ahead, close.</q></li>
+          <li data-t="13.26"><time>13.3 s</time> <q>Hydrant ahead, 9.</q></li>
+        </ol>
+      </details>
+      <p class="note">A number is a distance in steps. "Close" means very near.</p>
+    </div>
+  </section>
+
+  <section id="who" aria-labelledby="who-title">
+    <div class="wrap">
+      <h2 id="who-title">Who it is for</h2>
+      <p>Maya is for blind and low-vision people who walk on their own with a long cane or a guide dog. Most people with vision loss still have some sight <a class="cite" href="#ref-afb">(AFB)</a>, so Maya is built for people with partial sight as well as for people who are totally blind.</p>
+
+      <dl class="facts">
+        <div>
+          <dt>43 million</dt>
+          <dd>people worldwide were blind in 2020 <a class="cite" href="#ref-iapb">(IAPB Vision Atlas)</a>.</dd>
+        </div>
+        <div>
+          <dt>295 million</dt>
+          <dd>more had moderate or severe vision impairment <a class="cite" href="#ref-iapb">(IAPB Vision Atlas)</a>.</dd>
+        </div>
+        <div>
+          <dt>7.15 million</dt>
+          <dd>people in the US have vision loss that glasses cannot correct, about 706,000 of them blind <a class="cite" href="#ref-cdc-vehss">(CDC VEHSS, 2024 data)</a>.</dd>
+        </div>
+        <div>
+          <dt>46.7% vs 27.7%</dt>
+          <dd>of US adults 65 and over reported a fall in 2014, with and without severe vision impairment <a class="cite" href="#ref-mmwr">(CDC MMWR, 2016)</a>.</dd>
+        </div>
+      </dl>
+
+      <h3>Main causes</h3>
+      <p>Among adults 50 and over, the main causes of blindness in 2020 were cataract (15.2 million people), glaucoma (3.6 million), age-related macular degeneration (1.8 million) and diabetic retinopathy (0.86 million) <a class="cite" href="#ref-gbd">(GBD 2019, Lancet Global Health)</a>. Each takes sight in a different way. Glaucoma and retinitis pigmentosa take side vision first. Macular degeneration takes the centre and leaves the sides <a class="cite" href="#ref-nei">(NEI)</a>.</p>
+
+      <h3>Who gains most</h3>
+      <ul class="groups">
+        <li><strong>People with side vision loss</strong> from glaucoma or retinitis pigmentosa. People with glaucoma bump into obstacles more often than sighted people <a class="cite" href="#ref-glaucoma">(PMC6058912)</a>. Beeps that pan left and right point at the side they miss.</li>
+        <li><strong>People with hemianopia after a stroke</strong>, who lose the same half of the field in both eyes <a class="cite" href="#ref-hemi">(PMC4181645)</a>. A cue from one side fits this well.</li>
+        <li><strong>Older adults.</strong> Vision loss rises steeply with age <a class="cite" href="#ref-cdc-vehss">(CDC VEHSS)</a>, and falls are more common with it. People who lose sight later in life may never have had mobility training, so short spoken cues may help them most.</li>
+        <li><strong>Cane users.</strong> A cane finds things at ground level but misses signs, branches and overhangs at chest and head height. Maya's camera sees the whole frame and names what is there, like "Sign board ahead."</li>
+        <li><strong>Guide dog users.</strong> The dog already steers around obstacles. What Maya adds is names: a dog can avoid a sign board but cannot say what it is.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="local" aria-labelledby="local-title">
+    <div class="wrap">
+      <h2 id="local-title">Fully local, open models</h2>
+      <p>Maya uses no cloud service and needs no account. Camera images never leave the laptop and nothing is stored. Every model has open weights and runs on the laptop itself, on one 8 GB GPU and the CPU.</p>
+      <h3>Privacy for the user</h3>
+      <p>Blind people who use camera apps worry about sending out images they cannot check first <a class="cite" href="#ref-akter-usenix">(Akter et al., USENIX Security 2020)</a>. With Maya, those images stay on the laptop.</p>
+      <h3>Privacy for people nearby</h3>
+      <p>A walking camera sees strangers. In surveys of 128 visually impaired users and 136 sighted bystanders, both groups had concerns about camera-based aids capturing and describing people nearby <a class="cite" href="#ref-akter-bystander">(Akter et al., ASSETS 2020 and TACCESS 2022)</a>. Maya keeps each frame in memory on the laptop and then discards it. The camera still sees people's faces, even though nothing is kept.</p>
+      <h3>Works with no signal</h3>
+      <p>GPS aids already fail in stations and indoors <a class="cite" href="#ref-routenav">(PMC10691587)</a>. About 2.2 billion people are still offline, and in rural areas 58% are online against 85% in cities <a class="cite" href="#ref-itu">(ITU, 2025)</a>. An aid that depends on the cloud stops working in those places.</p>
+      <h3>No round trip</h3>
+      <p>US signal timing assumes people walk about 1.07 m per second <a class="cite" href="#ref-nymtc">(NYMTC, 2012)</a>. Each second spent waiting on a server is roughly a metre walked before the warning arrives. Maya's detector and rules respond on the next frame.</p>
+      <h3>No subscription</h3>
+      <p>A human describer service like Aira starts at $26 a month for 20 minutes <a class="cite" href="#ref-aira">(Aira pricing, 2026)</a>. Maya costs nothing per use once installed. It does need a laptop with a capable GPU, which costs money up front.</p>
+    </div>
+  </section>
+
+  <section id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 id="how-title">How it works</h2>
+      <p>Maya is a pipeline of small models. Each one has a single job. A rule engine decides what you hear, so a model never speaks to you directly.</p>
+
+      <figure class="pipe" aria-labelledby="pipe-cap">
+        <ol>
+          <li class="stage">
+            <h3>Inputs</h3>
+            <ul>
+              <li><strong>Camera<span class="vh">: </span></strong> At chest height</li>
+              <li><strong>Microphone</strong></li>
+            </ul>
+          </li>
+          <li class="stage">
+            <h3>Perception</h3>
+            <ul>
+              <li><strong>D-FINE object detector<span class="vh">: </span></strong> Objects365 classes, with distance from Depth Anything V2 <span class="src">From the camera</span></li>
+              <li><strong>NVIDIA Cosmos3-Edge, 4-bit VLM<span class="vh">: </span></strong> Checks the walking lane once a second and confirms crosswalks <span class="src">From the camera</span></li>
+              <li><strong>Crosswalk stripe detector<span class="vh">: </span></strong> Finds painted stripes in the pixels with OpenCV <span class="src">From the camera</span></li>
+              <li><strong>AST sound model<span class="vh">: </span></strong> Sirens, horns, reversing trucks <span class="src">From the microphone</span></li>
+            </ul>
+          </li>
+          <li class="stage decide">
+            <h3>Rule engine</h3>
+            <ul>
+              <li><strong>Panned beeps<span class="vh">: </span></strong> Speed up as things get closer</li>
+              <li><strong>Short words<span class="vh">: </span></strong> With step counts, like "Person left, 4."</li>
+              <li><strong>Holds back repeats<span class="vh">: </span></strong> For example, one curb word per 20 seconds at most</li>
+            </ul>
+          </li>
+          <li class="stage">
+            <h3>Output</h3>
+            <ul>
+              <li><strong>Piper TTS<span class="vh">: </span></strong> One voice for every word</li>
+              <li><strong>Headphones<span class="vh">: </span></strong> Beeps and words together</li>
+            </ul>
+          </li>
+        </ol>
+        <figcaption id="pipe-cap" class="note">The camera feeds three perception stages and the microphone feeds one. All four report to the rule engine, which sends beeps and words to the headphones.</figcaption>
+      </figure>
+
+      <table>
+        <caption>Models in walk mode</caption>
+        <thead>
+          <tr><th scope="col">Model</th><th scope="col">Job</th><th scope="col">License</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" data-label="Model">D-FINE small, Objects365 <code>ustc-community/dfine-small-obj365</code></th>
+            <td data-label="Job">Finds and boxes people, vehicles and street objects (366 classes)</td>
+            <td data-label="License">Apache-2.0 code. The Objects365 weights are not cleared for commercial use.</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Model">Depth Anything V2 Metric Outdoor Small <code>depth-anything/Depth-Anything-V2-Metric-Outdoor-Small-hf</code></th>
+            <td data-label="Job">Distance to each object in metres, turned into steps</td>
+            <td data-label="License">Apache-2.0 (original VKITTI Small card; see model card)</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Model">NVIDIA Cosmos3-Edge, 4-bit <code>ubr-physical-ai/Cosmos3-Edge-NF4-bnb</code></th>
+            <td data-label="Job">Walking lane check once a second, crosswalk confirm</td>
+            <td data-label="License">OpenMDW-1.1 (see model card)</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Model">Crosswalk stripe detector (our code on OpenCV)</th>
+            <td data-label="Job">Painted crosswalk stripes ahead, from pixels alone</td>
+            <td data-label="License">OpenCV: Apache-2.0</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Model">Audio Spectrogram Transformer <code>MIT/ast-finetuned-audioset-10-10-0.4593</code></th>
+            <td data-label="Job">Hears sirens, horns and reversing trucks</td>
+            <td data-label="License">BSD-3-Clause</td>
+          </tr>
+          <tr>
+            <th scope="row" data-label="Model">Piper TTS, <code>en_US-lessac-medium</code> voice</th>
+            <td data-label="Job">Speaks every word in one voice, on the CPU</td>
+            <td data-label="License">GPL-3.0-or-later (engine). Voice: see model card.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">Outside walk mode, the same app answers spoken questions about a photo, a sign, a document, a sound or a short video. It uses Qwen3-VL-4B (Apache-2.0), also on the laptop.</p>
+    </div>
+  </section>
+
+  <section id="demos" aria-labelledby="demos-title">
+    <div class="wrap">
+      <h2 id="demos-title">Demo videos</h2>
+      <p>Each clip is recorded street video run through the pipeline with measured model times. The left half shows what Maya sees and says. The right half shows the same street blurred and dimmed, to give a sense of low vision.</p>
+      <p class="headphones">Use headphones: beeps move left and right.</p>
+
+      <ul class="demos">
+        <li>
+          <h3 id="d1">Taxi turning at a crossing</h3>
+          <figure class="clip">
+            <video id="v1" controls preload="metadata" width="1280" height="486"
+              poster="videos/rt_05_taxi_turn_crossing.jpg"
+              aria-label="Demo video, 15 seconds, side by side: a Manhattan crossing with a taxi turning across the crosswalk, cars passing and a person crossing in front. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/rt_05_taxi_turn_crossing.mp4" type="video/mp4">
+            </video>
+            <figcaption>Listen for the curb word with its step count, then "Car ahead, close." as the taxi turns in.</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v1">
+              <li data-t="0.73"><time>0.7 s</time> <q>Curb and crosswalk ahead, 5.</q></li>
+              <li data-t="3.83"><time>3.8 s</time> <q>Car ahead, close.</q></li>
+              <li data-t="5.16"><time>5.2 s</time> <q>Cars passing.</q></li>
+              <li data-t="6.09"><time>6.1 s</time> <q>Person ahead, 6.</q></li>
+              <li data-t="10.19"><time>10.2 s</time> <q>Person crossing ahead, close.</q></li>
+              <li data-t="13.26"><time>13.3 s</time> <q>Hydrant ahead, 9.</q></li>
+            </ol>
+          </details>
+        </li>
+
+        <li>
+          <h3 id="d2">Narrow covered sidewalk</h3>
+          <figure class="clip">
+            <video id="v2" controls preload="metadata" width="1280" height="486"
+              poster="videos/rt_09_narrow_scaffold_obstacles.jpg"
+              aria-label="Demo video, 15 seconds, side by side: a narrow sidewalk under scaffolding, with a scissor lift ahead and people passing close on the left. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/rt_09_narrow_scaffold_obstacles.mp4" type="video/mp4">
+            </video>
+            <figcaption>Listen for "Machine ahead." when the lane check finds a scissor lift, and the beeps on the left as people pass close.</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v2">
+              <li data-t="2.68"><time>2.7 s</time> <q>Person left, 9.</q></li>
+              <li data-t="4.23"><time>4.2 s</time> <q>Machine ahead.</q></li>
+              <li data-t="5.98"><time>6.0 s</time> <q>Person left, close.</q></li>
+              <li data-t="7.71"><time>7.7 s</time> <q>Person left, 9.</q></li>
+              <li data-t="10.32"><time>10.3 s</time> <q>Person left, 6.</q></li>
+              <li data-t="12.18"><time>12.2 s</time> <q>Pole ahead.</q></li>
+              <li data-t="13.55"><time>13.6 s</time> <q>Person right, 8.</q></li>
+            </ol>
+          </details>
+        </li>
+
+        <li>
+          <h3 id="d3">Crowded sidewalk with a horn</h3>
+          <figure class="clip">
+            <video id="v3" controls preload="metadata" width="1280" height="486"
+              poster="videos/rt_17_crowd_horn.jpg"
+              aria-label="Demo video, 15 seconds, side by side: a busy sidewalk with a planter, a sign board and people crossing in front, and a car horn in the background. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/rt_17_crowd_horn.mp4" type="video/mp4">
+            </video>
+            <figcaption>A crowded sidewalk, and Maya speaks only four times in 15 seconds. Listen for how little it says.</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v3">
+              <li data-t="3.23"><time>3.2 s</time> <q>Planter ahead, close.</q></li>
+              <li data-t="5.17"><time>5.2 s</time> <q>Sign board ahead.</q></li>
+              <li data-t="6.13"><time>6.1 s</time> <q>Person crossing ahead, close.</q></li>
+              <li data-t="8.22"><time>8.2 s</time> <q>Person left, 7.</q></li>
+            </ol>
+          </details>
+        </li>
+
+        <li>
+          <h3 id="d4">Siren near a bike lane</h3>
+          <figure class="clip">
+            <video id="v4" controls preload="metadata" width="1280" height="486"
+              poster="videos/rt_16_siren_bikelane.jpg"
+              aria-label="Demo video, 15 seconds, side by side: a siren sounds as the walker approaches a crossing beside a bike lane, with a barrier and a truck on the left. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/rt_16_siren_bikelane.mp4" type="video/mp4">
+            </video>
+            <figcaption>Listen for "Siren." from the sound model, then the curb word and "Truck left, close."</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v4">
+              <li data-t="2.02"><time>2.0 s</time> <q>Siren.</q></li>
+              <li data-t="8.33"><time>8.3 s</time> <q>Curb and crosswalk ahead, 5.</q></li>
+              <li data-t="10.21"><time>10.2 s</time> <q>Barrier ahead.</q></li>
+              <li data-t="11.08"><time>11.1 s</time> <q>Truck left, close.</q></li>
+              <li data-t="13.95"><time>14.0 s</time> <q>Person ahead, close.</q></li>
+            </ol>
+          </details>
+        </li>
+
+        <li>
+          <h3 id="d5">Reversing truck</h3>
+          <figure class="clip">
+            <video id="v5" controls preload="metadata" width="1280" height="486"
+              poster="videos/yt_reversing.jpg"
+              aria-label="Demo video, 12 seconds, side by side: the walker nears a corner while a truck backs up with its reversing beeper sounding, and cars pass. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/yt_reversing.mp4" type="video/mp4">
+            </video>
+            <figcaption>Listen for "Truck backing up.", which comes from the sound alone, after the curb word and "Cars passing."</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v5">
+              <li data-t="0.72"><time>0.7 s</time> <q>Curb and crosswalk ahead, 5.</q></li>
+              <li data-t="2.71"><time>2.7 s</time> <q>Truck left, 8.</q></li>
+              <li data-t="3.75"><time>3.8 s</time> <q>Cars passing.</q></li>
+              <li data-t="5.01"><time>5.0 s</time> <q>Truck backing up.</q></li>
+            </ol>
+          </details>
+        </li>
+
+        <li>
+          <h3 id="d6">Thirty seconds of sidewalk</h3>
+          <figure class="clip portrait">
+            <video id="v6" controls preload="metadata" width="1280" height="1030"
+              poster="videos/nyc_walk_60_90s.jpg"
+              aria-label="Demo video, 30 seconds, side by side in portrait: a straight walk along a Manhattan sidewalk past poles, a machine, bikes and people. Left: camera view with boxes and Maya's spoken line. Right: the same view blurred and dimmed.">
+              <source src="videos/nyc_walk_60_90s.mp4" type="video/mp4">
+            </video>
+            <figcaption>A plain stretch of walking. Listen for the step counts as people come and go, and the side each one is on.</figcaption>
+          </figure>
+          <details>
+            <summary>Transcript of spoken lines</summary>
+            <ol class="lines" data-video="v6">
+              <li data-t="3.02"><time>3.0 s</time> <q>Person left, 9.</q></li>
+              <li data-t="4.32"><time>4.3 s</time> <q>Machine ahead.</q></li>
+              <li data-t="7.32"><time>7.3 s</time> <q>Person left, close.</q></li>
+              <li data-t="8.55"><time>8.6 s</time> <q>Person left, 7.</q></li>
+              <li data-t="13.19"><time>13.2 s</time> <q>Pole ahead, 5.</q></li>
+              <li data-t="15.61"><time>15.6 s</time> <q>Person ahead, 5.</q></li>
+              <li data-t="16.96"><time>17.0 s</time> <q>Person left, 9.</q></li>
+              <li data-t="21.32"><time>21.3 s</time> <q>Bike right, close.</q></li>
+              <li data-t="24.83"><time>24.8 s</time> <q>Person left, 4.</q></li>
+              <li data-t="27.45"><time>27.5 s</time> <q>Person crossing right, 5.</q></li>
+            </ol>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="results" aria-labelledby="results-title">
+    <div class="wrap">
+      <h2 id="results-title">What worked and what didn't</h2>
+      <p>For each version, an AI agent checked every spoken line against the video frames from 1 second before to 1 second after it, on the same 22 clips.</p>
+      <div class="two-col">
+        <div>
+          <h3>Worked</h3>
+          <ul>
+            <li>Step counts. Distances like "Person left, 5." were about right in 40 of 49 checks.</li>
+            <li>Naming obstacles the detector had already found, such as a scissor lift, a planter and a sign board.</li>
+            <li>The stripe curb cue. It fired within about 2 seconds of the curb at 9 of 11 held-out corners and stayed silent on 6 clips with no crossing.</li>
+            <li>Sound alerts for sirens, horns and reversing trucks, from the sound alone.</li>
+            <li>Staying quiet. The first combined version spoke 164 lines on the review clips, and 38 of them were wrong. The version that fits the live GPU budget spoke 114, with 8 wrong and 4 late. Of 45 people walking toward the camera in our notes, 38 got a beep or a word between 2 seconds before and 1 second after the moment we noted.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Didn't work</h3>
+          <ul>
+            <li>Cosmos steering. In frame reviews, 1 of its 15 lines was useful, 6 were wrong and 8 came too late. Some would have stepped the walker into a person, so it is off.</li>
+            <li>Cosmos free descriptions were useful 2 times in 25.</li>
+            <li>Stairs. 0 of 7 stair alerts were right, so that check is off too.</li>
+            <li>Crosswalk warnings come late, only about 4 steps ahead, with some false alarms.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="limits" aria-labelledby="limits-title">
+    <div class="wrap">
+      <h2 id="limits-title">Limits</h2>
+      <ul class="groups">
+        <li><strong>An aid alongside the cane or guide dog, never a replacement.</strong> Keep using your cane or dog. Maya only adds information.</li>
+        <li><strong>Not a medical device.</strong> It does not diagnose, treat or measure vision, and has no regulatory clearance. It is a hackathon prototype.</li>
+        <li><strong>Describes, never steers.</strong> Maya says "Person ahead." It never says "Move left" or "Safe to cross."</li>
+        <li><strong>Audio only.</strong> As built, it does not work for deafblind people. Beeps and words can also compete with traffic sounds, so open-ear headphones are a better fit.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="credits" aria-labelledby="credits-title">
+    <div class="wrap">
+      <h2 id="credits-title">Credits</h2>
+      <ul class="groups">
+        <li>Built for the IEEE AI Hackathon, Multimodal LLM Challenge.</li>
+        <li>Footage: the demo clips are cut from the public YouTube video <a href="https://www.youtube.com/watch?v=VAjHWBkz_z8">Manhattan POV Walking Park Avenue</a>. All credit for the footage goes to its original creator. It is used here for non-commercial demonstration only.</li>
+        <li>Models: D-FINE (ustc-community port) trained on Objects365, Depth Anything V2, NVIDIA Cosmos3-Edge (4-bit build by ubr-physical-ai), the Audio Spectrogram Transformer from MIT, Piper TTS with the lessac voice, and Qwen3-VL-4B. The stripe detector uses OpenCV.</li>
+        <li><a href="#repo">Source code and docs</a></li>
+      </ul>
+
+      <h3 id="sources">Sources</h3>
+      <ol class="refs">
+        <li id="ref-iapb">IAPB Vision Atlas, Global Snapshot, 2020 estimates (GBD 2019 Vision Loss Expert Group). <a href="https://www.iapb.org/wp-content/uploads/2021/05/Vision-Atlas_Global-Snapshot_18052021.pdf">iapb.org</a></li>
+        <li id="ref-cdc-vehss">CDC, Vision and Eye Health Surveillance System, vision loss prevalence, 2024 data. <a href="https://www.cdc.gov/vision-health-data/prevalence-estimates/vision-loss-prevalence.html">cdc.gov</a></li>
+        <li id="ref-mmwr">CDC, MMWR 65(17), 2016, falls among older adults with severe vision impairment. <a href="https://www.cdc.gov/mmwr/volumes/65/wr/mm6517a2.htm">cdc.gov</a></li>
+        <li id="ref-gbd">GBD 2019 Blindness and Vision Impairment Collaborators, Lancet Global Health 9:e144, 2021. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7820391">PMC7820391</a></li>
+        <li id="ref-nei">National Eye Institute, Low vision. <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/low-vision">nei.nih.gov</a></li>
+        <li id="ref-afb">American Foundation for the Blind, Low vision and legal blindness terms. <a href="https://afb.org/blindness-and-low-vision/eye-conditions/low-vision-and-legal-blindness-terms-and-descriptions">afb.org</a></li>
+        <li id="ref-glaucoma">Obstacle contact in people with glaucoma. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6058912">PMC6058912</a></li>
+        <li id="ref-hemi">Homonymous hemianopia, causes. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4181645">PMC4181645</a></li>
+        <li id="ref-akter-usenix">Akter et al., "I am uncomfortable sharing what I can't see", USENIX Security 2020. <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/akter">usenix.org</a></li>
+        <li id="ref-akter-bystander">Akter et al., Shared privacy concerns of the visually impaired and sighted bystanders with camera-based assistive technologies, ASSETS 2020 and ACM TACCESS 2022. <a href="https://www.microsoft.com/en-us/research/publication/shared-privacy-concerns-of-the-visually-impaired-and-sighted-bystanders-with-camera-based-assistive-technologies/">microsoft.com</a></li>
+        <li id="ref-routenav">RouteNav transit hub study. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10691587/">PMC10691587</a></li>
+        <li id="ref-itu">ITU, Facts and Figures 2025. <a href="https://www.itu.int/itu-d/reports/statistics/facts-figures-2025/">itu.int</a></li>
+        <li id="ref-nymtc">NYMTC, Traffic signal timing fact sheet, 2012 (MUTCD walking speed). <a href="https://www.nymtc.org/portals/0/pdf/Transportation%20Safety/NYSAMPO%20TrafficSignalTimingFactSheet_2012.pdf">nymtc.org</a></li>
+        <li id="ref-aira">Aira, plans and pricing, updated March 2026. <a href="https://www.aira.io/offset-prices">aira.io</a></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Maya is a hackathon prototype. Keep using your cane or guide dog.</p>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
