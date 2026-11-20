@@ -1,0 +1,14 @@
+mode,request_t,model_s,speech_start,speech_end,track,trigger,t_close,late,dropped,cut_off,spoken,text
+MOVE,2.0,3.25,5.25,5.25,3,person left ttc 3.8s,2.0,True,True,False,1 step right,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+MOVE,5.25,3.26,8.51,8.51,10,person right ttc 1.9s,5.633,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+DESCRIBE,8.51,5.69,14.2,17.38,,,,False,False,True,"Left: A purple bin, two purple sandwich boards with white text, and a black digital signboard are visible. Nothing is approaching.  
+Ahead: A man in a dark jacket and pants walks toward me, followed by another person in a light blue shirt and black trousers. They are both about three steps away.  
+Right: A large modern building with glass windows and an arched entrance dominates the area. No movement is observed.","Left: A purple bin, two purple sandwich boards with white text, and a black digital signboard are visible. Nothing is approaching.  
+Ahead: A man in a dark jacket and pants walks toward me, followed by another person in a light blue shirt and black trousers. They are both about three steps away.  
+Right: A large modern building with glass windows and an arched entrance dominates the area. No movement is observed."
+MOVE,14.2,3.18,17.38,17.38,103,person right ttc 2.6s,14.133,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and safety."
+MOVE,17.38,3.22,20.6,20.6,163,person right ttc 1.2s,20.0,True,True,False,slow down,"Instruction: slow down
+Reason: To avoid colliding with the approaching person while maintaining balance while walking."

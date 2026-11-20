@@ -1,0 +1,11 @@
+mode,request_t,model_s,speech_start,speech_end,track,trigger,t_close,late,dropped,cut_off,spoken,text
+MOVE,2.0,3.27,5.27,5.27,3,person left ttc 3.8s,2.0,True,True,False,1 step right,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+MOVE,5.27,3.27,8.53,8.53,10,person right ttc 1.9s,5.633,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+DESCRIBE,8.53,2.87,11.41,13.41,,,,False,False,False,"Person crossing, right, ahead, 3 steps.","Person crossing, right, ahead, 3 steps."
+MOVE,13.23,3.19,16.42,16.42,103,person right ttc 2.6s,14.133,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and safety."
+DESCRIBE,16.42,3.05,19.47,22.78,,,,False,False,True,"A man in black suit, right, 3 steps away, moving away.","A man in black suit, right, 3 steps away, moving away."
+MOVE,19.47,3.31,22.78,22.78,159,person right ttc 2.6s,19.9,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the person on the right entering the path while maintaining balance."
