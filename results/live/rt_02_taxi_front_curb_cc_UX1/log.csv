@@ -1,0 +1,9 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,1.0,2.0,2.0,3.05,spoken,True,,,,,"Pedestrians right, 2 steps. Crosswalk ahead, 1 step.","Pedestrians right, 2 steps. Crosswalk ahead, 1 step."
+ALERT,,,3.05,3.05,4.06,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,4.55,4.55,6.12,spoken,False,,,53,,"Car ahead, 5 steps.","Car ahead, 5 steps."
+ALERT,,,6.7,6.7,7.63,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,7.84,7.84,9.29,spoken,False,,,80,,"Car right, 5 steps.","Car right, 5 steps."
+WALK,,,8.84,9.29,10.73,spoken,False,,,137,,"Car left, 7 steps.","Car left, 7 steps."
+MOVE,8.84,0.52,9.36,,,silent,,,car left ttc 0.9s,137,9.5,,keep straight
+ALERT,,,9.6,10.73,11.64,spoken,False,,,,,In the crosswalk.,In the crosswalk.

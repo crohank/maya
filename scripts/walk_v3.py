@@ -46,7 +46,9 @@ import score_walk as sw
 # camera). Poles have no entry: their boxes are almost always cut by the top.
 HEIGHT_M = {"person": 1.7, "bicycle": 1.7, "motorcycle": 1.5, "car": 1.5, "truck": 2.5,
             "bus": 3.0, "stroller": 1.0, "wheelchair": 1.3, "scooter": 1.6,
-            "trash can": 1.0, "fire hydrant": 0.8, "traffic cone": 0.7, "bench": 0.9, "cart": 1.0}
+            "trash can": 1.0, "fire hydrant": 0.8, "traffic cone": 0.7, "bench": 0.9, "cart": 1.0,
+            "potted plant": 1.0, "chair": 0.9, "barrel": 0.9, "parking meter": 1.3, "luggage": 0.7, "dog": 0.6,
+            "sign": 1.2}
 WIDTH_M = {"person": 0.5, "stroller": 0.6, "wheelchair": 0.7, "trash can": 0.6}
 EDGE = 0.02
 
@@ -72,6 +74,8 @@ BASE = dict(
     static_min_bot=0.6,    # poles, bins, hydrants, cones: box bottom must be this low (near)
     static_cross=1,        # 0: still objects never get "crossing" (camera turns made bins "cross")
     word_gap=2.5,          # seconds between object words, unless one is under word_ttc
+    steps=0,               # 1: "Person left, 3 steps." (steps_away)
+    step_m=0.75, vfov_portrait=60.0, vfov_landscape=45.0,
     pan_rate=9.0,          # camera turn: median lateral rate (width/s) above this means no "crossing"
     crowd_n=0,             # this many approaching people: say "Crowd ahead." instead of person words
     crowd_s=10.0, crowd_close=0.8,
@@ -161,7 +165,8 @@ def predict(tr, horizon):
     return 0.5 + u, X
 
 
-STILL = {"pole", "trash can", "fire hydrant", "traffic cone", "bench"}
+STILL = {"pole", "trash can", "fire hydrant", "traffic cone", "bench", "potted plant", "chair", "barrel",
+         "parking meter", "sign"}
 
 
 def corridor_ok(tr, horizon, cfg):
@@ -198,6 +203,25 @@ def urgency(tr, cfg):
             and corridor_ok(tr, cfg["cross_horizon"], cfg):
         return cfg["cross_urgency"], cfg["cross_horizon"]
     return None, None
+
+
+def phrase(name, verb, side, steps):
+    return f"{name}{verb} {side}, {steps} step{'s' if steps != 1 else ''}." if steps else f"{name}{verb} {side}."
+
+
+def steps_away(tr, cfg):
+    """Distance in walking steps from the box height and the class height (HEIGHT_M), the
+    same pinhole model predict() uses for X. Vertical field of view is a guess per
+    orientation (phone portrait about 60 deg, landscape about 45 deg). None beyond 9 steps
+    or when the box is cut off at the top or bottom edge (height then understates size)."""
+    x1, y1, x2, y2 = tr["box"]
+    h = y2 - y1
+    if tr["cls"] not in HEIGHT_M or h <= 0 or y1 <= 0.01:
+        return None
+    vfov = math.radians(cfg["vfov_portrait"] if tr["_aspect"] < 1 else cfg["vfov_landscape"])
+    z = HEIGHT_M[tr["cls"]] / (h * 2 * math.tan(vfov / 2))
+    n = max(1, round(z / cfg["step_m"]))
+    return n if n <= 9 else None
 
 
 def side_of(tr, horizon, cfg):
@@ -360,7 +384,8 @@ def simulate(frames, cfg, voice, scene=()):
         verb = " crossing" if tr["motion"].startswith("crossing") and not tr.get("_pan") else ""
         c = dict(source="fast", track=tid, cls=tr["cls"], name=name, side=side, urgency=u,
                  ready=now, win_start=max(0.0, t - cfg["window"] / 8), win_end=t,
-                 answer=f"{name}{verb} {side}.", X=predict(tr, horizon)[1],
+                 answer=phrase(name, verb, side, steps_away(tr, cfg) if cfg["steps"] else None),
+                 X=predict(tr, horizon)[1],
                  raw=json.dumps({k: v for k, v in tr.items() if not k.startswith("_")}))
         veh = tr["cls"] in fh.VEHICLES
         if cfg["words"] == "once":

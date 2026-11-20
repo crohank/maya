@@ -95,7 +95,7 @@ def t_close(frames, tid):
     return best[1]
 
 
-def triggers_from(frames, words, tones, gate=0.0):
+def triggers_from(frames, words, tones, gate=0.0, ttc_max=TRIGGER_TTC):
     """The teammate's rule on Maya's own walk events: first word or new tone per track,
     urgency under TRIGGER_TTC, detector confidence at least MIN_CONF, 4 s per-track cooldown."""
     ev = [(x["ready"], x) for x in words if x["source"] == "fast" and x["status"] == "spoken"]
@@ -108,7 +108,7 @@ def triggers_from(frames, words, tones, gate=0.0):
         # of the walker's centre line (X is None for objects it cannot place; those pass).
         if gate and X is not None and abs(float(X)) > gate:
             continue
-        if urg >= TRIGGER_TTC or (tid in seen and ready - seen[tid] < TRACK_COOLDOWN):
+        if urg >= ttc_max or (tid in seen and ready - seen[tid] < TRACK_COOLDOWN):
             continue
         conf = min(((f["t"], tr["conf"]) for f in frames for tr in f["tracks"] if tr["id"] == tid),
                    key=lambda v: abs(v[0] - ready), default=(0, 0))[1]
@@ -124,6 +124,8 @@ def triggers_from(frames, words, tones, gate=0.0):
 def move_options(e, o):
     """v1: fixed per side. x: from the predicted pass offset X (metres, + is right): a step
     away from the side it passes on, or stop; both sides when it comes straight on."""
+    if o["options"] == "sk":
+        return ['"stop"', '"keep straight"']
     if o["options"] == "v1" or e.get("X") in (None, ""):
         return OPTIONS.get(e["side"], OPTIONS["ahead"])
     X = float(e["X"])
@@ -341,7 +343,7 @@ def run_clip(stem, o, speech, voice):
     src = o.get("video") or find_video(stem)
     frames = [json.loads(line) for line in open(f"/main/results/perception/{stem}.jsonl")]
     dur = min(frames[-1]["t"], lh.ffprobe_duration(src))
-    cfg = dict(w3.BASE, scene=1, scene_tag="v2", sounds=1)
+    cfg = dict(w3.BASE, scene=1, scene_tag="v2", sounds=1, steps=o["steps"])
     w3.annotate(frames, w3.video_aspect(src), cfg)
     scene = []
     sp = Path(f"/main/results/scene/{stem}_{o['scene_tag']}.jsonl")
@@ -358,13 +360,24 @@ def run_clip(stem, o, speech, voice):
                 run = run + 1 if r["stripes"] else 0
                 if run == 2 and r["t"] - last > 8:
                     last = r["t"]
-                    stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer="Crosswalk ahead.", kind="corner"))
+                    stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer=o["corner_word"], kind="corner"))
             seen = [r["t"] for r in st if r["stripes"]]
             for r in rows:
                 r["edge"] = r["road"] or any(r["t"] - 3 <= s <= r["t"] for s in seen)
-        scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
+        scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"], stages=o["stages"],
+                                                 obstacles=o["vlm_obstacles"]), frames)
         if o["corner"] == "stripes":
             scene = [c for c in scene if c["kind"] != "corner"] + stripe_cues
+    if o["stairs"]:
+        stp = Path(f"/main/results/scene/{stem}_stairs.jsonl")
+        if stp.exists():
+            rows_s = [json.loads(line) for line in open(stp)]
+            last = -99.0
+            for a, b in zip(rows_s, rows_s[1:]):
+                if a["answer"] == b["answer"] != "no" and b["t"] - last > 15:
+                    last = b["t"]
+                    scene.append(dict(t=b["t"], ready=b["t"] + b["lat"], kind="stairs",
+                                      answer=f"Stairs ahead, going {b['answer']}."))
     if lh.has_audio(src):
         from maya import audio, sound
         from maya.engine import Engine
@@ -373,7 +386,7 @@ def run_clip(stem, o, speech, voice):
         scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph.split(" ", 1)[1].capitalize() + ".", kind="sound")
                                for end, dt, ph in heard]
     words, tones = w3.simulate(frames, cfg, voice, scene)
-    triggers = triggers_from(frames, words, tones, o["move_gate"])
+    triggers = triggers_from(frames, words, tones, o["move_gate"], o["trigger_ttc"])
     print(stem, "triggers:", [(round(e["t"], 2), e["cls"], e["side"], e["urgency"]) for e in triggers], flush=True)
     cosmos = cosmos_loop(src, dur, triggers, speech, o)
     items = [dict(c) for c in cosmos]
@@ -419,7 +432,13 @@ def main():
     ap.add_argument("--move-gate", type=float, default=0.0, help="metres; 0 = every trigger")
     ap.add_argument("--scene-tag", default="v2", help="v2: Qwen3-VL scene rows; cv2: Cosmos")
     ap.add_argument("--corner", default="vlm", choices=["vlm", "stripes"])
-    ap.add_argument("--options", default="v1", choices=["v1", "x", "xk"])
+    ap.add_argument("--steps", type=int, default=0)
+    ap.add_argument("--stairs", type=int, default=0)
+    ap.add_argument("--options", default="v1", choices=["v1", "x", "xk", "sk"])
+    ap.add_argument("--trigger-ttc", type=float, default=TRIGGER_TTC)
+    ap.add_argument("--stages", type=int, default=1)
+    ap.add_argument("--vlm-obstacles", type=int, default=1)
+    ap.add_argument("--corner-word", default="Crosswalk ahead.")
     ap.add_argument("--render-dir")
     ap.add_argument("--names", help="json map stem -> output file name")
     args = ap.parse_args()

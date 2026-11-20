@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,0.92,1.92,1.92,2.05,spoken,True,,,,,"Pedestrians approaching, white crosswalk lines, 3 steps.","Pedestrians approaching, white crosswalk lines, 3 steps."
+ALERT,,,2.05,2.05,2.71,spoken,False,,,,,Siren.,Siren.
+WALK,,,7.38,7.38,8.06,spoken,False,,,185,,Pole right.,Pole right.
+MOVE,7.38,0.54,7.92,8.06,8.73,spoken,False,False,pole right ttc 2.8s,185,9.0,Slow down.,slow down
+ALERT,,,8.05,8.73,9.74,spoken,False,,,,,Crosswalk ahead.,Crosswalk ahead.
+WALK,,,10.62,10.62,11.28,spoken,False,,,412,,Truck left.,Truck left.
+MOVE,10.62,0.61,11.22,11.28,11.94,spoken,False,True,truck left ttc 1.0s,412,10.0,Slow down.,slow down
+ALERT,,,11.52,11.94,12.87,spoken,False,,,,,Cars passing.,Cars passing.
+ALERT,,,12.47,12.87,13.57,spoken,False,,,,,In the street.,In the street.
+ALERT,,,13.01,13.57,14.23,spoken,False,,,,,Siren.,Siren.
+WALK,,,13.95,14.23,15.8,spoken,False,,,512,,"Person ahead, 5 steps.","Person ahead, 5 steps."
+ALERT,,,14.13,15.8,17.31,spoken,False,,,,,"Stairs ahead, going up.","Stairs ahead, going up."
+MOVE,13.95,0.52,14.46,,,silent,,,person ahead ttc 1.7s,512,14.27,,keep straight

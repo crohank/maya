@@ -1,0 +1,3 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+DESCRIBE,1.0,0.89,1.89,1.89,4.89,spoken,True,,,,,"Crosswalk right, 2 steps. Pedestrians ahead, 3 steps.","Crosswalk right, 2 steps. Pedestrians ahead, 3 steps."
+WALK,,,4.89,4.89,5.92,spoken,False,,,17,,Bus crossing right.,Bus crossing right.

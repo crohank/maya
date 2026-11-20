@@ -1,0 +1,11 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.05,2.05,2.71,spoken,False,,,,,Siren.,Siren.
+WALK,,,7.38,7.38,8.06,spoken,False,,,185,,Pole right.,Pole right.
+ALERT,,,8.05,8.06,9.46,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+WALK,,,10.62,10.62,11.28,spoken,False,,,412,,Truck left.,Truck left.
+MOVE,10.62,0.51,11.13,,,silent,,,truck left ttc 1.0s,412,10.0,,keep straight
+ALERT,,,11.52,11.52,12.45,spoken,False,,,,,Cars passing.,Cars passing.
+ALERT,,,13.01,13.01,13.67,spoken,False,,,,,Siren.,Siren.
+WALK,,,13.95,13.95,15.52,spoken,False,,,512,,"Person ahead, 5 steps.","Person ahead, 5 steps."
+ALERT,,,14.13,15.52,17.03,spoken,False,,,,,"Stairs ahead, going up.","Stairs ahead, going up."
+MOVE,13.95,0.5,14.45,,,silent,,,person ahead ttc 1.7s,512,14.27,,keep straight

@@ -33,6 +33,10 @@ NAMES = {
     "truck": "Truck", "bus": "Bus", "pole": "Pole", "trash can": "Trash can",
     "traffic cone": "Cone", "stroller": "Stroller", "fire hydrant": "Hydrant",
     "bench": "Bench", "cart": "Cart", "wheelchair": "Wheelchair", "scooter": "Scooter",
+    # Detected by perception.py all along but never spoken; named after the blind-user
+    # review of 22 real clips (25 missed fixed obstacles, data/review/blind_review).
+    "potted plant": "Planter", "chair": "Chair", "barrel": "Barrel", "parking meter": "Parking meter",
+    "luggage": "Suitcase", "dog": "Dog", "sign": "Sign",
 }
 VEHICLES = {"car", "truck", "bus", "motorcycle"}
 
