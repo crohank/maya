@@ -367,7 +367,7 @@ def run_clip(stem, o, speech, voice):
                     # said street for the last stripe_road_n checks (in the road for a while)
                     last_n = [x for x in rows if x["t"] <= r["t"]][-o["stripe_road_n"]:]
                     under = under or (len(last_n) == o["stripe_road_n"] and all(x["road"] for x in last_n))
-                if run == 2 and r["t"] - last > 8 and not under:
+                if run == 2 and r["t"] - last > o["corner_gap"] and not under:
                     last = r["t"]
                     stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer=o["corner_word"], kind="corner"))
             seen = [r["t"] for r in st if r["stripes"]]
@@ -467,6 +467,7 @@ def main():
     ap.add_argument("--path-confirm", type=int, default=2)
     ap.add_argument("--path-skip", default="", help="comma list of names never spoken, e.g. Cart,Machine")
     ap.add_argument("--stripe-road-n", type=int, default=0)
+    ap.add_argument("--corner-gap", type=float, default=8.0, help="seconds between curb words; a crossing takes 10 to 15 s")
     ap.add_argument("--options", default="v1", choices=["v1", "x", "xk", "sk"])
     ap.add_argument("--trigger-ttc", type=float, default=TRIGGER_TTC)
     ap.add_argument("--stages", type=int, default=1)

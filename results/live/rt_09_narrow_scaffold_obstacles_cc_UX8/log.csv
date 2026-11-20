@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.13,1.13,2.06,spoken,False,,,,,Machine ahead.,Machine ahead.
+WALK,,,2.68,2.68,3.98,spoken,False,,,7,,"Person left, 9.","Person left, 9."
+WALK,,,6.05,6.05,7.25,spoken,False,,,36,,"Person left, close.","Person left, close."
+WALK,,,7.46,7.46,8.16,spoken,False,,,69,,Person left.,Person left.
+WALK,,,13.55,13.55,14.72,spoken,False,,,166,,"Person right, 8.","Person right, 8."

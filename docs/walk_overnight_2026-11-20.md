@@ -64,7 +64,9 @@ the held-out notes, 38 got a beep or a word within 2 s before to 1 s after.
 
 ## Recommended setting
 
-v6 without MOVE (`data/review/FINAL_walk/recommended/`, settings in
+v8 without MOVE: v6 plus at most one curb word per 20 s, which removed 2 of 3 mid-crossing
+curb words and kept the 4 well-timed ones (not reviewed separately). Videos in
+`data/review/FINAL_walk/recommended/`, settings in
 `experiments/cosmos_combined/run_recommended.sh`). v4 is the more cautious choice: fewer
 wrong lines (10 against 18) but more missed obstacles. With MOVE kept, as asked, it is
 `data/review/FINAL_walk/with_steering/`; the reviews say a blind user is worse off with it.
