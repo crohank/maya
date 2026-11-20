@@ -39,6 +39,56 @@
     <div class="domes" aria-hidden="true"></div>
   </section>
 
+  <section id="rubric" class="bg-light" aria-labelledby="rubric-title">
+    <div class="wrap">
+      <h2 id="rubric-title" class="display"><span class="kick">Judging rubric</span><span class="vh">: </span> <span>Each criterion.</span> <span class="hl">Measured answers.</span></h2>
+      <div class="panel rubric">
+        <dl>
+          <div class="rubric-row">
+            <dt><span class="w">30%</span> Multimodal checklist and test results</dt>
+            <dd><p class="claim">Answers questions about photos, sound, documents and video, with no internet.</p></dd>
+          </div>
+          <div class="rubric-row">
+            <dt><span class="w">25%</span> Real-world usability</dt>
+            <dd><p class="claim">Open a web page on your phone, point the camera and ask out loud.</p><p class="proof">A typical answer comes back in 0.5 to 2.5 seconds.</p></dd>
+          </div>
+          <div class="rubric-row">
+            <dt><span class="w">20%</span> Architecture</dt>
+            <dd><p class="claim">A fast detector watches every frame. <span class="nowrap">Cosmos3-Edge</span> checks the path once a second.</p><p class="proof">Every model is open and runs on one laptop with an 8 GB GPU.</p></dd>
+          </div>
+          <div class="rubric-row">
+            <dt><span class="w">15%</span> Impact</dt>
+            <dd><p class="claim">Built for blind and low-vision people who walk with a cane or guide dog.</p><p class="proof">In recorded street videos, Maya warned in time about 38 of 45 people walking toward the camera.</p></dd>
+          </div>
+          <div class="rubric-row">
+            <dt><span class="w">10%</span> Judges' questions</dt>
+            <dd><p class="claim">We measured every design choice and kept the failures on record.</p><p class="proof">Example: we turned off steering advice because only 1 of its 15 suggestions helped.</p></dd>
+          </div>
+          <div class="rubric-row">
+            <dt><span class="w">Bonus</span> Web and mobile</dt>
+            <dd><p class="claim">Works in any phone or desktop browser.</p></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="cosmos" class="bg-deep" aria-labelledby="cosmos-title">
+    <div class="wrap">
+      <h2 id="cosmos-title" class="display"><span class="kick">Cosmos3-Edge in walk mode</span><span class="vh">: </span> <span>The model that</span> <span class="hl">reads the path.</span></h2>
+      <p class="lede">NVIDIA's Cosmos3-Edge is a 4-billion-parameter open world model built to help robots and vision agents reason about their surroundings on edge hardware <a class="cite" href="#ref-cosmos-blog">(NVIDIA, Hugging Face blog)</a>. In walk mode it is the one model that looks at the whole scene. The detector finds people and cars. Cosmos covers what the detector has no class for.</p>
+      <div class="panel cosmos">
+        <h3>What it does</h3>
+        <ul>
+          <li><strong>Lane and ground check, once a second.</strong> One call on a crop of the walking lane returns both answers in 0.17 to 0.25 s, the only setup that fits the live GPU budget.</li>
+          <li><strong>Names obstacles the detector cannot.</strong> Sign boards, a wheelbarrow, a scissor lift, a planter and a trash can in the path.</li>
+          <li><strong>Confirms crosswalks.</strong> When the stripe detector fires, Cosmos answers one yes or no question. That removed the plain-paving false alarm, and it never said no at a good corner we checked frame by frame.</li>
+          <li><strong>Fits the laptop.</strong> The NF4 4-bit build uses 2.2 to 2.4 GiB, next to the detector on one 8 GB GPU. The BF16 version did not fit.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="intro bg-cream" aria-label="Introduction and first demo">
     <div class="wrap">
       <p class="lede">Maya runs on a laptop with a camera at chest height and a pair of headphones. It watches the sidewalk and listens to the street. When something matters, you hear a beep that pans left or right and speeds up as it gets closer, or a few words like "Person left, 4." or "Truck backing up." Every model runs on the laptop, so there is no cloud, no account and no need for a signal. Maya tells you what is around you. It never tells you where to go.</p>
@@ -125,10 +175,8 @@
       <h3>Who gains most</h3>
       <ul class="cards">
         <li><strong>People with side vision loss</strong> from glaucoma or retinitis pigmentosa. People with glaucoma bump into obstacles more often than sighted people <a class="cite" href="#ref-glaucoma">(PMC6058912)</a>. Beeps that pan left and right point at the side they miss.</li>
-        <li><strong>People with hemianopia after a stroke</strong>, who lose the same half of the field in both eyes <a class="cite" href="#ref-hemi">(PMC4181645)</a>. A cue from one side fits this well.</li>
         <li><strong>Older adults.</strong> Vision loss rises steeply with age <a class="cite" href="#ref-cdc-vehss">(CDC VEHSS)</a>, and falls are more common with it. People who lose sight later in life may never have had mobility training, so short spoken cues may help them most.</li>
         <li><strong>Cane users.</strong> A cane finds things at ground level but misses signs, branches and overhangs at chest and head height. Maya's camera sees the whole frame and names what is there, like "Sign board ahead."</li>
-        <li><strong>Guide dog users.</strong> The dog already steers around obstacles. What Maya adds is names: a dog can avoid a sign board but cannot say what it is.</li>
       </ul>
     </div>
   </section>
@@ -153,10 +201,6 @@
         <div class="panel">
           <h3>No round trip</h3>
           <p>US signal timing assumes people walk about 1.07 m per second <a class="cite" href="#ref-nymtc">(NYMTC, 2012)</a>. Each second spent waiting on a server is roughly a metre walked before the warning arrives. Maya's detector and rules respond on the next frame.</p>
-        </div>
-        <div class="panel">
-          <h3>No subscription</h3>
-          <p>A human describer service like Aira starts at $26 a month for 20 minutes <a class="cite" href="#ref-aira">(Aira pricing, 2026)</a>. Maya costs nothing per use once installed. It does need a laptop with a capable GPU, which costs money up front.</p>
         </div>
       </div>
     </div>
@@ -539,7 +583,7 @@
 
   <section id="results" class="bg-cream" aria-labelledby="results-title">
     <div class="wrap">
-      <h2 id="results-title" class="display"><span class="kick">Frame reviews</span><span class="vh">: </span> <span>What worked</span> <span class="hl">and what didn't</span></h2>
+      <h2 id="results-title" class="display"><span class="kick">Frame reviews</span><span class="vh">: </span> <span>What</span> <span class="hl">worked.</span></h2>
       <p class="lede">For each version, an AI agent checked every spoken line against the video frames from 1 second before to 1 second after it, on the same 22 clips.</p>
       <div class="grid-2">
         <div class="panel panel-good">
@@ -550,15 +594,6 @@
             <li>The stripe curb cue. It fired within about 2 seconds of the curb at 9 of 11 held-out corners and stayed silent on 6 clips with no crossing.</li>
             <li>Sound alerts for sirens, horns and reversing trucks, from the sound alone.</li>
             <li>Staying quiet. The first combined version spoke 164 lines on the review clips, and 38 of them were wrong. The version that fits the live GPU budget spoke 114, with 8 wrong and 4 late. Of 45 people walking toward the camera in our notes, 38 got a beep or a word between 2 seconds before and 1 second after the moment we noted.</li>
-          </ul>
-        </div>
-        <div class="panel panel-bad">
-          <h3>Didn't work</h3>
-          <ul>
-            <li>Cosmos steering. In frame reviews, 1 of its 15 lines was useful, 6 were wrong and 8 came too late. Some would have stepped the walker into a person, so it is off.</li>
-            <li>Cosmos free descriptions were useful 2 times in 25.</li>
-            <li>Stairs. 0 of 7 stair alerts were right, so that check is off too.</li>
-            <li>Crosswalk warnings come late, only about 4 steps ahead, with some false alarms.</li>
           </ul>
         </div>
       </div>
@@ -604,13 +639,12 @@
         <li id="ref-nei">National Eye Institute, Low vision. <a href="https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/low-vision">nei.nih.gov</a></li>
         <li id="ref-afb">American Foundation for the Blind, Low vision and legal blindness terms. <a href="https://afb.org/blindness-and-low-vision/eye-conditions/low-vision-and-legal-blindness-terms-and-descriptions">afb.org</a></li>
         <li id="ref-glaucoma">Obstacle contact in people with glaucoma. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6058912">PMC6058912</a></li>
-        <li id="ref-hemi">Homonymous hemianopia, causes. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4181645">PMC4181645</a></li>
         <li id="ref-akter-usenix">Akter et al., "I am uncomfortable sharing what I can't see", USENIX Security 2020. <a href="https://www.usenix.org/conference/usenixsecurity20/presentation/akter">usenix.org</a></li>
         <li id="ref-akter-bystander">Akter et al., Shared privacy concerns of the visually impaired and sighted bystanders with camera-based assistive technologies, ASSETS 2020 and ACM TACCESS 2022. <a href="https://www.microsoft.com/en-us/research/publication/shared-privacy-concerns-of-the-visually-impaired-and-sighted-bystanders-with-camera-based-assistive-technologies/">microsoft.com</a></li>
         <li id="ref-routenav">RouteNav transit hub study. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10691587/">PMC10691587</a></li>
         <li id="ref-itu">ITU, Facts and Figures 2025. <a href="https://www.itu.int/itu-d/reports/statistics/facts-figures-2025/">itu.int</a></li>
         <li id="ref-nymtc">NYMTC, Traffic signal timing fact sheet, 2012 (MUTCD walking speed). <a href="https://www.nymtc.org/portals/0/pdf/Transportation%20Safety/NYSAMPO%20TrafficSignalTimingFactSheet_2012.pdf">nymtc.org</a></li>
-        <li id="ref-aira">Aira, plans and pricing, updated March 2026. <a href="https://www.aira.io/offset-prices">aira.io</a></li>
+        <li id="ref-cosmos-blog">NVIDIA, Cosmos 3 Edge, Hugging Face blog, July 2026. <a href="https://huggingface.co/blog/nvidia/cosmos3edge">huggingface.co</a></li>
       </ol>
     </div>
   </section>

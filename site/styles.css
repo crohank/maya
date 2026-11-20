@@ -684,6 +684,86 @@ summary {
   border-color: transparent;
 }
 
+.cosmos h3 {
+  margin-top: 0;
+}
+
+.cosmos ul {
+  padding-left: 1.1rem;
+}
+
+.cosmos li + li {
+  margin-top: 0.5rem;
+}
+
+.rubric dl {
+  margin: 0;
+}
+
+.rubric-row {
+  display: grid;
+  grid-template-columns: minmax(10rem, 16rem) 1fr;
+  gap: 0.5rem 1.75rem;
+  padding: 1.1rem 0;
+  border-top: 2px solid var(--line);
+}
+
+.rubric-row:first-child {
+  border-top: 0;
+  padding-top: 0.2rem;
+}
+
+.rubric-row:last-child {
+  padding-bottom: 0.2rem;
+}
+
+.rubric dt {
+  font-weight: 700;
+}
+
+.rubric .w {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+  font-stretch: 75%;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.rubric dd {
+  margin: 0;
+  max-width: none;
+}
+
+.rubric dd p {
+  margin: 0;
+  max-width: 34rem;
+}
+
+.rubric .claim {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.rubric .nowrap {
+  white-space: nowrap;
+}
+
+.rubric .proof {
+  margin-top: 0.35rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 47.99rem) {
+  .rubric-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .bg-cream .panel-good {
   background: var(--green);
   color: var(--cream);
