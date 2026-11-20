@@ -1,0 +1,13 @@
+{
+  "video": "data/user_clips/nyc_full.mp4",
+  "source": "Phone recording by the team, Manhattan (Park Ave South area), 2026-11-19. Labelled by eye from 1 fps frames.",
+  "definitions": {
+    "edge": "camera is at the curb or crosswalk start (within about 2 steps), or in the road crossing",
+    "crossing": "camera is in the road on a crosswalk",
+    "traffic": "a vehicle is moving on the road right in front of the camera while at the edge"
+  },
+  "edge": [[6, 30], [87, 123], [177, 193]],
+  "crossing": [[23, 30], [118, 123], [185, 186]],
+  "traffic": [[8, 11], [14, 16], [23, 25], [92, 93], [99, 99], [101, 108], [116, 117], [180, 183], [186, 186]],
+  "duration_s": 193.6
+}

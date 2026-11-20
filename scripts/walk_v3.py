@@ -76,6 +76,10 @@ BASE = dict(
     bands=(2.5, 1.5),      # TTC under 2.5 s is mid, under 1.5 s is high
     word_stale=0.75,
     single_channel=0,
+    # Curb, crosswalk and traffic words from results/scene/<stem>.jsonl (scripts/walk_scene.py).
+    scene=0,
+    scene_traffic="tracks",  # vlm | tracks | off
+    scene_stale=2.0,
 )
 TONE_HZ = (660.0, 990.0, 1480.0)
 PAN = {"left": -0.8, "ahead": 0.0, "right": 0.8}
@@ -223,9 +227,17 @@ class Voice:
         return dur
 
 
-def simulate(frames, cfg, voice):
+def simulate(frames, cfg, voice, scene=()):
     """One walk through the clip. Returns (words, tones), both lists of dicts with
-    status; spoken words and played tones carry start/end."""
+    status; spoken words and played tones carry start/end.
+
+    scene: cues from walk_scene.scene_cues(), queued at their ready time. Urgency 0
+    makes them win over object words queued at the same moment.
+    """
+    scene = [dict(source="scene", track=-(i + 1), cls="scene", name=c["answer"].split()[0],
+                  side="ahead", urgency=0.0, ready=c["ready"], win_start=c["t"], win_end=c["t"],
+                  answer=c["answer"], X=None, prev_kind=-99.0, raw=c["kind"])
+             for i, c in enumerate(sorted(scene, key=lambda c: c["ready"]))]
     hist = collections.defaultdict(lambda: collections.deque(maxlen=cfg["window"]))
     worded = {}          # track id -> time a word was queued (once) / last word (v2)
     kind_last = {}       # class name -> last word time
@@ -264,7 +276,7 @@ def simulate(frames, cfg, voice):
             fresh = []
             for p in [p for p in pending if p["ready"] <= T]:
                 pending.remove(p)
-                if T - p["ready"] > cfg["word_stale"]:
+                if T - p["ready"] > cfg["scene_stale" if p["source"] == "scene" else "word_stale"]:
                     drop(p, "stale")
                 else:
                     fresh.append(p)
@@ -294,6 +306,8 @@ def simulate(frames, cfg, voice):
     for fr in frames:
         t = fr["t"]
         now = t + sum(fr.get("timing", {}).values()) / 1000.0
+        while scene and scene[0]["ready"] <= now:
+            pending.append(scene.pop(0))
         flush(now)
         seen, cands = set(), []
         for tr in fr["tracks"]:
@@ -334,6 +348,7 @@ def simulate(frames, cfg, voice):
         elif cfg["tones"] and not any(p["track"] == tid for p in pending):
             if now - last_tone.get(tid, -99) >= cfg["tone_repeat"][band(u, cfg)]:
                 play_tone(now, c, "repeat" if tid in last_tone else "new")
+    pending.extend(scene)
     flush(float("inf"))
     words.sort(key=lambda e: e["ready"])
     return words, tones
@@ -692,7 +707,12 @@ def cmd_run(args):
     frames = [json.loads(line) for line in open(f"results/perception/{stem}.jsonl")]
     annotate(frames, video_aspect(args.video), cfg)
     voice = Voice(fh.V2_LENGTH_SCALE)
-    words, tones = simulate(frames, cfg, voice)
+    scene = ()
+    if cfg["scene"]:
+        import walk_scene
+        rows = [json.loads(line) for line in open(walk_scene.scene_path(stem))]
+        scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"]), frames)
+    words, tones = simulate(frames, cfg, voice, scene)
     out_dir = Path(args.out) / f"{stem}_{args.tag}"
     (out_dir / "wav").mkdir(parents=True, exist_ok=True)
     spoken = [w for w in words if w["status"] == "spoken"]
@@ -729,7 +749,7 @@ def cmd_run(args):
         f.write("| Sound | Saw (s) | Plays at (s) | What |\n|---|---|---|---|\n")
         for e in rows:
             if e["status"] in ("spoken", "tone"):
-                f.write(f"| {'word' if e['source'] == 'fast' else 'tone'} | {e['win_end']:.1f} | "
+                f.write(f"| {dict(fast='word', scene='scene word').get(e['source'], 'tone')} | {e['win_end']:.1f} | "
                         f"{e['audio_start']:.2f} | {e['answer']} |\n")
     print(f"wrote {out_dir}: {len(spoken)} words, {len(played)} tones")
 
