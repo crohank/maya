@@ -87,6 +87,17 @@ wrong lines (10 against 18) but more missed obstacles. With MOVE kept, as asked,
 - I ran `python3` on the Windows host once by mistake at about 00:35 (a compile check); it may
   have opened the Microsoft Store page.
 
+## Live GPU budget (measured, not yet wired in)
+
+The simulation times each model call separately. On one laptop GPU, per second of walking:
+tracking at 8 fps about 0.42 s, the Cosmos street check 0.25 s and the lane check 0.3 s, which
+does not keep up live. Checking the lane every 2 s instead lost real warnings (rt_06 sign board
+at 10 s instead of 1 s, nothing in rt_17). One Cosmos call on the lane crop that returns both
+words ("sidewalk sign") took 0.17 to 0.25 s and named the same obstacles on 10 clips (barriers
+and sign boards in rt_06, the wheelbarrow in rt_07, the lift in rt_09, planter, sign board and
+trash can in rt_17), so the budget becomes about 0.6 s per second. Its ground word is less
+clean ("crosswalk" instead of street or sidewalk). Script: `cosmos_lane_ground_test.py`.
+
 ## Caveats
 
 - The reviewers are agents reading frames, not blind people, and every review used the same

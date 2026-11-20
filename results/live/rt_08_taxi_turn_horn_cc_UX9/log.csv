@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,0.55,0.55,1.94,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+WALK,,,1.19,,,dropped,,,,62,,Person left.,Person left.
+WALK,,,6.56,6.56,8.16,spoken,False,,,159,,"Car crossing ahead, close.","Car crossing ahead, close."
+ALERT,,,7.43,8.16,9.09,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,9.19,9.19,10.36,spoken,False,,,447,,"Person right, 8.","Person right, 8."

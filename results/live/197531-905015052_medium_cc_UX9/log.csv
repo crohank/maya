@@ -1,0 +1,4 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.15,2.15,2.96,spoken,False,,,,,Planter ahead.,Planter ahead.
+WALK,,,4.89,4.89,5.92,spoken,False,,,17,,Bus crossing right.,Bus crossing right.
+ALERT,,,8.2,8.2,9.11,spoken,False,,,,,Bollard ahead.,Bollard ahead.
