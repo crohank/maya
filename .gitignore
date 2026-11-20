@@ -37,3 +37,26 @@ results/sanpo/live/
 results/sanpo/perception/
 results/sanpo/walk_v4_cache/
 results/pack_*.log
+
+# videos and audio anywhere (the README demo GIF is the one media file kept)
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.avi
+*.wav
+*.gif
+!docs/media/walk_demo.gif
+
+# caches
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+.worktrees/
+
+# scratch run scripts and logs (the documented run scripts stay tracked)
+run_*.sh
+!scripts/run_*.sh
+!experiments/cosmos_combined/run_recommended.sh
+!results/sanpo/run_walk.sh
+*.log

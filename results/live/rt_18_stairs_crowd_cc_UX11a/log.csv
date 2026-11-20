@@ -1,5 +1,0 @@
-mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
-WALK,,,1.04,1.04,2.62,spoken,False,,,13,,"Person crossing right, 9.","Person crossing right, 9."
-WALK,,,2.56,2.62,3.85,spoken,False,,,57,,"Person right, close.","Person right, close."
-WALK,,,3.82,3.85,5.05,spoken,False,,,116,,"Person left, close.","Person left, close."
-WALK,,,5.1,5.1,6.25,spoken,False,,,118,,"Person right, 6.","Person right, 6."
