@@ -1,0 +1,9 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.05,2.05,2.71,spoken,False,,,,,Siren.,Siren.
+ALERT,,,3.16,3.16,3.97,spoken,False,,,,,Planter ahead.,Planter ahead.
+ALERT,,,5.13,5.13,5.85,spoken,False,,,,,Pole ahead.,Pole ahead.
+WALK,,,7.38,7.38,8.06,spoken,False,,,185,,Pole right.,Pole right.
+ALERT,,,8.05,8.06,9.46,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+WALK,,,10.62,10.62,11.92,spoken,False,,,412,,"Truck left, close.","Truck left, close."
+ALERT,,,11.26,11.92,12.79,spoken,False,,,,,Barrier ahead.,Barrier ahead.
+WALK,,,13.95,13.95,15.29,spoken,False,,,512,,"Person ahead, close.","Person ahead, close."

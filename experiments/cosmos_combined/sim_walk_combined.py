@@ -372,6 +372,21 @@ def run_clip(stem, o, speech, voice):
                                                  obstacles=o["vlm_obstacles"], traffic_gap=o["traffic_gap"]), frames)
         if o["corner"] == "stripes":
             scene = [c for c in scene if c["kind"] != "corner"] + stripe_cues
+            if o["traffic_near_corner"]:
+                # "Cars passing." matters while waiting at the curb; inside the crosswalk
+                # or on the sidewalk it was mostly noise (v3 review)
+                scene = [c for c in scene if c["kind"] != "traffic" or any(
+                    s["t"] - 1 <= c["t"] <= s["t"] + o["traffic_near_corner"] for s in stripe_cues)]
+    if o["path_obstacles"]:
+        pp = Path(f"/main/results/scene/{stem}_path.jsonl")
+        if pp.exists():
+            rows_p = [json.loads(line) for line in open(pp)]
+            last = {}
+            for a, b in zip(rows_p, rows_p[1:]):
+                nm = b["name"]
+                if nm and a["name"] == nm and b["t"] - last.get(nm, -99) > 10:
+                    last[nm] = b["t"]
+                    scene.append(dict(t=b["t"], ready=b["t"] + b["lat"], kind="path", answer=f"{nm} ahead."))
     if o["stairs"]:
         stp = Path(f"/main/results/scene/{stem}_stairs.jsonl")
         if stp.exists():
@@ -438,6 +453,7 @@ def main():
     ap.add_argument("--corner", default="vlm", choices=["vlm", "stripes"])
     ap.add_argument("--steps", type=int, default=0)
     ap.add_argument("--stairs", type=int, default=0)
+    ap.add_argument("--path-obstacles", type=int, default=0)
     ap.add_argument("--options", default="v1", choices=["v1", "x", "xk", "sk"])
     ap.add_argument("--trigger-ttc", type=float, default=TRIGGER_TTC)
     ap.add_argument("--stages", type=int, default=1)
@@ -446,6 +462,7 @@ def main():
     ap.add_argument("--wset", action="append", default=[], help="walk_v3 BASE key=value")
     ap.add_argument("--stripe-under", type=float, default=9.0, help="skip the corner word when stripes reach this low")
     ap.add_argument("--traffic-gap", type=float, default=8.0)
+    ap.add_argument("--traffic-near-corner", type=float, default=0.0, help="seconds after a corner word; 0 = anywhere")
     ap.add_argument("--stripe-road", type=int, default=0, help="1: also skip when Cosmos ground said street (v3: too strong, 1 corner word in 22 clips)")
     ap.add_argument("--alert-repeat", type=float, default=10.0)
     ap.add_argument("--render-dir")

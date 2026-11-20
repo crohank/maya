@@ -77,6 +77,7 @@ BASE = dict(
     steps=0,               # 1: "Person left, 3 steps." (steps_away)
     step_m=0.75, vfov_portrait=60.0, vfov_landscape=45.0,
     still_min_h=0.15, still_near_bot=0.75,   # UX3: still_min_h=0.07
+    riders=0,              # 1: person on a bike box is named "Bike" (mark_riders)
     close_h=0.6,           # box at least this tall, or cut off at the bottom: "close" instead of steps
     steps_style="long",    # long: "Person left, 3 steps." short: "Person left, 3."
     still_words=0,         # 1: a still obstacle can take the word slot when the most urgent track is not new
@@ -121,9 +122,32 @@ def slope(ts, vs):
     return sum((t - tm) * (v - vm) for t, v in zip(ts, vs)) / den if den > 1e-9 else 0.0
 
 
+RIDES = {"bicycle", "motorcycle", "scooter"}
+
+
+def mark_riders(frames):
+    """A cyclist arrives as a person box plus a bicycle box; walk mode named the person
+    ("Person left") and the crossing cyclists in rt_03 and rt_11 went unnamed as bikes
+    (v3 review). A person whose box contains the centre of a bike box becomes a rider
+    and is named after the bike."""
+    for fr in frames:
+        bikes = [tr for tr in fr["tracks"] if tr["cls"] in RIDES]
+        for tr in fr["tracks"]:
+            if tr["cls"] != "person":
+                continue
+            x1, y1, x2, y2 = tr["box"]
+            for b in bikes:
+                cx, cy = (b["box"][0] + b["box"][2]) / 2, (b["box"][1] + b["box"][3]) / 2
+                if x1 <= cx <= x2 and (y1 + y2) / 2 <= cy <= y2 + 0.05:
+                    tr["cls"] = b["cls"]
+                    break
+
+
 def annotate(frames, aspect, cfg):
     """Add lateral rate (_lat, width fraction per s, with the outward drift of
     walking forward removed) to every track."""
+    if cfg.get("riders"):
+        mark_riders(frames)
     hist = collections.defaultdict(collections.deque)
     for fr in frames:
         t = fr["t"]

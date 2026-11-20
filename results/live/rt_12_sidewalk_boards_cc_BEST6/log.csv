@@ -1,0 +1,11 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.88,0.88,1.94,spoken,False,,,3,,"Person left, 8.","Person left, 8."
+MOVE,1.0,0.52,1.52,,,silent,,,person left ttc 2.8s,3,2.77,,keep straight
+WALK,,,3.19,3.19,4.39,spoken,False,,,28,,"Person left, close.","Person left, close."
+ALERT,,,4.21,4.39,5.35,spoken,False,,,,,Sign board ahead.,Sign board ahead.
+MOVE,4.2,0.59,4.79,,,silent,,,person left ttc 1.7s,7,4.5,,keep straight
+WALK,,,5.69,5.69,6.67,spoken,False,,,34,,"Chair right, 8.","Chair right, 8."
+MOVE,10.01,0.51,10.52,,,silent,,,person right ttc 3.0s,35,9.77,,keep straight
+WALK,,,10.75,10.75,12.12,spoken,False,,,144,,"Person right, 5.","Person right, 5."
+MOVE,10.75,0.51,11.26,,,silent,,,person right ttc 1.4s,144,11.13,,keep straight
+WALK,,,14.45,14.45,15.1,spoken,False,,,145,,Bike right.,Bike right.

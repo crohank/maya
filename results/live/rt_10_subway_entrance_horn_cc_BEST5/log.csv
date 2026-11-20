@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,3.55,3.55,4.7,spoken,False,,,7,,"Person right, 6.","Person right, 6."
+MOVE,3.55,0.6,4.16,,,silent,,,person right ttc 2.9s,7,5.5,,keep straight
+WALK,,,12.32,12.32,13.42,spoken,False,,,10,,"Person left, 7.","Person left, 7."
+WALK,,,14.95,14.95,16.31,spoken,False,,,85,,"Trash can left, 4.","Trash can left, 4."
