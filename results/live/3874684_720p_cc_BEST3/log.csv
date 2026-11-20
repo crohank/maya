@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,6.45,6.45,7.17,spoken,False,,,16,,Pole ahead.,Pole ahead.
+WALK,,,18.2,18.2,18.86,spoken,False,,,50,,Car left.,Car left.
+ALERT,,,19.05,19.05,20.44,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+ALERT,,,21.55,21.55,22.48,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,23.31,23.31,24.66,spoken,False,,,106,,"Cone right, 6 steps.","Cone right, 6 steps."

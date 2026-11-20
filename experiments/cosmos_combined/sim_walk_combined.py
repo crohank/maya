@@ -343,7 +343,7 @@ def run_clip(stem, o, speech, voice):
     src = o.get("video") or find_video(stem)
     frames = [json.loads(line) for line in open(f"/main/results/perception/{stem}.jsonl")]
     dur = min(frames[-1]["t"], lh.ffprobe_duration(src))
-    cfg = dict(w3.BASE, scene=1, scene_tag="v2", sounds=1, steps=o["steps"])
+    cfg = dict(w3.BASE, scene=1, scene_tag="v2", sounds=1, steps=o["steps"], **w3.parse_sets(o["wset"]))
     w3.annotate(frames, w3.video_aspect(src), cfg)
     scene = []
     sp = Path(f"/main/results/scene/{stem}_{o['scene_tag']}.jsonl")
@@ -358,14 +358,18 @@ def run_clip(stem, o, speech, voice):
             run, last = 0, -99.0
             for r in st:
                 run = run + 1 if r["stripes"] else 0
-                if run == 2 and r["t"] - last > 8:
+                # stripes reaching the bottom edge are under the walker: already crossing
+                # (v2 review: "Curb and crosswalk ahead" said mid-crossing 4 times)
+                under = o["stripe_under"] < 9 and ((r.get("nearest") or 0) >= o["stripe_under"] or any(
+                    x["road"] for x in rows if r["t"] - 2 <= x["t"] <= r["t"]))
+                if run == 2 and r["t"] - last > 8 and not under:
                     last = r["t"]
                     stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer=o["corner_word"], kind="corner"))
             seen = [r["t"] for r in st if r["stripes"]]
             for r in rows:
                 r["edge"] = r["road"] or any(r["t"] - 3 <= s <= r["t"] for s in seen)
         scene = walk_scene.scene_cues(rows, dict(walk_scene.CUE, traffic=cfg["scene_traffic"], stages=o["stages"],
-                                                 obstacles=o["vlm_obstacles"]), frames)
+                                                 obstacles=o["vlm_obstacles"], traffic_gap=o["traffic_gap"]), frames)
         if o["corner"] == "stripes":
             scene = [c for c in scene if c["kind"] != "corner"] + stripe_cues
     if o["stairs"]:
@@ -382,7 +386,7 @@ def run_clip(stem, o, speech, voice):
         from maya import audio, sound
         from maya.engine import Engine
         eng = o.setdefault("eng", Engine())
-        heard = sound.alert_timeline(eng, audio.load(src))
+        heard = sound.alert_timeline(eng, audio.load(src), repeat_s=o["alert_repeat"])
         scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph.split(" ", 1)[1].capitalize() + ".", kind="sound")
                                for end, dt, ph in heard]
     words, tones = w3.simulate(frames, cfg, voice, scene)
@@ -439,6 +443,10 @@ def main():
     ap.add_argument("--stages", type=int, default=1)
     ap.add_argument("--vlm-obstacles", type=int, default=1)
     ap.add_argument("--corner-word", default="Crosswalk ahead.")
+    ap.add_argument("--wset", action="append", default=[], help="walk_v3 BASE key=value")
+    ap.add_argument("--stripe-under", type=float, default=9.0, help="skip the corner word when stripes reach this low")
+    ap.add_argument("--traffic-gap", type=float, default=8.0)
+    ap.add_argument("--alert-repeat", type=float, default=10.0)
     ap.add_argument("--render-dir")
     ap.add_argument("--names", help="json map stem -> output file name")
     args = ap.parse_args()

@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.96,1.96,3.38,spoken,False,,,15,,"Person right, 8 steps.","Person right, 8 steps."
+WALK,,,3.55,3.55,4.82,spoken,False,,,43,,"Chair right, 2 steps.","Chair right, 2 steps."
+WALK,,,4.83,4.83,6.39,spoken,False,,,57,,"Planter right, 4 steps.","Planter right, 4 steps."
+WALK,,,8.58,8.58,10.37,spoken,False,,,106,,"Trash can right, 6 steps.","Trash can right, 6 steps."
+ALERT,,,9.41,10.37,11.3,spoken,False,,,,,Cars passing.,Cars passing.

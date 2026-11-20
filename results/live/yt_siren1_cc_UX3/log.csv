@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.05,2.05,2.71,spoken,False,,,,,Siren.,Siren.
+WALK,,,2.62,2.71,4.38,spoken,False,,,1,,"Person left, 9 steps.","Person left, 9 steps."
+ALERT,,,4.48,4.48,5.41,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,5.19,5.41,6.88,spoken,False,,,90,,"Person ahead, 2 steps.","Person ahead, 2 steps."

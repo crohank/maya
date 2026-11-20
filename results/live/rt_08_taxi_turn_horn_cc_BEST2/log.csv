@@ -1,0 +1,10 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,0.55,0.55,1.94,spoken,False,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+WALK,,,1.19,,,dropped,,,,62,,Person left.,Person left.
+MOVE,1.19,0.52,1.71,,,silent,,,person left ttc 3.6s,62,5.5,,keep straight
+WALK,,,6.56,6.56,8.37,spoken,False,,,159,,"Car crossing ahead, 4 steps.","Car crossing ahead, 4 steps."
+MOVE,6.56,0.58,7.13,8.37,9.03,spoken,False,True,car ahead ttc 2.0s,159,7.0,Slow down.,slow down
+ALERT,,,7.43,9.03,9.96,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,9.33,9.96,11.73,spoken,False,,,432,,"Person right, 5 steps.","Person right, 5 steps."
+ALERT,,,9.55,,,dropped,,,,,,Curb and crosswalk ahead.,Curb and crosswalk ahead.
+MOVE,9.83,0.5,10.33,,,silent,,,person ahead ttc 2.8s,484,12.4,,keep straight

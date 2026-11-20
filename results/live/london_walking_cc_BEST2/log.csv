@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,2.12,2.12,3.63,spoken,False,,,,,"Stairs ahead, going up.","Stairs ahead, going up."
+WALK,,,4.08,4.08,4.92,spoken,False,,,9,,Person ahead.,Person ahead.
+MOVE,4.08,0.59,4.66,4.92,5.91,spoken,False,False,person ahead ttc 2.8s,9,5.77,1 step left.,1 step left
+WALK,,,5.18,5.91,7.33,spoken,False,,,10,,"Person right, 8 steps.","Person right, 8 steps."
+WALK,,,13.23,13.23,14.0,spoken,False,,,103,,Person right.,Person right.
+WALK,,,17.32,17.32,18.09,spoken,False,,,163,,Person right.,Person right.
+WALK,,,18.68,18.68,19.36,spoken,False,,,178,,Pole right.,Pole right.

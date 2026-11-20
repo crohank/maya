@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.83,0.83,2.5,spoken,False,,,3,,"Trash can left, 2 steps.","Trash can left, 2 steps."
+WALK,,,3.33,3.33,4.85,spoken,False,,,20,,"Cart left, 5 steps.","Cart left, 5 steps."
+WALK,,,4.55,4.85,5.69,spoken,False,,,42,,Person ahead.,Person ahead.
+WALK,,,12.72,12.72,13.42,spoken,False,,,51,,Person left.,Person left.

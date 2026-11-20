@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,2.95,2.95,4.73,spoken,False,,,5,,"Truck crossing left, 7 steps.","Truck crossing left, 7 steps."
+ALERT,,,5.37,5.37,6.3,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,13.96,13.96,15.42,spoken,False,,,409,,"Car left, 2 steps.","Car left, 2 steps."
+MOVE,13.96,0.6,14.56,15.42,16.08,spoken,False,True,car left ttc 0.5s,409,14.9,Slow down.,slow down

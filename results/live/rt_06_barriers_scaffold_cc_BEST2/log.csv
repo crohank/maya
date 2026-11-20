@@ -1,0 +1,3 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,5.81,5.81,6.58,spoken,False,,,5,,Person right.,Person right.
+WALK,,,14.6,14.6,16.04,spoken,False,,,16,,"Person right, 6 steps.","Person right, 6 steps."

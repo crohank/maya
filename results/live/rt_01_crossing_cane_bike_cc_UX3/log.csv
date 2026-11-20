@@ -1,0 +1,4 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.93,1.93,3.43,spoken,False,,,3,,"Person left, 6 steps.","Person left, 6 steps."
+ALERT,,,5.7,5.7,6.63,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,9.95,9.95,11.73,spoken,False,,,104,,"Bike crossing left, 2 steps.","Bike crossing left, 2 steps."

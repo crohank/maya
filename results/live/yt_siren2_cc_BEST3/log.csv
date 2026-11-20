@@ -1,0 +1,10 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,2.06,2.06,2.76,spoken,False,,,10,,Person left.,Person left.
+ALERT,,,3.56,3.56,4.49,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,6.34,0.52,6.86,,,silent,,,person left ttc 2.6s,70,9.13,,keep straight
+ALERT,,,7.03,7.03,7.69,spoken,False,,,,,Siren.,Siren.
+MOVE,7.04,0.5,7.55,,,silent,,,person right ttc 2.0s,60,8.63,,keep straight
+WALK,,,9.05,9.05,10.59,spoken,False,,,6,,"Planter right, 3 steps.","Planter right, 3 steps."
+MOVE,9.07,0.51,9.58,,,silent,,,person left ttc 1.7s,54,10.13,,keep straight
+WALK,,,10.62,10.62,12.29,spoken,False,,,106,,"Trash can left, 2 steps.","Trash can left, 2 steps."
+MOVE,11.05,0.5,11.56,,,silent,,,person left ttc 3.7s,78,11.9,,keep straight

@@ -1,0 +1,14 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,1.12,1.12,1.89,spoken,False,,,25,,Person right.,Person right.
+MOVE,1.12,0.53,1.66,,,silent,,,person right ttc 0.7s,25,1.27,,keep straight
+MOVE,1.66,0.52,2.17,,,silent,,,person right ttc 2.0s,1,4.9,,keep straight
+WALK,,,3.68,3.68,4.38,spoken,False,,,121,,Person left.,Person left.
+MOVE,3.19,0.52,3.7,,,silent,,,person ahead ttc 2.0s,12,5.4,,keep straight
+ALERT,,,3.74,4.38,5.31,spoken,False,,,,,Cars passing.,Cars passing.
+MOVE,5.05,0.5,5.55,,,silent,,,person left ttc 1.8s,130,4.9,,keep straight
+WALK,,,7.06,7.06,8.53,spoken,False,,,149,,"Person ahead, 2 steps.","Person ahead, 2 steps."
+MOVE,7.06,0.5,7.56,,,silent,,,person ahead ttc 1.2s,149,6.77,,keep straight
+MOVE,7.56,0.51,8.07,,,silent,,,person ahead ttc 2.0s,140,6.77,,keep straight
+WALK,,,8.56,8.56,9.33,spoken,False,,,204,,Person right.,Person right.
+MOVE,8.32,0.6,8.92,,,silent,,,person left ttc 2.0s,162,10.13,,keep straight
+MOVE,11.18,0.51,11.69,,,silent,,,person ahead ttc 2.3s,258,13.13,,keep straight

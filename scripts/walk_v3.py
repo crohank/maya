@@ -76,6 +76,8 @@ BASE = dict(
     word_gap=2.5,          # seconds between object words, unless one is under word_ttc
     steps=0,               # 1: "Person left, 3 steps." (steps_away)
     step_m=0.75, vfov_portrait=60.0, vfov_landscape=45.0,
+    still_min_h=0.15, still_near_bot=0.75,   # UX3: still_min_h=0.07
+    still_words=0,         # 1: a still obstacle can take the word slot when the most urgent track is not new
     pan_rate=9.0,          # camera turn: median lateral rate (width/s) above this means no "crossing"
     crowd_n=0,             # this many approaching people: say "Crowd ahead." instead of person words
     crowd_s=10.0, crowd_close=0.8,
@@ -186,7 +188,11 @@ def urgency(tr, cfg):
     if tr["cls"] not in fh.NAMES or tr["conf"] < 0.4:
         return None, None
     x1, y1, x2, y2 = tr["box"]
-    if y2 - y1 < cfg["min_h"]:
+    still = tr["cls"] in STILL
+    # Bollards, planters and boards stay short boxes until the walker is nearly on them
+    # (v2 review: detected and boxed in rt_17, never spoken); a short still box counts
+    # when its bottom is low in the frame, i.e. on the ground close by.
+    if y2 - y1 < (cfg["still_min_h"] if still and y2 >= cfg["still_near_bot"] else cfg["min_h"]):
         return None, None
     veh = tr["cls"] in fh.VEHICLES
     still = tr["cls"] in STILL
@@ -221,6 +227,10 @@ def steps_away(tr, cfg):
     vfov = math.radians(cfg["vfov_portrait"] if tr["_aspect"] < 1 else cfg["vfov_landscape"])
     z = HEIGHT_M[tr["cls"]] / (h * 2 * math.tan(vfov / 2))
     n = max(1, round(z / cfg["step_m"]))
+    if y2 >= 0.97:
+        # feet cut off by the frame edge: the box understates height, so z reads long
+        # (v2 review: people 1 to 2 m away called 4 to 9 steps)
+        n = min(n, 2)
     return n if n <= 9 else None
 
 
@@ -410,6 +420,24 @@ def simulate(frames, cfg, voice, scene=()):
         elif cfg["tones"] and not any(p["track"] == tid for p in pending):
             if now - last_tone.get(tid, -99) >= cfg["tone_repeat"][band(u, cfg)]:
                 play_tone(now, c, "repeat" if tid in last_tone else "new")
+        if not want and cfg["still_words"] and cfg["words"] == "once" \
+                and now - max(worded.values(), default=-99) >= cfg["word_gap"]:
+            # Only the most urgent track used to get a word, nearly always a person, so
+            # planters, chairs and bins in the path went unnamed (v2 review: 20 missed).
+            for u2, h2, tr2 in sorted(cands, key=lambda c: c[0]):
+                n2 = fh.NAMES[tr2["cls"]]
+                if tr2["cls"] not in STILL or tr2["id"] in worded or now - kind_last.get(n2, -99) <= cfg["new_kind_s"]:
+                    continue
+                s2 = side_of(tr2, h2, cfg)
+                c2 = dict(source="fast", track=tr2["id"], cls=tr2["cls"], name=n2, side=s2, urgency=u2,
+                          ready=now, win_start=max(0.0, t - cfg["window"] / 8), win_end=t,
+                          answer=phrase(n2, "", s2, steps_away(tr2, cfg) if cfg["steps"] else None),
+                          X=predict(tr2, h2)[1], prev_kind=kind_last.get(n2, -99),
+                          raw=json.dumps({k: v for k, v in tr2.items() if not k.startswith("_")}))
+                worded[tr2["id"]] = now
+                kind_last[n2] = now
+                pending.append(c2)
+                break
     pending.extend(scene)
     flush(float("inf"))
     words.sort(key=lambda e: e["ready"])

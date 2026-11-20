@@ -1,0 +1,10 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.86,0.86,2.28,spoken,False,,,8,,"Person right, 8 steps.","Person right, 8 steps."
+MOVE,1.0,0.51,1.51,,,silent,,,person right ttc 2.1s,8,2.9,,keep straight
+MOVE,1.51,0.5,2.01,2.28,2.89,spoken,False,False,luggage right ttc 1.7s,28,2.5,Step left.,step left
+MOVE,5.5,0.52,6.02,,,silent,,,person ahead ttc 2.0s,1,0.13,,keep straight
+MOVE,8.22,0.51,8.73,,,silent,,,person left ttc 2.6s,139,7.9,,keep straight
+WALK,,,9.56,9.56,11.13,spoken,False,,,159,,"Trash can left, 7 steps.","Trash can left, 7 steps."
+ALERT,,,11.14,11.14,12.65,spoken,False,,,,,"Stairs ahead, going up.","Stairs ahead, going up."
+ALERT,,,11.43,12.65,13.58,spoken,False,,,,,Cars passing.,Cars passing.
+WALK,,,13.45,13.58,15.49,spoken,False,,,207,,"Person crossing right, 6 steps.","Person crossing right, 6 steps."
