@@ -17,5 +17,8 @@ The main script is `../sim_walk_cosmos_only.py`. It runs a simulated live walk:
 | `cosmos_boxes.py`, `cosmos_boxes_v2.py` | Cosmos returning its own bounding boxes, with variants P1, P2 and P3. Its coordinates are on a 0 to 1000 scale. |
 | `guide_test.py` | Cosmos boxes plus a step instruction from the 2 s clip |
 | `sim_walk_v1.py` | An earlier version of the simulation, with the long describe prompt and no confidence filter |
+| `tools/` | Helpers for grading and checks: frame strips for each call, one track history, all boxes on a frame, trigger confidence, and the practice-pack video rescore |
+
+The full run order, from detector tracks to the final video, is in `PIPELINE.md`.
 
 Results are in `results/live/london_cosmos_sim*/`. The MP4s are gitignored. Walk steering instructions are a research test only; the product rule is still "describe, never decide" (docs/decisions.md D2 and D3).
