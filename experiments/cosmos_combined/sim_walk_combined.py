@@ -383,7 +383,7 @@ def run_clip(stem, o, speech, voice):
                 scene = [c for c in scene if c["kind"] != "traffic" or any(
                     s["t"] - 1 <= c["t"] <= s["t"] + o["traffic_near_corner"] for s in stripe_cues)]
     if o["path_obstacles"]:
-        pp = Path(f"/main/results/scene/{stem}_path.jsonl")
+        pp = Path(f"/main/results/scene/{stem}_{o['path_tag']}.jsonl")
         if pp.exists():
             rows_p = [json.loads(line) for line in open(pp)]
             # live budget: the lane check every path_every seconds (one GPU shares tracking,
@@ -469,6 +469,7 @@ def main():
     ap.add_argument("--path-obstacles", type=int, default=0)
     ap.add_argument("--path-confirm", type=int, default=2)
     ap.add_argument("--path-every", type=int, default=1)
+    ap.add_argument("--path-tag", default="path", help="path: lane-only check; lg: the combined ground and lane call")
     ap.add_argument("--path-skip", default="", help="comma list of names never spoken, e.g. Cart,Machine")
     ap.add_argument("--stripe-road-n", type=int, default=0)
     ap.add_argument("--corner-gap", type=float, default=8.0, help="seconds between curb words; a crossing takes 10 to 15 s")

@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,3.23,3.23,4.04,spoken,False,,,,,Planter ahead.,Planter ahead.
+ALERT,,,5.17,5.17,6.13,spoken,False,,,,,Sign board ahead.,Sign board ahead.
+WALK,,,5.5,6.13,7.68,spoken,False,,,1,,"Person crossing ahead, close.","Person crossing ahead, close."
+WALK,,,9.56,9.56,10.92,spoken,False,,,159,,"Trash can left, 7.","Trash can left, 7."
+WALK,,,13.55,13.55,15.26,spoken,False,,,207,,"Person crossing right, close.","Person crossing right, close."
