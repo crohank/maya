@@ -356,6 +356,9 @@ ALERTS = (("a car horn", ("Vehicle horn, car horn, honking", "Toot", "Air horn, 
           ("a siren", ("Siren", "Police car (siren)", "Ambulance (siren)", "Fire engine, fire truck (siren)",
                        "Emergency vehicle", "Civil defense siren"), 0.5))
 SPOKEN = {"a truck reversing beeps": "a truck backing up, with reversing beeps"}
+# Walk mode only: AST "Reversing beeps" 0.78 at the YouTube 27:20 truck, 0.22 at most elsewhere
+# in that hour. Kept out of identify(), where synthetic crosswalk beeps can land on it.
+WALK_ONLY = (("a truck backing up", ("Reversing beeps",), 0.5),)
 
 
 def with_alerts(out, agg, names):
@@ -396,7 +399,7 @@ def alert_timeline(eng, wav, win_s=2.0, hop_s=1.0, repeat_s=10.0):
             p = torch.sigmoid(model(**x).logits.float())[0].cpu().numpy()
         dt = time.perf_counter() - t0
         end = (s + win) / SR
-        for ph, classes, th in ALERTS:
+        for ph, classes, th in ALERTS + WALK_ONLY:
             if max(float(p[names.index(n)]) for n in classes) >= th and end - last.get(ph, -99) >= repeat_s:
                 last[ph] = end
                 out.append((end, round(dt, 3), ph))

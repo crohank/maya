@@ -65,8 +65,17 @@ BASE = dict(
     lat_gain=1.0,
     yaw_comp=1,            # Fifth Ave pans right: every track drifts +0.1 to +0.2 width/s
     cross_h=0.30, cross_urgency=2.0, cross_horizon=1.0,
-    vehicle_bypass=1,      # vehicles skip the corridor test, as in v2
-    words="once",          # once | v2 (4 s per-track cooldown, every best track) | off
+    vehicle_bypass=0,      # 1: vehicles skip the corridor test (v2); named cars in the next lane
+    # From a review of 8 street clips (2026-11-19): words 45 to 30 there; SANPO identity
+    # set 24/33 cues on time either way, words on time 8 to 10, words/min 17.4 to 13.4.
+    edge=0.12,             # skip boxes centred within this fraction of the left/right frame edge
+    static_min_bot=0.6,    # poles, bins, hydrants, cones: box bottom must be this low (near)
+    static_cross=1,        # 0: still objects never get "crossing" (camera turns made bins "cross")
+    word_gap=2.5,          # seconds between object words, unless one is under word_ttc
+    pan_rate=9.0,          # camera turn: median lateral rate (width/s) above this means no "crossing"
+    crowd_n=0,             # this many approaching people: say "Crowd ahead." instead of person words
+    crowd_s=10.0, crowd_close=0.8,
+    words="once",         # once | v2 (4 s per-track cooldown, every best track) | off
     new_kind_s=8.0,
     word_ttc=1.5,
     tones=1,
@@ -128,6 +137,7 @@ def annotate(frames, aspect, cfg):
             if len(lats) >= 3:
                 med = statistics.median(lats)
                 for tr in fr["tracks"]:
+                    tr["_pan"] = abs(med) >= cfg["pan_rate"]
                     if tr["_lat"] is not None:
                         tr["_lat"] -= med
         for tr in fr["tracks"]:
@@ -150,6 +160,9 @@ def predict(tr, horizon):
     return 0.5 + u, X
 
 
+STILL = {"pole", "trash can", "fire hydrant", "traffic cone", "bench"}
+
+
 def corridor_ok(tr, horizon, cfg):
     x1, _, x2, _ = tr["box"]
     v2_ok = x1 < fh.V2_CORRIDOR[1] and x2 > fh.V2_CORRIDOR[0]
@@ -170,10 +183,17 @@ def urgency(tr, cfg):
     if y2 - y1 < cfg["min_h"]:
         return None, None
     veh = tr["cls"] in fh.VEHICLES
+    still = tr["cls"] in STILL
+    if not cfg["edge"] <= (x1 + x2) / 2 <= 1 - cfg["edge"]:
+        return None, None
+    if still and y2 < cfg["static_min_bot"]:
+        return None, None
     if tr["motion"] == "approaching" and tr["ttc_s"] is not None and tr["ttc_s"] < cfg["ttc"]:
         if (veh and cfg["vehicle_bypass"]) or corridor_ok(tr, tr["ttc_s"], cfg):
             return tr["ttc_s"], tr["ttc_s"]
-    if tr["motion"].startswith("crossing") and y2 - y1 >= cfg["cross_h"] \
+    if still and not cfg["static_cross"]:
+        return None, None
+    if tr["motion"].startswith("crossing") and not tr.get("_pan") and y2 - y1 >= cfg["cross_h"] \
             and corridor_ok(tr, cfg["cross_horizon"], cfg):
         return cfg["cross_urgency"], cfg["cross_horizon"]
     return None, None
@@ -249,7 +269,7 @@ def simulate(frames, cfg, voice, scene=()):
     kind_last = {}       # class name -> last word time
     last_tone = {}
     pending, words, tones = [], [], []
-    st = dict(voice_free=0.0, tone_free=0.0, last_text="", last_text_t=-99.0)
+    st = dict(voice_free=0.0, tone_free=0.0, last_text="", last_text_t=-99.0, crowd=-99.0)
 
     def play_tone(t, c, kind):
         start = max(t, st["tone_free"])
@@ -327,10 +347,16 @@ def simulate(frames, cfg, voice, scene=()):
                 hist[tid].append(None)
         if not cands:
             continue
+        people = sum(c[2]["cls"] == "person" for c in cands)
+        if cfg["crowd_n"] and people >= cfg["crowd_n"] and now - st["crowd"] >= cfg["crowd_s"]:
+            st["crowd"] = now
+            pending.append(dict(source="scene", track=-1000 - len(words), cls="scene", name="Crowd",
+                                side="ahead", urgency=0.0, ready=now, win_start=t, win_end=t,
+                                answer="Crowd ahead.", X=None, prev_kind=-99.0, raw="crowd"))
         u, horizon, tr = min(cands, key=lambda c: c[0])
         tid, name = tr["id"], fh.NAMES[tr["cls"]]
         side = side_of(tr, horizon, cfg)
-        verb = " crossing" if tr["motion"].startswith("crossing") else ""
+        verb = " crossing" if tr["motion"].startswith("crossing") and not tr.get("_pan") else ""
         c = dict(source="fast", track=tid, cls=tr["cls"], name=name, side=side, urgency=u,
                  ready=now, win_start=max(0.0, t - cfg["window"] / 8), win_end=t,
                  answer=f"{name}{verb} {side}.", X=predict(tr, horizon)[1],
@@ -339,6 +365,10 @@ def simulate(frames, cfg, voice, scene=()):
         if cfg["words"] == "once":
             want = tid not in worded and (veh or now - kind_last.get(name, -99) > cfg["new_kind_s"]
                                           or u < cfg["word_ttc"])
+            want = want and (u < cfg["word_ttc"] or now - max(worded.values(), default=-99) >= cfg["word_gap"])
+            # In a crowd one "Crowd ahead." stands for the people; tones keep marking the nearest.
+            want = want and not (tr["cls"] == "person" and now - st["crowd"] < cfg["crowd_s"]
+                                 and u >= cfg["crowd_close"])
         elif cfg["words"] == "v2":
             want = now - worded.get(tid, -99) >= fh.V2_TRACK_COOLDOWN_S
         else:
@@ -733,7 +763,7 @@ def cmd_run(args):
         from maya import audio, sound
         from maya.engine import Engine
         heard = sound.alert_timeline(Engine(), audio.load(args.video))
-        scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph[2:].capitalize() + ".", kind="sound")
+        scene = list(scene) + [dict(t=end, ready=end + dt, answer=ph.split(" ", 1)[1].capitalize() + ".", kind="sound")
                                for end, dt, ph in heard]
     words, tones = simulate(frames, cfg, voice, scene)
     out_dir = Path(args.out) / f"{stem}_{args.tag}"
