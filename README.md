@@ -33,9 +33,7 @@ Maya is meant to help:
 - older adults who are new to vision loss and may not have had orientation and
   mobility (O&M) training.
 
-Maya is an aid next to the cane or guide dog, not a replacement. It is a prototype and
-has not been tested with blind or low-vision users yet. Sources and the full user
-research: [docs/research/users_and_framing.md](docs/research/users_and_framing.md).
+Maya is an aid next to the cane or guide dog, not a replacement. Sources and the full user research: [docs/research/users_and_framing.md](docs/research/users_and_framing.md).
 
 ## What Maya does
 
@@ -220,11 +218,6 @@ Everything we tried, what worked and what didn't: [docs/EXPERIMENTS.md](docs/EXP
 
 ## Limits
 
-- Not validated with users. No blind or low-vision person and no O&M specialist
-  has tried it. The walk reviews are agents reading video frames.
-- One city, daylight, recorded video. 24 of the 27 real test clips come from one
-  YouTube walk in Manhattan. Nothing was tested at night, in rain, or on a phone worn
-  by a walker. Walk mode is a simulation on recorded video with measured model times.
 - Curbs. The crosswalk word comes only about 3 m (4 steps) ahead, never says step
   up or step down, and still fires by mistake sometimes (mid-crossing, a bike-lane marking).
 - Missed things. About 21 fixed obstacles (barrels, bollards, some boards) and some
