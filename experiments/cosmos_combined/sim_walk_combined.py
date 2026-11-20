@@ -362,6 +362,11 @@ def run_clip(stem, o, speech, voice):
                 # (v2 review: "Curb and crosswalk ahead" said mid-crossing 4 times)
                 under = o["stripe_under"] < 9 and ((r.get("nearest") or 0) >= o["stripe_under"] or o["stripe_road"] and any(
                     x["road"] for x in rows if r["t"] - 2 <= x["t"] <= r["t"]))
+                if o["stripe_road_n"]:
+                    # v6 review: 5 of 18 curb words came mid-crossing; skip once Cosmos has
+                    # said street for the last stripe_road_n checks (in the road for a while)
+                    last_n = [x for x in rows if x["t"] <= r["t"]][-o["stripe_road_n"]:]
+                    under = under or (len(last_n) == o["stripe_road_n"] and all(x["road"] for x in last_n))
                 if run == 2 and r["t"] - last > 8 and not under:
                     last = r["t"]
                     stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer=o["corner_word"], kind="corner"))
@@ -382,11 +387,16 @@ def run_clip(stem, o, speech, voice):
         if pp.exists():
             rows_p = [json.loads(line) for line in open(pp)]
             last = {}
-            for a, b in zip(rows_p, rows_p[1:]):
-                nm = b["name"]
-                if nm and a["name"] == nm and b["t"] - last.get(nm, -99) > 10:
-                    last[nm] = b["t"]
-                    scene.append(dict(t=b["t"], ready=b["t"] + b["lat"], kind="path", answer=f"{nm} ahead."))
+            for i in range(len(rows_p)):
+                run = rows_p[max(0, i - o["path_confirm"] + 1):i + 1]
+                nm = rows_p[i]["name"]
+                if not nm or nm in o["path_skip"] or len(run) < o["path_confirm"] \
+                        or any(x["name"] != nm for x in run):
+                    continue
+                if rows_p[i]["t"] - last.get(nm, -99) > 10:
+                    last[nm] = rows_p[i]["t"]
+                    scene.append(dict(t=rows_p[i]["t"], ready=rows_p[i]["t"] + rows_p[i]["lat"], kind="path",
+                                      answer=f"{nm} ahead."))
     if o["stairs"]:
         stp = Path(f"/main/results/scene/{stem}_stairs.jsonl")
         if stp.exists():
@@ -454,6 +464,9 @@ def main():
     ap.add_argument("--steps", type=int, default=0)
     ap.add_argument("--stairs", type=int, default=0)
     ap.add_argument("--path-obstacles", type=int, default=0)
+    ap.add_argument("--path-confirm", type=int, default=2)
+    ap.add_argument("--path-skip", default="", help="comma list of names never spoken, e.g. Cart,Machine")
+    ap.add_argument("--stripe-road-n", type=int, default=0)
     ap.add_argument("--options", default="v1", choices=["v1", "x", "xk", "sk"])
     ap.add_argument("--trigger-ttc", type=float, default=TRIGGER_TTC)
     ap.add_argument("--stages", type=int, default=1)
@@ -470,6 +483,7 @@ def main():
     args = ap.parse_args()
     o = dict(vars(args))
     o["names"] = json.loads(args.names) if args.names else {}
+    o["path_skip"] = [s for s in args.path_skip.split(",") if s]
     speech = Speech("/app/results/live/phrases_combined")
     voice = w3.Voice(w3.fh.V2_LENGTH_SCALE)
     for stem in args.stems:

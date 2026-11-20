@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.96,0.96,1.71,spoken,False,,,7,,Bike left.,Bike left.
+WALK,,,4.05,4.05,5.15,spoken,False,,,4,,"Person left, 7.","Person left, 7."
+WALK,,,6.05,6.05,7.25,spoken,False,,,36,,"Person left, close.","Person left, close."
+WALK,,,7.46,7.46,8.16,spoken,False,,,69,,Person left.,Person left.
+WALK,,,13.55,13.55,14.72,spoken,False,,,166,,"Person right, 8.","Person right, 8."
