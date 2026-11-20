@@ -1,0 +1,6 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.23,1.23,2.68,spoken,False,,,,,"Trash can ahead, close.","Trash can ahead, close."
+ALERT,,,3.17,3.17,4.41,spoken,False,,,,,"Cart ahead, close.","Cart ahead, close."
+WALK,,,4.68,4.68,5.88,spoken,False,,,1,,"Person left, close.","Person left, close."
+ALERT,,,10.33,10.33,11.05,spoken,False,,,,,Pole ahead.,Pole ahead.
+WALK,,,13.05,13.05,14.35,spoken,False,,,51,,"Person left, 9.","Person left, 9."

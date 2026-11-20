@@ -1,0 +1,8 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,0.84,0.84,2.08,spoken,False,,,14,,"Person ahead, 9.","Person ahead, 9."
+WALK,,,1.49,2.08,3.28,spoken,False,,,19,,"Person left, close.","Person left, close."
+WALK,,,4.06,4.06,5.16,spoken,False,,,42,,"Person left, 7.","Person left, 7."
+WALK,,,8.18,8.18,9.55,spoken,False,,,64,,"Person ahead, 7.","Person ahead, 7."
+WALK,,,9.1,9.55,10.61,spoken,False,,,52,,"Person left, 8.","Person left, 8."
+WALK,,,10.82,10.82,12.12,spoken,False,,,79,,"Person left, 9.","Person left, 9."
+ALERT,,,11.22,12.12,13.0,spoken,False,,,,,Trash can ahead.,Trash can ahead.

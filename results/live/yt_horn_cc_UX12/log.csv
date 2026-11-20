@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,2.34,2.34,3.58,spoken,False,,,53,,"Car right, 9.","Car right, 9."
+WALK,,,5.32,5.32,6.41,spoken,False,,,12,,"Car right, 6.","Car right, 6."
+ALERT,,,10.01,10.01,10.71,spoken,False,,,,,Car horn.,Car horn.
+WALK,,,10.56,10.71,11.88,spoken,False,,,263,,"Person right, 9.","Person right, 9."

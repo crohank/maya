@@ -1,0 +1,2 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,6.15,6.15,7.02,spoken,False,,,,,Barrier ahead.,Barrier ahead.

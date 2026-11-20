@@ -19,6 +19,7 @@ import cv2
 import numpy as np
 
 Y0, Y1 = 0.45, 1.0
+X0, X1 = 0.0, 1.0   # columns searched; the walking lane is about 0.25 to 0.75 (cosmos_path_test.py)
 V_MIN, S_MAX = 170, 45
 ROW_MIN = 0.32
 GAP_MAX = 0.25
@@ -28,7 +29,7 @@ MIN_BANDS = 3
 
 def bands(bgr, row_min=ROW_MIN, gap_max=GAP_MAX, dark_v=DARK_V):
     h, w = bgr.shape[:2]
-    roi = bgr[int(h * Y0):int(h * Y1)]
+    roi = bgr[int(h * Y0):int(h * Y1), int(w * X0):int(w * X1)]
     hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
     bright = (hsv[..., 2] > V_MIN) & (hsv[..., 1] < S_MAX)
     frac = np.convolve(bright.mean(axis=1), np.ones(3) / 3, mode="same")
@@ -58,11 +59,19 @@ def bands(bgr, row_min=ROW_MIN, gap_max=GAP_MAX, dark_v=DARK_V):
 
 
 def main():
-    video = sys.argv[1]
-    fps_out = float(sys.argv[2]) if len(sys.argv) > 2 else 2.0
+    global X0, X1
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("video")
+    ap.add_argument("fps", nargs="?", type=float, default=2.0)
+    ap.add_argument("--x0", type=float, default=X0)
+    ap.add_argument("--x1", type=float, default=X1)
+    ap.add_argument("--tag", default="stripes")
+    a = ap.parse_args()
+    video, fps_out, X0, X1 = a.video, a.fps, a.x0, a.x1
     cap = cv2.VideoCapture(video)
     fps, n = cap.get(cv2.CAP_PROP_FPS), int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    out = Path("results/scene") / f"{Path(video).stem}_stripes.jsonl"
+    out = Path("results/scene") / f"{Path(video).stem}_{a.tag}.jsonl"
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w") as f:
         t = 0.0

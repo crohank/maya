@@ -27,7 +27,7 @@ from pathlib import Path
 
 import av
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 sys.path.insert(0, "/app/scripts")
 import live_harness as lh  # noqa: E402
@@ -248,7 +248,9 @@ def schedule(items, speech):
     return out
 
 
-def render(src, frames, sched, tones, dur, out_mp4, bg_volume=0.45):
+def render(src, frames, sched, tones, dur, out_mp4, bg_volume=0.45, blur=0.0, video_only=False):
+    """blur > 0: Gaussian radius in px at 768 wide, plus dimming, under sharp boxes and text
+    (demo view of a low-vision walker). video_only: write the silent video and stop."""
     with av.open(src) as c:
         st = c.streams.video[0]
         sw, sh = st.codec_context.width, st.codec_context.height
@@ -269,6 +271,9 @@ def render(src, frames, sched, tones, dur, out_mp4, bg_volume=0.45):
                 if t > dur:
                     break
                 im = f.to_image().convert("RGB").resize((W, H))
+                if blur:
+                    im = ImageEnhance.Contrast(im.filter(ImageFilter.GaussianBlur(blur * W / 768))).enhance(0.65)
+                    im = ImageEnhance.Color(ImageEnhance.Brightness(im).enhance(0.9)).enhance(0.5)
                 d = ImageDraw.Draw(im)
                 fr = min(frames, key=lambda r: abs(r["t"] - t))
                 live = [s for s in spoken if s["start"] <= t < s["end"] + 0.6]
@@ -303,6 +308,9 @@ def render(src, frames, sched, tones, dur, out_mp4, bg_volume=0.45):
                 ff.stdin.write(np.asarray(canvas).tobytes())
         ff.stdin.close()
         ff.wait()
+        if video_only:
+            subprocess.run(["cp", silent, out_mp4], check=True)
+            return
 
         cfg = dict(w3.BASE)
         mix = np.zeros((int(w3.SR * dur) + w3.SR, 2), np.float32)
@@ -339,6 +347,51 @@ def find_video(stem):
     raise SystemExit(f"no video for {stem}")
 
 
+def ground_steps(frames, t, y, cfg):
+    """Steps to the ground at image row y (0 top, 1 bottom) on flat ground, from the people seen
+    up to t: feet row y2 = horizon + k / z with z from the height model. Fits over 25 clips
+    (groundfit, 2026-11-20) put the frame bottom 2.4 to 5.1 m ahead (median 3.3 m), so stripes
+    touching the bottom give an upper bound, not the distance to the curb."""
+    xs, ys = [], []
+    for fr in frames:
+        if fr["t"] > t:
+            break
+        for tr in fr["tracks"]:
+            x1, y1, x2, y2 = tr["box"]
+            h = y2 - y1
+            if tr["cls"] != "person" or y1 <= 0.01 or y2 >= 0.97 or not 0.08 <= h <= 0.6:
+                continue
+            vfov = np.radians(cfg["vfov_portrait"] if tr["_aspect"] < 1 else cfg["vfov_landscape"])
+            xs.append(h * 2 * np.tan(vfov / 2) / w3.HEIGHT_M["person"])
+            ys.append(y2)
+    horizon, k = 0.47, 1.75   # median of the 25 clip fits, until 30 feet are seen
+    if len(xs) >= 30:
+        k, horizon = np.polyfit(xs, ys, 1)
+    if y - horizon < 0.05 or k <= 0:
+        return None
+    n = round(k / (y - horizon) / cfg["step_m"])
+    return min(max(n, 1), 9)
+
+
+def lane_steps(frames, t, name, cfg):
+    """Step count for a Cosmos lane word from the nearest detector track of the same kind in
+    the lane columns (cosmos_path_test.crop: centre 50%) within 1 s; None when the detector
+    has no such track."""
+    best = None
+    for fr in frames:
+        if abs(fr["t"] - t) > 1.0:
+            continue
+        for tr in fr["tracks"]:
+            if (w3.fh.NAMES.get(tr["cls"], "").split() or [""])[0] != name.split()[0]:
+                continue
+            if not 0.25 <= (tr["box"][0] + tr["box"][2]) / 2 <= 0.75:
+                continue
+            n = w3.steps_away(tr, cfg)
+            if n is not None and (best is None or n < best):
+                best = n
+    return best
+
+
 def run_clip(stem, o, speech, voice):
     src = o.get("video") or find_video(stem)
     frames = [json.loads(line) for line in open(f"/main/results/perception/{stem}.jsonl")]
@@ -355,9 +408,15 @@ def run_clip(stem, o, speech, voice):
             # counts as "at the edge" for traffic and obstacle words when stripes were seen
             # in the last 3 s or the ground crop said street.
             st = [json.loads(line) for line in open(f"/main/results/scene/{stem}_stripes.jsonl")]
+            q = {}
+            if o["curb_confirm"]:
+                q = {x["t"]: x for x in map(json.loads, open(f"/main/results/scene/{stem}_curbq.jsonl"))}
             run, last = 0, -99.0
             for r in st:
-                run = run + 1 if r["stripes"] else 0
+                # curb_confirm_probe.py "ahead" said no only on plain paving (yt_talk_street)
+                # and never on a frame-checked good corner (2026-11-20, 27 clips)
+                ok = r["stripes"] and (not o["curb_confirm"] or q.get(r["t"], {}).get("ahead", "").lower().startswith("yes"))
+                run = run + 1 if ok else 0
                 # stripes reaching the bottom edge are under the walker: already crossing
                 # (v2 review: "Curb and crosswalk ahead" said mid-crossing 4 times)
                 under = o["stripe_under"] < 9 and ((r.get("nearest") or 0) >= o["stripe_under"] or o["stripe_road"] and any(
@@ -369,7 +428,12 @@ def run_clip(stem, o, speech, voice):
                     under = under or (len(last_n) == o["stripe_road_n"] and all(x["road"] for x in last_n))
                 if run == 2 and r["t"] - last > o["corner_gap"] and not under:
                     last = r["t"]
-                    stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05, answer=o["corner_word"], kind="corner"))
+                    word = o["corner_word"]
+                    if o["corner_steps"]:
+                        n = ground_steps(frames, r["t"], min(r.get("nearest") or 1.0, 1.0), cfg)
+                        word = word if n is None else f"{word.rstrip('.')}, {n}."
+                    lat = q.get(r["t"], {}).get("ahead_s", 0.0) if o["curb_confirm"] else 0.0
+                    stripe_cues.append(dict(t=r["t"], ready=r["t"] + 0.05 + lat, answer=word, kind="corner"))
             seen = [r["t"] for r in st if r["stripes"]]
             for r in rows:
                 r["edge"] = r["road"] or any(r["t"] - 3 <= s <= r["t"] for s in seen)
@@ -398,8 +462,10 @@ def run_clip(stem, o, speech, voice):
                     continue
                 if rows_p[i]["t"] - last.get(nm, -99) > 10:
                     last[nm] = rows_p[i]["t"]
+                    n = lane_steps(frames, rows_p[i]["t"], nm, cfg) if o["path_steps"] else None
+                    tail = "" if n is None else ", close" if n == 0 else f", {n}"
                     scene.append(dict(t=rows_p[i]["t"], ready=rows_p[i]["t"] + rows_p[i]["lat"], kind="path",
-                                      answer=f"{nm} ahead."))
+                                      answer=f"{nm} ahead{tail}."))
     if o["stairs"]:
         stp = Path(f"/main/results/scene/{stem}_stairs.jsonl")
         if stp.exists():
@@ -467,6 +533,7 @@ def main():
     ap.add_argument("--steps", type=int, default=0)
     ap.add_argument("--stairs", type=int, default=0)
     ap.add_argument("--path-obstacles", type=int, default=0)
+    ap.add_argument("--path-steps", type=int, default=0, help="1: lane words take a step count from a matching detector track")
     ap.add_argument("--path-confirm", type=int, default=2)
     ap.add_argument("--path-every", type=int, default=1)
     ap.add_argument("--path-tag", default="path", help="path: lane-only check; lg: the combined ground and lane call")
@@ -478,6 +545,8 @@ def main():
     ap.add_argument("--stages", type=int, default=1)
     ap.add_argument("--vlm-obstacles", type=int, default=1)
     ap.add_argument("--corner-word", default="Crosswalk ahead.")
+    ap.add_argument("--corner-steps", type=int, default=0, help="1: add a step count from the ground fit at the stripe row")
+    ap.add_argument("--curb-confirm", type=int, default=0, help="1: stripe frames count only when curb_confirm_probe.py said a crosswalk is ahead")
     ap.add_argument("--wset", action="append", default=[], help="walk_v3 BASE key=value")
     ap.add_argument("--stripe-under", type=float, default=9.0, help="skip the corner word when stripes reach this low")
     ap.add_argument("--traffic-gap", type=float, default=8.0)

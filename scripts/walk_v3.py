@@ -81,6 +81,8 @@ BASE = dict(
     riders=0,              # 1: person on a bike box is named "Bike" (mark_riders)
     close_h=0.6,           # box at least this tall, or cut off at the bottom: "close" instead of steps
     steps_style="long",    # long: "Person left, 3 steps." short: "Person left, 3."
+    steps_depth=0,         # 1: poles and top-cut boxes take the step count from the track's dist_m
+    far_words=1,           # 0: no word (tones only) for a track with no step count, i.e. over 9 steps
     still_words=0,         # 1: a still obstacle can take the word slot when the most urgent track is not new
     pan_rate=9.0,          # camera turn: median lateral rate (width/s) above this means no "crossing"
     crowd_n=0,             # this many approaching people: say "Crowd ahead." instead of person words
@@ -259,12 +261,17 @@ def steps_away(tr, cfg):
     the rt_04 van at 1 m was "8 steps"). None beyond 9 steps or when only the top is cut."""
     x1, y1, x2, y2 = tr["box"]
     h = y2 - y1
-    if tr["cls"] not in HEIGHT_M or h <= 0:
+    if h <= 0:
         return None
-    if y2 >= 0.97 or h >= cfg["close_h"]:
+    if tr["cls"] in HEIGHT_M and (y2 >= 0.97 or h >= cfg["close_h"]):
         return 0
-    if y1 <= 0.01:
-        return None
+    if tr["cls"] not in HEIGHT_M or y1 <= 0.01:
+        # perception.py dist_m tracks the pinhole estimate within 0.88 to 0.97 for uncut people
+        # (8985 boxes, 27 clips), so it stands in where the height model has nothing to use
+        if not (cfg["steps_depth"] and tr.get("dist_m")):
+            return None
+        n = max(1, round(tr["dist_m"] / cfg["step_m"]))
+        return n if n <= 9 else None
     vfov = math.radians(cfg["vfov_portrait"] if tr["_aspect"] < 1 else cfg["vfov_landscape"])
     z = HEIGHT_M[tr["cls"]] / (h * 2 * math.tan(vfov / 2))
     n = max(1, round(z / cfg["step_m"]))
@@ -430,9 +437,10 @@ def simulate(frames, cfg, voice, scene=()):
         tid, name = tr["id"], fh.NAMES[tr["cls"]]
         side = side_of(tr, horizon, cfg)
         verb = " crossing" if tr["motion"].startswith("crossing") and not tr.get("_pan") else ""
+        n_steps = steps_away(tr, cfg) if cfg["steps"] else None
         c = dict(source="fast", track=tid, cls=tr["cls"], name=name, side=side, urgency=u,
                  ready=now, win_start=max(0.0, t - cfg["window"] / 8), win_end=t,
-                 answer=phrase(name, verb, side, steps_away(tr, cfg) if cfg["steps"] else None),
+                 answer=phrase(name, verb, side, n_steps),
                  X=predict(tr, horizon)[1],
                  raw=json.dumps({k: v for k, v in tr.items() if not k.startswith("_")}))
         veh = tr["cls"] in fh.VEHICLES
@@ -451,6 +459,8 @@ def simulate(frames, cfg, voice, scene=()):
         elif cfg["words"] == "v2":
             want = now - worded.get(tid, -99) >= fh.V2_TRACK_COOLDOWN_S
         else:
+            want = False
+        if not cfg["far_words"] and cfg["steps"] and n_steps is None:
             want = False
         if want:
             c["prev_kind"] = kind_last.get(name, -99)
@@ -471,10 +481,13 @@ def simulate(frames, cfg, voice, scene=()):
                 n2 = fh.NAMES[tr2["cls"]]
                 if tr2["cls"] not in STILL or tr2["id"] in worded or now - kind_last.get(n2, -99) <= cfg["new_kind_s"]:
                     continue
+                n2_steps = steps_away(tr2, cfg) if cfg["steps"] else None
+                if not cfg["far_words"] and cfg["steps"] and n2_steps is None:
+                    continue
                 s2 = side_of(tr2, h2, cfg)
                 c2 = dict(source="fast", track=tr2["id"], cls=tr2["cls"], name=n2, side=s2, urgency=u2,
                           ready=now, win_start=max(0.0, t - cfg["window"] / 8), win_end=t,
-                          answer=phrase(n2, "", s2, steps_away(tr2, cfg) if cfg["steps"] else None),
+                          answer=phrase(n2, "", s2, n2_steps),
                           X=predict(tr2, h2)[1], prev_kind=kind_last.get(n2, -99),
                           raw=json.dumps({k: v for k, v in tr2.items() if not k.startswith("_")}))
                 worded[tr2["id"]] = now

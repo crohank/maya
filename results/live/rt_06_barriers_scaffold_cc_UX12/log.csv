@@ -1,0 +1,4 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+ALERT,,,1.18,1.18,2.05,spoken,False,,,,,Barrier ahead.,Barrier ahead.
+ALERT,,,6.21,6.21,7.17,spoken,False,,,,,Sign board ahead.,Sign board ahead.
+WALK,,,10.45,10.45,11.51,spoken,False,,,18,,"Person left, 8.","Person left, 8."

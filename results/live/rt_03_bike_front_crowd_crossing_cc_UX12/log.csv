@@ -1,0 +1,5 @@
+mode,request_t,model_s,ready,start,end,status,cut_off,late,trigger,track,t_close,spoken,text
+WALK,,,8.96,8.96,10.19,spoken,False,,,224,,"Person right, close.","Person right, close."
+ALERT,,,10.17,10.19,12.11,spoken,False,,,,,"Curb and crosswalk ahead, 3.","Curb and crosswalk ahead, 3."
+WALK,,,12.05,12.11,13.35,spoken,False,,,367,,"Person ahead, 9.","Person ahead, 9."
+WALK,,,14.68,14.68,16.11,spoken,False,,,346,,"Person left, 5.","Person left, 5."
