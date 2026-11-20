@@ -184,6 +184,7 @@ a:hover {
 .brand {
   font-family: var(--display);
   font-weight: 900;
+  font-stretch: 62%;
   font-size: 1.6rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -1067,4 +1068,26 @@ td code {
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* Big MAYA flies into the nav logo on scroll (main.js sets --fly-*). Wide screens with
+   motion allowed only; phones, 200% zoom and reduced motion keep both static. */
+@media (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+  .site-head {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .js-fly .brand {
+    opacity: var(--brand-on, 0);
+    transition: opacity 0.15s linear;
+  }
+  .js-fly .hero-word {
+    transform-origin: 0 0;
+    transform: translate(var(--fly-x, 0), var(--fly-y, 0)) scale(var(--fly-s, 1));
+    opacity: var(--word-on, 1);
+    position: relative;
+    z-index: 11;
+    will-change: transform;
+  }
 }
