@@ -15,7 +15,8 @@ SR = 16000
 SYSTEM = ("You answer a question about an audio recording. You get its transcript and the "
           "sounds detected in it. Answer in one short sentence that starts with the answer. "
           "Copy names exactly as they are spelled in the transcript. If the recording does "
-          "not contain the answer, say so.")
+          "not contain the answer, say so. Do not mention the transcript itself. Only a siren "
+          "means an emergency vehicle; a car horn does not.")
 
 # AST speech-class max on the practice pack: speech items 0.56 to 0.87, sound items 0.20 at most
 # (chainsaw). Whisper mean log prob on speech items: -0.12 to -0.36.
@@ -23,6 +24,10 @@ SPEECH_SKIP = 0.05      # below this no Whisper run: without VAD it looped 15 to
 SPEECH_AST = 0.5
 SPEECH_LOGPROB = -0.6
 SPEECH_MIN_WORDS = 3
+# Crowd babble (42nd St passage clip): AST speech 0.88, while Whisper returned nothing on
+# two runs and "Because I said we are saying C-H-E-S-T." (logprob -0.98) on a third.
+UNCLEAR_LOGPROB = -0.8
+UNCLEAR = "I hear people talking, but I can't make out the words."
 TRANSCRIBE = re.compile(r"\btranscri|\bverbatim|word for word|exact words|write (down|out) what|"
                         r"what (exactly )?(is|was) (being )?said|what (does|did) (he|she|they|the \w+|it|someone) say|"
                         r"what (is|are|was|were) (he|she|they|the \w+|someone|somebody) saying", re.I)
@@ -101,8 +106,23 @@ def answer(eng, path, question):
     if ast_speech >= SPEECH_SKIP or wants_text:
         text, st = transcribe(eng, wav)
     speech = is_speech(ast_speech, text, st)
-    info = {"ast_speech": round(ast_speech, 3), "stt": st, "speech": speech}
+    unclear = ast_speech >= SPEECH_AST and (
+        not speech or st["avg_logprob"] is None or st["avg_logprob"] < UNCLEAR_LOGPROB)
+    info = {"ast_speech": round(ast_speech, 3), "stt": st, "speech": speech and not unclear}
     agg = probs.max(0)
+
+    if unclear:
+        if not full:
+            probs, starts = sound.ast_probs(eng, wav)
+            agg = probs.max(0)
+        bg = sound.background(eng, agg)
+        bg = sound.with_alerts(f"In the background I also hear {bg}." if bg else "", agg, names).strip()
+        info["route"] = "audio_speech_unclear"
+        if wants_text or DESCRIBE.search(q) or not q:
+            return f"{UNCLEAR} {bg}".strip(), info
+        ctx = f"People are talking but the words are not clear. {bg}\n"
+        out, vinfo = eng.vlm.text(f"{ctx}\nQuestion: {q}", SYSTEM, max_new_tokens=64)
+        return spoken(out), {**info, **vinfo}
 
     if speech:
         if wants_text:

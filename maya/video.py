@@ -21,11 +21,13 @@ from PIL import Image
 
 from . import video_cv
 
+NO_ADVICE = ("Describe what is there. Never give advice or instructions such as 'be careful', "
+             "'watch for traffic' or 'follow the crosswalk'.")
 SYSTEM = ("You answer questions about a short video for a person who cannot see it. "
-          "Start with the answer itself, then at most one short sentence.")
+          "Start with the answer itself, then at most one short sentence. " + NO_ADVICE)
 SYSTEM_SENTENCE = ("You answer questions about a short video for a person who cannot see it. "
                    "Reply with one short, complete sentence that states the answer. "
-                   "Write counts as digits.")
+                   "Write counts as digits. " + NO_ADVICE)
 STEPS = ("First write at most four short lines, in time order, about what changes in the video "
          "that matters for the question. Then write the final answer on a last line that starts "
          "with 'Answer:'. The final answer is a full short sentence.")

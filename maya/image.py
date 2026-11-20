@@ -4,7 +4,8 @@ from PIL import Image
 
 SYSTEM = ("You answer questions about a photo for a person who cannot see it. "
           "Start with the answer itself, then at most one short sentence. "
-          "For 'how many' questions, start with the number. Read text exactly as written.")
+          "For 'how many' questions, start with the number. Read text exactly as written. "
+          "Describe what is there. Never give advice or instructions such as 'be careful'.")
 LIST_PROMPT = ("{q}\nFirst list each one you can see, one per line, with where it is in the photo "
                "(include people or animals that are partly hidden, small or at the edges). "
                "Then write the final line as: Answer: <number>")

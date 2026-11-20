@@ -24,7 +24,7 @@ from PIL import Image, ImageOps
 
 from . import media
 from .router import RoutingLog, media_kind, route
-from .safety import safety_filter
+from .safety import advice_filter, safety_filter
 
 ROOT = Path(__file__).resolve().parent
 CFG = yaml.safe_load((ROOT / "config.yaml").read_text())
@@ -345,6 +345,12 @@ async def handle(file, question, question_audio, force=None):
         # filter is for Maya's own advice, so verbatim transcripts skip it.
         if "transcri" not in str(info.get("route", "")):
             text, flagged = safety_filter(text)
+            # Documents and speech answers can quote advice; only Maya's own descriptions are cut.
+            if r.modality in ("image", "video") or str(info.get("route", "")).startswith("audio_sound"):
+                text, advised = advice_filter(text)
+                if advised and not text:
+                    text = "I can describe what I see, but I can't advise you what to do."
+                flagged = flagged or advised
         lat["safety"] = round((time.perf_counter() - t) * 1000)
         return await _reply(r, 200, text, question, lat, t0, log_extra, flagged=flagged,
                             raw=raw, info=info)

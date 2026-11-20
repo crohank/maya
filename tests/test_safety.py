@@ -45,3 +45,24 @@ if __name__ == "__main__":
     test_unsafe_sentence_dropped_rest_kept()
     test_harmless_unchanged()
     print("ok")
+
+
+def test_advice_cut_description_kept():
+    from app.safety import advice_filter
+    cases = {
+        "Yes, there's a construction zone ahead with orange and white barricades. Be cautious and follow the crosswalk.":
+            "Yes, there's a construction zone ahead with orange and white barricades.",
+        "The street is busy with traffic and pedestrians, so be cautious and watch for vehicles and people around you.":
+            "The street is busy with traffic and pedestrians.",
+        "Yes, there's a pedestrian zone ahead with specific rules and signs. Stay aware of your surroundings and follow the posted guidelines.":
+            "Yes, there's a pedestrian zone ahead with specific rules and signs.",
+    }
+    for src, want in cases.items():
+        out, flagged = advice_filter(src)
+        assert flagged and out == want, (src, out)
+
+
+def test_advice_leaves_descriptions():
+    from app.safety import advice_filter
+    for s in HARMLESS + ["A woman in a white top is walking toward you.", "The sign reads 42nd Street Passage."]:
+        assert advice_filter(s) == (s, False), s

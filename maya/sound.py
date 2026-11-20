@@ -349,6 +349,60 @@ def timeline(probs, starts, names, dur):
     return [tuple(x) for x in segs if x[0]]
 
 
+# Sounds a pedestrian must not miss. CLAP called a real street horn (YouTube Park Ave walk,
+# 14:26) "traffic noise" while AST scored horn 0.69; the highest AST horn score on any of
+# the 100 ESC-50 extra clips was 0.31. Sirens: ESC-50 siren clips 0.62 to 0.92, others 0.01.
+ALERTS = (("a car horn", ("Vehicle horn, car horn, honking", "Toot", "Air horn, truck horn"), 0.4),
+          ("a siren", ("Siren", "Police car (siren)", "Ambulance (siren)", "Fire engine, fire truck (siren)",
+                       "Emergency vehicle", "Civil defense siren"), 0.5))
+SPOKEN = {"a truck reversing beeps": "a truck backing up, with reversing beeps"}
+
+
+def with_alerts(out, agg, names):
+    for ph in SPOKEN:
+        out = out.replace(ph, SPOKEN[ph])
+    for ph, classes, th in ALERTS:
+        key = ph.split()[-1]
+        if max(float(agg[names.index(n)]) for n in classes) >= th and key not in out.lower():
+            out = f"I hear {ph}. " + out.replace("It sounds like", "It also sounds like")
+    return out
+
+
+def alert_timeline(eng, wav, win_s=2.0, hop_s=1.0, repeat_s=10.0):
+    """[(window_end_s, compute_s, phrase)] for horns and sirens in a live stream.
+
+    Short windows so a horn is reported about a second after it starts; one phrase
+    per sound per repeat_s.
+    """
+    import time
+
+    import torch
+    fx, model, names = ast_model(eng)
+    # AST always runs 1024 frames (10.24 s), so a 2 s window costs as much as a full one:
+    # 2.3 to 3.4 s per window on a loaded CPU (8 test clips), too slow for a 1 s hop.
+    if torch.cuda.is_available():
+        if "ast_cuda" not in eng.cache:
+            import copy
+            eng.cache["ast_cuda"] = copy.deepcopy(model).half().cuda()
+        model = eng.cache["ast_cuda"]
+    dev, dtype = next(model.parameters()).device, next(model.parameters()).dtype
+    win, hop = int(win_s * SR), int(hop_s * SR)
+    out, last = [], {}
+    for s in range(0, max(1, len(wav) - win + 1), hop):
+        t0 = time.perf_counter()
+        x = fx([pad_short(wav[s:s + win])], sampling_rate=SR, return_tensors="pt")
+        x = {k: v.to(dev, dtype) for k, v in x.items()}
+        with torch.inference_mode():
+            p = torch.sigmoid(model(**x).logits.float())[0].cpu().numpy()
+        dt = time.perf_counter() - t0
+        end = (s + win) / SR
+        for ph, classes, th in ALERTS:
+            if max(float(p[names.index(n)]) for n in classes) >= th and end - last.get(ph, -99) >= repeat_s:
+                last[ph] = end
+                out.append((end, round(dt, 3), ph))
+    return out
+
+
 def identify(eng, wav, probs=None, starts=None):
     """One or two short sentences naming the sound, with a second guess when unsure."""
     if probs is None:
@@ -370,6 +424,7 @@ def identify(eng, wav, probs=None, starts=None):
                + out.replace("It sounds", "It also sounds"))
     elif reg >= 0.4 and 0.7 <= rate <= 1.5 and {n for _, _, n in r[:5]} & BEEPY and not top_names & CLOCKY:
         out += " It repeats about once a second, which could be a crosswalk button tone."
+    out = with_alerts(out, agg, names)
     detected = ", ".join(f"{p} {s:.2f}" for p, s, _ in (rc or r)[:5])
     return out, {"detected": detected, "ast_top": ", ".join(f"{p} {s:.2f}" for p, s, _ in r[:5]),
                  "pulse": [rate, reg, span]}
