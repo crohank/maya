@@ -1,0 +1,12 @@
+mode,request_t,model_s,speech_start,speech_end,track,trigger,t_close,late,dropped,cut_off,spoken,text
+MOVE,2.0,3.28,5.28,5.28,3,person left ttc 3.8s,2.0,True,True,False,1 step right,"Instruction: 1 step right
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+MOVE,5.28,3.27,8.54,8.54,10,person right ttc 1.9s,5.633,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+DESCRIBE,8.54,3.28,11.82,15.53,,,,False,False,True,"<what> Woman, man, woman crossing right to left, ~3 m ahead. <N> steps","<what> Woman, man, woman crossing right to left, ~3 m ahead. <N> steps"
+MOVE,11.82,3.71,15.53,15.53,102,pole right ttc 2.5s,13.133,True,True,False,1 step right,"Instruction: 1 step right
+Reason: The pole is approaching from the right, taking up only one step distance, so a small rightward adjustment will avoid collision."
+MOVE,15.53,3.3,18.83,18.83,103,person right ttc 2.6s,14.133,True,True,False,1 step left,"Instruction: 1 step left
+Reason: To avoid the approaching person while maintaining balance and continuing safely forward."
+MOVE,18.83,4.74,23.57,23.57,178,pole right ttc 1.0s,19.767,True,True,False,1 step right,"Instruction: 1 step right
+Reason: The approaching pole is on your right side, taking up that area of your vision. By shifting your gaze and body slightly to the right, you create additional space between you and the pole, ensuring you won't collide with it as you continue moving forward."
